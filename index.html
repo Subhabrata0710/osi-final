@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3RD OSI CONFERENCE KOLKATA 2026 | Dental Implant Conference</title>
+    <meta name="description" content="India's Premier Conference on Osseointegration & Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002366;
+            --primary-light: #003399;
+            --primary-dark: #001844;
+            --secondary: #D4AF37;
+            --secondary-light: #F4E6B0;
+            --secondary-dark: #8A7018;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-900: #0f172a;
+            --green-500: #22c55e;
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--gray-700);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text h3 {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--gray-500);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--gray-100);
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--secondary);
+            color: var(--primary) !important;
+            font-weight: 600;
+            border-radius: 50px !important;
+            padding: 10px 24px !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--secondary-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Quick Links Widget */
+        .quick-links-widget {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            background: var(--primary);
+            border-radius: 12px 0 0 12px;
+            overflow: hidden;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            color: var(--white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .quick-link:last-child {
+            border-bottom: none;
+        }
+
+        .quick-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-link-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .quick-link-text h4 {
+            color: var(--white);
+            font-size: 13px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+        }
+
+        .quick-link-text span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            padding-top: 80px;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--gray-50) 0%, #e6f0ff 50%, var(--gray-100) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 35, 102, 0.05);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding: 40px 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 35, 102, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-details {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-detail-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 35, 102, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .hero-detail-text h4 {
+            font-size: 15px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+        }
+
+        .hero-detail-text span {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            max-width: 400px;
+        }
+
+        .hero-stat h3 {
+            font-size: 2rem;
+        }
+
+        .hero-stat span {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: var(--primary);
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .page-banner span {
+            color: var(--secondary);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .page-banner h1 {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-top: 12px;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .content-section.alt-bg {
+            background: var(--gray-50);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header span {
+            color: var(--secondary);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 35, 102, 0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        /* Committee Cards */
+        .committee-card {
+            position: relative;
+        }
+
+        .committee-card .card-image {
+            height: 280px;
+        }
+
+        .committee-card .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 35, 102, 0.9));
+            color: var(--white);
+        }
+
+        .committee-card .card-overlay h3 {
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .committee-card .card-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+
+        /* Program Tabs */
+        .program-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            background: var(--gray-100);
+            padding: 6px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .program-tab {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-600);
+        }
+
+        .program-tab.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .program-day {
+            display: none;
+        }
+
+        .program-day.active {
+            display: block;
+        }
+
+        .program-header {
+            background: var(--primary);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .program-header h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .program-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .program-header .badge {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .session-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .session-time {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 100px;
+            font-size: 14px;
+        }
+
+        .session-content {
+            flex: 1;
+        }
+
+        .session-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .session-type.keynote { background: var(--secondary); color: var(--primary); }
+        .session-type.session { background: #e0f2fe; color: #0369a1; }
+        .session-type.workshop { background: #dcfce7; color: #16a34a; }
+        .session-type.break { background: var(--gray-100); color: var(--gray-600); }
+        .session-type.ceremony { background: #f3e8ff; color: #7c3aed; }
+
+        .session-content h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .session-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        /* Registration */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+
+        .pricing-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .pricing-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card .subtitle {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+        }
+
+        .pricing-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 14px;
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-row .price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .pricing-features {
+            margin-top: 16px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--green-500);
+            font-weight: 700;
+        }
+
+        .form-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container h3 {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .google-form-embed {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            min-height: 400px;
+        }
+
+        .google-form-embed iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Accommodation */
+        .hotel-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .hotel-image {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hotel-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 35, 102, 0.9));
+            color: var(--white);
+        }
+
+        .hotel-stars {
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .hotel-image-overlay h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .hotel-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .hotel-feature {
+            background: var(--gray-50);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .hotel-feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .hotel-feature span {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        .room-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .room-card.recommended {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+
+        .room-card-image {
+            height: 180px;
+            position: relative;
+        }
+
+        .room-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .room-card-content {
+            padding: 24px;
+        }
+
+        .room-price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin: 12px 0 16px;
+        }
+
+        .room-price h3 {
+            font-size: 2rem;
+        }
+
+        .room-price span {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+
+        /* Sponsors */
+        .sponsor-tier {
+            margin-bottom: 48px;
+        }
+
+        .sponsor-tier-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .sponsor-tier-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .sponsor-tier-icon.platinum { background: linear-gradient(135deg, #e2e8f0, #f1f5f9); }
+        .sponsor-tier-icon.gold { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .sponsor-tier-icon.silver { background: var(--gray-100); }
+
+        .sponsor-logos {
+            display: grid;
+            gap: 20px;
+        }
+
+        .sponsor-logos.platinum { grid-template-columns: repeat(2, 1fr); }
+        .sponsor-logos.gold { grid-template-columns: repeat(3, 1fr); }
+        .sponsor-logos.silver { grid-template-columns: repeat(4, 1fr); }
+
+        .sponsor-logo {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            min-height: 100px;
+        }
+
+        .sponsor-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .trade-exhibition {
+            background: var(--primary);
+            border-radius: var(--radius);
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .trade-exhibition h3 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .trade-exhibition p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 24px;
+        }
+
+        .exhibitor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .exhibitor-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+        }
+
+        .trade-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .trade-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .trade-stat h4 {
+            color: var(--secondary);
+            font-size: 2.5rem;
+        }
+
+        .trade-stat span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+
+        /* Venue */
+        .venue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .venue-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 450px;
+            position: relative;
+        }
+
+        .venue-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .venue-map-overlay {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .venue-map-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .travel-option {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .travel-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-200);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .city-info {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: 48px;
+        }
+
+        .city-info-content {
+            padding: 48px;
+        }
+
+        .city-info-content h3 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .city-info-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 24px;
+        }
+
+        .city-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .city-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .city-stat h4 {
+            color: var(--secondary);
+            font-size: 1.25rem;
+        }
+
+        .city-stat span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+        }
+
+        .city-info-image {
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .city-info-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Downloads */
+        .download-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .download-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .download-info {
+            flex: 1;
+        }
+
+        .download-info h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .download-info p {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+        }
+
+        .download-meta {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .download-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-100);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 48px;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .contact-info h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+        }
+
+        .contact-item-text span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-item-text p {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--gray-700);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Manrope', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 35, 102, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .success-message {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo .logo-icon {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .footer-logo h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+        }
+
+        .footer-logo span {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+            max-width: 400px;
+        }
+
+        .footer-details {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+
+        .footer-detail-icon {
+            color: var(--secondary);
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        .scroll-top {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .sponsor-logos.silver { grid-template-columns: repeat(2, 1fr); }
+            .trade-exhibition { grid-template-columns: 1fr; }
+            .city-info { grid-template-columns: 1fr; }
+            .venue-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hotel-overview { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .quick-links-widget { display: none; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .sponsor-logos.platinum,
+            .sponsor-logos.gold { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-details { flex-direction: column; gap: 16px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">OSI</div>
+                <div class="logo-text">
+                    <h3>3RD OSI</h3>
+                    <span>KOLKATA 2026</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <!--<li><a href="/" class="{{CURRENT_PAGE}}" id="nav-home">Home</a></li>-->
+		<a href="#about" onclick="showPage('about')">About</a>
+		<a href="#committee" onclick="showPage('committee')">Committee</a>
+		<a href="#program" onclick="showPage('program')">Program</a>
+		<a href="#speakers" onclick="showPage('speakers')">Speakers</a>
+		<a href="#registration" onclick="showPage('registration')">Registration</a>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Quick Links Widget -->
+    <div class="quick-links-widget">
+        <a href="https://www.ossindia.org/membership" target="_blank" class="quick-link">
+            <div class="quick-link-icon">👥</div>
+            <div class="quick-link-text">
+                <h4>OSI Membership</h4>
+                <span>Join Now</span>
+            </div>
+        </a>
+        <a href="https://www.ossindia.org/fellowship" target="_blank" class="quick-link">
+            <div class="quick-link-icon">🏆</div>
+            <div class="quick-link-text">
+                <h4>OSI Fellowship</h4>
+                <span>Apply Now</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- HOME PAGE -->
+    <section class="page-section" id="page-home">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">National Conference</div>
+                    <h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+                    <h2>KOLKATA 2026</h2>
+                    <p>India's Premier Conference on <strong>Osseointegration</strong> & <strong>Implant Dentistry</strong> — Where Science Meets Clinical Excellence</p>
+                    
+                    <div class="hero-details">
+                        <div class="hero-detail">
+                            <div class="hero-detail-icon">📅</div>
+                            <div class="hero-detail-text">
+                                <h4>27-29 November</h4>
+                                <span>2026</span>
+                            </div>
+                        </div>
+                        <div class="hero-detail">
+                            <div class="hero-detail-icon">📍</div>
+                            <div class="hero-detail-text">
+                                <h4>The Westin</h4>
+                                <span>Rajarhat, Kolkata</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="/registration" class="btn btn-primary">Register Now →</a>
+                        <a href="/program" class="btn btn-outline">Scientific Program</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <h3>500+</h3>
+                            <span>Delegates</span>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>50+</h3>
+                            <span>Speakers</span>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>30+</h3>
+                            <span>Sessions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section class="page-section" id="page-about">
+        <div class="page-banner">
+            <span>About The Conference</span>
+            <h1>3RD OSI CONFERENCE KOLKATA 2026</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <h2 style="margin-bottom: 24px;">Where <span style="color: var(--secondary);">Osseointegration</span> Meets Innovation</h2>
+                        <p style="margin-bottom: 16px; font-size: 16px;">The <strong>3rd OSI Conference Kolkata 2026</strong> brings together the brightest minds in implant dentistry for three days of intensive learning, networking, and clinical excellence.</p>
+                        <p style="margin-bottom: 24px; font-size: 16px;">Join us as we explore the frontiers of <strong>bone-implant integration</strong>, advanced prosthetic solutions, and the latest surgical techniques.</p>
+                        <div style="background: var(--primary); border-radius: var(--radius); padding: 24px; color: var(--white);">
+                            <h3 style="color: var(--white); font-size: 1.25rem; margin-bottom: 8px;">"From Beginners to Masters"</h3>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">A comprehensive program designed for every level of expertise in implant dentistry</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="border-radius: var(--radius); overflow: hidden; margin-bottom: 24px;">
+                            <img src="https://images.unsplash.com/photo-1565090567208-c8038cfcf6cd?w=600&h=300&fit=crop" alt="Dental Implant" style="width: 100%; height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="grid-2">
+                            <div class="card" style="padding: 20px;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🎯</div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Clinical Excellence</h4>
+                                <p style="font-size: 12px;">Evidence-based practices</p>
+                            </div>
+                            <div class="card" style="padding: 20px;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">👥</div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Knowledge Exchange</h4>
+                                <p style="font-size: 12px;">Global collaboration</p>
+                            </div>
+                            <div class="card" style="padding: 20px;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">🏆</div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Skill Development</h4>
+                                <p style="font-size: 12px;">Hands-on workshops</p>
+                            </div>
+                            <div class="card" style="padding: 20px;">
+                                <div style="font-size: 24px; margin-bottom: 8px;">💡</div>
+                                <h4 style="font-size: 14px; margin-bottom: 4px;">Innovation</h4>
+                                <p style="font-size: 12px;">Latest technologies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITTEE PAGE -->
+    <section class="page-section" id="page-committee">
+        <div class="page-banner">
+            <span>Leadership</span>
+            <h1>Organizing Committee</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="grid-3">
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=350&fit=crop" alt="Dr. Rajesh Kumar"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Conference Chairperson</span>
+                            <h3>Dr. Rajesh Kumar</h3>
+                            <p>Professor & Head, Prosthodontics<br>Government Dental College, Kolkata</p>
+                        </div>
+                    </div>
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=350&fit=crop" alt="Dr. Priya Sharma"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Scientific Committee Chair</span>
+                            <h3>Dr. Priya Sharma</h3>
+                            <p>Professor, Oral Surgery<br>AIIMS, New Delhi</p>
+                        </div>
+                    </div>
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=350&fit=crop" alt="Dr. Sunil Menon"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Organizing Secretary</span>
+                            <h3>Dr. Sunil Menon</h3>
+                            <p>Consultant Implantologist<br>Apollo Hospitals, Chennai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM PAGE -->
+    <section class="page-section" id="page-program">
+        <div class="page-banner">
+            <span>Schedule</span>
+            <h1>Scientific Program</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="program-tabs">
+                    <button class="program-tab active" onclick="showDay(1)">Day 1</button>
+                    <button class="program-tab" onclick="showDay(2)">Day 2</button>
+                    <button class="program-tab" onclick="showDay(3)">Day 3</button>
+                </div>
+
+                <div class="program-day active" id="day-1">
+                    <div class="program-header">
+                        <div>
+                            <h3>27th November 2026</h3>
+                            <p>Foundations & Fundamentals</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">08:00 - 09:00</span><div class="session-content"><span class="session-type break">BREAK</span><h4>Registration & Welcome Coffee</h4><div class="session-meta"><span>📍 Main Lobby</span></div></div></div>
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span><div class="session-content"><span class="session-type ceremony">CEREMONY</span><h4>Inaugural Ceremony</h4><div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 Chief Guest</span></div></div></div>
+                    <div class="session-item"><span class="session-time">09:30 - 10:30</span><div class="session-content"><span class="session-type keynote">KEYNOTE</span><h4>The Evolution of Osseointegration</h4><div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 International Expert</span></div></div></div>
+                    <div class="session-item"><span class="session-time">11:00 - 13:00</span><div class="session-content"><span class="session-type session">SESSION</span><h4>Scientific Session I: Implant Surface Technology</h4><div class="session-meta"><span>📍 Hall A</span></div></div></div>
+                    <div class="session-item"><span class="session-time">14:00 - 16:00</span><div class="session-content"><span class="session-type workshop">WORKSHOP</span><h4>Hands-on: Basic Implant Placement</h4><div class="session-meta"><span>📍 Workshop Room 1</span><span>⚠️ Limited Seats</span></div></div></div>
+                </div>
+
+                <div class="program-day" id="day-2">
+                    <div class="program-header">
+                        <div>
+                            <h3>28th November 2026</h3>
+                            <p>Advanced Techniques & Innovation</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 10:30</span><div class="session-content"><span class="session-type session">SESSION</span><h4>Full Arch Rehabilitation</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                    <div class="session-item"><span class="session-time">11:00 - 13:00</span><div class="session-content"><span class="session-type keynote">LIVE</span><h4>Live Surgery Demonstration</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                    <div class="session-item"><span class="session-time">14:00 - 16:00</span><div class="session-content"><span class="session-type workshop">WORKSHOP</span><h4>Guided Implant Surgery</h4><div class="session-meta"><span>📍 Workshop Room 2</span></div></div></div>
+                    <div class="session-item"><span class="session-time">19:30</span><div class="session-content"><span class="session-type ceremony">SOCIAL</span><h4>Gala Dinner & Cultural Program</h4><div class="session-meta"><span>📍 Poolside Lawn</span></div></div></div>
+                </div>
+
+                <div class="program-day" id="day-3">
+                    <div class="program-header">
+                        <div>
+                            <h3>29th November 2026</h3>
+                            <p>Clinical Excellence & Future Directions</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 10:30</span><div class="session-content"><span class="session-type session">SESSION</span><h4>Soft Tissue Management</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                    <div class="session-item"><span class="session-time">11:00 - 12:30</span><div class="session-content"><span class="session-type session">PRESENTATIONS</span><h4>Free Paper Presentations</h4><div class="session-meta"><span>📍 Halls A & B</span></div></div></div>
+                    <div class="session-item"><span class="session-time">13:30 - 15:00</span><div class="session-content"><span class="session-type session">COMPETITION</span><h4>Case Presentation Competition</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                    <div class="session-item"><span class="session-time">15:00 - 16:00</span><div class="session-content"><span class="session-type keynote">KEYNOTE</span><h4>Future of Digital Implantology</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                    <div class="session-item"><span class="session-time">16:00 - 17:00</span><div class="session-content"><span class="session-type ceremony">CEREMONY</span><h4>Valedictory & Prize Distribution</h4><div class="session-meta"><span>📍 Grand Ballroom</span></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEAKERS PAGE -->
+    <section class="page-section" id="page-speakers">
+        <div class="page-banner">
+            <span>Expert Panel</span>
+            <h1>Distinguished Speakers</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="grid-2" style="margin-bottom: 32px;">
+                    <div class="card committee-card" style="height: 350px;">
+                        <div class="card-image" style="height: 100%;"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=400&fit=crop" alt="Prof. Sanjay Gupta" style="height: 100%;"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Keynote Speaker</span>
+                            <h3>Prof. Sanjay Gupta</h3>
+                            <p>Oral & Maxillofacial Surgery • AIIMS Delhi</p>
+                        </div>
+                    </div>
+                    <div class="card committee-card" style="height: 350px;">
+                        <div class="card-image" style="height: 100%;"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=400&fit=crop" alt="Dr. Meenakshi Iyer" style="height: 100%;"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Keynote Speaker</span>
+                            <h3>Dr. Meenakshi Iyer</h3>
+                            <p>Prosthodontics & Implantology • CMC Vellore</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-4">
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Arjun K.</h3><p>Periodontics</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Kavitha R.</h3><p>Oral Pathology</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Workshop</span><h3 style="font-size: 1rem;">Dr. Rohit M.</h3><p>Digital Implantology</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Sunitha N.</h3><p>Implant Prosthodontics</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION PAGE -->
+    <section class="page-section" id="page-registration">
+        <div class="page-banner">
+            <span>Join Us</span>
+            <h1>Registration</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Registration Categories</h2>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-icon">👥</div>
+                        <h3>Delegate</h3>
+                        <p class="subtitle">Practicing dentists</p>
+                        <div class="pricing-row"><span>Early Bird</span><span class="price">₹12,000</span></div>
+                        <div class="pricing-row"><span>Regular</span><span class="price">₹15,000</span></div>
+                        <div class="pricing-row"><span>On-site</span><span class="price">₹18,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Full 3-day access</li>
+                            <li>Workshop participation</li>
+                            <li>Gala dinner</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card popular">
+                        <div class="pricing-icon">🎓</div>
+                        <h3>Student</h3>
+                        <p class="subtitle">PG students & interns</p>
+                        <div class="pricing-row"><span>Early Bird</span><span class="price">₹6,000</span></div>
+                        <div class="pricing-row"><span>Regular</span><span class="price">₹8,000</span></div>
+                        <div class="pricing-row"><span>On-site</span><span class="price">₹10,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Full 3-day access</li>
+                            <li>Conference kit</li>
+                            <li>Poster competition</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-icon">👤</div>
+                        <h3>Accompanying</h3>
+                        <p class="subtitle">Family & companions</p>
+                        <div class="pricing-row"><span>Standard</span><span class="price">₹5,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Welcome reception</li>
+                            <li>Gala dinner</li>
+                            <li>City tour (optional)</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-icon">🔧</div>
+                        <h3>Workshop Only</h3>
+                        <p class="subtitle">Hands-on workshops</p>
+                        <div class="pricing-row"><span>Per Workshop</span><span class="price">₹3,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Workshop access</li>
+                            <li>Materials provided</li>
+                            <li>Certificate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3>Register Now</h3>
+                    <p style="text-align: center; margin-bottom: 24px; color: var(--gray-600);">Fill out the Google Form to complete your registration</p>
+                    <div class="google-form-embed">
+                        <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true">Loading form...</iframe>
+                    </div>
+                    <p style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--gray-500);">
+                        Having trouble? <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" target="_blank" style="color: var(--primary); font-weight: 600;">Open form in new tab →</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCOMMODATION PAGE -->
+    <section class="page-section" id="page-accommodation">
+        <div class="page-banner">
+            <span>Stay With Us</span>
+            <h1>Accommodation</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="hotel-overview">
+                    <div class="hotel-image">
+                        <img src="https://images.pexels.com/photos/30824415/pexels-photo-30824415.jpeg?w=600&h=450&fit=crop" alt="The Westin Kolkata">
+                        <div class="hotel-image-overlay">
+                            <div class="hotel-stars">★★★★★</div>
+                            <h3>The Westin Kolkata Rajarhat</h3>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">📍 Plot No, 2, AA II, Newtown, Kolkata 700135</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Official Conference Hotel</h2>
+                        <p style="margin: 16px 0;">Enjoy exclusive rates at The Westin Kolkata Rajarhat. World-class amenities, exceptional dining, and minutes away from the conference venue.</p>
+                        <div class="hotel-features">
+                            <div class="hotel-feature"><div class="hotel-feature-icon">📶</div><span>Free Wi-Fi</span></div>
+                            <div class="hotel-feature"><div class="hotel-feature-icon">🚗</div><span>Parking</span></div>
+                            <div class="hotel-feature"><div class="hotel-feature-icon">🍽️</div><span>Restaurant</span></div>
+                            <div class="hotel-feature"><div class="hotel-feature-icon">💪</div><span>Fitness</span></div>
+                            <div class="hotel-feature"><div class="hotel-feature-icon">☕</div><span>Lounge</span></div>
+                            <div class="hotel-feature"><div class="hotel-feature-icon">⭐</div><span>5-Star</span></div>
+                        </div>
+                        <div style="background: #fef9e7; border: 1px solid var(--secondary); border-radius: var(--radius); padding: 16px;">
+                            <strong style="color: var(--secondary);">Special Offer:</strong> Book accommodation during registration for exclusive delegate rates!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header"><h2>Room Categories</h2></div>
+                <div class="grid-3">
+                    <div class="room-card">
+                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=200&fit=crop" alt="Deluxe Room"></div>
+                        <div class="room-card-content">
+                            <h3>Deluxe Room</h3>
+                            <div class="room-price"><h3>₹6,000</h3><span>/night</span></div>
+                            <ul class="pricing-features"><li>King/Twin beds</li><li>35 sqm</li><li>City view</li></ul>
+                            <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="room-card recommended">
+                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"><span class="room-badge">RECOMMENDED</span></div>
+                        <div class="room-card-content">
+                            <h3>Premium Room</h3>
+                            <div class="room-price"><h3>₹8,000</h3><span>/night</span></div>
+                            <ul class="pricing-features"><li>King/Twin beds, 42 sqm</li><li>Pool view</li><li>Breakfast included</li></ul>
+                            <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="room-card">
+                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=200&fit=crop" alt="Executive Suite"></div>
+                        <div class="room-card-content">
+                            <h3>Executive Suite</h3>
+                            <div class="room-price"><h3>₹12,000</h3><span>/night</span></div>
+                            <ul class="pricing-features"><li>King bed, 65 sqm</li><li>Panoramic view</li><li>Club access</li></ul>
+                            <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS PAGE -->
+    <section class="page-section" id="page-sponsors">
+        <div class="page-banner">
+            <span>Our Partners</span>
+            <h1>Sponsors & Trade Exhibition</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon platinum">⭐</div><h3>Platinum Sponsors</h3></div>
+                    <div class="sponsor-logos platinum">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Nobel+Biocare" alt="Nobel Biocare"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div>
+                    </div>
+                </div>
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon gold">🏆</div><h3>Gold Sponsors</h3></div>
+                    <div class="sponsor-logos gold">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=Dentsply+Sirona" alt="Dentsply Sirona"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=Osstem" alt="Osstem"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=BioHorizons" alt="BioHorizons"></div>
+                    </div>
+                </div>
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon silver">🥈</div><h3>Silver Sponsors</h3></div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=MegaGen" alt="MegaGen"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Neodent" alt="Neodent"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Zimmer+Biomet" alt="Zimmer Biomet"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Anthogyr" alt="Anthogyr"></div>
+                    </div>
+                </div>
+
+                <div class="trade-exhibition">
+                    <div>
+                        <h3>Trade Exhibition 2026</h3>
+                        <p>Explore the latest in implant technology, surgical instruments, and digital dentistry solutions.</p>
+                        <div class="exhibitor-tags">
+                            <span class="exhibitor-tag">Implant Direct</span>
+                            <span class="exhibitor-tag">MIS Implants</span>
+                            <span class="exhibitor-tag">BEGO</span>
+                            <span class="exhibitor-tag">Alpha Bio</span>
+                            <span class="exhibitor-tag">Bredent</span>
+                        </div>
+                        <a href="/contact" class="btn btn-primary">Become an Exhibitor</a>
+                    </div>
+                    <div class="trade-stats">
+                        <div class="trade-stat"><h4>30+</h4><span>Exhibitors</span></div>
+                        <div class="trade-stat"><h4>50+</h4><span>Stalls</span></div>
+                        <div class="trade-stat"><h4>3</h4><span>Days</span></div>
+                        <div class="trade-stat"><h4>500+</h4><span>Products</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENUE PAGE -->
+    <section class="page-section" id="page-venue">
+        <div class="page-banner">
+            <span>Location</span>
+            <h1>Venue & Travel</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="venue-grid">
+                    <div class="venue-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.2376789123456!2d88.4612345!3d22.5876543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275b020703c0d%3A0x5f5c8a4fff01c5ad!2sThe%20Westin%20Kolkata%20Rajarhat!5e0!3m2!1sen!2sin!4v1635789012345!5m2!1sen!2sin"></iframe>
+                        <div class="venue-map-overlay">
+                            <div class="venue-map-icon">📍</div>
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 2px;">The Westin Kolkata Rajarhat</h4>
+                                <p style="font-size: 12px; color: var(--gray-500);">Plot No, 2, AA II, Newtown, West Bengal 700135</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="border-radius: var(--radius); overflow: hidden; height: 180px; margin-bottom: 24px;">
+                            <img src="https://images.pexels.com/photos/30824415/pexels-photo-30824415.jpeg?w=500&h=200&fit=crop" alt="Venue" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="margin-bottom: 16px;">How to Reach</h3>
+                        <div class="travel-option"><div class="travel-icon">✈️</div><div><h4 style="font-size: 15px;">By Air</h4><p style="font-size: 13px; color: var(--gray-600);">Netaji Subhas Chandra Bose International Airport (CCU)</p><span style="font-size: 12px; color: var(--gray-400);">15 km from venue | ~30 mins drive</span></div></div>
+                        <div class="travel-option"><div class="travel-icon">🚂</div><div><h4 style="font-size: 15px;">By Rail</h4><p style="font-size: 13px; color: var(--gray-600);">Kolkata Station / Howrah Junction</p><span style="font-size: 12px; color: var(--gray-400);">20 km from venue | ~45 mins drive</span></div></div>
+                        <div class="travel-option"><div class="travel-icon">🚗</div><div><h4 style="font-size: 15px;">By Road</h4><p style="font-size: 13px; color: var(--gray-600);">Well-connected via EM Bypass</p><span style="font-size: 12px; color: var(--gray-400);">Ample parking available</span></div></div>
+                        <a href="https://maps.google.com/?q=The+Westin+Kolkata+Rajarhat" target="_blank" class="btn btn-primary" style="margin-top: 16px;">🧭 Get Directions</a>
+                    </div>
+                </div>
+
+                <div class="city-info">
+                    <div class="city-info-content">
+                        <h3>Welcome to Kolkata</h3>
+                        <p>The City of Joy — known for its rich cultural heritage, colonial architecture, and warm hospitality.</p>
+                        <div class="city-stats">
+                            <div class="city-stat"><h4>November</h4><span>Pleasant weather (18-28°C)</span></div>
+                            <div class="city-stat"><h4>IST</h4><span>UTC +5:30</span></div>
+                        </div>
+                    </div>
+                    <div class="city-info-image">
+                        <img src="https://images.unsplash.com/photo-1558431382-27e303142255?w=500&h=350&fit=crop" alt="Kolkata">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOADS PAGE -->
+    <section class="page-section" id="page-downloads">
+        <div class="page-banner">
+            <span>Resources</span>
+            <h1>Downloads</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="grid-3">
+                    <div class="download-item"><div class="download-icon">📄</div><div class="download-info"><h4>Conference Brochure</h4><p>Complete details about the conference</p><span class="download-meta">PDF • 2.5 MB</span></div><button class="download-btn">⬇️</button></div>
+                    <div class="download-item"><div class="download-icon">📋</div><div class="download-info"><h4>Scientific Program</h4><p>Detailed schedule of all sessions</p><span class="download-meta">PDF • 1.8 MB</span></div><button class="download-btn">⬇️</button></div>
+                    <div class="download-item"><div class="download-icon">📝</div><div class="download-info"><h4>Abstract Guidelines</h4><p>Guidelines for abstract submission</p><span class="download-meta">PDF • 500 KB</span></div><button class="download-btn">⬇️</button></div>
+                    <div class="download-item"><div class="download-icon">💼</div><div class="download-info"><h4>Sponsorship Prospectus</h4><p>Sponsorship opportunities</p><span class="download-meta">PDF • 3.2 MB</span></div><button class="download-btn">⬇️</button></div>
+                    <div class="download-item"><div class="download-icon">🗺️</div><div class="download-info"><h4>Exhibition Layout</h4><p>Floor plan and stall details</p><span class="download-meta">PDF • 1.5 MB</span></div><button class="download-btn">⬇️</button></div>
+                    <div class="download-item"><div class="download-icon">🏨</div><div class="download-info"><h4>Accommodation Form</h4><p>Hotel booking form</p><span class="download-meta">PDF • 400 KB</span></div><button class="download-btn">⬇️</button></div>
+                </div>
+
+                <div style="margin-top: 48px;">
+                    <h3 style="text-align: center; margin-bottom: 24px;">Quick Links</h3>
+                    <div class="grid-2" style="max-width: 700px; margin: 0 auto;">
+                        <a href="https://www.ossindia.org/membership" target="_blank" class="download-item" style="text-decoration: none;">
+                            <div class="download-icon" style="background: #fef3c7;">👥</div>
+                            <div class="download-info"><h4>OSI Membership</h4><p>Join the Osseointegration Society of India</p></div>
+                            <span style="font-size: 20px;">↗️</span>
+                        </a>
+                        <a href="https://www.ossindia.org/fellowship" target="_blank" class="download-item" style="text-decoration: none;">
+                            <div class="download-icon" style="background: #fef3c7;">🏆</div>
+                            <div class="download-info"><h4>OSI Fellowship</h4><p>Apply for OSI Fellowship program</p></div>
+                            <span style="font-size: 20px;">↗️</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section class="page-section" id="page-contact">
+        <div class="page-banner">
+            <span>Get in Touch</span>
+            <h1>Contact Us</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Conference Secretariat</h3>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">✉️</div>
+                            <div class="contact-item-text"><span>Email</span><p>info@osikonference.org</p></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">📞</div>
+                            <div class="contact-item-text"><span>Phone</span><p>+91 98765 43210</p></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">📍</div>
+                            <div class="contact-item-text"><span>Address</span><p>The Westin, Rajarhat<br>Kolkata 700135</p></div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <!--SUCCESS_MESSAGE-->
+                        <form onsubmit="submitForm(event)">
+                            <div class="form-row">
+                                <div class="form-group"><label>Full Name *</label><input type="text" name="name" required placeholder="Your name"></div>
+                                <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="your@email.com"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 43210"></div>
+                                <div class="form-group"><label>Subject *</label><input type="text" name="subject" required placeholder="How can we help?"></div>
+                            </div>
+                            <div class="form-group"><label>Message *</label><textarea name="message" required placeholder="Your message..."></textarea></div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">📨 Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <div class="logo-icon">OSI</div>
+                        <div class="logo-text">
+                            <h3>3RD OSI CONFERENCE</h3>
+                            <span>KOLKATA 2026</span>
+                        </div>
+                    </div>
+                    <p class="footer-text">India's premier national conference on Osseointegration & Implant Dentistry.</p>
+                    <div class="footer-details">
+                        <div class="footer-detail"><span class="footer-detail-icon">📅</span> 27-29 November 2026</div>
+                        <div class="footer-detail"><span class="footer-detail-icon">📍</span> The Westin, Kolkata</div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/program">Program</a></li>
+                        <li><a href="/speakers">Speakers</a></li>
+                        <li><a href="/registration">Registration</a></li>
+                        <li><a href="/downloads">Downloads</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@osikonference.org">info@osikonference.org</a></li>
+                        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li>Plot No, 2, AA II, Newtown,<br>Kolkata 700135</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 3rd OSI Conference Kolkata. All rights reserved.</p>
+                <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        const currentPage = '{{CURRENT_PAGE}}';
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        const activeSection = document.getElementById('page-' + currentPage);
+        if (activeSection) {
+            activeSection.classList.add('active');
+        }
+
+        // Nav active state
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+        });
+        const activeNav = document.getElementById('nav-' + currentPage);
+        if (activeNav) {
+            activeNav.classList.add('active');
+        }
+
+        // Program tabs
+        function showDay(day) {
+            document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.program-tab')[day - 1].classList.add('active');
+            document.getElementById('day-' + day).classList.add('active');
+        }
+
+        // Mobile menu
+        document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+    <script>
+  function showPage(page) {
+    document.querySelectorAll(".page-section").forEach(sec => {
+      sec.classList.remove("active");
+    });
+
+    const active = document.getElementById("page-" + page);
+    if (active) active.classList.add("active");
+
+    history.pushState({}, "", "#" + page);
+  }
+
+  function loadFromHash() {
+    const page = location.hash.replace("#", "") || "home";
+    showPage(page);
+  }
+
+  window.addEventListener("load", loadFromHash);
+  window.addEventListener("popstate", loadFromHash);
+</script>
+<script>
+async function submitForm(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  const res = await fetch("https://YOUR-RENDER-URL.onrender.com/api/contact", {
+    method: "POST",
+    body: formData
+  });
+
+  if (res.ok) {
+    alert("Message sent successfully!");
+    e.target.reset();
+  } else {
+    alert("Something went wrong");
+  }
+}
+</script>
+
+
+</body>
+</html>
