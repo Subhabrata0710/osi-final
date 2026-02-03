@@ -237,6 +237,21 @@
             position: relative;
             overflow: hidden;
         }
+		.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  color: #0b2c6b; /* deep blue */
+  font-family: "Times New Roman", serif;
+}
+
+.gold-effect {
+  color: #0b2c6b; /* main text color */
+  text-shadow:
+    2px 2px 0 #d4af37,   /* gold layer */
+    3px 3px 0 #b8962e,   /* darker gold */
+    4px 4px 6px rgba(0,0,0,0.25); /* depth */
+}
+
 
         .hero::before {
             content: '';
@@ -1586,6 +1601,8 @@
                 <div class="grid-2">
                     <div>
                         <h2 style="margin-bottom: 24px;">Where <span class="text-3d-gold">Osseointegration</span> Meets Innovation</h2>
+						<h1 class="hero-title">Where <span class="gold-effect">Osseointegration</span> Meets Innovation</h1>
+
                         <p style="margin-bottom: 16px; font-size: 16px;">The <strong>3rd OSI Conference Kolkata 2026</strong> brings together the brightest minds in implant dentistry for three days of intensive learning, networking, and clinical excellence.</p>
                         <p style="margin-bottom: 24px; font-size: 16px;">Join us as we explore the frontiers of <strong>bone-implant integration</strong>, advanced prosthetic solutions, and the latest surgical techniques.</p>
                         <div style="background: var(--primary); border-radius: var(--radius); padding: 24px; color: var(--white);">
