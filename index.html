@@ -343,12 +343,44 @@
             font-size: 0.6em;
         }
 
-        .hero h1 {
+        /*.hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 700;
             margin-bottom: 16px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+        }*/
+/* Replace your existing hero h1 and gold-effect styles with this */
+.hero h1 {
+    font-family: 'Playfair Display', serif; /* Or Arial Black for a chunkier look */
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: #002366; /* The dark blue from your image */
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    
+    /* This creates the thick grey 3D effect */
+    text-shadow: 
+        1px 1px 0px #dcdcdc, 
+        2px 2px 0px #dcdcdc, 
+        3px 3px 0px #dcdcdc, 
+        4px 4px 0px #dcdcdc, 
+        5px 5px 0px #dcdcdc, 
+        6px 6px 0px #dcdcdc, 
+        7px 7px 0px #dcdcdc, 
+        8px 8px 15px rgba(0,0,0,0.3); /* Soft shadow at the bottom */
+}
+
+/* Adjust the superscript (RD) to look like the image */
+.hero h1 sup {
+    font-size: 0.5em;
+    vertical-align: super;
+    text-shadow: 
+        1px 1px 0px #dcdcdc, 
+        2px 2px 0px #dcdcdc, 
+        3px 3px 0px #dcdcdc; /* Smaller shadow for smaller text */
+}
+
 
         .hero h2 {
             font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -1591,8 +1623,11 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">National Conference</div>
-                    <h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>
-                    <h2>KOLKATA 2026</h2>
+                    <!--<h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>-->
+<h1>3<sup>rd</sup> osi conference</h1>
+<h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2>
+
+                    <!--<h2>KOLKATA 2026</h2>-->
                     <p>India's Premier Conference on <strong>Osseointegration</strong> & <strong>Implant Dentistry</strong> — Where Science Meets Clinical Excellence</p>
                     
                     <div class="hero-details">
