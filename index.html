@@ -1675,7 +1675,11 @@
   padding: 12px 0;
   border-bottom: 1px solid var(--gray-200);
 }
-
+.logo-img {
+    height: 50px;   /* adjust as needed */
+    width: auto;
+    display: block;
+}
 /* Hide desktop nav on mobile */
 @media (max-width: 768px) {
   .nav-links,
@@ -1691,7 +1695,10 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
+            <!-- <a href="#home" class="logo" onclick="showPage('home')"> -->
             <a href="#home" class="logo" onclick="showPage('home')">
+                <img src="assets/images/logo.png" alt="3RD OSI Kolkata 2026 Logo" class="logo-img">
+            </a>				
             <div class="logo-icon">OSI</div>
             <div class="logo-text">
                 <h3>3RD OSI</h3>
