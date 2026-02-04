@@ -1602,63 +1602,6 @@
             transform: translateY(-4px);
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
         }
-		/* Fullscreen overlay */
-		.popup-overlay {
-		    position: fixed;
-		    top: 0;
-		    left: 0;
-		    width: 100%;
-		    height: 100%;
-		    background: rgba(0, 0, 0, 0.6);
-		    backdrop-filter: blur(8px);
-		    display: none;
-		    align-items: center;
-		    justify-content: center;
-		    z-index: 9999;
-		}
-		
-		/* Popup box */
-		/* .popup-content {
-		    position: relative;
-		    max-width: 90%;
-		    max-height: 90%;
-		} */
-		
-		/* Popup image */
-		/* .popup-content img {
-		    width: 100%;
-		    height: auto;
-		    border-radius: 10px;
-		} */
-		/* Popup box */
-		.popup-content {
-		    max-width: 90vw;
-		    max-height: 90vh;
-		    display: flex;
-		    align-items: center;
-		    justify-content: center;
-		}
-/* Popup image */
-		.popup-content img {
-		    max-width: 100%;
-		    max-height: 100%;
-		    object-fit: contain;
-		}
-
-		/* Close button */
-		.popup-close {
-		    position: absolute;
-		    top: -15px;
-		    right: -15px;
-		    background: #fff;
-		    border: none;
-		    font-size: 18px;
-		    cursor: pointer;
-		    border-radius: 50%;
-		    width: 35px;
-		    height: 35px;
-		}
-
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -1736,7 +1679,6 @@
     height: 50px;   /* adjust as needed */
     width: auto;
     display: block;
-	padding: 10px 0;
 }
 /* Hide desktop nav on mobile */
 @media (max-width: 768px) {
@@ -1749,14 +1691,6 @@
 
 </style>
 </head>
-	<!-- Popup Overlay -->
-<!-- <div id="popupOverlay" class="popup-overlay">
-    <div class="popup-content">
-        <button class="popup-close" onclick="closePopup()">✖</button>
-        <img src="images/popup.jpeg" alt="Popup Image">
-    </div>
-</div> -->
-
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -2077,28 +2011,35 @@
             <div class="container">
                 <div class="grid-2" style="margin-bottom: 32px;">
                     <div class="card committee-card" style="height: 350px;">
-                        <div class="card-image" style="height: 100%;"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&h=400&fit=crop" alt="Prof. Sanjay Gupta" style="height: 100%;"></div>
+                        <div class="card-image" style="height: 100%;"><img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
-                            <h3>Prof. Sanjay Gupta</h3>
-                            <p>Oral & Maxillofacial Surgery • AIIMS Delhi</p>
+                            <h3>Dr Frank Schwarz</h3>
+                            <p>Professor and Chairman of the Department of Oral Surgery and Implantology • Centre for Dentistry and Oral Medicine</p>
                         </div>
                     </div>
                     <div class="card committee-card" style="height: 350px;">
-                        <div class="card-image" style="height: 100%;"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=400&fit=crop" alt="Dr. Meenakshi Iyer" style="height: 100%;"></div>
+                        <div class="card-image" style="height: 100%;"><img src="images/salah.png?w=500&h=400&fit=crop" alt="Dr. Salah Huwais" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
-                            <h3>Dr. Meenakshi Iyer</h3>
-                            <p>Prosthodontics & Implantology • CMC Vellore</p>
+                            <h3>Dr. Salah Huwais</h3>
+                            <p>Founder • Osseodensification</p>
+                        </div>
+					<div class="card committee-card" style="height: 350px;">
+                        <div class="card-image" style="height: 100%;"><img src="images/Yoshihito.webp?w=500&h=400&fit=crop" alt="Dr. Yoshihito Naito" style="height: 100%;"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Keynote Speaker</span>
+                            <h3>Dr. Yoshihito Naito</h3>
+                            <p>Founder • Osseodensification</p>
                         </div>
                     </div>
                 </div>
-                <div class="grid-4">
+                <!-- <div class="grid-4">
                     <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Arjun K.</h3><p>Periodontics</p></div></div>
                     <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Kavitha R.</h3><p>Oral Pathology</p></div></div>
                     <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Workshop</span><h3 style="font-size: 1rem;">Dr. Rohit M.</h3><p>Digital Implantology</p></div></div>
                     <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Sunitha N.</h3><p>Implant Prosthodontics</p></div></div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -2537,10 +2478,10 @@ async function submitForm(e) {
 
   const formData = new FormData(e.target);
 
-  // const res = await fetch("https://osi-final.onrender.com/api/contact", {
-  //   method: "POST",
-  //   body: formData
-  // });
+  const res = await fetch("https://osi-final.onrender.com/api/contact", {
+    method: "POST",
+    body: formData
+  });
 
   if (res.ok) {
     alert("Message sent successfully!");
@@ -2564,20 +2505,6 @@ async function submitForm(e) {
   }
 </script>
 
-<script>
-	function showPopup() {
-	    document.getElementById("popupOverlay").style.display = "flex";
-	}
-	
-	function closePopup() {
-	    document.getElementById("popupOverlay").style.display = "none";
-	}
-	
-	/* Show popup 1 second after home loads */
-	window.addEventListener("load", function () {
-	    setTimeout(showPopup, 1000);
-	});
-</script>
 
 
 <script>
