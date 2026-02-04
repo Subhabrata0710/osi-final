@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +18,7 @@
             --secondary-light: #F4E6B0;
             --secondary-dark: #8A7018;
             --white: #ffffff;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc            --gray-100: #f1f5f9;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --gray-500: #64748b;
@@ -64,8 +64,9 @@
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin-left: 10px ;
             padding: 0 20px;
+            
         }
 
         /* Navigation */
@@ -89,7 +90,60 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            }
+        /* .dropdown .dropbtn {
+            font-size: 14px;
+            border: none;
+            outline: none;
+            color: #475569;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit; /* Important for vertical align on mobile phones */
+            /* margin: 0; Important for vertical align on mobile phones */
+            /* } */
 
+        .dropdown .dropbtn {
+            font-size: 14px;
+            border: none;
+            outline: none;
+            color: #475569;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit; /* Important for vertical align on mobile phones */
+            margin: 0; /* Important for vertical align on mobile phones */
+  
+        }    
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            }
+
+            /* Add a grey background color to dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            }
+
+            /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            }
         .logo {
             display: flex;
             align-items: center;
@@ -238,19 +292,19 @@
             overflow: hidden;
         }
 		.hero-title {
-  font-size: 56px;
-  font-weight: 800;
-  color: #0b2c6b; /* deep blue */
-  font-family: "Times New Roman", serif;
-}
+            font-size: 56px;
+            font-weight: 800;
+            color: #0b2c6b; /* deep blue */
+            font-family: "Times New Roman", serif;
+            }
 
-.gold-effect {
-  color: #0b2c6b; /* main text color */
-  text-shadow:
-    2px 2px 0 #d4af37,   /* gold layer */
-    3px 3px 0 #b8962e,   /* darker gold */
-    4px 4px 6px rgba(0,0,0,0.25); /* depth */
-}
+        .gold-effect {
+        color: #0b2c6b; /* main text color */
+        text-shadow:
+            2px 2px 0 #d4af37,   /* gold layer */
+            3px 3px 0 #b8962e,   /* darker gold */
+            4px 4px 6px rgba(0,0,0,0.25); /* depth */
+        }
 
 
         .hero::before {
@@ -366,9 +420,10 @@
         3px 3px 0px #dcdcdc, 
         4px 4px 0px #dcdcdc, 
         5px 5px 0px #dcdcdc, 
-        6px 6px 0px #dcdcdc, 
-        7px 7px 0px #dcdcdc, 
-        8px 8px 15px rgba(0,0,0,0.3); /* Soft shadow at the bottom */
+        6px 6px 0px #dcdcdc; 
+        /* 7px 7px 0px #dcdcdc;  */
+        /* 8px 8px 15px rgba(0,0,0,0.3);  */
+        /* Soft shadow at the bottom */
 }
 
 /* Adjust the superscript (RD) to look like the image */
@@ -1574,30 +1629,67 @@
             .hero-buttons { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
         }
-    </style>
+    
+/* --- Priority+ overflow styles (added) --- */
+.nav-container{gap:12px}
+.nav-links{align-items:center;white-space:nowrap;overflow:visible}
+.nav-links > li{display:inline-flex}
+.more{position:relative;cursor:pointer;display:none;color:var(--gray-600);font-weight:600;user-select:none;padding:8px 10px;border-radius:8px}
+.more:hover,.more[aria-expanded="true"]{background:var(--gray-100);color:var(--primary)}
+.more-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:8px;list-style:none}
+.more[aria-expanded="true"] .more-menu{display:block}
+.more-menu li{display:block}
+.more-menu a{display:block;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--gray-600)}
+.more-menu a:hover,.more-menu a.active{background:var(--gray-100);color:var(--primary)}
+@media (hover:hover){.more:hover .more-menu{display:block}}
+@media (max-width:768px){.more{display:none!important}}
+
+</style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <div class="logo-icon">OSI</div>
-                <div class="logo-text">
-                    <h3>3RD OSI</h3>
-                    <span>KOLKATA 2026</span>
-                </div>
-            </a>
-            <ul class="nav-links">
-                <!--<li><a href="/" class="{{CURRENT_PAGE}}" id="nav-home">Home</a></li>-->
-		<a href="#about" onclick="showPage('about')">About</a>
-		<a href="#committee" onclick="showPage('committee')">Committee</a>
-		<a href="#program" onclick="showPage('program')">Program</a>
-		<a href="#speakers" onclick="showPage('speakers')">Speakers</a>
-		<a href="#registration" onclick="showPage('registration')">Registration</a>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </nav>
+  <div class="nav-container">
+    <a href="#home" class="logo" onclick="showPage('home')">
+      <div class="logo-icon">OSI</div>
+      <div class="logo-text">
+        <h3>3RD OSI</h3>
+        <span>KOLKATA 2026</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navMenu">
+      <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
+      <li><a href="#about" onclick="showPage('about')">About</a></li>
+      <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
+      <li><a href="#program" onclick="showPage('program')">Program</a></li>
+      <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
+      <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
+        <div class="dropdown">
+            <button class="dropbtn">More
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <!-- <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a> -->
+                <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
+                <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
+                <li><a href="#venue" onclick="showPage('venue')">Venue</a></li>
+            </div>
+        </div>      
+      <!-- <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+      <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
+      <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
+      <li><a href="#venue" onclick="showPage('venue')">Venue</a></li> -->
+    </ul>
+    <div class="more" id="moreToggle" aria-haspopup="true" aria-expanded="false">
+      More ▼
+      <ul class="more-menu" id="moreMenu"></ul>
+    </div>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
 
     <!-- Quick Links Widget -->
     <div class="quick-links-widget">
@@ -1623,11 +1715,11 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-badge">National Conference</div>
-                    <!--<h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>-->
-<h1>3<sup>rd</sup> osi conference</h1>
-<h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2>
+                    <h1 style="color: #002366; -webkit-text-fill-color: #002366; font-weight: 700;" >3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+<!-- <h1>3<sup>rd</sup> osi conference</h1>
+<h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2> -->
 
-                    <!--<h2>KOLKATA 2026</h2>-->
+                    <h2>KOLKATA 2026</h2>
                     <p>India's Premier Conference on <strong>Osseointegration</strong> & <strong>Implant Dentistry</strong> — Where Science Meets Clinical Excellence</p>
                     
                     <div class="hero-details">
@@ -1681,8 +1773,8 @@
             <div class="container">
                 <div class="grid-2">
                     <div>
-                        <h2 style="margin-bottom: 24px;">Where <span class="text-3d-gold">Osseointegration</span> Meets Innovation</h2>
-						<h1 class="hero-title">Where <span class="gold-effect">Osseointegration</span> Meets Innovation</h1>
+                        <!-- <h2 style="margin-bottom: 24px;">Where <span class="text-3d-gold">Osseointegration</span> Meets Innovation</h2> -->
+						<h1 class="hero-title">Where <span style="color: #002366; -webkit-text-fill-color: #002366; font-weight: 700;" class="gold-effect">Osseointegration</span> Meets Innovation</h1>
 
                         <p style="margin-bottom: 16px; font-size: 16px;">The <strong>3rd OSI Conference Kolkata 2026</strong> brings together the brightest minds in implant dentistry for three days of intensive learning, networking, and clinical excellence.</p>
                         <p style="margin-bottom: 24px; font-size: 16px;">Join us as we explore the frontiers of <strong>bone-implant integration</strong>, advanced prosthetic solutions, and the latest surgical techniques.</p>
@@ -1724,6 +1816,7 @@
     </section>
 
     <!-- COMMITTEE PAGE -->
+    <!-- COMMITTEE PAGE -->
     <section class="page-section" id="page-committee">
         <div class="page-banner">
             <span>Leadership</span>
@@ -1756,6 +1849,30 @@
                             <p>Consultant Implantologist<br>Apollo Hospitals, Chennai</p>
                         </div>
                     </div>
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=350&fit=crop" alt="Dr. Anita Desai"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Treasurer</span>
+                            <h3>Dr. Anita Desai</h3>
+                            <p>Tata Memorial Hospital<br>Mumbai</p>
+                        </div>
+                    </div>
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=350&fit=crop" alt="Dr. Vikram Singh"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Workshop Coordinator</span>
+                            <h3>Dr. Vikram Singh</h3>
+                            <p>PGI Chandigarh<br></p>
+                        </div>
+                    </div>
+                    <div class="card committee-card">
+                        <div class="card-image"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=350&fit=crop" alt="Dr. Meera Patel"></div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Registration Chair</span>
+                            <h3>Dr. Meera Patel</h3>
+                            <p>Dental Excellence<br>Ahmedabad</p>
+                        </div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -1866,10 +1983,10 @@
         </div>
         <div class="content-section">
             <div class="container">
-                <div class="section-header">
+                <!-- <div class="section-header">
                     <h2>Registration Categories</h2>
-                </div>
-                <div class="pricing-grid">
+                </div> -->
+                <!-- <div class="pricing-grid">
                     <div class="pricing-card">
                         <div class="pricing-icon">👥</div>
                         <h3>Delegate</h3>
@@ -1918,7 +2035,7 @@
                             <li>Certificate</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-container">
                     <h3>Register Now</h3>
@@ -2306,6 +2423,99 @@ async function submitForm(e) {
 }
 </script>
 
+
+
+<script>
+(function(){
+  const navContainer = document.querySelector('.nav-container');
+  const mainMenu = document.getElementById('navMenu');
+  const more = document.getElementById('moreToggle');
+  const moreMenu = document.getElementById('moreMenu');
+  if(!navContainer || !mainMenu || !more || !moreMenu) return;
+
+  // Update active class across BOTH menus
+  function updateActive(page){
+    const allLinks = document.querySelectorAll('.nav-links a, .more-menu a');
+    allLinks.forEach(a => a.classList.remove('active'));
+    // Prefer href match, fallback to id match
+    const matchByHref = Array.from(allLinks).find(a => (a.getAttribute('href')||'').endsWith('#'+page));
+    if(matchByHref) matchByHref.classList.add('active');
+    const idMatch = document.getElementById('nav-'+page);
+    if(idMatch) idMatch.classList.add('active');
+  }
+
+  // Override router to also maintain active state
+  window.showPage = function(page){
+    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+    const active = document.getElementById('page-'+page);
+    if(active) active.classList.add('active');
+    history.pushState({}, '', '#'+page);
+    updateActive(page);
+  }
+  function loadFromHash(){
+    const page = location.hash.replace('#','') || 'home';
+    window.showPage(page);
+  }
+  window.addEventListener('load', loadFromHash);
+  window.addEventListener('popstate', loadFromHash);
+
+  // Priority+ overflow algorithm
+  const itemsWidth = () => Array.from(mainMenu.children)
+    .reduce((w, li) => w + li.getBoundingClientRect().width, 0);
+  const moveToMore = () => { const last = mainMenu.lastElementChild; if(last) moreMenu.prepend(last); };
+  const moveBack   = () => { const first = moreMenu.firstElementChild; if(first) mainMenu.appendChild(first); };
+
+  function adjustNav(){
+    // reset: move everything back first
+    while(moreMenu.children.length) moveBack();
+    more.style.display = 'none';
+    more.setAttribute('aria-expanded','false');
+
+    const containerWidth = navContainer.clientWidth;
+    const logo = navContainer.querySelector('.logo');
+    const mobileBtn = navContainer.querySelector('.mobile-menu-btn');
+    const logoW = logo ? logo.getBoundingClientRect().width : 0;
+    const mobileW = mobileBtn ? mobileBtn.getBoundingClientRect().width : 0;
+
+    // Temporarily show More to include its width in measurement
+    more.style.display = 'block';
+    const moreW = more.getBoundingClientRect().width;
+    const roomForMenu = containerWidth - logoW - mobileW - 24; // safety gap
+
+    while(itemsWidth() + moreW > roomForMenu && mainMenu.children.length){
+      moveToMore();
+    }
+    if(moreMenu.children.length === 0){
+      more.style.display = 'none';
+    }
+
+    // Keep active state accurate after moving items
+    const page = location.hash.replace('#','') || 'home';
+    updateActive(page);
+  }
+
+  // Hover open (desktop) + click toggle
+  const canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  if(canHover){
+    more.addEventListener('mouseenter', () => more.setAttribute('aria-expanded','true'));
+    more.addEventListener('mouseleave', () => more.setAttribute('aria-expanded','false'));
+  }
+  more.addEventListener('click', (e) => {
+    // On touch/click devices still toggle
+    if(!canHover){
+      const expanded = more.getAttribute('aria-expanded') === 'true';
+      more.setAttribute('aria-expanded', String(!expanded));
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if(!more.contains(e.target)) more.setAttribute('aria-expanded','false');
+  });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') more.setAttribute('aria-expanded','false'); });
+
+  window.addEventListener('load', adjustNav);
+  window.addEventListener('resize', adjustNav);
+})();
+</script>
 
 </body>
 </html>
