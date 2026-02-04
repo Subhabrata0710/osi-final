@@ -296,13 +296,59 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+/* The Main 3D Title with Shimmer */
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 16px;
 
-        .hero h1 {
+    /* Original Shimmer Effect */
+    background: linear-gradient(90deg, var(--primary) 0%, #4c6ef5 50%, var(--primary) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+
+    /* The 3D Layered Depth (Using light grey shadows to look like the image) */
+    filter: drop-shadow(1px 1px 0px #d1d1d1)
+            drop-shadow(2px 2px 0px #d1d1d1)
+            drop-shadow(3px 3px 0px #d1d1d1)
+            drop-shadow(4px 4px 0px #d1d1d1)
+            drop-shadow(5px 5px 8px rgba(0,0,0,0.2));
+}
+
+/* 3D Gold Shimmer for the About Section */
+.gold-effect {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    /* Uses your existing --secondary (Gold) shimmer */
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    
+    /* 3D Depth for the gold text */
+    filter: drop-shadow(1px 1px 0px #b8962e)
+            drop-shadow(2px 2px 0px #b8962e)
+            drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
+}
+
+/* Fix for the RD superscript in 3D */
+.hero h1 sup {
+    -webkit-text-fill-color: var(--primary); /* Keeps superscript solid blue */
+    font-size: 0.6em;
+}
+
+        /*.hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 700;
             margin-bottom: 16px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+        }/*
 
         .hero h2 {
             font-size: clamp(1.5rem, 4vw, 2.5rem);
