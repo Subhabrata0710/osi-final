@@ -1643,51 +1643,106 @@
 .more-menu a:hover,.more-menu a.active{background:var(--gray-100);color:var(--primary)}
 @media (hover:hover){.more:hover .more-menu{display:block}}
 @media (max-width:768px){.more{display:none!important}}
+/* Mobile Slide Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  z-index: 2000;
+  padding: 80px 24px;
+  transition: right 0.3s ease;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-menu a {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+  .nav-links,
+  .dropdown,
+  .more {
+    display: none !important;
+  }
+}
 
 </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-  <div class="nav-container">
-    <a href="#home" class="logo" onclick="showPage('home')">
-      <div class="logo-icon">OSI</div>
-      <div class="logo-text">
-        <h3>3RD OSI</h3>
-        <span>KOLKATA 2026</span>
-      </div>
-    </a>
-    <ul class="nav-links" id="navMenu">
-      <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
-      <li><a href="#about" onclick="showPage('about')">About</a></li>
-      <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
-      <li><a href="#program" onclick="showPage('program')">Program</a></li>
-      <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
-      <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
-        <div class="dropdown">
-            <button class="dropbtn">More
-            <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-            <!-- <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a> -->
-                <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
-                <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
-                <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
-                <li><a href="#venue" onclick="showPage('venue')">Venue</a></li>
-            </div>
-        </div>      
-      <!-- <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
-      <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
-      <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
-      <li><a href="#venue" onclick="showPage('venue')">Venue</a></li> -->
-    </ul>
-    <div class="more" id="moreToggle" aria-haspopup="true" aria-expanded="false">
-      More ▼
-      <ul class="more-menu" id="moreMenu"></ul>
+        <div class="nav-container">
+            <a href="#home" class="logo" onclick="showPage('home')">
+            <div class="logo-icon">OSI</div>
+            <div class="logo-text">
+                <h3>3RD OSI</h3>
+                <span>KOLKATA 2026</span>
+                </div>
+            </a>
+        <ul class="nav-links" id="navMenu">
+        <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
+        <li><a href="#about" onclick="showPage('about')">About</a></li>
+        <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
+        <li><a href="#program" onclick="showPage('program')">Program</a></li>
+        <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
+        <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">More
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                <!-- <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a> -->
+                    <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
+                    <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
+                    <li><a href="#venue" onclick="showPage('venue')">Venue</a></li>
+                </div>
+            </div>      
+        <!-- <li><a href="#contact" onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a></li>
+        <li><a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a></li>
+        <li><a href="#venue" onclick="showPage('venue')">Venue</a></li> -->
+        </ul>
+        <button class="mobile-menu-btn" id="menuBtn">☰</button>
+        <!-- <div class="more" id="moreToggle" aria-haspopup="true" aria-expanded="false">
+        More ▼
+        <ul class="more-menu" id="moreMenu"></ul>
+        </div> -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home" onclick="handleMobileNav('home')">Home</a></li>
+            <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
+            <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li>
+            <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li>
+            <li><a href="#speakers" onclick="handleMobileNav('speakers')">Speakers</a></li>
+            <li><a href="#registration" onclick="handleMobileNav('registration')">Registration</a></li>
+            <li><a href="#contact" onclick="handleMobileNav('contact')">Contact</a></li>
+            <li><a href="#accommodation" onclick="handleMobileNav('accommodation')">Accommodation</a></li>
+            <li><a href="#sponsors" onclick="handleMobileNav('sponsors')">Sponsors</a></li>
+            <li><a href="#venue" onclick="handleMobileNav('venue')">Venue</a></li>
+        </ul>
     </div>
-    <button class="mobile-menu-btn">☰</button>
   </div>
 </nav>
 
@@ -2421,6 +2476,19 @@ async function submitForm(e) {
     alert("Something went wrong");
   }
 }
+</script>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+  });
+
+  function handleMobileNav(page) {
+    showPage(page);          // your existing page switch logic
+    mobileMenu.classList.remove('active');
+  }
 </script>
 
 
