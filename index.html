@@ -1602,6 +1602,49 @@
             transform: translateY(-4px);
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
         }
+		/* Fullscreen overlay */
+		.popup-overlay {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.6);
+		    backdrop-filter: blur(8px);
+		    display: none;
+		    align-items: center;
+		    justify-content: center;
+		    z-index: 9999;
+		}
+		
+		/* Popup box */
+		.popup-content {
+		    position: relative;
+		    max-width: 90%;
+		    max-height: 90%;
+		}
+		
+		/* Popup image */
+		.popup-content img {
+		    width: 100%;
+		    height: auto;
+		    border-radius: 10px;
+		}
+		
+		/* Close button */
+		.popup-close {
+		    position: absolute;
+		    top: -15px;
+		    right: -15px;
+		    background: #fff;
+		    border: none;
+		    font-size: 18px;
+		    cursor: pointer;
+		    border-radius: 50%;
+		    width: 35px;
+		    height: 35px;
+		}
+
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -1691,6 +1734,14 @@
 
 </style>
 </head>
+	<!-- Popup Overlay -->
+<div id="popupOverlay" class="popup-overlay">
+    <div class="popup-content">
+        <button class="popup-close" onclick="closePopup()">✖</button>
+        <img src="/images/popup.jpeg" alt="Popup Image">
+    </div>
+</div>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -2471,10 +2522,10 @@ async function submitForm(e) {
 
   const formData = new FormData(e.target);
 
-  const res = await fetch("https://osi-final.onrender.com/api/contact", {
-    method: "POST",
-    body: formData
-  });
+  // const res = await fetch("https://osi-final.onrender.com/api/contact", {
+  //   method: "POST",
+  //   body: formData
+  // });
 
   if (res.ok) {
     alert("Message sent successfully!");
@@ -2498,6 +2549,20 @@ async function submitForm(e) {
   }
 </script>
 
+<script>
+	function showPopup() {
+	    document.getElementById("popupOverlay").style.display = "flex";
+	}
+	
+	function closePopup() {
+	    document.getElementById("popupOverlay").style.display = "none";
+	}
+	
+	/* Show popup 1 second after home loads */
+	window.addEventListener("load", function () {
+	    setTimeout(showPopup, 1000);
+	});
+</script>
 
 
 <script>
