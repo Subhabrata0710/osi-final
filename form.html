@@ -237,8 +237,8 @@
                 <input type="tel" id="userPhone" placeholder="+91" required>
             </div>
             <div class="input-group">
-                <label>Alternate Number</label>
-                <input type="tel" placeholder="Optional">
+                <label>OSI Membership Number </label>
+                <input type="mem" id="usernumber" placeholder="Write NA if are not an OSI Member" required>
             </div>
         </div>
 
@@ -265,42 +265,42 @@
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="46020">
-                    <span class="cat-label">Westin 2D (Single Occupancy)</span>
+                    <span class="cat-label">Westin 2 nights (Single Occupancy)</span>
                     <span class="cat-price">₹46,020</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="28320">
-                    <span class="cat-label">Westin 2D (Twin Sharing)</span>
+                    <span class="cat-label">Westin 2 nights (Twin Sharing)</span>
                     <span class="cat-price">₹28,320</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="35320">
-                    <span class="cat-label">Westin 2D (Twin) + Life Membership</span>
+                    <span class="cat-label">Westin 2 nights (Twin) + Life Membership</span>
                     <span class="cat-price">₹35,320</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="53020">
-                    <span class="cat-label">Westin 2D (Single) + Life Membership</span>
+                    <span class="cat-label">Westin 2 nights (Single) + Life Membership</span>
                     <span class="cat-price">₹53,020</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="63720">
-                    <span class="cat-label">Westin 3D (Single Occupancy)</span>
+                    <span class="cat-label">Westin 3 nights (Single Occupancy)</span>
                     <span class="cat-price">₹63,720</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="37170">
-                    <span class="cat-label">Westin 3D (Twin Sharing)</span>
+                    <span class="cat-label">Westin 3 nights (Twin Sharing)</span>
                     <span class="cat-price">₹37,170</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="70720">
-                    <span class="cat-label">Westin 3D (Single) + Life Membership</span>
+                    <span class="cat-label">Westin 3 nights (Single) + Life Membership</span>
                     <span class="cat-price">₹70,720</span>
                 </label>
                 <label class="category-card">
                     <input type="radio" name="cat" data-price="44170">
-                    <span class="cat-label">Westin 3D (Twin) + Life Membership</span>
+                    <span class="cat-label">Westin 3 nights (Twin) + Life Membership</span>
                     <span class="cat-price">₹44,170</span>
                 </label>
                 <label class="category-card">
@@ -365,6 +365,7 @@
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const phone = document.getElementById('userPhone').value;
+        const phone = document.getElementById('usernumber').value;
         
         // Get Selected Amount
         const selectedRadio = document.querySelector('input[name="cat"]:checked');
@@ -404,7 +405,7 @@
     };
 </script>
 <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRDz00TvGyw7E8nXuxWqzYQvffxdQMXOr-L345i34B9xV8FgaKOoObN7T7wEqDtZpw/exec'; // PASTE YOUR URL HERE
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVbQO4SEisX31OxlfYgXpkCzz4u4vKAe3act5j-eu2Wy2ChRzUHlvFoTkmp2h9V4iK/exec'; // PASTE YOUR URL HERE
 
     form.onsubmit = function(e) {
         e.preventDefault();
@@ -412,6 +413,7 @@
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const phone = document.getElementById('userPhone').value;
+        const phone = document.getElementById('usernumber').value;
         
         const selectedRadio = document.querySelector('input[name="cat"]:checked');
         const amountInInr = selectedRadio.getAttribute('data-price');
