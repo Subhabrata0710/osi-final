@@ -1,7 +1,411 @@
-// ... (Rest of your HTML and CSS stays the same) ...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSICON Kolkata 2026 | Registration Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #f5f3ff;
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --bg-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 25px;
+        }
+
+        .conference-name {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .society-name {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 5px 0 15px 0;
+        }
+
+        .info-pill {
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .info-pill a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .input-group { margin-bottom: 20px; }
+        .grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f9fafb;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .scroll-wrapper { position: relative; margin-top: 10px; }
+        .category-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid #f3f4f6;
+            border-radius: 16px;
+            background: #fff;
+        }
+
+        .scroll-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: float 2s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { bottom: 20px; }
+            50% { bottom: 25px; }
+        }
+
+        .category-card {
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .category-card:hover { border-color: var(--primary); background: var(--primary-light); }
+        .category-card:has(input:checked) { border-color: var(--primary); background: var(--primary-light); }
+        .category-card input { display: none; }
+        .cat-label { font-size: 13px; font-weight: 500; color: var(--text-dark); max-width: 70%; }
+        .cat-price { font-size: 14px; font-weight: 700; color: var(--primary); }
+
+        .summary-bar {
+            background: #111827;
+            color: white;
+            padding: 24px;
+            border-radius: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-text { font-size: 14px; opacity: 0.8; }
+        .total-val { font-size: 28px; font-weight: 800; }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover { background: #4338ca; transform: translateY(-2px); }
+        .category-container::-webkit-scrollbar { width: 5px; }
+        .category-container::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+
+        @media (max-width: 500px) {
+            .grid-row { grid-template-columns: 1fr; }
+            .summary-bar { flex-direction: column; text-align: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-wrapper">
+    <div class="event-header">
+        <span class="conference-name">3rd Annual Conference</span>
+        <span class="society-name">Osseointegration Society of India</span>
+        <div class="info-pill">
+            <strong>27th - 29th November 2026</strong> | KOLKATA<br>
+            <a href="https://www.osiconkolkata2026.com" target="_blank">www.osiconkolkata2026.com</a> | 
+            <a href="mailto:registration@osiconkolkata.com">registration@osiconkolkata.com</a>
+        </div>
+    </div>
+
+    <form id="mainForm">
+        <div class="section-header">Delegate Information</div>
+        <div class="input-group">
+            <label>Full Name *</label>
+            <input type="text" id="userName" placeholder="Enter your full name" required>
+        </div>
+        <div class="input-group">
+            <label>Email Address *</label>
+            <input type="email" id="userEmail" placeholder="name@domain.com" required>
+        </div>
+        <div class="grid-row">
+            <div class="input-group">
+                <label>Mobile Number *</label>
+                <input type="tel" id="userPhone" placeholder="+91" required>
+            </div>
+            <div class="input-group">
+                <label>OSI Membership Number *</label>
+                <input type="mem" id="usernumber" placeholder="Write NA if you are not an OSI Member" required>
+            </div>
+        </div>
+
+        <div class="section-header">Select Registration Category</div>
+        <div class="scroll-wrapper">
+            <div id="scrollBadge" class="scroll-badge">
+                <span>See more options</span> <span>↓</span>
+            </div>
+            <div class="category-container" id="categoryList">
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="1" required>
+                    <span class="cat-label">Non OSI Member (10,500 + GST)</span>
+                    <span class="cat-price">₹1</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="10620">
+                    <span class="cat-label">OSI Member (9,000 + GST)</span>
+                    <span class="cat-price">₹10,620</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="17700">
+                    <span class="cat-label">Registration + Life Membership</span>
+                    <span class="cat-price">₹17,700</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="46020">
+                    <span class="cat-label">Westin 2 nights (Single Occupancy)</span>
+                    <span class="cat-price">₹46,020</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="28320">
+                    <span class="cat-label">Westin 2 nights (Twin Sharing)</span>
+                    <span class="cat-price">₹28,320</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="35320">
+                    <span class="cat-label">Westin 2 nights (Twin) + Life Membership</span>
+                    <span class="cat-price">₹35,320</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="53020">
+                    <span class="cat-label">Westin 2 nights (Single) + Life Membership</span>
+                    <span class="cat-price">₹53,020</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="63720">
+                    <span class="cat-label">Westin 3 nights (Single Occupancy)</span>
+                    <span class="cat-price">₹63,720</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="37170">
+                    <span class="cat-label">Westin 3 nights (Twin Sharing)</span>
+                    <span class="cat-price">₹37,170</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="70720">
+                    <span class="cat-label">Westin 3 nights (Single) + Life Membership</span>
+                    <span class="cat-price">₹70,720</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="44170">
+                    <span class="cat-label">Westin 3 nights (Twin) + Life Membership</span>
+                    <span class="cat-price">₹44,170</span>
+                </label>
+                <label class="category-card">
+                    <input type="radio" name="cat" data-price="9999">
+                    <span class="cat-label">Endohaveli Member</span>
+                    <span class="cat-price">₹9,999</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="summary-bar">
+            <div>
+                <div class="total-text">Total Payable Amount</div>
+                <div style="font-size: 11px; opacity: 0.6;">(Inclusive of all taxes)</div>
+            </div>
+            <div class="total-val" id="totalDisplay">₹0</div>
+        </div>
+
+        <button type="submit" class="submit-btn">Complete Registration</button>
+    </form>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
-    const GOOGLE_SCRIPT_URL = 'YOUR_DEPLOYED_WEB_APP_URL'; // PASTE YOUR URL HERE
+    const form = document.getElementById('mainForm');
+    const totalDisplay = document.getElementById('totalDisplay');
+    const categoryList = document.getElementById('categoryList');
+    const scrollBadge = document.getElementById('scrollBadge');
+
+    // 1. Total Price Calculation Logic
+    form.addEventListener('change', (e) => {
+        if (e.target.name === 'cat') {
+            const amount = e.target.getAttribute('data-price');
+            const formatted = new Intl.NumberFormat('en-IN').format(amount);
+            totalDisplay.innerText = '₹' + formatted;
+            
+            totalDisplay.animate([
+                { transform: 'scale(1)', color: '#fff' },
+                { transform: 'scale(1.1)', color: '#818cf8' },
+                { transform: 'scale(1)', color: '#fff' }
+            ], { duration: 300 });
+        }
+    });
+
+    // 2. Floating Badge Logic
+    categoryList.addEventListener('scroll', () => {
+        if (categoryList.scrollTop > 10) {
+            scrollBadge.style.opacity = '0';
+            scrollBadge.style.visibility = 'hidden';
+        } else {
+            scrollBadge.style.opacity = '1';
+            scrollBadge.style.visibility = 'visible';
+        }
+    });
+
+    // 3. Razorpay Integration Logic
+    form.onsubmit = function(e) {
+        e.preventDefault();
+
+        // Get User Details
+        const name = document.getElementById('userName').value;
+        const email = document.getElementById('userEmail').value;
+        const phone = document.getElementById('userPhone').value;
+        // const phone = document.getElementById('usernumber').value;
+        
+        // Get Selected Amount
+        const selectedRadio = document.querySelector('input[name="cat"]:checked');
+        if(!selectedRadio) {
+            alert("Please select a registration category");
+            return;
+        }
+        const amountInInr = selectedRadio.getAttribute('data-price');
+
+        // Razorpay Options
+        const options = {
+            "key": "rzp_live_S9kFXcSkm7C1Rc", // Replace with your actual Key ID
+            "amount": amountInInr * 100, // Conversion to Paise
+            "currency": "INR",
+            "name": "OSICON Kolkata 2026",
+            "description": "Conference Registration Fee",
+            "image": "https://via.placeholder.com/128", // Your logo URL
+            "handler": function (response){
+                alert("Payment Successful! ID: " + response.razorpay_payment_id);
+                // Here you can redirect to a success page or submit data to your DB
+            },
+            "prefill": {
+                "name": name,
+                "email": email,
+                "contact": phone
+            },
+            "theme": {
+                "color": "#4f46e5"
+            }
+        };
+
+        const rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response){
+            alert("Payment Failed: " + response.error.description);
+        });
+        rzp1.open();
+    };
+</script>
+<script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVbQO4SEisX31OxlfYgXpkCzz4u4vKAe3act5j-eu2Wy2ChRzUHlvFoTkmp2h9V4iK/exec'; // PASTE YOUR URL HERE
 
     form.onsubmit = function(e) {
         e.preventDefault();
@@ -9,19 +413,20 @@
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const phone = document.getElementById('userPhone').value;
+        const phone = document.getElementById('usernumber').value;
         
         const selectedRadio = document.querySelector('input[name="cat"]:checked');
         const amountInInr = selectedRadio.getAttribute('data-price');
         const categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
 
         const options = {
-            "key": "YOUR_RAZORPAY_KEY_ID", 
+            "key": "rzp_live_S9kFXcSkm7C1Rc", 
             "amount": amountInInr * 100,
             "currency": "INR",
             "name": "OSICON Kolkata 2026",
             "handler": function (response){
                 // ON SUCCESS: Send data to Google Sheets
-                saveToGoogleSheets(name, email, phone, categoryLabel, amountInInr, response.razorpay_payment_id);
+                saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id);
             },
             "prefill": { "name": name, "email": email, "contact": phone },
             "theme": { "color": "#4f46e5" }
@@ -37,6 +442,7 @@
         formData.append('name', name);
         formData.append('email', email);
         formData.append('phone', phone);
+        formData.append('member', member);
         formData.append('category', category);
         formData.append('amount', amount);
         formData.append('payment_id', paymentId);
@@ -53,3 +459,6 @@
         .catch(error => console.error('Error!', error.message));
     }
 </script>
+
+</body>
+</html>
