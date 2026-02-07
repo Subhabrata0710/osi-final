@@ -1785,23 +1785,37 @@
                     <p>India's Premier Conference highlighting <strong>THE Journey Through Osseointegration</strong> — Where Science Meets Clinical Excellence</p>
                     
                     <div class="hero-details">
-                        <div class="hero-detail">
-	                        <a
-	                        href="https://www.google.com/calendar/render?action=TEMPLATE
-	                        &text=3RD OSI CONFERENCE KOLKATA 2026
-	                        &dates=20261127T090000/20261129T180000
-	                        &details=India's Premier Conference highlighting A Journey Through Osseointegration — Where Science Meets Clinical Excellence
-	                        &location=The+Westin,+Rajarhat,+Kolkata"
-	                        target="_blank"
-	                        class="hero-detail"
-	                        >
-	                            <div class="hero-detail-icon">📅</div>
-	                            <div class="hero-detail-text">
-	                                <h4>27–29 November</h4>
-	                                <span>2026</span>
-	                            </div>
-	                        </a>
-                        </div>
+                        <a href="#" class="hero-detail" onclick="addToCalendar(event)">                        
+                            <div class="hero-detail-icon">📅</div>
+                            <div class="hero-detail-text">
+                                <h4>27–29 November</h4>
+                                <span>2026</span>
+                            </div>
+                        </a>
+                        <script>
+                        function addToCalendar(e) {
+                            e.preventDefault();
+
+                            const ua = navigator.userAgent.toLowerCase();
+
+                            const icsFile = "./3rd-osi-conference-kolkata-2026.ics";
+
+                            const googleCalendarUrl =
+                                "https://www.google.com/calendar/render?action=TEMPLATE" +
+                                "&text=🦷+3RD+OSI+CONFERENCE+KOLKATA+2026" +
+                                "&dates=20261127T080000/20261129T200000" +
+                                "&details=India's+Premier+Conference+highlighting+A+Journey+Through+Osseointegration+—+Where+Science+Meets+Clinical+Excellence" +
+                                "&location=The+Westin,+Rajarhat,+Kolkata";
+
+                            if (/iphone|ipad|ipod|android/.test(ua)) {
+                                // Mobile → native calendar (ICS)
+                                window.location.href = icsFile;
+                            } else {
+                                // Desktop → Google Calendar
+                                window.open(googleCalendarUrl, "_blank");
+                            }
+                        }
+                        </script>
                         <a 
                             href="https://maps.app.goo.gl/BX4KxEKfH7iJqJxdA"
                             target="_blank"
