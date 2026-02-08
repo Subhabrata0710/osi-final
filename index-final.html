@@ -283,7 +283,7 @@
             display: none;
             padding-top: 80px;
 
-            background-image: url("images/background.jpg");
+            background-image: url("images/background.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1715,10 +1715,63 @@
             .contact-grid { grid-template-columns: 1fr; }
             .hotel-overview { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .mobile-menu-btn { display: block; }
+        .page-section{background-image: url("images/mobbg.png")}
+        .page-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.85)
+            );
+            z-index: 0;
+        }
+
+        /* Keep content above overlay */
+        .page-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        .quick-links-widget { display: none; }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        .pricing-grid { grid-template-columns: 1fr; }
+        .sponsor-logos.platinum,
+        .sponsor-logos.gold { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .form-row { grid-template-columns: 1fr; }
+        .hero-details { flex-direction: column; gap: 16px; }
+        .hero-buttons { flex-direction: column; }
+        .btn { width: 100%; justify-content: center; }
+        }
+
+        /* @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
+            
+            .hero {
+                background-image: url("images/mobbg.png");
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center 20%;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(255, 255, 255, 0.6);
+                z-index: 0;
+            }
+
+            .hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
             .quick-links-widget { display: none; }
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
@@ -1729,7 +1782,7 @@
             .hero-details { flex-direction: column; gap: 16px; }
             .hero-buttons { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
-        }
+        } */
     
 /* --- Priority+ overflow styles (added) --- */
 .nav-container{gap:12px}
@@ -1835,6 +1888,7 @@
 </script>
 
 <body>
+    
     <div id="loader">
       <img src="images/logo.png" alt="Loading Logo">
     </div>
