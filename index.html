@@ -282,6 +282,19 @@
         .page-section {
             display: none;
             padding-top: 80px;
+
+            background-image: url("images/background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .page-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: -1;
         }
 
         .page-section.active {
@@ -1658,6 +1671,38 @@
             transform: translateY(-4px);
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
         }
+        .speaker-text {
+        font-size: 13px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9);
+
+        display: -webkit-box;
+        -webkit-line-clamp: 4;        /* number of visible lines */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        transition: all 0.3s ease;
+        }
+
+        .speaker-text.expanded {
+        -webkit-line-clamp: unset;
+        overflow: visible;
+        }
+
+        .see-more-btn {
+        margin-top: 8px;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--secondary);
+        cursor: pointer;
+        }
+
+        .see-more-btn:hover {
+        text-decoration: underline;
+        }
 
         /* Responsive */
         @media (max-width: 1055px) {
@@ -1670,10 +1715,63 @@
             .contact-grid { grid-template-columns: 1fr; }
             .hotel-overview { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .mobile-menu-btn { display: block; }
+        .page-section{background-image: url("images/mobbg.png")}
+        .page-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.85)
+            );
+            z-index: 0;
+        }
+
+        /* Keep content above overlay */
+        .page-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        .quick-links-widget { display: none; }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        .pricing-grid { grid-template-columns: 1fr; }
+        .sponsor-logos.platinum,
+        .sponsor-logos.gold { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; }
+        .form-row { grid-template-columns: 1fr; }
+        .hero-details { flex-direction: column; gap: 16px; }
+        .hero-buttons { flex-direction: column; }
+        .btn { width: 100%; justify-content: center; }
+        }
+
+        /* @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
+            
+            .hero {
+                background-image: url("images/mobbg.png");
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center 20%;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(255, 255, 255, 0.6);
+                z-index: 0;
+            }
+
+            .hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
             .quick-links-widget { display: none; }
             .grid-2, .grid-3 { grid-template-columns: 1fr; }
             .pricing-grid { grid-template-columns: 1fr; }
@@ -1684,7 +1782,7 @@
             .hero-details { flex-direction: column; gap: 16px; }
             .hero-buttons { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
-        }
+        } */
     
 /* --- Priority+ overflow styles (added) --- */
 .nav-container{gap:12px}
@@ -1744,10 +1842,56 @@
     display: none !important;
   }
 }
+/* ===== Loading Screen ===== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loader img {
+  width: min(220px, 60vw);
+  height: auto;
+  animation: loaderPulse 1.8s ease-in-out infinite;
+}
+
+/* Fade-out state */
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Subtle logo animation */
+@keyframes loaderPulse {
+  0%   { transform: scale(1);   opacity: 0.85; }
+  50%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1);   opacity: 0.85; }
+}
 
 </style>
 </head>
+<script>
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    loader.classList.add("hide");
+
+    // Optional: remove from DOM after animation
+    setTimeout(() => {
+      loader.remove();
+    }, 700);
+  });
+</script>
+
 <body>
+    
+    <div id="loader">
+      <img src="images/logo.png" alt="Loading Logo">
+    </div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -1764,8 +1908,8 @@
         <ul class="nav-links" id="navMenu">
         <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
         <li><a href="#about" onclick="showPage('about')">About</a></li>
-        <!-- <li><a href="#committee" onclick="showPage('committee')">Committee</a></li> -->
-        <!--<li><a href="#program" onclick="showPage('program')">Program</a></li> -->
+        <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
+        <!-- <li><a href="#program" onclick="showPage('program')">Program</a></li> -->
         <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
         <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
             <div class="dropdown">
@@ -1796,8 +1940,8 @@
         <ul>
             <li><a href="#home" onclick="handleMobileNav('home')">Home</a></li>
             <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
-            <!-- <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li> -->
-            <!--<li><a href="#program" onclick="handleMobileNav('program')">Program</a></li> -->
+            <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li>
+            <!-- <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li> -->
             <li><a href="#speakers" onclick="handleMobileNav('speakers')">Speakers</a></li>
             <li><a href="#registration" onclick="handleMobileNav('registration')">Registration</a></li>
             <li><a href="#contact" onclick="handleMobileNav('contact')">Contact</a></li>
@@ -2222,7 +2366,6 @@
     </section>
 
     <!-- PROGRAM PAGE -->
-     <!-- PROGRAM PAGE -->
     <section class="page-section" id="page-program">
         <div class="page-banner">
             <span>Schedule</span>
@@ -2291,13 +2434,25 @@
         </div>
         <div class="content-section alt-bg">
             <div class="container">
-                <div class="grid-3" style="margin-bottom: 32px;">
+                <div class="grid-2" style="margin-bottom: 32px;">
                     <div class="card committee-card" style="height: 350px;">
                         <div class="card-image" style="height: 100%;"><img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr Frank Schwarz</h3>
-                            <p>Professor and Chairman of the Department of Oral Surgery and Implantology • Centre for Dentistry and Oral Medicine at Germany, Frankfurt</p>
+                            <p class="speaker-text">
+                                Prof. Dr. Frank Schwarz is one of the world’s leading authorities on peri-implantitis
+                                management and regenerative implant therapies. As Chairman of the Department of Oral
+                                Surgery and Implantology at Goethe University Frankfurt, Germany, he has pioneered
+                                evidence-based surgical approaches—including reconstructive techniques, implantoplasty,
+                                and advanced bone regeneration—to save implants affected by infection and bone loss.
+                                A key figure in global guidelines (EAO, Osteology Foundation), his lectures deliver
+                                practical, proven strategies to improve long-term implant success and handle complex
+                                complications. Attend his keynote to master the latest in peri-implant health and turn
+                                challenging cases into predictable outcomes.
+                            </p>
+
+                            <button class="see-more-btn" onclick="toggleText(this)">See more</button>
                         </div>
                     </div>
                     <!-- <div class="card committee-card" style="height: 350px;">
@@ -2313,7 +2468,8 @@
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr. Yoshihito Naito</h3>
-                            <p>Founder • Osseodensification</p>
+                            <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p>
+                            <button class="see-more-btn" onclick="toggleText(this)">See more</button>
                         </div>
 					</div>
                     </div>
@@ -2326,6 +2482,17 @@
                 </div> -->
             </div>
         </div>
+        <script>
+            function toggleText(btn) {
+                const text = btn.previousElementSibling;
+                text.classList.toggle("expanded");
+
+                btn.textContent = text.classList.contains("expanded")
+                ? "See less"
+                : "See more";
+            }
+        </script>
+
     </section>
 
     <!-- REGISTRATION PAGE -->
@@ -2699,7 +2866,7 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="/about">About</a></li>
-                        <li><a href="/program">Program</a></li>
+                        <!-- <li><a href="/program">Program</a></li> -->
                         <li><a href="/speakers">Speakers</a></li>
                         <li><a href="/registration">Registration</a></li>
                         <li><a href="/downloads">Downloads</a></li>
