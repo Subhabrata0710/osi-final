@@ -1703,6 +1703,57 @@
         .see-more-btn:hover {
         text-decoration: underline;
         }
+        /* ===== Committee Movie-Credits Style ===== */
+        .committee-credits {
+        text-align: center;
+        }
+
+        .committee-block {
+        margin-bottom: 60px;
+        }
+
+        .committee-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        color: var(--primary);
+        margin-bottom: 24px;
+        position: relative;
+        }
+
+        .committee-heading::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: var(--secondary);
+        margin: 12px auto 0;
+        border-radius: 2px;
+        }
+
+        .committee-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        }
+
+        .committee-list li {
+        font-size: 1.05rem;
+        color: var(--gray-700);
+        margin-bottom: 10px;
+        letter-spacing: 0.3px;
+        }
+
+        /* Mobile refinement */
+        @media (max-width: 768px) {
+        .committee-block {
+            margin-bottom: 40px;
+        }
+
+        .committee-list li {
+            font-size: 1rem;
+        }
+        }
+
 
         /* Responsive */
         @media (max-width: 1055px) {
@@ -1908,8 +1959,8 @@
         <ul class="nav-links" id="navMenu">
         <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
         <li><a href="#about" onclick="showPage('about')">About</a></li>
-        <!-- <li><a href="#committee" onclick="showPage('committee')">Committee</a></li> -->
-        <li><a href="#program" onclick="showPage('program')">Program</a></li>
+        <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
+        <!-- <li><a href="#program" onclick="showPage('program')">Program</a></li> -->
         <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
         <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
             <div class="dropdown">
@@ -1940,8 +1991,8 @@
         <ul>
             <li><a href="#home" onclick="handleMobileNav('home')">Home</a></li>
             <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
-            <!-- <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li> -->
-            <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li>
+            <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li>
+            <!-- <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li> -->
             <li><a href="#speakers" onclick="handleMobileNav('speakers')">Speakers</a></li>
             <li><a href="#registration" onclick="handleMobileNav('registration')">Registration</a></li>
             <li><a href="#contact" onclick="handleMobileNav('contact')">Contact</a></li>
@@ -2123,7 +2174,7 @@
 
                 <div class="card committee-card">
                     <div class="card-image">
-                        <img src="images/1000092612.jpg" alt="Dr. Ramesh Choudhary">
+                        <img src="images/ramesh-choudhary.jpg" alt="Dr. Ramesh Choudhary">
                     </div>
                     <div class="card-overlay">
                         <span class="card-badge">OSI President</span>
@@ -2283,8 +2334,29 @@
                     </div>
                 </div>
             </div>
+                        <!-- patrion -->
+            <!-- <div class="grid-3">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Amit Roy</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr T K Pal</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Sekhar Chakraborty</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Subhra Nandy</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr P J Goel</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Asit Pal</h3></div></div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;" style="text-align:center; list-style-position:inside;">Patrons</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Amit Roy</li>
+                <li>Dr. T K Pal</li>
+                <li>Dr. Sekhar Chakraborty</li>
+                <li>Dr. Subhra Nandy</li>
+                <li>Dr. P J Goel</li>
+                <li>Dr. Asit Pal</li>
+            </ul>
+            </div>
+
             <!-- conf masterclass                 -->
-            <div class="grid-2">
+            <!-- <div class="grid-2">
             <div class="card committee-card text-only">
                 <div class="card-overlay">
                 <span class="card-badge">Conference Masterclass</span>
@@ -2300,26 +2372,54 @@
                 <p>Co-Chairman</p>
                 </div>
             </div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Conference Masterclass</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Argha Rudra – Co-Chairman</li>
+                <li>Dr. Ruchira Chakraborty – Co-Chairman</li>
+            </ul>
+            </div>            
             <!-- trade com mem -->
-            <div class="grid-5">
+            <!-- <div class="grid-5">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Anuj Bhattacharya</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Sumit Saha</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr P S Sethi</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Biswajit Panda</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Biswadeep Banerjee</h3><p>Member</p></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Trade Committee</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Anuj Bhattacharya</li>
+                <li>Dr. Sumit Saha</li>
+                <li>Dr. P S Sethi</li>
+                <li>Dr. Biswajit Panda</li>
+                <li>Dr. Biswadeep Banerjee</li>
+            </ul>
+            </div>            
             <!-- accomo and travel -->
-            <div class="grid-3">
+            <!-- <div class="grid-3">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Sourav Chowdhury</h3><p>Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Souvonik Bhattacharya</h3><p>Joint Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Sayak Mondal</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Chandan Karar</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Arnab Chakraborty</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Aveek Mukherjee</h3><p>Member</p></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Accommodation & Travel</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Sourav Chowdhury – Chairperson</li>
+                <li>Dr. Souvonik Bhattacharya – Joint Chairperson</li>
+                <li>Dr. Sayak Mondal</li>
+                <li>Dr. Chandan Karar</li>
+                <li>Dr. Arnab Chakraborty</li>
+                <li>Dr. Aveek Mukherjee</li>
+            </ul>
+            </div>            
             <!-- marketing and comm -->
-            <div class="grid-4">
+            <!-- <div class="grid-4">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Amit Nandi</h3><p>Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Archana Gupta</h3><p>Joint Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Soham Chatterjee</h3><p>Member</p></div></div>
@@ -2327,39 +2427,72 @@
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Priyanka Shukla</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Shantanu Mukherjee</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Avijit Prasad</h3><p>Member</p></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Marketing & Communications</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Amit Nandi – Chairperson</li>
+                <li>Dr. Archana Gupta – Joint Chairperson</li>
+                <li>Dr. Soham Chatterjee</li>
+                <li>Dr. Akansha Malawat</li>
+                <li>Dr. Priyanka Shukla</li>
+                <li>Dr. Shantanu Mukherjee</li>
+                <li>Dr. Avijit Prasad</li>
+            </ul>
+            </div>            
             <!-- banquet and food -->
-            <div class="grid-5">
+            <!-- <div class="grid-5">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Suman Deb Mullick</h3><p>Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Jaydeb Kundu</h3><p>Joint Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Soumya Bandhopadhyay</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Arnab Acharya</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Arkendu Chatterjee</h3><p>Member</p></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Banquet & Food</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Suman Deb Mullick – Chairperson</li>
+                <li>Dr. Jaydeb Kundu – Joint Chairperson</li>
+                <li>Dr. Soumya Bandhopadhyay</li>
+                <li>Dr. Arnab Acharya</li>
+                <li>Dr. Arkendu Chatterjee</li>
+            </ul>
+            </div>            
             <!-- hospila and social -->
-            <div class="grid-5">
+            <!-- <div class="grid-5">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Soumya Purkait</h3><p>Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Rajeev Bhutta</h3><p>Joint Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Parnali Laha Roy</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Subhasatta Indra</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Suvalagna Das Chowdhury</h3><p>Member</p></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Hospitality & Social Events</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Soumya Purkait – Chairperson</li>
+                <li>Dr. Rajeev Bhutta – Joint Chairperson</li>
+                <li>Dr. Parnali Laha Roy</li>
+                <li>Dr. Subhasatta Indra</li>
+                <li>Dr. Suvalagna Das Chowdhury</li>
+            </ul>
+            </div>            
             <!-- cultural comm -->
-            <div class="grid-4">
+            <!-- <div class="grid-4">
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Biswaroop Mukherjee</h3><p>Chairperson</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Shaon Mukherjee</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Chhaya Jha</h3><p>Member</p></div></div>
             <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Shilpi Malhotra</h3><p>Member</p></div></div>
-            </div>
-            <!-- patrion -->
-            <div class="grid-3">
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Amit Roy</h3></div></div>
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr T K Pal</h3></div></div>
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Sekhar Chakraborty</h3></div></div>
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Subhra Nandy</h3></div></div>
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr P J Goel</h3></div></div>
-            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Asit Pal</h3></div></div>
-            </div>
+            </div> -->
+            <div class="committee-block">
+            <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Cultural Committee</h2>
+            <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                <li>Dr. Biswaroop Mukherjee – Chairperson</li>
+                <li>Dr. Shaon Mukherjee</li>
+                <li>Dr. Chhaya Jha</li>
+                <li>Dr. Shilpi Malhotra</li>
+            </ul>
+            </div>            
+
 
             </div>
         </div>
@@ -2502,7 +2635,7 @@
             <h1>Registration</h1>
         </div>
         <div class="content-section">
-            <div class="container">
+            <div class="containercom">
                 <style>
                 .embed-container {
                 position: relative;
@@ -2866,7 +2999,7 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="/about">About</a></li>
-                        <li><a href="/program">Program</a></li>
+                        <!-- <li><a href="/program">Program</a></li> -->
                         <li><a href="/speakers">Speakers</a></li>
                         <li><a href="/registration">Registration</a></li>
                         <li><a href="/downloads">Downloads</a></li>
