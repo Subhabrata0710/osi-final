@@ -1985,6 +1985,45 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.mobile-menu .dropdown-content {
+  display: none;
+  padding-left: 15px;
+}
+
+.mobile-menu .dropdown.active .dropdown-content {
+  display: block;
+}
+.mobile-submenu {
+  display: none;
+  padding: 8px 0 8px 20px;   /* more left spacing */
+  margin-top: 5px;           /* space from Committee */
+  background-color: #f8f8f8; /* slight contrast */
+  /* border-left: 3px solid #0b2c6b; accent line */
+}
+/* Submenu links */
+.mobile-submenu li {
+  margin: 6px 0;  /* vertical spacing */
+}
+.mobile-submenu a {
+  display: block;
+  padding: 6px 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.mobile-dropdown.active .mobile-submenu {
+  display: block;
+}
+/* Hide all nested UL inside mobile dropdown */
+.mobile-menu ul ul {
+  display: none !important;
+}
+.mobile-menu ul li {
+  position: relative;
+}
+/* Show only when active */
+.mobile-dropdown.active > .mobile-submenu {
+  display: block !important;
+}
 
 </style>
 </head>
@@ -2015,6 +2054,18 @@
       sessionStorage.setItem("brochureClosed", "true");
     }
   });
+
+
+
+</script>
+
+
+<script>
+function toggleMobileDropdown(event) {
+  event.preventDefault();
+  const parent = event.target.closest(".mobile-dropdown");
+  parent.classList.toggle("active");
+}
 </script>
 
 <!-- Brochure Popup -->
@@ -2050,10 +2101,10 @@
          <li><div class="dropdown">
             <button class="dropbtn">Committee</button>
             <div class="dropdown-content">
-                <a href="#" onclick="showPage('organising-committee')">
+                <a href="#" onclick="event.preventDefault(); showPage('organising-committee')">
                 Organising Committee
                 </a>
-                <a href="#" onclick="showPage('conference-committee')">
+                <a href="#" onclick="event.preventDefault(); showPage('conference-committee')">
                 Conference Committee
                 </a>
             </div>
@@ -2091,18 +2142,20 @@
             <li><a href="#home" onclick="handleMobileNav('home')">Home</a></li>
             <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
             <!-- <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li> -->
-            <li>
-            <div class="dropdown">
-                <button class="dropbtn">Committee</button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="showPage('organising-committee')">
-                    Organising Committee
-                    </a>
-                    <a href="#" onclick="showPage('conference-committee')">
-                    Conference Committee
-                    </a>
-                </div>
-                </div>
+            <li class="mobile-dropdown">
+                <a href="#" onclick="toggleMobileDropdown(event)">Committee</a>
+                <ul class="mobile-submenu">
+                    <li>
+                        <a href="#" onclick="event.preventDefault(); handleMobileNav('organising-committee')">
+                            Organising Committee
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="event.preventDefault(); handleMobileNav('conference-committee')">
+                            Conference Committee
+                        </a>
+                    </li>
+                </ul>
             </li>
             <!-- <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li> -->
             <li><a href="#speakers" onclick="handleMobileNav('speakers')">Speakers</a></li>
@@ -2112,6 +2165,7 @@
             <li><a href="#sponsors" onclick="handleMobileNav('sponsors')">Sponsors</a></li>
             <li><a href="#venue" onclick="handleMobileNav('venue')">Venue</a></li>
         </ul>
+        
     </div>
   </div>
 </nav>
