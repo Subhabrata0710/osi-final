@@ -596,11 +596,17 @@
         .content-section {
             padding: 80px 0;
         }
-
         .content-section.alt-bg {
             background: var(--gray-50);
         }
+        .content-section .container {
+            text-align: center;     /* centers all text inside */
+            margin: 0 auto;         /* centers container */
+        }
 
+        .committee-block {
+            margin: 0 auto 50px auto;  /* center each block */
+        }
         .section-header {
             text-align: center;
             margin-bottom: 48px;
@@ -1951,6 +1957,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .brochure-popup.hidden {
@@ -1959,11 +1966,12 @@
 
 .brochure-content {
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
+  width: auto;
+  max-width: 95vw;
+  max-height: 95vh; 
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
@@ -1972,10 +1980,13 @@
 
 .brochure-content img {
   max-width: 100%;
-  max-height: 95%;
+  max-height: 95vh;
   width: auto;
   height: auto;
-  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  /* object-fit: contain; */
 }
 
 .brochure-close {
@@ -2044,7 +2055,7 @@
     }, 700);
   });
 </script>
-<script>
+<!-- <script>
   window.addEventListener("load", () => {
     setTimeout(() => {
       const popup = document.getElementById("brochurePopup");
@@ -2063,6 +2074,43 @@
 
 
 
+</script> -->
+<script>
+  window.addEventListener("load", () => {
+    const popup = document.getElementById("brochurePopup");
+    const closeBtn = document.querySelector(".brochure-close");
+
+    if (!popup) return;
+
+    // Show popup after 1 second on every load
+    setTimeout(() => {
+      popup.classList.remove("hidden");
+    }, 1000);
+
+    // Close function
+    function closePopup() {
+      popup.classList.add("hidden");
+    }
+
+    // Close on button click
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closePopup);
+    }
+
+    // Close when clicking outside content
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closePopup();
+      }
+    });
+  });
 </script>
 
 
@@ -2078,7 +2126,7 @@ function toggleMobileDropdown(event) {
 <div id="brochurePopup" class="brochure-popup hidden">
   <div class="brochure-content">
     <button class="brochure-close" aria-label="Close">&times;</button>
-    <img src="images/popup.jpg" alt="Conference Brochure">
+    <img src="./images/popup.jpg" alt="Conference Brochure">
   </div>
 </div>
 
