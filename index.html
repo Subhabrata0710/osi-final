@@ -1766,7 +1766,26 @@
         margin-bottom: 10px;
         letter-spacing: 0.3px;
         }
+        .accommodation-video {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 50px 0;
+            position: relative;
+        }
 
+        .accommodation-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .accommodation-video::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+        }
         /* Mobile refinement */
         @media (max-width: 768px) {
         .committee-block {
@@ -2126,7 +2145,7 @@ function toggleMobileDropdown(event) {
 <div id="brochurePopup" class="brochure-popup hidden">
   <div class="brochure-content">
     <button class="brochure-close" aria-label="Close">&times;</button>
-    <img src="images/popup.jpg" alt="Conference Brochure">
+    <img src="./images/popup.jpg" alt="Conference Brochure">
   </div>
 </div>
 
@@ -3270,6 +3289,13 @@ function toggleMobileDropdown(event) {
                             <strong style="color: var(--secondary);">Special Offer:</strong> Book accommodation during registration for exclusive delegate rates!
                         </div>
                     </div>
+                </div>
+                <!-- Accommodation Video Section -->
+                <div class="accommodation-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/room-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
 
                 <div class="section-header"><h2>Room Categories</h2></div>
