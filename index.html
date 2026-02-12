@@ -734,6 +734,60 @@
             color: var(--gray-600);
             font-size: 14px;
         }
+        /* speaker card */
+        .committee-cardspe {
+            position: relative;
+        }
+
+        .committee-cardspe .card-image {
+            height: 280px;
+        }
+
+        .committee-cardspe .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 35, 102, 0.9));
+            color: var(--white);
+        }
+
+        .committee-cardspe .card-overlay h3 {
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .committee-cardspe .card-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+        .committee-cardspe.text-only {
+            background: var(--white);
+            padding: 24px;
+            min-height: auto;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .committee-cardspe.text-only .card-overlay {
+            position: static;
+            background: none;
+            padding: 0;
+            color: var(--gray-700);
+        }
+
+        .committee-cardspe.text-only h3 {
+            color: var(--primary);
+        }
+
+        .committee-cardspe.text-only p {
+            color: var(--gray-600);
+        }
+
+        .committee-cardspe.text-only .card-badge {
+            margin-bottom: 12px;
+        }        
 
         /* Committee Cards */
         .committee-card {
@@ -3164,7 +3218,7 @@ function toggleMobileDropdown(event) {
         <div class="content-section alt-bg">
             <div class="container">
                 <div class="grid-2" style="margin-bottom: 32px;">
-                    <div class="card committee-card" style="height: 350px;">
+                    <div class="card committee-cardspe" style="height: 350px;">
                         <div class="card-image" style="height: 100%;"><img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
@@ -3192,7 +3246,7 @@ function toggleMobileDropdown(event) {
                             <p>Founder • Osseodensification</p>
                         </div>
 					</div> -->
-					<div class="card committee-card" style="height: 350px;">
+					<div class="card committee-cardspe" style="height: 350px;">
                         <div class="card-image" style="height: 100%;"><img src="images/Yoshihito.jpg?w=500&h=400&fit=crop" alt="Dr. Yoshihito Naito" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
