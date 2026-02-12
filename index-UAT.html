@@ -39,13 +39,15 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            max-width:100%;
-        }
+		html, body {
+		    font-family: 'Manrope', sans-serif;
+		    color: var(--text-dark);
+		    line-height: 1.6;
+		    overflow-x: hidden; /* Strictly prevents horizontal scroll */
+		    width: 100%;
+		    margin: 0;
+		    padding: 0;
+		}
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
@@ -65,6 +67,7 @@
 
         .container {
             max-width: auto;
+			margin: 0 auto;
             margin-left: 10px ;
             padding: 0 20px;
             
@@ -364,7 +367,7 @@
             text-align: left;
             color: var(--white);
             padding-top: 80px; /* Space for the fixed header */
-            overflow: visible;
+            overflow: hidden;
             min-height: 100vh;
 			min-height: 100dvh;
             /* Background Setup */
@@ -4268,6 +4271,7 @@ async function submitForm(e) {
 
 </body>
 </html>
+
 
 
 
