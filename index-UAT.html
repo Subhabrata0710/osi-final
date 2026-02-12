@@ -68,8 +68,8 @@
         .container {
 			max-width: 1200px;    /* Restore the correct width limit */
 			margin: 0 auto;       /* This centers the container correctly */
-			padding: 0 20px;
-			/* width: 100%; */
+			padding: 0 25px;
+			width: 92%;
             
         }
         .containercom {
@@ -1984,43 +1984,29 @@
             background: rgba(0,0,0,0.2);
         }
         /* Mobile refinement */
-        @media (max-width: 768px) {
-        .committee-block {
-            margin-bottom: 40px;
-        }
-	    .hero {
-	        padding-left: 20px;
-	        padding-right: 20px;
-	        box-sizing: border-box;
+      @media (max-width: 768px) {
+    /* Prevents grid items from touching each other or the screen edge */
+	    .features-grid, .stats-grid, .speakers-grid {
+	        display: flex;
+	        flex-direction: column;
+	        gap: 20px;
+	        padding: 10px 0;
+	    }
 	
-				
-        .committee-list li {
-            font-size: 1rem;
-        }
-        .grid-2op {
-            grid-template-columns: 1fr;  /* Switch to single column */
-            justify-content: center;
-        }
-        .grid-op {
-            width: 100%;         /* take full mobile width */
-            padding: 0 16px;     /* small side spacing */
-            box-sizing: border-box;
-        }
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .stat-item {
-            flex: 1 1 30%;
-            min-width: 90px;
-            text-align: center;
-        }        
-        }
+	    /* Ensures images don't stretch awkwardly */
+	    .feature-card img, .speaker-card img {
+	        width: 100%;
+	        height: auto;
+	        object-fit: cover;
+	        border-radius: 8px;
+	    }
+	    
+	    /* Give the Hero text some breathing room */
+	    .hero-content h1 {
+	        font-size: 2rem; /* Shrinks huge text that might be pushing the boundaries */
+	        line-height: 1.2;
+	    }
+		}	
 
 
         /* Responsive */
@@ -4271,6 +4257,7 @@ async function submitForm(e) {
 
 </body>
 </html>
+
 
 
 
