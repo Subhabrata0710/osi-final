@@ -658,6 +658,7 @@
             width: 40%;
             margin: 0 auto 40px auto;
             
+            
 
         } 
         .grid-2op {
@@ -824,7 +825,13 @@
             /* background: linear-gradient(transparent, rgba(0, 35, 102, 0.9)); */
             color: var(--white);
         }
-
+        /* Organising Committee Name - Gold */
+        .committee-card:not(.text-only) h3 {
+            background: linear-gradient(180deg, #f5d37a, #caa23a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
         .committee-card .card-overlay h3 {
             color: var(--white);
             margin-bottom: 4px;
@@ -838,7 +845,7 @@
         .committee-card .card-badge {
             display: block;
             font-size: 14px;
-            color: #b8860b;
+            color: #ffffff;
             font-weight: 600;
             margin-bottom: 8px;
         }
@@ -1882,6 +1889,15 @@
 
         .committee-list li {
             font-size: 1rem;
+        }
+        .grid-2op {
+            grid-template-columns: 1fr;  /* Switch to single column */
+            justify-content: center;
+        }
+        .grid-op {
+            width: 100%;         /* take full mobile width */
+            padding: 0 16px;     /* small side spacing */
+            box-sizing: border-box;
         }
         }
 
