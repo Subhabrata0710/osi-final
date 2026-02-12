@@ -11,22 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #002366;
+            --primary: #001844; /* Darker Navy from image */
             --primary-light: #003399;
-            --primary-dark: #001844;
-            --secondary: #D4AF37;
+            --secondary: #D4AF37; /* Metallic Gold */
             --secondary-light: #F4E6B0;
             --secondary-dark: #8A7018;
             --white: #ffffff;
-            --gray-50: #f8fafc            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
+            --text-dark: #1e293b;
+            --radius: 12px;
             --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-500: #64748b;
             --gray-600: #475569;
             --gray-700: #334155;
-            --gray-900: #0f172a;
             --green-500: #22c55e;
-            --radius: 12px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
         }
 
         * {
@@ -41,9 +41,9 @@
 
         body {
             font-family: 'Manrope', sans-serif;
-            color: var(--gray-700);
+            color: var(--text-dark);
             line-height: 1.6;
-            background: var(--white);
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -63,7 +63,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: auto;
             margin-left: 10px ;
             padding: 0 20px;
             
@@ -74,27 +74,49 @@
             padding: 0 20px;
             
         }        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: linear-gradient(to bottom, rgba(0,24,68,0.9), transparent); /* Fade from top */
+            padding: 1rem 0;
+        }
 
+        header.scrolled {
+            background: rgba(0, 24, 68, 0.95); /* Solid dark navy on scroll */
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            padding: 0.8rem 0;
+        }
         /* Navigation */
         .navbar {
+            /* display: flex; */
             position: fixed;
+            /* justify-content: space-between; */
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: #001844;
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
+            align-items: center;
+            /* max-width: 1200px; */
+            /* margin: 0 auto; */
+            padding: 15px 20px;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
+            align-items: left;
+            /* max-width: 1200px; */
+            width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
         .dropdown {
             float: left;
@@ -112,48 +134,65 @@
             /* } */
 
         .dropdown .dropbtn {
-            font-size: 14px;
+            font-size: 0.95rem;
             border: none;
             outline: none;
-            color: #475569;
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit; /* Important for vertical align on mobile phones */
-            margin: 0; /* Important for vertical align on mobile phones */
-  
-        }    
+            background: none;
+            color: var(--secondary-light);  /* gold like other links */
+            padding: 8px 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: var(--white);
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            }
+            background: #001844;   /* dark navy */
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
 
             /* Links inside the dropdown */
         .dropdown-content a {
-            float: none;
-            color: black;
+            color: var(--secondary-light);
             padding: 12px 16px;
-            text-decoration: none;
             display: block;
-            text-align: left;
-            }
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
 
             /* Add a grey background color to dropdown links on hover */
         .dropdown-content a:hover {
-            background-color: #ddd;
-            }
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--white);
+        }
+
 
             /* Show the dropdown menu on hover */
         .dropdown:hover .dropdown-content {
             display: block;
             }
         .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white); /* White logo for dark bg */
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 6px;
+            
         }
 
         .logo-icon {
@@ -173,11 +212,16 @@
         .logo-text h3 {
             font-size: 16px;
             margin-bottom: 2px;
+            margin-left: 0;
+            color:#d4af37;
+            /* align-items: left; */
         }
 
         .logo-text span {
             font-size: 11px;
-            color: var(--gray-500);
+            /* color: var(--gray-500); */
+            color:#d4af37;
+            /* align-items: left; */
         }
 
         .nav-links {
@@ -187,14 +231,19 @@
         }
 
         .nav-links a {
+            text-decoration: none;
             padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 8px;            
+            color: var(--secondary-light); /* Gold-ish text */
             font-weight: 500;
-            color: var(--gray-600);
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
+        .nav-links a:hover {
+            color: var(--white);
+        }
         .nav-links a:hover, .nav-links a.active {
             background: var(--gray-100);
             color: var(--primary);
@@ -220,7 +269,7 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: var(--primary);
+            color: var(--white);
         }
 
         /* Quick Links Widget */
@@ -303,12 +352,27 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--gray-50) 0%, #e6f0ff 50%, var(--gray-100) 100%);
+            position: relative;
+            height: auto;
+            min-height: 700px;
+            background: linear-gradient(135deg, #001844 0%, #002366 50%, #001844 100%);
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
+            /* Aligns content to the left side */
+            justify-content: flex-start; 
+            text-align: left;
+            color: var(--white);
+            padding-top: 80px; /* Space for the fixed header */
+            overflow: visible;
+            min-height: 100vh;
+
+            /* Background Setup */
+            background: 
+                radial-gradient(circle at 70% 50%, rgba(0, 24, 68, 0.4) 0%, rgba(0, 24, 68, 0.95) 100%),
+                url('./images/hero-bg.jpg'); /* Ensure this file name matches your upload */
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary);
         }
 		.hero-title {
             font-size: 56px;
@@ -329,18 +393,26 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(0, 35, 102, 0.05);
-            border-radius: 50%;
-            filter: blur(60px);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15), transparent 60%);
+            pointer-events: none;
         }
-
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: 600;
+        }
         .hero-content {
-            max-width: 700px;
-            padding: 40px 0;
+            position: relative;
+            z-index: 2;
+            max-width: 800px; /* Restricts width so text doesn't hit the right edge */
+            padding: 0 5%; /* Adds breathing room from the left edge */
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-badge {
@@ -379,17 +451,18 @@
     margin-bottom: 16px;
 
     /* Original Shimmer Effect */
-    background: linear-gradient(90deg, var(--primary) 0%, #4c6ef5 50%, var(--primary) 100%);
+    /* background: linear-gradient(90deg, var(--primary) 0%, #b8962e 50%, var(--primary) 100%); */
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%,var(--secondary) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
 
     /* The 3D Layered Depth (Using light grey shadows to look like the image) */
-    filter: drop-shadow(1px 1px 0px #d1d1d1)
-            drop-shadow(2px 2px 0px #d1d1d1)
-            drop-shadow(3px 3px 0px #d1d1d1)
-            drop-shadow(4px 4px 0px #d1d1d1)
+    filter: drop-shadow(1px 1px 0px rgb(196, 157, 40))
+            /* drop-shadow(2px 2px 0px #d4af37) */
+            /* drop-shadow(3px 3px 0px #dfc46f) */
+            /* drop-shadow(4px 4px 0px #eee9e9) */
             drop-shadow(5px 5px 8px rgba(0,0,0,0.2));
 }
 
@@ -398,7 +471,7 @@
     font-family: 'Playfair Display', serif;
     font-weight: 800;
     /* Uses your existing --secondary (Gold) shimmer */
-    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary) 100%);
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary-light) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -410,9 +483,9 @@
             drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
 }
 
- /* Fix for the RD superscript in 3D */
-       .hero h1 sup {
-            -webkit-text-fill-color:var(--primary); /* Keeps superscript solid blue */
+ /* Fix for the RD superscript in 3D Keeps superscript solid blue */
+       .hero h1 sup { 
+            -webkit-text-fill-color:transparent; 
             font-size: 0.6em;
         }
 
@@ -423,7 +496,7 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }*/
 /* Replace your existing hero h1 and gold-effect styles with this */
-.hero h1 {
+.hero h1 sup1{
     font-family: 'Playfair Display', serif; /* Or Arial Black for a chunkier look */
     font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 900;
@@ -446,7 +519,7 @@
 }
 
 /* Adjust the superscript (RD) to look like the image */
-.hero h1 sup {
+.hero h1 sup121 {
     font-size: 0.5em;
     vertical-align: super;
     text-shadow: 
@@ -471,18 +544,30 @@
             to { background-position: 200% center; }
         }
 
+        .hero p,
+        .hero h3{
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--secondary-light);
+            margin-bottom: 2rem;
+        }
         .hero p {
-            font-size: 18px;
-            color: var(--gray-600);
-            margin-bottom: 32px;
-            max-width: 500px;
+            text-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(0, 0, 0, 0.4);
         }
 
         .hero-details {
             display: flex;
-            gap: 32px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start; /* Aligns items to the left */
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            
+            /* distinct separator line on the left */
+            border-left: 4px solid var(--secondary); 
+            padding-left: 1.5rem;
         }
 
         .hero-detail {
@@ -502,56 +587,65 @@
             font-size: 20px;
         }
 
-        .hero-detail-text h4 {
+        /* .hero-detail-text h4 {
             font-size: 15px;
             font-family: 'Manrope', sans-serif;
             font-weight: 600;
+        } */
+        .hero-detail-text h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
         }
-
         .hero-detail-text span {
-            font-size: 13px;
-            color: var(--gray-500);
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-transform: uppercase;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
-            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
-            background: var(--secondary);
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--secondary), var(--secondary-dark));
+            color: var(--white);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn-primary:hover {
-            background: var(--secondary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+                    }
 
         .btn-outline:hover {
-            background: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
             color: var(--white);
+            border-color: var(--white);
         }
 
         .hero-stats {
@@ -596,11 +690,17 @@
         .content-section {
             padding: 80px 0;
         }
-
         .content-section.alt-bg {
             background: var(--gray-50);
         }
+        .content-section .container {
+            text-align: center;     /* centers all text inside */
+            margin: 0 auto;         /* centers container */
+        }
 
+        .committee-block {
+            margin: 0 auto 50px auto;  /* center each block */
+        }
         .section-header {
             text-align: center;
             margin-bottom: 48px;
@@ -649,13 +749,18 @@
         }    
         .grid-op{
             /* display: flex; */
-            grid-column: span 2;
-            justify-content: center;
-            margin-bottom: 40px;
+            width: 40%;
+            margin: 0 auto 40px auto;
             
 
         } 
-
+        .grid-2op {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: center;   /* centers the whole 2-column block */
+            gap: 32px;
+            margin-bottom: 40px;
+        }
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -724,16 +829,16 @@
             font-size: 14px;
         }
 
-        /* Committee Cards */
-        .committee-card {
+        /* speaker card */
+        .committee-cardspe {
             position: relative;
         }
 
-        .committee-card .card-image {
+        .committee-cardspe .card-image {
             height: 280px;
         }
 
-        .committee-card .card-overlay {
+        .committee-cardspe .card-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -743,9 +848,100 @@
             color: var(--white);
         }
 
+        .committee-cardspe .card-overlay h3 {
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .committee-cardspe .card-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+        .committee-cardspe.text-only {
+            background: var(--white);
+            padding: 24px;
+            min-height: auto;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .committee-cardspe.text-only .card-overlay {
+            position: static;
+            background: none;
+            padding: 0;
+            color: var(--gray-700);
+        }
+
+        .committee-cardspe.text-only h3 {
+            color: var(--primary);
+        }
+
+        .committee-cardspe.text-only p {
+            color: var(--gray-600);
+        }
+
+        .committee-cardspe.text-only .card-badge {
+            margin-bottom: 12px;
+        }        
+
+        /* Committee Cards */
+        .committee-card {
+            position: relative;
+            background: #ffffff;
+            border-radius: 80px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: 0.3s ease;        
+        }
+        .committee-card:hover {
+            transform: translateY(-6px);
+        }
+        .committee-card .card-image {
+            width: 250px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #d4af37; /* gold border */
+        }
+        .committee-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .committee-card .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            /* background: linear-gradient(transparent, rgba(0, 35, 102, 0.9)); */
+            color: var(--white);
+        }
+        /* Organising Committee Name - Gold */
+        .committee-card:not(.text-only) h3 {
+            background: linear-gradient(180deg, #f5d37a, #caa23a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
         .committee-card .card-overlay h3 {
             color: var(--white);
             margin-bottom: 4px;
+        }
+        .committee-card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #0b1d3a;
+        }
+
+        .committee-card .card-badge {
+            display: block;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .committee-card .card-overlay p {
@@ -1576,9 +1772,12 @@
 
         /* Footer */
         .footer {
-            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+            /* background: linear-gradient(180deg, var(--primary), var(--primary-dark)); */
             color: var(--white);
+            background: #001844;
+            width: 100%;
             padding: 60px 0 0;
+            position: relative;
         }
 
         .footer-grid {
@@ -1760,7 +1959,26 @@
         margin-bottom: 10px;
         letter-spacing: 0.3px;
         }
+        .accommodation-video {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 50px 0;
+            position: relative;
+        }
 
+        .accommodation-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .accommodation-video::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+        }
         /* Mobile refinement */
         @media (max-width: 768px) {
         .committee-block {
@@ -1770,6 +1988,29 @@
         .committee-list li {
             font-size: 1rem;
         }
+        .grid-2op {
+            grid-template-columns: 1fr;  /* Switch to single column */
+            justify-content: center;
+        }
+        .grid-op {
+            width: 100%;         /* take full mobile width */
+            padding: 0 16px;     /* small side spacing */
+            box-sizing: border-box;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-item {
+            flex: 1 1 30%;
+            min-width: 90px;
+            text-align: center;
+        }        
         }
 
 
@@ -1950,6 +2191,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 .brochure-popup.hidden {
@@ -1958,18 +2201,27 @@
 
 .brochure-content {
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
+  width: auto;
+  max-width: 95vw;
+  max-height: 95vh; 
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .brochure-content img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 95vh;
+  width: auto;
   height: auto;
   display: block;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  /* object-fit: contain; */
 }
 
 .brochure-close {
@@ -1985,7 +2237,98 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.mobile-menu .dropdown-content {
+  display: none;
+  padding-left: 15px;
+}
 
+.mobile-menu .dropdown.active .dropdown-content {
+  display: block;
+}
+.mobile-submenu {
+  display: none;
+  padding: 8px 0 8px 20px;   /* more left spacing */
+  margin-top: 5px;           /* space from Committee */
+  background-color: #f8f8f8; /* slight contrast */
+  /* border-left: 3px solid #0b2c6b; accent line */
+}
+/* Submenu links */
+.mobile-submenu li {
+  margin: 6px 0;  /* vertical spacing */
+}
+.mobile-submenu a {
+  display: block;
+  padding: 6px 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.mobile-dropdown.active .mobile-submenu {
+  display: block;
+}
+/* Hide all nested UL inside mobile dropdown */
+.mobile-menu ul ul {
+  display: none !important;
+}
+.mobile-menu ul li {
+  position: relative;
+}
+/* Show only when active */
+.mobile-dropdown.active > .mobile-submenu {
+  display: block !important;
+}
+/* ===== Registration Scrolling Announcement ===== */
+.reg-announcement {
+  background: linear-gradient(90deg, #0b2c4d, #123e6b);
+  color: #e6c87a;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.reg-announcement:hover .reg-track {
+  animation-play-state: paused;
+}
+.reg-track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollLeft 15s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media (max-width: 768px) {
+    .hero {
+        align-items: center; /* Center vertically on mobile */
+        justify-content: center; /* Center horizontally on mobile? Or keep left? */
+        text-align: left; /* Keep text left aligned usually looks better */
+    }
+    
+    .hero-content {
+        padding: 0 2rem;
+        max-width: 100%;
+    }
+
+    .hero h1 { font-size: 3.5rem; }
+    .hero-subtitle { font-size: 1rem; letter-spacing: 2px; }
+    .hero-tagline { font-size: 1.4rem; }
+    
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%; /* Full width buttons on mobile */
+        text-align: center;
+    }
+}
 </style>
 </head>
 <script>
@@ -1999,7 +2342,7 @@
     }, 700);
   });
 </script>
-<script>
+<!-- <script>
   window.addEventListener("load", () => {
     setTimeout(() => {
       const popup = document.getElementById("brochurePopup");
@@ -2015,13 +2358,62 @@
       sessionStorage.setItem("brochureClosed", "true");
     }
   });
+
+
+
+</script> -->
+<script>
+  window.addEventListener("load", () => {
+    const popup = document.getElementById("brochurePopup");
+    const closeBtn = document.querySelector(".brochure-close");
+
+    if (!popup) return;
+
+    // Show popup after 1 second on every load
+    setTimeout(() => {
+      popup.classList.remove("hidden");
+    }, 1000);
+
+    // Close function
+    function closePopup() {
+      popup.classList.add("hidden");
+    }
+
+    // Close on button click
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closePopup);
+    }
+
+    // Close when clicking outside content
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closePopup();
+      }
+    });
+  });
+</script>
+
+
+<script>
+function toggleMobileDropdown(event) {
+  event.preventDefault();
+  const parent = event.target.closest(".mobile-dropdown");
+  parent.classList.toggle("active");
+}
 </script>
 
 <!-- Brochure Popup -->
 <div id="brochurePopup" class="brochure-popup hidden">
   <div class="brochure-content">
     <button class="brochure-close" aria-label="Close">&times;</button>
-    <img src="images/popup.jpg" alt="Conference Brochure">
+    <img src="./images/popup.jpg" alt="Conference Brochure">
   </div>
 </div>
 
@@ -2050,10 +2442,10 @@
          <li><div class="dropdown">
             <button class="dropbtn">Committee</button>
             <div class="dropdown-content">
-                <a href="#" onclick="showPage('organising-committee')">
+                <a href="#" onclick="event.preventDefault(); showPage('organising-committee')">
                 Organising Committee
                 </a>
-                <a href="#" onclick="showPage('conference-committee')">
+                <a href="#" onclick="event.preventDefault(); showPage('conference-committee')">
                 Conference Committee
                 </a>
             </div>
@@ -2091,18 +2483,20 @@
             <li><a href="#home" onclick="handleMobileNav('home')">Home</a></li>
             <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
             <!-- <li><a href="#committee" onclick="handleMobileNav('committee')">Committee</a></li> -->
-            <li>
-            <div class="dropdown">
-                <button class="dropbtn">Committee</button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="showPage('organising-committee')">
-                    Organising Committee
-                    </a>
-                    <a href="#" onclick="showPage('conference-committee')">
-                    Conference Committee
-                    </a>
-                </div>
-                </div>
+            <li class="mobile-dropdown">
+                <a href="#" onclick="toggleMobileDropdown(event)">Committee</a>
+                <ul class="mobile-submenu">
+                    <li>
+                        <a href="#" onclick="event.preventDefault(); handleMobileNav('organising-committee')">
+                            Organising Committee
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="event.preventDefault(); handleMobileNav('conference-committee')">
+                            Conference Committee
+                        </a>
+                    </li>
+                </ul>
             </li>
             <!-- <li><a href="#program" onclick="handleMobileNav('program')">Program</a></li> -->
             <li><a href="#speakers" onclick="handleMobileNav('speakers')">Speakers</a></li>
@@ -2112,6 +2506,7 @@
             <li><a href="#sponsors" onclick="handleMobileNav('sponsors')">Sponsors</a></li>
             <li><a href="#venue" onclick="handleMobileNav('venue')">Venue</a></li>
         </ul>
+        
     </div>
   </div>
 </nav>
@@ -2140,7 +2535,7 @@
             <div class="container">
                 <div class="hero-content">
                    <!--<div class="hero-badge">National Conference</div>-->
-                    <h1 style="color: #002366; -webkit-text-fill-color: #002366; font-weight: 700;" >3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+                    <h1 >3<sup>RD</sup> OSI<br>CONFERENCE</h1>
 <!-- <h1>3<sup>rd</sup> osi conference</h1>
 <h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2> -->
 
@@ -2331,7 +2726,8 @@
                         <h3>Dr Samiran Ghosh</h3>
                     </div>
                 </div>
-
+            </div>
+            <div class="grid-2op">
                 <div class="card committee-card">
                     <div class="card-image">
                         <img src="images/aniket-chatterji.jpg" alt="Dr. Aniket Chatterji">
@@ -2351,8 +2747,8 @@
                         <h3>Dr. Saptarshi Dutta</h3>
                     </div>
                 </div>
-
             </div>
+            
             <!-- treasurer and scientific -->
             <div class="grid-3">
 
@@ -2386,7 +2782,7 @@
                     </div>
                 </div>
 
-                <div class="card committee-card">
+                <!-- <div class="card committee-card">
                     <div class="card-image">
                         <img src="images/shounak-ghosh.jpg" alt="Dr Shounak Ghosh">
                     </div>
@@ -2394,7 +2790,7 @@
                         <span class="card-badge">Joint Scientific Chairman</span>
                         <h3>Dr Shounak Ghosh</h3>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <!-- trade and registration -->
@@ -2410,7 +2806,7 @@
                     </div>
                 </div>
 
-                <div class="card committee-card">
+                <!-- <div class="card committee-card">
                     <div class="card-image">
                         <img src="images/shivbhusan-pandey.jpg" alt="Dr Shivbhusan Pandey">
                     </div>
@@ -2418,7 +2814,7 @@
                         <span class="card-badge">Joint Chairperson</span>
                         <h3>Dr Shivbhusan Pandey</h3>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="card committee-card">
                     <div class="card-image">
@@ -2430,7 +2826,7 @@
                     </div>
                 </div>
 
-                <div class="card committee-card">
+                <!-- <div class="card committee-card">
                     <div class="card-image">
                         <img src="images/jyotiska-chakraborty.jpg" alt="Dr. Jyotiska Chakraborty">
                     </div>
@@ -2438,7 +2834,7 @@
                         <span class="card-badge">Joint Registration Chairperson</span>
                         <h3>Dr. Jyotiska Chakraborty</h3>
                     </div>
-                </div>
+                </div> -->
                             <!-- preconf -->
                 <div class="card committee-card">
                     <div class="card-image">
@@ -2975,7 +3371,7 @@
         <div class="content-section alt-bg">
             <div class="container">
                 <div class="grid-2" style="margin-bottom: 32px;">
-                    <div class="card committee-card" style="height: 350px;">
+                    <div class="card committee-cardspe" style="height: 350px;">
                         <div class="card-image" style="height: 100%;"><img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
@@ -3003,7 +3399,7 @@
                             <p>Founder • Osseodensification</p>
                         </div>
 					</div> -->
-					<div class="card committee-card" style="height: 350px;">
+					<div class="card committee-cardspe" style="height: 350px;">
                         <div class="card-image" style="height: 100%;"><img src="images/Yoshihito.jpg?w=500&h=400&fit=crop" alt="Dr. Yoshihito Naito" style="height: 100%;"></div>
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
@@ -3040,6 +3436,11 @@
         <div class="page-banner">
             <span>Join Us</span>
             <h1>Registration</h1>
+        </div>
+        <div class="reg-announcement">
+        <div class="reg-track">
+            Register at special rate during 14–15 Feb at Expodent
+        </div>
         </div>
         <div class="content-section">
             <div class="containercom">
@@ -3163,6 +3564,13 @@
                         </div>
                     </div>
                 </div>
+                <!-- Accommodation Video Section -->
+                <div class="accommodation-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/room-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
 
                 <div class="section-header"><h2>Room Categories</h2></div>
                 <div class="grid-2">
@@ -3171,7 +3579,7 @@
                         <div class="room-card-content">
                             <h3>Single Occupancy</h3>
                             <div class="room-price"><h3>₹15,000</h3><span>/night</span></div>
-                            <ul class="pricing-features"><li>King/Twin beds</li><li>35 sqm</li><li>City view</li></ul>
+                            <ul class="pricing-features"><li>King/Twin beds</li><li>42 sqm</li><li>Breakfast included</li></ul>
                             <!-- <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
                                 <button class="minus">−</button>
@@ -3180,12 +3588,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="room-card recommended" data-room="Double Occupancy" data-price="7500">
-                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"><span class="room-badge">RECOMMENDED</span></div>
+                    <div class="room-card" data-room="Double Occupancy" data-price="7500">
+                        <!-- <div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"><span class="room-badge">RECOMMENDED</span></div> -->
+						<div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"></div>
                         <div class="room-card-content">
                             <h3>Double Occupancy</h3>
                             <div class="room-price"><h3>₹7,500</h3><span>/night</span></div>
-                            <ul class="pricing-features"><li>King/Twin beds, 42 sqm</li><li>Pool view</li><li>Breakfast included</li></ul>
+                            <ul class="pricing-features"><li>King/Twin beds</li><li>42 sqm</li><li>Breakfast included</li></ul>
                             <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
                                 <button class="minus">−</button>
@@ -3461,6 +3870,7 @@
                     <ul class="footer-links">
                         <li><a href="mailto:registration@osiconkolkata.com">Registration: registration@osiconkolkata.com</a></li>
 						<li><a href="mailto:trade@osiconkolkata.com">Trade: trade@osiconkolkata.com</a></li>
+                        <li><a href="mailto:secretariat@osiconkolkata.com">Secretary OSI: secretariat@osiconkolkata.com</a></li>                        
                         <!-- <li><a href="tel:+919876543210">+91 98765 43210</a></li> -->
                         <li>Plot No, 2, AA II, Newtown,<br>Kolkata 700135</li>
                     </ul>
