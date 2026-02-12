@@ -369,7 +369,7 @@
             /* Background Setup */
             background: 
                 radial-gradient(circle at 70% 50%, rgba(0, 24, 68, 0.4) 0%, rgba(0, 24, 68, 0.95) 100%),
-                url('images/hero-bg.jpg'); /* Ensure this file name matches your upload */
+                url('./images/hero-bg.jpg'); /* Ensure this file name matches your upload */
             background-size: cover;
             background-position: center;
             background-color: var(--primary);
@@ -2329,6 +2329,27 @@
         text-align: center;
     }
 }
+/* SPEAKERS - Left Align Everything */
+.speakers-section .card-overlay,
+#page-speakers .card-overlay {
+    text-align: left;
+    align-items: flex-start;
+}
+
+/* Move badge to left */
+.speakers-section .card-badge,
+#page-speakers .card-badge {
+    align-self: flex-start;
+}
+
+/* Make sure text is left */
+.speakers-section .card-overlay h3,
+.speakers-section .card-overlay p,
+#page-speakers .card-overlay h3,
+#page-speakers .card-overlay p {
+    text-align: left;
+}
+
 </style>
 </head>
 <script>
@@ -4241,4 +4262,3 @@ async function submitForm(e) {
 
 </body>
 </html>
-
