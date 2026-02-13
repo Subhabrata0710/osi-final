@@ -1967,12 +1967,21 @@
 
         transition: all 0.3s ease;
         }
+        .full-text {
+            display: none;
+        }
 
         .speaker-text.expanded {
         -webkit-line-clamp: unset;
         overflow: visible;
         }
+        .speaker-text.expanded .preview-text {
+            display: none;
+        }
 
+        .speaker-text.expanded .full-text {
+            display: inline;
+        }
         .see-more-btn {
         margin-top: 8px;
         background: none;
@@ -2808,7 +2817,7 @@ function toggleMobileDropdown(event) {
                             <div class="hero-detail-icon">📍</div>
                             <div class="hero-detail-text">
                                 <h4>The Westin</h4>
-                                <span>Rajarhat, Kolkata</span>
+                                 <span>New Town, Kolkata</span>
                             </div>
                         </a>
                     </div>
@@ -3602,6 +3611,10 @@ function toggleMobileDropdown(event) {
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr Frank Schwarz</h3>
                             <p class="speaker-text">
+                                <span class="preview-text">
+                                    Prof. Dr Frank Schwarz...
+                                </span>                                
+                                <span class="full-text">
                                 Prof. Dr. Frank Schwarz is one of the world’s leading authorities on peri-implantitis
                                 management and regenerative implant therapies. As Chairman of the Department of Oral
                                 Surgery and Implantology at Goethe University Frankfurt, Germany, he has pioneered
@@ -3611,6 +3624,7 @@ function toggleMobileDropdown(event) {
                                 practical, proven strategies to improve long-term implant success and handle complex
                                 complications. Attend his keynote to master the latest in peri-implant health and turn
                                 challenging cases into predictable outcomes.
+                                </span>
                             </p>
 
                             <button class="see-more-btn" onclick="toggleText(this)">See more</button>
@@ -3629,7 +3643,15 @@ function toggleMobileDropdown(event) {
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr. Yoshihito Naito</h3>
-                            <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p>
+                            <!-- <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p> -->
+                            <p class="speaker-text">
+                                <span class="preview-text">
+                                    Dr. Yoshihito Naito...
+                                </span>
+                                <span class="full-text">
+                                    Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.
+                                </span>
+                            </p>
                             <button class="see-more-btn" onclick="toggleText(this)">See more</button>
                         </div>
 					</div>
@@ -3649,8 +3671,8 @@ function toggleMobileDropdown(event) {
                 text.classList.toggle("expanded");
 
                 btn.textContent = text.classList.contains("expanded")
-                ? "See less"
-                : "See more";
+                    ? "See less"
+                    : "See more";
             }
         </script>
 
@@ -3818,7 +3840,7 @@ function toggleMobileDropdown(event) {
 						<div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"></div>
                         <div class="room-card-content">
                             <h3>Double Occupancy</h3>
-                            <div class="room-price"><h3>₹7,500</h3><span>/night</span></div>
+                            <div class="room-price"><h3>₹7,500</h3><span>/night(on twin sharing basis)</span></div>
                             <ul class="pricing-features"><li>King/Twin beds</li><li>42 sqm</li><li>Breakfast included</li></ul>
                             <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
