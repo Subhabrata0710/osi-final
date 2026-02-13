@@ -2356,63 +2356,40 @@
 #page-speakers .card-overlay p {
     text-align: left;
 }
-img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover; /* Ensures images fill space without stretching */
+/* 1. Force items to wrap to the next line if they don't fit */
+.row, .card-container, .speaker-grid, .flex-row {
+    display: flex;
+    flex-wrap: wrap !important; /* CRITICAL: This pushes the 3rd item down if there's no room */
+    justify-content: center;    /* Centers items so they look good if only 1 or 2 remain on a line */
 }
 
-/* 2. Fix Horizontal Scrolling/Overflow */
-html, body {
-    overflow-x: hidden; /* Prevents side-scrolling */
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* 3. Container Fix: Stop fixed widths from breaking mobile */
-.container, section, header, footer {
-    width: 100% !important; /* Force full width on mobile */
-    max-width: 100% !important;
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* 4. Hero Section Fix (Home Page) */
-/* Assuming your main banner has a class like 'hero' or uses background images */
-.hero, .banner {
-    background-size: cover !important; /* Fixes background stretching */
-    background-position: center center !important;
-    height: auto; /* Allow height to adjust to content on mobile */
-    min-height: 60vh; /* Ensure it's not too short */
-}
-
-/* 5. Mobile Layout Stacking (The "About Page" Fix) */
-@media screen and (max-width: 900px) {
+/* 2. Tablet/Intermediate Screen Fix (The "Client's Screen" Range) */
+/* Targets devices between Mobile (768px) and Desktop (1200px) */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
     
-    /* Force all Flexbox rows to become columns */
-    .row, .flex-container, .d-flex, .about-section, .grid-container {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
+    /* Make 3-column layouts switch to 2-columns on tablets */
+    .col-md-4, .col-lg-4, .three-column-item {
+        width: 45% !important; /* 2 items per row */
+        margin: 10px auto;
     }
-
-    /* Reset widths for side-by-side elements to take full width */
-    .col, .col-6, .col-md-6, .w-50, .half-width {
-        width: 100% !important;
-        padding: 15px !important;
-        margin: 0 !important;
+    
+    /* Ensure images don't overflow their containers */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
     }
+}
 
-    /* Fix Font Sizes for Mobile */
-    h1 { font-size: 2rem !important; }
-    h2 { font-size: 1.75rem !important; }
-    h3 { font-size: 1.5rem !important; }
-    p { font-size: 1rem !important; line-height: 1.6; }
+/* 3. Safety Net for Content Cutting Off */
+/* Instead of just hiding overflow, we allow scrolling if absolutely necessary inside specific sections */
+section {
+    width: 100%;
+    overflow-wrap: break-word; /* Prevents long text from pushing layout out */
+}
 
-    /* Adjust Padding so content isn't stuck to the edge */
-    section {
-        padding: 2px 1px !important;
-    }
+.container {
+    padding-left: 15px;
+    padding-right: 15px; /* Adds invisible "bumpers" so content never touches the screen edge */
 }
 </style>
 </head>
@@ -4326,5 +4303,3 @@ async function submitForm(e) {
 
 </body>
 </html>
-
-
