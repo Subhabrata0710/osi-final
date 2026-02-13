@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scayoshile=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3RD OSI CONFERENCE KOLKATA 2026 | Dental Implant Conference</title>
     <meta name="description" content="India's Premier Conference on Osseointegration & Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,22 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #002366;
+            --primary: #001844; /* Darker Navy from image */
             --primary-light: #003399;
-            --primary-dark: #001844;
-            --secondary: #D4AF37;
+            --secondary: #D4AF37; /* Metallic Gold */
             --secondary-light: #F4E6B0;
             --secondary-dark: #8A7018;
             --white: #ffffff;
-            --gray-50: #f8fafc            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
+            --text-dark: #1e293b;
+            --radius: 12px;
             --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-500: #64748b;
             --gray-600: #475569;
             --gray-700: #334155;
-            --gray-900: #0f172a;
             --green-500: #22c55e;
-            --radius: 12px;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
         }
 
         * {
@@ -41,9 +41,9 @@
 
         body {
             font-family: 'Manrope', sans-serif;
-            color: var(--gray-700);
+            color: var(--text-dark);
             line-height: 1.6;
-            background: var(--white);
+            /* overflow-x: hidden; */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -74,27 +74,49 @@
             padding: 0 20px;
             
         }        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: linear-gradient(to bottom, rgba(0,24,68,0.9), transparent); /* Fade from top */
+            padding: 1rem 0;
+        }
 
+        header.scrolled {
+            background: rgba(0, 24, 68, 0.95); /* Solid dark navy on scroll */
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            padding: 0.8rem 0;
+        }
         /* Navigation */
         .navbar {
+            /* display: flex; */
             position: fixed;
+            /* justify-content: space-between; */
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: #001844;
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            /* align-items: center; */
+            /* max-width: 1200px; */
+            /* margin: 0 auto; */
             padding: 15px 0;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
+            align-items: left;
+            /* max-width: 1200px; */
+            width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
         .dropdown {
             float: left;
@@ -112,48 +134,65 @@
             /* } */
 
         .dropdown .dropbtn {
-            font-size: 14px;
+            font-size: 0.95rem;
             border: none;
             outline: none;
-            color: #475569;
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit; /* Important for vertical align on mobile phones */
-            margin: 0; /* Important for vertical align on mobile phones */
-  
-        }    
+            background: none;
+            color: var(--secondary-light);  /* gold like other links */
+            padding: 8px 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: var(--white);
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background: #001844;   /* dark navy */
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-radius: 8px;
             z-index: 1;
-            }
+        }
+
 
             /* Links inside the dropdown */
         .dropdown-content a {
-            float: none;
-            color: black;
+            color: var(--secondary-light);
             padding: 12px 16px;
-            text-decoration: none;
             display: block;
-            text-align: left;
-            }
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
 
             /* Add a grey background color to dropdown links on hover */
         .dropdown-content a:hover {
-            background-color: #ddd;
-            }
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--white);
+        }
+
 
             /* Show the dropdown menu on hover */
         .dropdown:hover .dropdown-content {
             display: block;
             }
         .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white); /* White logo for dark bg */
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 6px;
+            
         }
 
         .logo-icon {
@@ -173,11 +212,16 @@
         .logo-text h3 {
             font-size: 16px;
             margin-bottom: 2px;
+            /* margin-left: 0; */
+            color:#d4af37;
+            /* align-items: left; */
         }
 
         .logo-text span {
             font-size: 11px;
-            color: var(--gray-500);
+            /* color: var(--gray-500); */
+            color:#d4af37;
+            /* align-items: left; */
         }
 
         .nav-links {
@@ -187,14 +231,19 @@
         }
 
         .nav-links a {
+            text-decoration: none;
             padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 8px;            
+            color: var(--secondary-light); /* Gold-ish text */
             font-weight: 500;
-            color: var(--gray-600);
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
+        .nav-links a:hover {
+            color: var(--white);
+        }
         .nav-links a:hover, .nav-links a.active {
             background: var(--gray-100);
             color: var(--primary);
@@ -220,11 +269,11 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: var(--primary);
+            color: var(--white);
         }
 
         /* Quick Links Widget */
-        .quick-links-widget {
+        /* .quick-links-widget {
             position: fixed;
             right: 0;
             top: 50%;
@@ -244,17 +293,70 @@
             color: var(--white);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background 0.3s ease;
+        } */
+        /* --- IMPROVED QUICK LINKS WIDGET (Desktop & Mobile) --- */
+
+        .quick-links-widget {
+            position: fixed;
+            z-index: 9999; /* Keeps it above everything else */
+            
+            /* Desktop Positioning (Default) */
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .quick-link:last-child {
+        .quick-link {
+            background: var(--primary); /* Uses your Navy Blue */
+            color: #d4af37;
+            width: 280px; /* Fixed width for consistent slide-out */
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: -2px 4px 10px rgba(0,0,0,0.2);
+            
+            /* THE SLIDE ANIMATION */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Hides 80% of the button off-screen, leaving just the icon visible */
+            transform: translateX(calc(100% - 60px)); 
+        }
+        /* .quick-link:last-child {
             border-bottom: none;
         }
 
         .quick-link:hover {
             background: rgba(255, 255, 255, 0.1);
+        } */
+/* Slide out on Hover */
+        .quick-link:hover {
+            transform: translateX(0); /* Slides fully into view */
+            background: var(--primary-light); /* Slight color change on hover */
+        }
+        .quick-link-icon {
+            font-size: 24px;
+            min-width: 30px; /* Ensures icon doesn't squish */
+            text-align: center;
         }
 
-        .quick-link-icon {
+        .quick-link-text h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary); /* Gold Text */
+        }
+
+        .quick-link-text span {
+            font-size: 12px;
+            color: #d4af37;
+        }
+
+        /* .quick-link-icon {
             width: 40px;
             height: 40px;
             background: var(--secondary);
@@ -276,7 +378,7 @@
         .quick-link-text span {
             font-size: 11px;
             color: rgba(255, 255, 255, 0.7);
-        }
+        } */
 
         /* Page Sections */
         .page-section {
@@ -303,12 +405,26 @@
 
         /* Hero Section */
         .hero {
+            position: relative;
+            height: auto;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--gray-50) 0%, #e6f0ff 50%, var(--gray-100) 100%);
+            /* background: linear-gradient(135deg, #001844 0%, #002366 50%, #001844 100%); */
             display: flex;
             align-items: center;
-            position: relative;
+            /* Aligns content to the left side */
+            justify-content: flex-start; 
+            text-align: left;
+            color: var(--white);
+            padding-top: 80px; /* Space for the fixed header */
             overflow: hidden;
+
+            /* Background Setup */
+            background: 
+                radial-gradient(circle at 70% 50%, rgba(0, 24, 68, 0.4) 0%, rgba(0, 24, 68, 0.95) 100%),
+                url('./images/hero-bg.jpg'); /* Ensure this file name matches your upload */
+            background-size: cover;
+            background-position: center;
+            background-color: var(--primary);
         }
 		.hero-title {
             font-size: 56px;
@@ -333,14 +449,25 @@
             right: 10%;
             width: 300px;
             height: 300px;
-            background: rgba(0, 35, 102, 0.05);
-            border-radius: 50%;
-            filter: blur(60px);
+            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15), transparent 60%);
+            pointer-events: none;
         }
-
+        /* .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: 600;
+        } */
         .hero-content {
-            max-width: 700px;
-            padding: 40px 0;
+            /* position: relative; */
+            /* z-index: 2; */
+            max-width: 700px; /* Restricts width so text doesn't hit the right edge */
+            padding: 0 5%; /* Adds breathing room from the left edge */
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero-badge {
@@ -379,17 +506,18 @@
     margin-bottom: 16px;
 
     /* Original Shimmer Effect */
-    background: linear-gradient(90deg, var(--primary) 0%, #4c6ef5 50%, var(--primary) 100%);
+    /* background: linear-gradient(90deg, var(--primary) 0%, #b8962e 50%, var(--primary) 100%); */
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%,var(--secondary) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
 
     /* The 3D Layered Depth (Using light grey shadows to look like the image) */
-    filter: drop-shadow(1px 1px 0px #d1d1d1)
-            drop-shadow(2px 2px 0px #d1d1d1)
-            drop-shadow(3px 3px 0px #d1d1d1)
-            drop-shadow(4px 4px 0px #d1d1d1)
+    filter: drop-shadow(1px 1px 0px rgb(196, 157, 40))
+            /* drop-shadow(2px 2px 0px #d4af37) */
+            /* drop-shadow(3px 3px 0px #dfc46f) */
+            /* drop-shadow(4px 4px 0px #eee9e9) */
             drop-shadow(5px 5px 8px rgba(0,0,0,0.2));
 }
 
@@ -398,7 +526,7 @@
     font-family: 'Playfair Display', serif;
     font-weight: 800;
     /* Uses your existing --secondary (Gold) shimmer */
-    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary) 100%);
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary-light) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -410,9 +538,9 @@
             drop-shadow(3px 3px 5px rgba(0,0,0,0.3));
 }
 
- /* Fix for the RD superscript in 3D */
-       .hero h1 sup {
-            -webkit-text-fill-color:var(--primary); /* Keeps superscript solid blue */
+ /* Fix for the RD superscript in 3D Keeps superscript solid blue */
+       .hero h1 sup { 
+            -webkit-text-fill-color:transparent; 
             font-size: 0.6em;
         }
 
@@ -423,7 +551,7 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }*/
 /* Replace your existing hero h1 and gold-effect styles with this */
-.hero h1 {
+.hero h1 sup1{
     font-family: 'Playfair Display', serif; /* Or Arial Black for a chunkier look */
     font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 900;
@@ -446,7 +574,7 @@
 }
 
 /* Adjust the superscript (RD) to look like the image */
-.hero h1 sup {
+.hero h1 sup121 {
     font-size: 0.5em;
     vertical-align: super;
     text-shadow: 
@@ -471,18 +599,30 @@
             to { background-position: 200% center; }
         }
 
-        .hero p {
+        .hero p,
+        .hero h3{
+            font-family: 'Playfair Display', serif;
             font-size: 18px;
-            color: var(--gray-600);
-            margin-bottom: 32px;
-            max-width: 500px;
+            font-style: italic;
+            color: var(--secondary-light);
+            margin-bottom: 2rem;
+        }
+        .hero p {
+            text-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(0, 0, 0, 0.4);
         }
 
         .hero-details {
             display: flex;
-            gap: 32px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start; /* Aligns items to the left */
+            gap: 0.8rem;
+            margin-bottom: 3rem;
+            
+            /* distinct separator line on the left */
+            border-left: 4px solid var(--secondary); 
+            padding-left: 1.5rem;
         }
 
         .hero-detail {
@@ -502,56 +642,65 @@
             font-size: 20px;
         }
 
-        .hero-detail-text h4 {
+        /* .hero-detail-text h4 {
             font-size: 15px;
             font-family: 'Manrope', sans-serif;
             font-weight: 600;
+        } */
+        .hero-detail-text h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
         }
-
         .hero-detail-text span {
-            font-size: 13px;
-            color: var(--gray-500);
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-transform: uppercase;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
-            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
-            background: var(--secondary);
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--secondary), var(--secondary-dark));
+            color: var(--white);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .btn-primary:hover {
-            background: var(--secondary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+                    }
 
         .btn-outline:hover {
-            background: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
             color: var(--white);
+            border-color: var(--white);
         }
 
         .hero-stats {
@@ -658,7 +807,6 @@
             width: 40%;
             margin: 0 auto 40px auto;
             
-            
 
         } 
         .grid-2op {
@@ -735,6 +883,7 @@
             color: var(--gray-600);
             font-size: 14px;
         }
+
         /* speaker card */
         .committee-cardspe {
             position: relative;
@@ -796,6 +945,7 @@
             background: #ffffff;
             border-radius: 80px;
             padding: 30px 20px;
+            padding-top: 60px; /* pushes content down */
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transition: 0.3s ease;        
@@ -849,6 +999,7 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
+
         .committee-card .card-overlay p {
             color: rgba(255, 255, 255, 0.8);
             font-size: 13px;
@@ -879,6 +1030,17 @@
         .committee-card.text-only .card-badge {
             margin-bottom: 12px;
         }        
+        .committee-card .card-badge {
+            margin-top: 20px; /* moves golden badge down */
+        }
+
+        .committee-card h3 {
+            margin-top: 10px; /* moves name slightly down */
+        }
+        .committee-card .card-badge {
+            position: relative;
+            top: 15px; /* adjust 10–25px as needed */
+        }
 
         /* Program Tabs */
         .program-tabs {
@@ -1677,9 +1839,12 @@
 
         /* Footer */
         .footer {
-            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+            /* background: linear-gradient(180deg, var(--primary), var(--primary-dark)); */
             color: var(--white);
+            background: #001844;
+            width: 100%;
             padding: 60px 0 0;
+            position: relative;
         }
 
         .footer-grid {
@@ -1802,12 +1967,21 @@
 
         transition: all 0.3s ease;
         }
+        .full-text {
+            display: none;
+        }
 
         .speaker-text.expanded {
         -webkit-line-clamp: unset;
         overflow: visible;
         }
+        .speaker-text.expanded .preview-text {
+            display: none;
+        }
 
+        .speaker-text.expanded .full-text {
+            display: inline;
+        }
         .see-more-btn {
         margin-top: 8px;
         background: none;
@@ -1881,25 +2055,88 @@
             inset: 0;
             background: rgba(0,0,0,0.2);
         }
+
+        @media screen and (max-width: 768px) {
+            .quick-links-widget {
+                /* Reset Desktop Positioning */
+                top: auto;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                transform: none;
+                
+                /* New Mobile Layout (Horizontal Bar) */
+                flex-direction: row;
+                width: 100%;
+                background: white; /* Background for the bar itself */
+                padding: 5px;
+                gap: 5px;
+                box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            }
+
+            .quick-link {
+                /* Reset Slide Animation */
+                transform: none !important; 
+                width: auto;
+                flex: 1; /* Makes both buttons equal width */
+                border-radius: 5px;
+                padding: 10px;
+                justify-content: center;
+                margin: 0;
+            }
+
+            /* Simplify text for small screens */
+            .quick-link-text span {
+                display: none; /* Hides "Join Now" subtext to save space */
+            }
+            
+            .quick-link-text h4 {
+                font-size: 14px; /* Smaller font */
+                text-align: left;
+            }
+            
+            .quick-link-icon {
+                font-size: 20px; /* Smaller icon */
+            }
+        }        
         /* Mobile refinement */
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
         .committee-block {
             margin-bottom: 40px;
         }
-
+ 
+        .hero {
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+        } 
         .committee-list li {
             font-size: 1rem;
         }
         .grid-2op {
-            grid-template-columns: 1fr;  /* Switch to single column */
+            grid-template-columns: 1fr;  Switch to single column
             justify-content: center;
         }
         .grid-op {
-            width: 100%;         /* take full mobile width */
-            padding: 0 16px;     /* small side spacing */
+            width: 100%;         take full mobile width
+            padding: 0 16px;     small side spacing
             box-sizing: border-box;
         }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
+
+        .stat-item {
+            flex: 1 1 30%;
+            min-width: 90px;
+            text-align: center;
+        }        
+        } */
 
 
         /* Responsive */
@@ -1934,7 +2171,7 @@
             position: relative;
             z-index: 1;
         }
-        .quick-links-widget { display: none; }
+        /* .quick-links-widget { display: none; } */
         .grid-2, .grid-3 { grid-template-columns: 1fr; }
         .pricing-grid { grid-template-columns: 1fr; }
         .sponsor-logos.platinum,
@@ -2191,6 +2428,40 @@
     transform: translateX(-100%);
   }
 }
+@media (max-width: 768px) {
+    .hero {
+        align-items: center; /* Center vertically on mobile */
+        justify-content: center; /* Center horizontally on mobile? Or keep left? */
+        text-align: left; /* Keep text left aligned usually looks better */
+    }
+    .grid-2op {
+        grid-template-columns: 1fr;  /* Switch to single column */
+        justify-content: center;
+    }
+    .grid-op {
+        width: 100%;         /* take full mobile width */
+        padding: 0 16px;     /* small side spacing */
+        box-sizing: border-box;
+    }     
+    .hero-content {
+        padding: 0 2rem;
+        max-width: 100%;
+    }
+
+    .hero h1 { font-size: 3.5rem; }
+    .hero-subtitle { font-size: 1rem; letter-spacing: 2px; }
+    .hero-tagline { font-size: 1.4rem; }
+    
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%; /* Full width buttons on mobile */
+        text-align: center;
+    }
+}
 /* SPEAKERS - Left Align Everything */
 .speakers-section .card-overlay,
 #page-speakers .card-overlay {
@@ -2211,7 +2482,87 @@
 #page-speakers .card-overlay p {
     text-align: left;
 }
+/* --- MOBILE RESPONSIVENESS FIXES --- */
 
+/* 1. Global Image Fix: Prevents stretching/distortion */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures images fill space without stretching */
+}
+
+/* 2. Fix Horizontal Scrolling/Overflow */
+html, body {
+    overflow-x: hidden; /* Prevents side-scrolling */
+    overflow-y: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Container Fix: Stop fixed widths from breaking mobile */
+.container, section, header, footer {
+    width: 100% !important; /* Force full width on mobile */
+    max-width: 100% !important;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* 4. Hero Section Fix (Home Page) */
+/* Assuming your main banner has a class like 'hero' or uses background images */
+.hero, .banner {
+    background-size: cover !important; /* Fixes background stretching */
+    background-position: center center !important;
+    height: auto; /* Allow height to adjust to content on mobile */
+    min-height: 50vh; /* Ensure it's not too short */
+}
+
+/* 5. Mobile Layout Stacking (The "About Page" Fix) */
+@media screen and (max-width: 400px) {
+
+    .committee-block {
+        margin-bottom: 40px;
+    }
+
+    .committee-list li {
+        font-size: 1rem;
+    }
+    .grid-2op {
+        grid-template-columns: 1fr;  /* Switch to single column */
+        justify-content: center;
+    }
+    
+    .grid-op {
+        width: 100%;         /* take full mobile width */
+        padding: 0 16px;     /* small side spacing */
+        box-sizing: border-box;
+    }
+    
+    
+    /* Force all Flexbox rows to become columns */
+    .row, .flex-container, .d-flex, .about-section, .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    /* Reset widths for side-by-side elements to take full width */
+    .col, .col-6, .col-md-6, .w-50, .half-width {
+        width: 100% !important;
+        padding: 15px !important;
+        margin: 0 !important;
+    }
+
+    /* Fix Font Sizes for Mobile */
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.75rem !important; }
+    h3 { font-size: 1.5rem !important; }
+    p { font-size: 1rem !important; line-height: 1.6rem; }
+
+    /* Adjust Padding so content isn't stuck to the edge */
+    section {
+        padding: 0.1px 0.1px !important;
+    }
+}
 </style>
 </head>
 <script>
@@ -2418,12 +2769,12 @@ function toggleMobileDropdown(event) {
             <div class="container">
                 <div class="hero-content">
                    <!--<div class="hero-badge">National Conference</div>-->
-                    <h1 style="color: #002366; -webkit-text-fill-color: #002366; font-weight: 700;" >3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+                    <h1 >3<sup>RD</sup> OSI<br>CONFERENCE</h1>
 <!-- <h1>3<sup>rd</sup> osi conference</h1>
 <h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2> -->
 
                     <h2>KOLKATA 2026</h2>
-                    <p>India's Premier Conference highlighting <strong>THE Journey Through Osseointegration</strong> — Where Science Meets Clinical Excellence</p>
+                    <p>India's Premier Conference highlighting <strong>Journey Through Osseointegration</strong> — Where Science Meets Clinical Excellence</p>
                     
                     <div class="hero-details">
                         <a href="#" class="hero-detail" onclick="addToCalendar(event)">                        
@@ -2466,7 +2817,7 @@ function toggleMobileDropdown(event) {
                             <div class="hero-detail-icon">📍</div>
                             <div class="hero-detail-text">
                                 <h4>The Westin</h4>
-                                <span>Rajarhat, Kolkata</span>
+                                 <span>New Town, Kolkata</span>
                             </div>
                         </a>
                     </div>
@@ -2476,7 +2827,7 @@ function toggleMobileDropdown(event) {
                          <a href="#registration" class="btn btn-primary" onclick="showPage('registration')">
                             Register Now →
                         </a>
-                        <a href="" class="btn btn-outline">Scientific Program</a>
+                        <a href="" class="btn btn-outline">Scientific Program,<br>Coming soon</a>
                     </div>
 
                     <div class="hero-stats">
@@ -3260,6 +3611,10 @@ function toggleMobileDropdown(event) {
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr Frank Schwarz</h3>
                             <p class="speaker-text">
+                                <span class="preview-text">
+                                    Prof. Dr Frank Schwarz...
+                                </span>                                
+                                <span class="full-text">
                                 Prof. Dr. Frank Schwarz is one of the world’s leading authorities on peri-implantitis
                                 management and regenerative implant therapies. As Chairman of the Department of Oral
                                 Surgery and Implantology at Goethe University Frankfurt, Germany, he has pioneered
@@ -3269,6 +3624,7 @@ function toggleMobileDropdown(event) {
                                 practical, proven strategies to improve long-term implant success and handle complex
                                 complications. Attend his keynote to master the latest in peri-implant health and turn
                                 challenging cases into predictable outcomes.
+                                </span>
                             </p>
 
                             <button class="see-more-btn" onclick="toggleText(this)">See more</button>
@@ -3287,7 +3643,15 @@ function toggleMobileDropdown(event) {
                         <div class="card-overlay">
                             <span class="card-badge">Keynote Speaker</span>
                             <h3>Dr. Yoshihito Naito</h3>
-                            <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p>
+                            <!-- <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p> -->
+                            <p class="speaker-text">
+                                <span class="preview-text">
+                                    Dr. Yoshihito Naito...
+                                </span>
+                                <span class="full-text">
+                                    Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.
+                                </span>
+                            </p>
                             <button class="see-more-btn" onclick="toggleText(this)">See more</button>
                         </div>
 					</div>
@@ -3307,8 +3671,8 @@ function toggleMobileDropdown(event) {
                 text.classList.toggle("expanded");
 
                 btn.textContent = text.classList.contains("expanded")
-                ? "See less"
-                : "See more";
+                    ? "See less"
+                    : "See more";
             }
         </script>
 
@@ -3476,7 +3840,7 @@ function toggleMobileDropdown(event) {
 						<div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"></div>
                         <div class="room-card-content">
                             <h3>Double Occupancy</h3>
-                            <div class="room-price"><h3>₹7,500</h3><span>/night</span></div>
+                            <div class="room-price"><h3>₹7,500</h3><span>/night(on twin sharing basis)</span></div>
                             <ul class="pricing-features"><li>King/Twin beds</li><li>42 sqm</li><li>Breakfast included</li></ul>
                             <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
@@ -3732,7 +4096,7 @@ function toggleMobileDropdown(event) {
                             <span>KOLKATA 2026</span>
                         </div>
                     </div>
-                    <p class="footer-text">India's Premier Conference highlighting A Journey Through Osseointegration — Where Science Meets Clinical Excellence</p>
+                    <p class="footer-text">India's Premier Conference highlighting Journey Through Osseointegration — Where Science Meets Clinical Excellence</p>
                     <div class="footer-details">
                         <div class="footer-detail"><span class="footer-detail-icon">📅</span> 27-29 November 2026</div>
                         <div class="footer-detail"><span class="footer-detail-icon">📍</span> The Westin, Kolkata</div>
@@ -3741,14 +4105,11 @@ function toggleMobileDropdown(event) {
                 <div>
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <!-- <li><a href="/about">About</a></li> -->
-                        <li><a href="#about" onclick="handleMobileNav('about')">About</a></li>
+                        <li><a href="/about">About</a></li>
                         <!-- <li><a href="/program">Program</a></li> -->
-                        <!-- <li><a href="/speakers">Speakers</a></li> -->
-                        <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
-                        <!-- <li><a href="/registration">Registration</a></li> -->
-                        <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
-                        <!-- <li><a href="/downloads">Downloads</a></li> -->
+                        <li><a href="/speakers">Speakers</a></li>
+                        <li><a href="/registration">Registration</a></li>
+                        <li><a href="/downloads">Downloads</a></li>
                     </ul>
                 </div>
                 <div>
@@ -3756,7 +4117,7 @@ function toggleMobileDropdown(event) {
                     <ul class="footer-links">
                         <li><a href="mailto:registration@osiconkolkata.com">Registration: registration@osiconkolkata.com</a></li>
 						<li><a href="mailto:trade@osiconkolkata.com">Trade: trade@osiconkolkata.com</a></li>
-                        <li><a href="mailto:secretariat@osiconkolkata.com">Secretary OSI: secretariat@osiconkolkata.com</a></li>
+                        <li><a href="mailto:secretariat@osiconkolkata.com">Secretary OSI: secretariat@osiconkolkata.com</a></li>                        
                         <!-- <li><a href="tel:+919876543210">+91 98765 43210</a></li> -->
                         <li>Plot No, 2, AA II, Newtown,<br>Kolkata 700135</li>
                     </ul>
