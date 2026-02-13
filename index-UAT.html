@@ -273,7 +273,7 @@
         }
 
         /* Quick Links Widget */
-        .quick-links-widget {
+        /* .quick-links-widget {
             position: fixed;
             right: 0;
             top: 50%;
@@ -293,17 +293,70 @@
             color: var(--white);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: background 0.3s ease;
+        } */
+        /* --- IMPROVED QUICK LINKS WIDGET (Desktop & Mobile) --- */
+
+        .quick-links-widget {
+            position: fixed;
+            z-index: 9999; /* Keeps it above everything else */
+            
+            /* Desktop Positioning (Default) */
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .quick-link:last-child {
+        .quick-link {
+            background: var(--primary); /* Uses your Navy Blue */
+            color: #d4af37;
+            width: 280px; /* Fixed width for consistent slide-out */
+            padding: 15px;
+            border-radius: 8px 0 0 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: -2px 4px 10px rgba(0,0,0,0.2);
+            
+            /* THE SLIDE ANIMATION */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* Hides 80% of the button off-screen, leaving just the icon visible */
+            transform: translateX(calc(100% - 60px)); 
+        }
+        /* .quick-link:last-child {
             border-bottom: none;
         }
 
         .quick-link:hover {
             background: rgba(255, 255, 255, 0.1);
+        } */
+/* Slide out on Hover */
+        .quick-link:hover {
+            transform: translateX(0); /* Slides fully into view */
+            background: var(--primary-light); /* Slight color change on hover */
+        }
+        .quick-link-icon {
+            font-size: 24px;
+            min-width: 30px; /* Ensures icon doesn't squish */
+            text-align: center;
         }
 
-        .quick-link-icon {
+        .quick-link-text h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--secondary); /* Gold Text */
+        }
+
+        .quick-link-text span {
+            font-size: 12px;
+            color: #d4af37;
+        }
+
+        /* .quick-link-icon {
             width: 40px;
             height: 40px;
             background: var(--secondary);
@@ -325,7 +378,7 @@
         .quick-link-text span {
             font-size: 11px;
             color: rgba(255, 255, 255, 0.7);
-        }
+        } */
 
         /* Page Sections */
         .page-section {
@@ -1981,27 +2034,71 @@
             inset: 0;
             background: rgba(0,0,0,0.2);
         }
+
+        @media screen and (max-width: 768px) {
+            .quick-links-widget {
+                /* Reset Desktop Positioning */
+                top: auto;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                transform: none;
+                
+                /* New Mobile Layout (Horizontal Bar) */
+                flex-direction: row;
+                width: 100%;
+                background: white; /* Background for the bar itself */
+                padding: 5px;
+                gap: 5px;
+                box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            }
+
+            .quick-link {
+                /* Reset Slide Animation */
+                transform: none !important; 
+                width: auto;
+                flex: 1; /* Makes both buttons equal width */
+                border-radius: 5px;
+                padding: 10px;
+                justify-content: center;
+                margin: 0;
+            }
+
+            /* Simplify text for small screens */
+            .quick-link-text span {
+                display: none; /* Hides "Join Now" subtext to save space */
+            }
+            
+            .quick-link-text h4 {
+                font-size: 14px; /* Smaller font */
+                text-align: left;
+            }
+            
+            .quick-link-icon {
+                font-size: 20px; /* Smaller icon */
+            }
+        }        
         /* Mobile refinement */
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
         .committee-block {
             margin-bottom: 40px;
         }
-/* 
+ 
         .hero {
             padding-left: 20px;
             padding-right: 20px;
             box-sizing: border-box;
-        } */
+        } 
         .committee-list li {
             font-size: 1rem;
         }
         .grid-2op {
-            grid-template-columns: 1fr;  /* Switch to single column */
+            grid-template-columns: 1fr;  Switch to single column
             justify-content: center;
         }
         .grid-op {
-            width: 100%;         /* take full mobile width */
-            padding: 0 16px;     /* small side spacing */
+            width: 100%;         take full mobile width
+            padding: 0 16px;     small side spacing
             box-sizing: border-box;
         }
         .stats {
@@ -2018,7 +2115,7 @@
             min-width: 90px;
             text-align: center;
         }        
-        }
+        } */
 
 
         /* Responsive */
@@ -2053,7 +2150,7 @@
             position: relative;
             z-index: 1;
         }
-        .quick-links-widget { display: none; }
+        /* .quick-links-widget { display: none; } */
         .grid-2, .grid-3 { grid-template-columns: 1fr; }
         .pricing-grid { grid-template-columns: 1fr; }
         .sponsor-logos.platinum,
@@ -2356,40 +2453,67 @@
 #page-speakers .card-overlay p {
     text-align: left;
 }
-/* 1. Force items to wrap to the next line if they don't fit */
-.row, .card-container, .speaker-grid, .flex-row {
-    display: flex;
-    flex-wrap: wrap !important; /* CRITICAL: This pushes the 3rd item down if there's no room */
-    justify-content: center;    /* Centers items so they look good if only 1 or 2 remain on a line */
+/* --- MOBILE RESPONSIVENESS FIXES --- */
+
+/* 1. Global Image Fix: Prevents stretching/distortion */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures images fill space without stretching */
 }
 
-/* 2. Tablet/Intermediate Screen Fix (The "Client's Screen" Range) */
-/* Targets devices between Mobile (768px) and Desktop (1200px) */
-@media screen and (min-width: 769px) and (max-width: 1200px) {
-    
-    /* Make 3-column layouts switch to 2-columns on tablets */
-    .col-md-4, .col-lg-4, .three-column-item {
-        width: 45% !important; /* 2 items per row */
-        margin: 10px auto;
-    }
-    
-    /* Ensure images don't overflow their containers */
-    img {
-        max-width: 100% !important;
-        height: auto !important;
-    }
-}
-
-/* 3. Safety Net for Content Cutting Off */
-/* Instead of just hiding overflow, we allow scrolling if absolutely necessary inside specific sections */
-section {
+/* 2. Fix Horizontal Scrolling/Overflow */
+html, body {
+    overflow-x: hidden; /* Prevents side-scrolling */
+    overflow-y: auto;
     width: 100%;
-    overflow-wrap: break-word; /* Prevents long text from pushing layout out */
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    padding-left: 15px;
-    padding-right: 15px; /* Adds invisible "bumpers" so content never touches the screen edge */
+/* 3. Container Fix: Stop fixed widths from breaking mobile */
+.container, section, header, footer {
+    width: 100% !important; /* Force full width on mobile */
+    max-width: 100% !important;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* 4. Hero Section Fix (Home Page) */
+/* Assuming your main banner has a class like 'hero' or uses background images */
+.hero, .banner {
+    background-size: cover !important; /* Fixes background stretching */
+    background-position: center center !important;
+    height: auto; /* Allow height to adjust to content on mobile */
+    min-height: 50vh; /* Ensure it's not too short */
+}
+
+/* 5. Mobile Layout Stacking (The "About Page" Fix) */
+@media screen and (max-width: 400px) {
+    
+    /* Force all Flexbox rows to become columns */
+    .row, .flex-container, .d-flex, .about-section, .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    /* Reset widths for side-by-side elements to take full width */
+    .col, .col-6, .col-md-6, .w-50, .half-width {
+        width: 100% !important;
+        padding: 15px !important;
+        margin: 0 !important;
+    }
+
+    /* Fix Font Sizes for Mobile */
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.75rem !important; }
+    h3 { font-size: 1.5rem !important; }
+    p { font-size: 1rem !important; line-height: 1.6rem; }
+
+    /* Adjust Padding so content isn't stuck to the edge */
+    section {
+        padding: 0.1px 0.1px !important;
+    }
 }
 </style>
 </head>
@@ -2602,7 +2726,7 @@ function toggleMobileDropdown(event) {
 <h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2> -->
 
                     <h2>KOLKATA 2026</h2>
-                    <p>India's Premier Conference highlighting <strong>THE Journey Through Osseointegration</strong> — Where Science Meets Clinical Excellence</p>
+                    <p>India's Premier Conference highlighting <strong>Journey Through Osseointegration</strong> — Where Science Meets Clinical Excellence</p>
                     
                     <div class="hero-details">
                         <a href="#" class="hero-detail" onclick="addToCalendar(event)">                        
@@ -3911,7 +4035,7 @@ function toggleMobileDropdown(event) {
                             <span>KOLKATA 2026</span>
                         </div>
                     </div>
-                    <p class="footer-text">India's Premier Conference highlighting A Journey Through Osseointegration — Where Science Meets Clinical Excellence</p>
+                    <p class="footer-text">India's Premier Conference highlighting Journey Through Osseointegration — Where Science Meets Clinical Excellence</p>
                     <div class="footer-details">
                         <div class="footer-detail"><span class="footer-detail-icon">📅</span> 27-29 November 2026</div>
                         <div class="footer-detail"><span class="footer-detail-icon">📍</span> The Westin, Kolkata</div>
