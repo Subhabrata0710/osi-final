@@ -945,6 +945,7 @@
             background: #ffffff;
             border-radius: 80px;
             padding: 30px 20px;
+            padding-top: 60px; /* pushes content down */
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transition: 0.3s ease;        
@@ -1029,6 +1030,17 @@
         .committee-card.text-only .card-badge {
             margin-bottom: 12px;
         }        
+        .committee-card .card-badge {
+            margin-top: 20px; /* moves golden badge down */
+        }
+
+        .committee-card h3 {
+            margin-top: 10px; /* moves name slightly down */
+        }
+        .committee-card .card-badge {
+            position: relative;
+            top: 15px; /* adjust 10–25px as needed */
+        }
 
         /* Program Tabs */
         .program-tabs {
@@ -2413,7 +2425,7 @@
         justify-content: center; /* Center horizontally on mobile? Or keep left? */
         text-align: left; /* Keep text left aligned usually looks better */
     }
-    
+    .grid-2op{ grid-template-columns:repeat(2, 1fr); }    
     .hero-content {
         padding: 0 2rem;
         max-width: 100%;
@@ -2787,7 +2799,7 @@ function toggleMobileDropdown(event) {
                             <div class="hero-detail-icon">📍</div>
                             <div class="hero-detail-text">
                                 <h4>The Westin</h4>
-                                <span>New Town, Kolkata</span>
+                                <span>Rajarhat, Kolkata</span>
                             </div>
                         </a>
                     </div>
@@ -3797,7 +3809,7 @@ function toggleMobileDropdown(event) {
 						<div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"></div>
                         <div class="room-card-content">
                             <h3>Double Occupancy</h3>
-                            <div class="room-price"><h3>₹7,500</h3><span>/night(on twin sharing basis)</span></div>
+                            <div class="room-price"><h3>₹7,500</h3><span>/night</span></div>
                             <ul class="pricing-features"><li>King/Twin beds</li><li>42 sqm</li><li>Breakfast included</li></ul>
                             <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
