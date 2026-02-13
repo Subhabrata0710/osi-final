@@ -2489,6 +2489,24 @@ html, body {
 
 /* 5. Mobile Layout Stacking (The "About Page" Fix) */
 @media screen and (max-width: 400px) {
+
+    .committee-block {
+        margin-bottom: 40px;
+    }
+
+    .committee-list li {
+        font-size: 1rem;
+    }
+    .grid-2op {
+        grid-template-columns: 1fr;  /* Switch to single column */
+        justify-content: center;
+    }
+    .grid-op {
+        width: 100%;         /* take full mobile width */
+        padding: 0 16px;     /* small side spacing */
+        box-sizing: border-box;
+    }
+    
     
     /* Force all Flexbox rows to become columns */
     .row, .flex-container, .d-flex, .about-section, .grid-container {
@@ -2779,7 +2797,7 @@ function toggleMobileDropdown(event) {
                          <a href="#registration" class="btn btn-primary" onclick="showPage('registration')">
                             Register Now →
                         </a>
-                        <a href="" class="btn btn-outline">Scientific Program</a>
+                        <a href="" class="btn btn-outline">Scientific Program,<br>Coming soon</a>
                     </div>
 
                     <div class="hero-stats">
