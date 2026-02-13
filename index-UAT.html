@@ -39,15 +39,12 @@
             scroll-behavior: smooth;
         }
 
-		html, body {
-		    font-family: 'Manrope', sans-serif;
-		    color: var(--text-dark);
-		    line-height: 1.6;
-		    overflow-x: hidden; /* Strictly prevents horizontal scroll */
-		    width: 100%;
-		    margin: 0;
-		    padding: 0;
-		}
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            /* overflow-x: hidden; */
+        }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
@@ -66,10 +63,9 @@
         }
 
         .container {
-			max-width: 1200px;    /* Restore the correct width limit */
-			margin: 0 auto;       /* This centers the container correctly */
-			padding: 0 25px;
-			width: 92%;
+            max-width: 1200px;
+            margin-left: 10px ;
+            padding: 0 20px;
             
         }
         .containercom {
@@ -107,10 +103,10 @@
             background: #001844;
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            align-items: center;
+            /* align-items: center; */
             /* max-width: 1200px; */
             /* margin: 0 auto; */
-            padding: 15px 20px;
+            padding: 15px 0;
         }
 
         .nav-container {
@@ -159,10 +155,10 @@
             display: none;
             position: absolute;
             background: #001844;   /* dark navy */
-            min-width: 200px;
+            min-width: 160px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             border-radius: 8px;
-            overflow: hidden;
+            z-index: 1;
         }
 
 
@@ -216,7 +212,7 @@
         .logo-text h3 {
             font-size: 16px;
             margin-bottom: 2px;
-            margin-left: 0;
+            /* margin-left: 0; */
             color:#d4af37;
             /* align-items: left; */
         }
@@ -358,8 +354,8 @@
         .hero {
             position: relative;
             height: auto;
-            min-height: 700px;
-            background: linear-gradient(135deg, #001844 0%, #002366 50%, #001844 100%);
+            min-height: 100vh;
+            /* background: linear-gradient(135deg, #001844 0%, #002366 50%, #001844 100%); */
             display: flex;
             align-items: center;
             /* Aligns content to the left side */
@@ -368,8 +364,7 @@
             color: var(--white);
             padding-top: 80px; /* Space for the fixed header */
             overflow: hidden;
-            min-height: 100vh;
-			min-height: 100dvh;
+
             /* Background Setup */
             background: 
                 radial-gradient(circle at 70% 50%, rgba(0, 24, 68, 0.4) 0%, rgba(0, 24, 68, 0.95) 100%),
@@ -397,11 +392,14 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
             background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15), transparent 60%);
             pointer-events: none;
         }
-        .hero-subtitle {
+        /* .hero-subtitle {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: var(--secondary);
@@ -410,11 +408,11 @@
             margin-bottom: 0.5rem;
             display: block;
             font-weight: 600;
-        }
+        } */
         .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px; /* Restricts width so text doesn't hit the right edge */
+            /* position: relative; */
+            /* z-index: 2; */
+            max-width: 700px; /* Restricts width so text doesn't hit the right edge */
             padding: 0 5%; /* Adds breathing room from the left edge */
             animation: fadeInUp 1s ease-out;
         }
@@ -551,7 +549,7 @@
         .hero p,
         .hero h3{
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 18px;
             font-style: italic;
             color: var(--secondary-light);
             margin-bottom: 2rem;
@@ -1984,29 +1982,43 @@
             background: rgba(0,0,0,0.2);
         }
         /* Mobile refinement */
-      @media (max-width: 768px) {
-    /* Prevents grid items from touching each other or the screen edge */
-	    .features-grid, .stats-grid, .speakers-grid {
-	        display: flex;
-	        flex-direction: column;
-	        gap: 20px;
-	        padding: 10px 0;
-	    }
-	
-	    /* Ensures images don't stretch awkwardly */
-	    .feature-card img, .speaker-card img {
-	        width: 100%;
-	        height: auto;
-	        object-fit: cover;
-	        border-radius: 8px;
-	    }
-	    
-	    /* Give the Hero text some breathing room */
-	    .hero-content h1 {
-	        font-size: 2rem; /* Shrinks huge text that might be pushing the boundaries */
-	        line-height: 1.2;
-	    }
-		}	
+        @media (max-width: 768px) {
+        .committee-block {
+            margin-bottom: 40px;
+        }
+/* 
+        .hero {
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+        } */
+        .committee-list li {
+            font-size: 1rem;
+        }
+        .grid-2op {
+            grid-template-columns: 1fr;  /* Switch to single column */
+            justify-content: center;
+        }
+        .grid-op {
+            width: 100%;         /* take full mobile width */
+            padding: 0 16px;     /* small side spacing */
+            box-sizing: border-box;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-item {
+            flex: 1 1 30%;
+            min-width: 90px;
+            text-align: center;
+        }        
+        }
 
 
         /* Responsive */
@@ -4257,11 +4269,3 @@ async function submitForm(e) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
