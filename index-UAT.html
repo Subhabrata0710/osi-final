@@ -2425,7 +2425,15 @@
         justify-content: center; /* Center horizontally on mobile? Or keep left? */
         text-align: left; /* Keep text left aligned usually looks better */
     }
-    .grid-2op{ grid-template-columns:repeat(2, 1fr); }    
+    .grid-2op {
+        grid-template-columns: 1fr;  /* Switch to single column */
+        justify-content: center;
+    }
+    .grid-op {
+        width: 100%;         /* take full mobile width */
+        padding: 0 16px;     /* small side spacing */
+        box-sizing: border-box;
+    }     
     .hero-content {
         padding: 0 2rem;
         max-width: 100%;
@@ -2513,6 +2521,7 @@ html, body {
         grid-template-columns: 1fr;  /* Switch to single column */
         justify-content: center;
     }
+    
     .grid-op {
         width: 100%;         /* take full mobile width */
         padding: 0 16px;     /* small side spacing */
