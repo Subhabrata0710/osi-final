@@ -2489,6 +2489,21 @@
         margin-top: 20px;
         text-align: center;
     }        
+.committee-member{
+    position: relative;
+    overflow: hidden; /* Keeps everything inside the rounded corners */
+}
+
+.committee-member img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the photo fills the card */
+    object-position: top center; /* CRITICAL: Focuses on the face (top of image) */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+
 }
 /* SPEAKERS - Left Align Everything */
 .speakers-section .card-overlay,
