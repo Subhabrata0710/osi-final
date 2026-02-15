@@ -377,56 +377,56 @@
     // 3. Unified Submission & Razorpay Logic
     form.onsubmit = function(e) {
         e.preventDefault();
-    
+
+        // Capture data
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const phone = document.getElementById('userPhone').value;
-        const member = "NA"; // Fixed
-    
+        // const member = document.getElementById('usermember').value; // Matching your HTML ID
+        
         const selectedRadio = document.querySelector('input[name="cat"]:checked');
         if(!selectedRadio) {
             alert("Please select a registration category");
             return;
         }
-    
-        const amountInInr = parseInt(selectedRadio.getAttribute('data-price'));
+        
+        const amountInInr = selectedRadio.getAttribute('data-price');
         const categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
-    
+
         const options = {
-            key: "rzp_live_S9kFXcSkm7C1Rc",
-            amount: amountInInr * 100,
-            currency: "INR",
-            name: "OSICON Kolkata 2026",
-            description: "Registration for " + categoryLabel,
-            handler: function (response){
-                saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id);
+            "key": "rzp_live_S9kFXcSkm7C1Rc", 
+            "amount": amountInInr * 100,
+            "currency": "INR",
+            "name": "OSICON Kolkata 2026",
+            "description": "Registration for " + categoryLabel,
+            "handler": function (response){
+                // This triggers ONLY after successful payment
+                saveToGoogleSheets(name, email, phone, categoryLabel, amountInInr, response.razorpay_payment_id);
             },
-            prefill: {
-                name: name,
-                email: email,
-                contact: phone
+            "prefill": {
+                "name": name,
+                "email": email,
+                "contact": phone
             },
-            theme: {
-                color: "#4f46e5"
+            "theme": {
+                "color": "#4f46e5"
             }
         };
-    
+
         const rzp1 = new Razorpay(options);
-    
         rzp1.on('payment.failed', function (response){
             alert("Payment Failed: " + response.error.description);
         });
-    
         rzp1.open();
     };
 
     // 4. Send Data to Google Sheets
-    function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId) {
+    function saveToGoogleSheets(name, email, phone, category, amount, paymentId) {
         const formData = new URLSearchParams();
         formData.append('name', name);
         formData.append('email', email);
         formData.append('phone', phone);
-        formData.append('member', member);
+        // formData.append('member', member);
         formData.append('category', category);
         formData.append('amount', amount);
         formData.append('payment_id', paymentId);
