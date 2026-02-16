@@ -236,10 +236,10 @@
                 <label>Mobile Number *</label>
                 <input type="tel" id="userPhone" placeholder="+91" required>
             </div>
-            <!-- <div class="input-group">
+             <div class="input-group">
                 <label>OSI Membership Number *</label>
                 <input type="member" id="usermember" placeholder="Write NA if you are not an OSI Member" required>
-            </div> -->
+            </div>
         </div>
 
         <div class="section-header">
@@ -382,7 +382,7 @@
         const name = document.getElementById('userName').value;
         const email = document.getElementById('userEmail').value;
         const phone = document.getElementById('userPhone').value;
-        // const member = document.getElementById('usermember').value; // Matching your HTML ID
+        const member = document.getElementById('usermember').value; // Matching your HTML ID
         
         const selectedRadio = document.querySelector('input[name="cat"]:checked');
         if(!selectedRadio) {
@@ -426,7 +426,7 @@
         formData.append('name', name);
         formData.append('email', email);
         formData.append('phone', phone);
-        // formData.append('member', member);
+        formData.append('member', member);
         formData.append('category', category);
         formData.append('amount', amount);
         formData.append('payment_id', paymentId);
