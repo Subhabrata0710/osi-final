@@ -408,7 +408,7 @@
             "description": "Registration for " + categoryLabel,
             "handler": function (response){
                 // This triggers ONLY after successful payment
-                saveToGoogleSheets(name, email, phone, categoryLabel, amountInInr, response.razorpay_payment_id);
+                saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id);
             },
             "prefill": {
                 "name": name,
@@ -428,7 +428,7 @@
     };
 
     // 4. Send Data to Google Sheets
-    function saveToGoogleSheets(name, email, phone, category, amount, paymentId) {
+    function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId) {
         const formData = new URLSearchParams();
         formData.append('name', name);
         formData.append('email', email);
