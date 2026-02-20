@@ -1473,7 +1473,20 @@
             transition: all 0.3s ease;
             min-height: 100px;
         }
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 80px;   /* adjust this value as needed */
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        .sponsor-logos.platinum .sponsor-logo img {
+            max-height: 120px;
+        }
 
+
+
+		
         .sponsor-logo:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
