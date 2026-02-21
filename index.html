@@ -1449,7 +1449,10 @@
             font-size: 20px;
         }
 
-        .sponsor-tier-icon.platinum { background: linear-gradient(135deg, #e2e8f0, #f1f5f9); }
+        /* .sponsor-tier-icon.platinum { background: linear-gradient(135deg, #e2e8f0, #f1f5f9); } */
+        .sponsor-tier-icon.platinum{
+        background: linear-gradient(135deg, #cbd5e1, #e2e8f0);
+        }        
         .sponsor-tier-icon.gold { background: linear-gradient(135deg, #fef3c7, #fde68a); }
         .sponsor-tier-icon.silver { background: var(--gray-100); }
 
@@ -1495,7 +1498,7 @@
         .trade-exhibition {
             background: var(--primary);
             border-radius: var(--radius);
-            padding: 48px;
+            padding:24px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
@@ -2238,7 +2241,7 @@
 .nav-links > li{display:inline-flex}
 .more{position:relative;cursor:pointer;display:none;color:var(--gray-600);font-weight:600;user-select:none;padding:8px 10px;border-radius:8px}
 .more:hover,.more[aria-expanded="true"]{background:var(--gray-100);color:var(--primary)}
-.more-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:8px;list-style:none}
+.more-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;left:auto;min-width:200px;background:#fff;border:1px solid var(--gray-200);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:8px;list-style:none}
 .more[aria-expanded="true"] .more-menu{display:block}
 .more-menu li{display:block}
 .more-menu a{display:block;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--gray-600)}
@@ -2445,7 +2448,8 @@
     .hero {
         align-items: center; /* Center vertically on mobile */
         justify-content: center; /* Center horizontally on mobile? Or keep left? */
-        text-align: left; /* Keep text left aligned usually looks better */
+        text-align: center; /* Keep text left aligned usually looks better */
+        
     }
     .grid-2op {
         grid-template-columns: 1fr;  /* Switch to single column */
@@ -2457,10 +2461,14 @@
         box-sizing: border-box;
     }     
     .hero-content {
-        padding: 0 2rem;
+        padding: 0 20px;
         max-width: 100%;
     }
-
+    .hero-details{
+    align-items:center;
+    border-left:none;
+    padding-left:0;
+    }
     .hero h1 { font-size: 3.5rem; }
     .hero-subtitle { font-size: 1rem; letter-spacing: 2px; }
     .hero-tagline { font-size: 1.4rem; }
