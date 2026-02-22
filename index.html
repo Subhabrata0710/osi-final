@@ -186,6 +186,73 @@
         .dropdown:hover .dropdown-content {
             display: block;
             }
+
+
+        .dropdown1 {
+            float: left;
+            overflow: hidden;
+            }
+        /* .dropdown .dropbtn {
+            font-size: 14px;
+            border: none;
+            outline: none;
+            color: #475569;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit; /* Important for vertical align on mobile phones */
+            /* margin: 0; Important for vertical align on mobile phones */
+            /* } */
+
+        .dropdown1 .dropbtn1 {
+            font-size: 0.95rem;
+            border: none;
+            outline: none;
+            background: none;
+            color: var(--secondary-light);  /* gold like other links */
+            padding: 8px 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown1 .dropbtn1:hover {
+            color: var(--white);
+        }
+
+        .dropdown-content1 {
+            display: none;
+            position: absolute;
+            background: #001844;   /* dark navy */
+            min-width: 160px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+
+            /* Links inside the dropdown */
+        .dropdown-content1 a {
+            color: var(--secondary-light);
+            padding: 12px 16px;
+            display: block;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+
+            /* Add a grey background color to dropdown links on hover */
+        .dropdown-content1 a:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--white);
+        }
+
+
+            /* Show the dropdown menu on hover */
+        .dropdown1:hover .dropdown-content1 {
+            display: block;
+            }      
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
@@ -2719,14 +2786,14 @@ html, body {
 
 
 </script> -->
-<!-- <script>
+<script>
   window.addEventListener("load", () => {
     const popup = document.getElementById("brochurePopup");
     const closeBtn = document.querySelector(".brochure-close");
 
     if (!popup) return;
 
-    // Show popup after 1 second on every load/////////////////////////////////////////////POP UUUUPPP ACTUaLLLLLLLLL??????????????????????????????????????
+    // Show popup after 1 second on every load /////////////////////////////////////////////POP UUUUPPP ACTUaLLLLLLLLL??????????????????????????????????????
     setTimeout(() => {
       popup.classList.remove("hidden");
     }, 1000);
@@ -2755,7 +2822,7 @@ html, body {
       }
     });
   });
-</script> -->
+</script>
 
 
 <script>
@@ -2796,9 +2863,9 @@ function toggleMobileDropdown(event) {
         <li><a href="#home" id="nav-home" onclick="showPage('home')">Home</a></li>
         <li><a href="#about" onclick="showPage('about')">About</a></li>
         <!-- <li><a href="#committee" onclick="showPage('committee')">Committee</a></li> -->
-         <li><div class="dropdown">
-            <button class="dropbtn">Committee</button>
-            <div class="dropdown-content">
+         <li><div class="dropdown1">
+            <button class="dropbtn1">Committee</button>
+            <div class="dropdown-content1">
                 <a href="#" onclick="event.preventDefault(); showPage('organising-committee')">
                 Organising Committee
                 </a>
