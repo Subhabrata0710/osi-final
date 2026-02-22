@@ -2455,7 +2455,29 @@
   padding-left: 100%;
   animation: scrollLeft 15s linear infinite;
 }
+.stall {
+    padding: 60px 20px;
+    text-align: center;
+}
 
+.stall h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #002366; /* You can change this */
+}
+
+.stall-image {
+    max-width: 700px;   /* smaller on desktop */
+    width: 90%;         /* responsive scaling */
+    margin: 0 auto;
+}
+
+.stall-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
 @keyframes scrollLeft {
   0% {
     transform: translateX(0);
@@ -2554,7 +2576,13 @@
         display: block;
         transition: transform 0.5s ease;
     }
+    .stall h2 {
+        font-size: 1.6rem;
+    }
 
+    .stall-image {
+        max-width: 95%;
+    }
 
 }
 /* SPEAKERS - Left Align Everything */
@@ -4038,7 +4066,12 @@ function toggleMobileDropdown(event) {
                         <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Anthogyr" alt="Anthogyr"></div>
                     </div>
                 </div> -->
-
+                <section class="stall">
+                    <h2>Stall Layout</h2>
+                    <div class="stall-image">
+                        <img src="images/stall.jpg" alt="Stall Layout">
+                    </div>
+                </section>
                 <div class="trade-exhibition">
                     <div>
                         <h3>Trade Exhibition 2026</h3>
