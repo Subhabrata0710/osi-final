@@ -9,6 +9,7 @@
         content="India's Premier Conference on Osseointegration & Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="./images/hero-bg.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -4413,69 +4414,138 @@
         </div>
         <div class="content-section alt-bg">
             <div class="container">
-                <div class="grid-2" style="margin-bottom: 32px;">
-                    <div class="card committee-cardspe" style="height: 350px;">
-                        <div class="card-image" style="height: 100%;"><img src="images/frank.jpg?w=500&h=400&fit=crop"
-                                alt="Dr Frank Schwarz" style="height: 100%;"></div>
-                        <div class="card-overlay">
-                            <span class="card-badge">Keynote Speaker</span>
-                            <h3>Dr Frank Schwarz</h3>
-                            <p class="speaker-text">
-                                <span class="preview-text">
-                                    Prof. Dr Frank Schwarz...
-                                </span>
-                                <span class="full-text">
-                                    Prof. Dr. Frank Schwarz is one of the world’s leading authorities on
-                                    peri-implantitis
-                                    management and regenerative implant therapies. As Chairman of the Department of Oral
-                                    Surgery and Implantology at Goethe University Frankfurt, Germany, he has pioneered
-                                    evidence-based surgical approaches—including reconstructive techniques,
-                                    implantoplasty,
-                                    and advanced bone regeneration—to save implants affected by infection and bone loss.
-                                    A key figure in global guidelines (EAO, Osteology Foundation), his lectures deliver
-                                    practical, proven strategies to improve long-term implant success and handle complex
-                                    complications. Attend his keynote to master the latest in peri-implant health and
-                                    turn
-                                    challenging cases into predictable outcomes.
-                                </span>
-                            </p>
-
-                            <button class="see-more-btn" onclick="toggleText(this)">See more</button>
+                <style>
+                    .brochure-speakers-container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 2rem;
+                        margin-bottom: 32px;
+                    }
+                    .brochure-row {
+                        display: flex;
+                        justify-content: center;
+                        gap: 2rem;
+                        flex-wrap: wrap;
+                    }
+                    .brochure-card {
+                        width: 220px;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .brochure-image-wrapper {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        border: 4px solid var(--secondary);
+                        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                        overflow: hidden;
+                        margin-bottom: 1rem;
+                        background-color: var(--white);
+                    }
+                    .brochure-image-wrapper img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    .brochure-details {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    .brochure-details h3 {
+                        font-size: 1.1rem;
+                        color: var(--primary);
+                        margin-bottom: 0.5rem;
+                        font-weight: 700;
+                    }
+                    .brochure-flag {
+                        width: 32px;
+                        height: auto;
+                        border-radius: 2px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        margin-top: 4px;
+                    }
+                </style>
+                <div class="brochure-speakers-container">
+                    <div class="brochure-row">
+                        <!-- Speaker 1 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz" onerror="this.src='https://via.placeholder.com/150x150?text=Frank'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Frank Schwarz</h3>
+                                <img src="https://flagcdn.com/de.svg" class="brochure-flag" alt="Germany">
+                                <!-- <p class="speaker-text">Description hidden...</p> -->
+                                <!-- <button class="see-more-btn">See more</button> -->
+                            </div>
+                        </div>
+                        <!-- Speaker 2 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/alberto.jpg?w=500&h=400&fit=crop" alt="Dr Alberto Miselli" onerror="this.src='https://via.placeholder.com/150x150?text=Alberto'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Alberto Miselli</h3>
+                                <img src="https://flagcdn.com/ve.svg" class="brochure-flag" alt="Venezuela">
+                            </div>
+                        </div>
+                        <!-- Speaker 3 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/robert.jpg?w=500&h=400&fit=crop" alt="Dr. Robert Kerstein" onerror="this.src='https://via.placeholder.com/150x150?text=Robert'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr. Robert Kerstein</h3>
+                                <img src="https://flagcdn.com/us.svg" class="brochure-flag" alt="USA">
+                            </div>
+                        </div>
+                        <!-- Speaker 4 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/alexandre.jpg?w=500&h=400&fit=crop" alt="Dr. Alexandre Junqueira Marques" onerror="this.src='https://via.placeholder.com/150x150?text=Alexandre'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr. Alexandre Junqueira Marques</h3>
+                                <img src="https://flagcdn.com/br.svg" class="brochure-flag" alt="Brazil">
+                            </div>
                         </div>
                     </div>
-                    <!-- <div class="card committee-card" style="height: 350px;">
-                        <div class="card-image" style="height: 100%;"><img src="images/salah.png?w=500&h=400&fit=crop" alt="Dr. Salah Huwais" style="height: 100%;"></div>
-                        <div class="card-overlay">
-                            <span class="card-badge">Keynote Speaker</span>
-                            <h3>Dr. Salah Huwais</h3>
-                            <p>Founder • Osseodensification</p>
+                    <div class="brochure-row">
+                        <!-- Speaker 5 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/bruno.jpg?w=500&h=400&fit=crop" alt="Dr Bruno Montenegro" onerror="this.src='https://via.placeholder.com/150x150?text=Bruno'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Bruno Montenegro</h3>
+                                <img src="https://flagcdn.com/pt.svg" class="brochure-flag" alt="Portugal">
+                            </div>
                         </div>
-					</div> -->
-                    <div class="card committee-cardspe" style="height: 350px;">
-                        <div class="card-image" style="height: 100%;"><img
-                                src="images/Yoshihito.jpg?w=500&h=400&fit=crop" alt="Dr. Yoshihito Naito"
-                                style="height: 100%;"></div>
-                        <div class="card-overlay">
-                            <span class="card-badge">Keynote Speaker</span>
-                            <h3>Dr. Yoshihito Naito</h3>
-                            <!-- <p class="speaker-text">Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with Tokushima University, Japan, he has published extensively on the clinical success, radiographic stability, and patient satisfaction of short implants in challenging atrophic ridges—offering reliable alternatives to complex grafting procedures. His evidence-based insights help clinicians achieve excellent functional and esthetic results with minimal invasiveness. Don’t miss his keynote to discover practical considerations for short implants and advanced strategies that simplify treatment while maximizing predictability and patient acceptance.</p> -->
-                            <p class="speaker-text">
-                                <span class="preview-text">
-                                    Dr. Yoshihito Naito...
-                                </span>
-                                <span class="full-text">
-                                    Dr. Yoshihito Naito, DDS, PhD, is a leading expert in short implants, esthetic
-                                    implant rehabilitation, and biomaterial-optimized osseointegration. Affiliated with
-                                    Tokushima University, Japan, he has published extensively on the clinical success,
-                                    radiographic stability, and patient satisfaction of short implants in challenging
-                                    atrophic ridges—offering reliable alternatives to complex grafting procedures. His
-                                    evidence-based insights help clinicians achieve excellent functional and esthetic
-                                    results with minimal invasiveness. Don’t miss his keynote to discover practical
-                                    considerations for short implants and advanced strategies that simplify treatment
-                                    while maximizing predictability and patient acceptance.
-                                </span>
-                            </p>
-                            <button class="see-more-btn" onclick="toggleText(this)">See more</button>
+                        <!-- Speaker 6 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/Yoshihito.jpg?w=500&h=400&fit=crop" alt="Dr Yoshihito Naito" onerror="this.src='https://via.placeholder.com/150x150?text=Yoshihito'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Yoshihito Naito</h3>
+                                <img src="https://flagcdn.com/jp.svg" class="brochure-flag" alt="Japan">
+                                <!-- <p class="speaker-text">Description hidden...</p> -->
+                                <!-- <button class="see-more-btn">See more</button> -->
+                            </div>
+                        </div>
+                        <!-- Speaker 7 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/ongart.jpg?w=500&h=400&fit=crop" alt="Dr Ongart Puttipisitchet" onerror="this.src='https://via.placeholder.com/150x150?text=Ongart'">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Ongart Puttipisitchet</h3>
+                                <img src="https://flagcdn.com/th.svg" class="brochure-flag" alt="Thailand">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4532,7 +4602,7 @@
                 </style>
 
                 <div class="embed-container">
-                    <iframe src="form.html" title="OSICON Registration Form"></iframe>
+                    <iframe src="form.html" title="OSICON Registration Form" loading="lazy"></iframe>
                 </div>
                 <!-- <div class="section-header">
                     <h2>Registration Categories</h2>
@@ -4793,7 +4863,7 @@
                         <h3>Bronze Sponsor</h3>
                     </div>
                     <div class="sponsor-logos silver">
-                        <div class="sponsor-logo"><a href="https://www.dentcaredental.com/" target="_blank"><img
+                        <div class="sponsor-logo"><a href="https://www.dentcaredental.com/" target="_blank"> <img
                                     src="images/Dentcare.png" alt="DentCare"></a></div>
                         <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
                     </div>
@@ -4837,7 +4907,7 @@
                 <section class="stall">
                     <h2>Stall Layout</h2>
                     <div class="stall-image">
-                        <img src="images/stall.jpg" alt="Stall Layout">
+                        <img src="images/stall.jpg" alt="Stall Layout" loading="lazy">
                     </div>
                 </section>
                 <div class="trade-exhibition">
