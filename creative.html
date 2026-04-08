@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSICON Kolkata 2026 | Creative Frame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002366;
+            --primary-light: #f5f3ff;
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --bg-gradient: linear-gradient(135deg, #002366 0%, #002366 100%);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 20px;
+        }
+
+        .conference-name {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .society-name {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 5px 0 0 0;
+        }
+
+        h2 {
+            color: var(--text-dark);
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .editor-area {
+            position: relative;
+            width: 100%;
+            background: #f9fafb;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            aspect-ratio: 1 / 1;
+            border: 2px dashed var(--border);
+            touch-action: none;
+            /* prevent scrolling when dragging on touch devices */
+        }
+
+        #userImageContainer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #userImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: grab;
+            transform-origin: 0 0;
+        }
+
+        #userImage:active {
+            cursor: grabbing;
+        }
+
+        .frame-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url('images/frame.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .control-group label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark);
+            white-space: nowrap;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background: #001a4d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+            }
+
+            .editor-area {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="event-header">
+            <span class="conference-name">3rd Annual Conference</span>
+            <span class="society-name">Osseointegration Society of India</span>
+        </div>
+
+        <h2>Create Your DP</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 14px;">
+            Upload your picture, scale and drag it to fit within the frame, and download your personalized badge to
+            share!
+        </p>
+
+        <div class="editor-area" id="editorArea">
+            <div id="userImageContainer">
+                <p style="color: var(--text-muted); padding: 20px; font-size: 14px;">Preview Area</p>
+            </div>
+            <!-- overlay frame -->
+            <div class="frame-overlay" id="frameOverlay"></div>
+            <img src="images/frame.png" id="hiddenFrameImg" style="display: none;" crossorigin="anonymous">
+        </div>
+
+        <div class="controls">
+            <input type="file" id="imageUpload" accept="image/*">
+            <button class="btn btn-outline" onclick="document.getElementById('imageUpload').click()">
+                📸 Upload Picture
+            </button>
+
+            <div class="control-group" id="zoomControl" style="display: none;">
+                <label>🔍 Zoom</label>
+                <input type="range" id="zoomSlider" min="0.1" max="3" step="0.01" value="1">
+            </div>
+
+            <button class="btn" id="downloadBtn" style="display: none;">
+                ⬇️ Download Image
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const imageUpload = document.getElementById('imageUpload');
+        const userImageContainer = document.getElementById('userImageContainer');
+        const zoomSlider = document.getElementById('zoomSlider');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const zoomControl = document.getElementById('zoomControl');
+        const editorArea = document.getElementById('editorArea');
+
+        let userImg = null;
+        let isDragging = false;
+        let startX, startY;
+        let imgX = 0, imgY = 0;
+        let currentScale = 1;
+
+        // Load the frame image to be used for canvas rendering
+        const frameImgObj = document.getElementById('hiddenFrameImg');
+
+        imageUpload.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                setupImage(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function setupImage(src) {
+            // Clear placeholder text
+            userImageContainer.innerHTML = '';
+
+            if (userImg) {
+                userImg.remove();
+            }
+
+            userImg = new Image();
+            userImg.src = src;
+            userImg.id = 'userImage';
+            userImg.draggable = false; // Prevent default browser image dragging behavior
+
+            userImg.onload = () => {
+                // Calculate initial scale to cover the container (min size)
+                const containerWidth = userImageContainer.clientWidth;
+                const containerHeight = userImageContainer.clientHeight;
+
+                const scaleX = containerWidth / userImg.naturalWidth;
+                const scaleY = containerHeight / userImg.naturalHeight;
+                currentScale = Math.max(scaleX, scaleY);
+
+                zoomSlider.value = currentScale;
+                // Let the slider go from very small up to very large
+                zoomSlider.min = currentScale * 0.2;
+                zoomSlider.max = currentScale * 4;
+
+                // Center the image initially
+                imgX = (containerWidth - userImg.naturalWidth * currentScale) / 2;
+                imgY = (containerHeight - userImg.naturalHeight * currentScale) / 2;
+
+                updateImageTransform();
+
+                // Show controls
+                zoomControl.style.display = 'flex';
+                downloadBtn.style.display = 'flex';
+                editorArea.style.border = 'none'; // remove dashed border
+            };
+
+            userImageContainer.appendChild(userImg);
+
+            // Add drag events
+            userImg.addEventListener('mousedown', startDrag);
+            userImg.addEventListener('touchstart', startDrag, { passive: false });
+        }
+
+        function startDrag(e) {
+            e.preventDefault();
+            isDragging = true;
+            const pointer = e.type.includes('mouse') ? e : e.touches[0];
+            startX = pointer.clientX - imgX;
+            startY = pointer.clientY - imgY;
+
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag, { passive: false });
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const pointer = e.type.includes('mouse') ? e : e.touches[0];
+            imgX = pointer.clientX - startX;
+            imgY = pointer.clientY - startY;
+            updateImageTransform();
+        }
+
+        function endDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('touchmove', drag);
+            document.removeEventListener('mouseup', endDrag);
+            document.removeEventListener('touchend', endDrag);
+        }
+
+        zoomSlider.addEventListener('input', function () {
+            if (!userImg) return;
+            const prevScale = currentScale;
+            currentScale = parseFloat(this.value);
+
+            // Compensate position to zoom from center of container
+            const containerWidth = userImageContainer.clientWidth;
+            const containerHeight = userImageContainer.clientHeight;
+            const cx = containerWidth / 2;
+            const cy = containerHeight / 2;
+
+            imgX = cx - (cx - imgX) * (currentScale / prevScale);
+            imgY = cy - (cy - imgY) * (currentScale / prevScale);
+
+            updateImageTransform();
+        });
+
+        function updateImageTransform() {
+            if (userImg) {
+                userImg.style.transform = `translate(${imgX}px, ${imgY}px) scale(${currentScale})`;
+            }
+        }
+
+        downloadBtn.addEventListener('click', () => {
+            if (!userImg || !frameImgObj.complete) {
+                alert('Please wait for images to load.');
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            // If frame is loaded with sizes, else fallback
+            const frameW = frameImgObj.naturalWidth || 1080;
+            const frameH = frameImgObj.naturalHeight || 1080;
+            canvas.width = frameW;
+            canvas.height = frameH;
+
+            const ctx = canvas.getContext('2d');
+
+            // Fill white background to match reference picture format if transparent
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // We map the editor's pixel scale to the canvas natural scale
+            const editorWidth = userImageContainer.clientWidth;
+            const ratio = frameW / editorWidth;
+
+            // Draw user image
+            const drawX = imgX * ratio;
+            const drawY = imgY * ratio;
+            const drawW = userImg.naturalWidth * currentScale * ratio;
+            const drawH = userImg.naturalHeight * currentScale * ratio;
+
+            ctx.drawImage(userImg, drawX, drawY, drawW, drawH);
+
+            // Draw frame
+            ctx.drawImage(frameImgObj, 0, 0, frameW, frameH);
+
+            // Download
+            try {
+                const dataUrl = canvas.toDataURL('image/png', 1.0);
+                const link = document.createElement('a');
+                link.download = 'OSICON-2026-DP.png';
+                link.href = dataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (err) {
+                console.error(err);
+                alert("Security Error: To download the image, this file must be run from a local web server (like Live Server or localhost). Browsers block canvas exports directly from double-clicked local files (file:///) due to security rules.");
+            }
+        });
+    </script>
+</body>
+
+</html>
