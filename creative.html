@@ -78,7 +78,6 @@
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 20px;
-            aspect-ratio: 1 / 1;
             border: 2px dashed var(--border);
             touch-action: none;
             /* prevent scrolling when dragging on touch devices */
@@ -90,9 +89,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow: hidden;
         }
 
@@ -109,16 +105,12 @@
         }
 
         .frame-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
+            height: auto;
+            position: relative;
             pointer-events: none;
-            background-image: url('images/frame.png');
-            background-size: cover;
-            background-position: center;
             z-index: 10;
+            display: block;
         }
 
         .controls {
@@ -215,11 +207,10 @@
 
         <div class="editor-area" id="editorArea">
             <div id="userImageContainer">
-                <p style="color: var(--text-muted); padding: 20px; font-size: 14px;">Preview Area</p>
+                <p id="previewText" style="color: var(--text-muted); padding: 20px; font-size: 14px; position:absolute; top:50%; width:100%; text-align:center; transform:translateY(-50%); margin:0;">Preview Area</p>
             </div>
-            <!-- overlay frame -->
-            <div class="frame-overlay" id="frameOverlay"></div>
-            <img src="images/frame.png" id="hiddenFrameImg" style="display: none;" crossorigin="anonymous">
+            <!-- overlay frame dictates aspect ratio -->
+            <img class="frame-overlay" id="frameOverlay" src="images/frame.png" crossorigin="anonymous">
         </div>
 
         <div class="controls">
@@ -254,7 +245,7 @@
         let currentScale = 1;
 
         // Load the frame image to be used for canvas rendering
-        const frameImgObj = document.getElementById('hiddenFrameImg');
+        const frameImgObj = document.getElementById('frameOverlay');
 
         imageUpload.addEventListener('change', function (e) {
             const file = e.target.files[0];
@@ -268,8 +259,8 @@
         });
 
         function setupImage(src) {
-            // Clear placeholder text
-            userImageContainer.innerHTML = '';
+            const previewText = document.getElementById('previewText');
+            if (previewText) previewText.style.display = 'none';
 
             if (userImg) {
                 userImg.remove();
@@ -281,18 +272,18 @@
             userImg.draggable = false; // Prevent default browser image dragging behavior
 
             userImg.onload = () => {
-                // Calculate initial scale to cover the container (min size)
                 const containerWidth = userImageContainer.clientWidth;
                 const containerHeight = userImageContainer.clientHeight;
 
-                const scaleX = containerWidth / userImg.naturalWidth;
-                const scaleY = containerHeight / userImg.naturalHeight;
+                // The cutout hole is roughly 60% of the image width
+                const targetSize = containerWidth * 0.6;
+                const scaleX = targetSize / userImg.naturalWidth;
+                const scaleY = targetSize / userImg.naturalHeight;
                 currentScale = Math.max(scaleX, scaleY);
 
                 zoomSlider.value = currentScale;
-                // Let the slider go from very small up to very large
                 zoomSlider.min = currentScale * 0.2;
-                zoomSlider.max = currentScale * 4;
+                zoomSlider.max = currentScale * 6;
 
                 // Center the image initially
                 imgX = (containerWidth - userImg.naturalWidth * currentScale) / 2;
