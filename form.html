@@ -324,6 +324,11 @@
                 <span>See more options</span> <span>↓</span>
             </div>-->
                 <div class="category-container" id="categoryList">
+                    <label class="category-card" id="special-offer-container" style="display: none;">
+                        <input type="radio" id="cat-special" name="cat" data-price="9999">
+                        <span class="cat-label">Special registration offer only for today</span>
+                        <span class="cat-price">₹9,999</span>
+                    </label>
                     <label class="category-card">
                         <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
                         <span class="cat-label">Non OSI Member</span>
@@ -410,6 +415,7 @@
 
         // Dynamic Pricing Logic
         const categoryPricing = {
+            "cat-special": [9999, 9999, 9999, 9999, 9999],
             "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
             "cat-osi": [10620, 12390, 14160, 15930, 17700],
             "cat-student": [5500, 5500, 5500, 5500, 5500],
@@ -434,6 +440,15 @@
         }
 
         function updateDynamicPricing() {
+            const now = new Date();
+            const specialContainer = document.getElementById('special-offer-container');
+            // Show only till midnight bounds (11:59 PM today)
+            if (now < new Date('2026-04-16T00:00:00+05:30')) {
+                if (specialContainer) specialContainer.style.display = 'flex';
+            } else {
+                if (specialContainer) specialContainer.style.display = 'none';
+            }
+
             const tier = getCurrentTier();
             
             const validTillSpan = document.getElementById('validTillText');
