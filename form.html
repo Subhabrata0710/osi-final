@@ -317,7 +317,8 @@
 
             <div class="section-header">
                 Select Registration Category
-                <span id="validTillText" style="font-size: 0.75em; font-weight: bold;">(* Prices are valid till 15th April 2026)</span>
+                <span id="validTillText" style="font-size: 0.75em; font-weight: bold;">(* Prices are valid till 15th
+                    April 2026)</span>
             </div>
             <div class="scroll-wrapper">
                 <!--<div id="scrollBadge" class="scroll-badge">
@@ -326,7 +327,7 @@
                 <div class="category-container" id="categoryList">
                     <label class="category-card" id="special-offer-container" style="display: none;">
                         <input type="radio" id="cat-special" name="cat" data-price="9999">
-                        <span class="cat-label">Special registration offer only for today</span>
+                        <span class="cat-label">Special registration offer</span>
                         <span class="cat-price">₹9,999</span>
                     </label>
                     <label class="category-card">
@@ -442,15 +443,15 @@
         function updateDynamicPricing() {
             const now = new Date();
             const specialContainer = document.getElementById('special-offer-container');
-            // Show only till midnight bounds (11:59 PM today)
-            if (now < new Date('2026-04-16T00:00:00+05:30')) {
+            // Show only from 3rd May 2026 to 4th May 2026 midnight
+            if (now >= new Date('2026-05-03T00:00:00+05:30') && now < new Date('2026-05-05T00:00:00+05:30')) {
                 if (specialContainer) specialContainer.style.display = 'flex';
             } else {
                 if (specialContainer) specialContainer.style.display = 'none';
             }
 
             const tier = getCurrentTier();
-            
+
             const validTillSpan = document.getElementById('validTillText');
             if (validTillSpan) {
                 if (tier.index === 4) {
@@ -472,7 +473,7 @@
                 }
             }
         }
-        
+
         // Run on load
         updateDynamicPricing();
 
