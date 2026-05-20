@@ -478,7 +478,7 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVbQO4SEisX31OxlfYgXpkCzz4u4vKAe3act5j-eu2Wy2ChRzUHlvFoTkmp2h9V4iK/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHzK82JjTEF48LsTsb1FZ9BkQWFPAqKSO335IoPt_FK7Pk_NsDxCyOxmyakWPAwJwa/exec';
 
         // 1. Total Price Calculation Logic
         form.addEventListener('change', (e) => {
@@ -544,6 +544,26 @@
                     "color": "#4f46e5"
                 }
             };
+
+
+
+
+
+
+
+
+            // // Test Mode: Bypass Razorpay
+            // if (confirm("TEST MODE: Bypass Razorpay payment and submit directly?")) {
+            //     saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, "pay_test_" + Date.now());
+            //     return;
+            // }
+
+
+
+
+
+
+
 
             const rzp1 = new Razorpay(options);
             rzp1.on('payment.failed', function (response) {
