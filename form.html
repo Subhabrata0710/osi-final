@@ -314,6 +314,11 @@
                     <input type="member" id="usermember" placeholder="Write NA if you are not an OSI Member" required>
                 </div>
             </div>
+            <div class="input-group">
+                <label>Voucher Code (Optional)</label>
+                <input type="text" id="voucherCode" placeholder="Enter voucher code if any"
+                    style="text-transform: uppercase;">
+            </div>
 
             <div class="section-header">
                 Select Registration Category
@@ -481,9 +486,16 @@
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHzK82JjTEF48LsTsb1FZ9BkQWFPAqKSO335IoPt_FK7Pk_NsDxCyOxmyakWPAwJwa/exec';
 
         // 1. Total Price Calculation Logic
-        form.addEventListener('change', (e) => {
-            if (e.target.name === 'cat') {
-                const amount = e.target.getAttribute('data-price');
+        function updateTotal() {
+            const selectedRadio = document.querySelector('input[name="cat"]:checked');
+            if (selectedRadio) {
+                let amount = parseInt(selectedRadio.getAttribute('data-price'));
+                const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
+
+                if (voucherCode === 'IMPACT_OSI') {
+                    amount = 10500;
+                }
+
                 const formatted = new Intl.NumberFormat('en-IN').format(amount);
                 totalDisplay.innerText = '₹' + formatted;
 
@@ -493,6 +505,16 @@
                     { transform: 'scale(1)', color: '#fff' }
                 ], { duration: 300 });
             }
+        }
+
+        form.addEventListener('change', (e) => {
+            if (e.target.name === 'cat') {
+                updateTotal();
+            }
+        });
+
+        document.getElementById('voucherCode').addEventListener('input', () => {
+            updateTotal();
         });
 
         // 2. Floating Badge Logic
@@ -522,8 +544,16 @@
                 return;
             }
 
-            const amountInInr = selectedRadio.getAttribute('data-price');
-            const categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
+            let amountInInr = parseInt(selectedRadio.getAttribute('data-price'));
+            const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
+            if (voucherCode === 'IMPACT_OSI') {
+                amountInInr = 10500;
+            }
+
+            let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
+            if (voucherCode === 'IMPACT_OSI') {
+                categoryLabel += " (Voucher: IMPACT_OSI)";
+            }
 
             const options = {
                 "key": "rzp_live_S9kFXcSkm7C1Rc",
@@ -575,6 +605,8 @@
         // 4. Send Data to Google Sheets
         function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId) {
             const formData = new URLSearchParams();
+            const voucherCode = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
+
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
@@ -582,6 +614,9 @@
             formData.append('category', category);
             formData.append('amount', amount);
             formData.append('payment_id', paymentId);
+            if (voucherCode) {
+                formData.append('voucherCode', voucherCode);
+            }
 
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
