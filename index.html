@@ -1155,7 +1155,7 @@
         }
 
         .committee-card .card-badge {
-            display: block;
+            display: inline-block;
             font-size: 14px;
             color: #ffffff;
             font-weight: 600;
@@ -1206,8 +1206,10 @@
 
         .committee-card .card-badge {
             position: relative;
-            top: 15px;
-            /* adjust 10–25px as needed */
+            top: 20px;
+            /* negative = pulls badge UP onto the circle bottom */
+            z-index: 3;
+            /* keeps it above the photo */
         }
 
         /* Program Tabs */
@@ -3623,7 +3625,8 @@
                                     <h3>Dr. Dipanjana Sinha</h3>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="grid-2op">
                             <div class="card committee-card">
                                 <div class="card-image">
                                     <img src="images/shg.png" alt="Dr Shounak Ghosh">
@@ -3677,7 +3680,8 @@
                                     <h31>Dr. Subhransu Ganguly</h31>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="grid-2op">
                             <div class="card committee-card">
                                 <div class="card-image">
                                     <img src="images/jc.png" alt="Dr. Jyotiska Chakraborty">
@@ -3837,7 +3841,7 @@
                         </div>
 
                         <!-- banquet co-chair, exhibition -->
-                        <div class="grid-3">
+                        <div class="grid-2op">
 
                             <div class="card committee-card">
                                 <div class="card-image">
