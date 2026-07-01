@@ -449,7 +449,7 @@
             const now = new Date();
             const specialContainer = document.getElementById('special-offer-container');
             // Show only from 3rd May 2026 to 4th May 2026 midnight
-            if (now >= new Date('2026-05-03T00:00:00+05:30') && now < new Date('2026-05-05T00:00:00+05:30')) {
+            if (now >= new Date('2026-07-05T00:00:00+05:30') && now < new Date('2026-07-05T00:00:00+05:30')) {
                 if (specialContainer) specialContainer.style.display = 'flex';
             } else {
                 if (specialContainer) specialContainer.style.display = 'none';
@@ -633,6 +633,69 @@
                 });
         }
     </script>
+    <!-- July 5th Popup -->
+    <div id="july5-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <span class="popup-close" onclick="document.getElementById('july5-popup').style.display='none'">&times;</span>
+            <img src="images/brotes.jpg" alt="Brotes Special">
+        </div>
+    </div>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .popup-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary, #001844);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10000;
+        }
+        .popup-close:hover {
+            background: #D4AF37;
+            color: var(--primary, #001844);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date();
+            if (today.getMonth() === 6 && today.getDate() === 5) {
+                document.getElementById('july5-popup').style.display = 'flex';
+            }
+        });
+    </script>
 </body>
-
 </html>
