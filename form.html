@@ -335,6 +335,11 @@
                         <span class="cat-label">Special registration offer</span>
                         <span class="cat-price">₹9,999</span>
                     </label>
+                    <label class="category-card" id="1day" style="display: none;">
+                        <input type="radio" id="1day" name="cat" data-price="2000">
+                        <span class="cat-label">1 DAY IMPLANT EXTRAVAGANZA</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
                     <label class="category-card">
                         <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
                         <span class="cat-label">Non OSI Member</span>
@@ -421,6 +426,7 @@
 
         // Dynamic Pricing Logic
         const categoryPricing = {
+            "1day": [2000, 2000, 2000, 2000, 2000],
             "cat-special": [9999, 9999, 9999, 9999, 9999],
             "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
             "cat-osi": [10620, 12390, 14160, 15930, 17700],
@@ -448,13 +454,20 @@
         function updateDynamicPricing() {
             const now = new Date();
             const specialContainer = document.getElementById('special-offer-container');
+            const oneDayContainer = document.getElementById('1day');
             // Show only from 3rd May 2026 to 4th May 2026 midnight
-            if (now >= new Date('2026-07-05T00:00:00+05:30') && now < new Date('2026-07-05T00:00:00+05:30')) {
+            if (now >= new Date('2026-07-05T00:00:00+05:30') && now < new Date('2026-07-06T00:00:00+05:30')) {
                 if (specialContainer) specialContainer.style.display = 'flex';
             } else {
                 if (specialContainer) specialContainer.style.display = 'none';
             }
 
+
+            if (now >= new Date('2026-07-02T00:00:00+05:30') && now < new Date('2026-07-06T00:00:00+05:30')) {
+                if (oneDayContainer) oneDayContainer.style.display = 'flex';
+            } else {
+                if (oneDayContainer) oneDayContainer.style.display = 'none';
+            }
             const tier = getCurrentTier();
 
             const validTillSpan = document.getElementById('validTillText');
@@ -636,20 +649,25 @@
     <!-- July 5th Popup -->
     <div id="july5-popup" class="popup-overlay" style="display: none;">
         <div class="popup-content">
-            <span class="popup-close" onclick="document.getElementById('july5-popup').style.display='none'">&times;</span>
+            <span class="popup-close"
+                onclick="document.getElementById('july5-popup').style.display='none'">&times;</span>
             <img src="images/brotes.jpg" alt="Brotes Special">
         </div>
     </div>
     <style>
         .popup-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.7);
             z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .popup-content {
             position: relative;
             max-width: 90%;
@@ -657,17 +675,19 @@
             background: #fff;
             padding: 10px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .popup-content img {
             max-width: 100%;
             max-height: 85vh;
             object-fit: contain;
             border-radius: 8px;
         }
+
         .popup-close {
             position: absolute;
             top: -15px;
@@ -681,16 +701,17 @@
             line-height: 30px;
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             z-index: 10000;
         }
+
         .popup-close:hover {
             background: #D4AF37;
             color: var(--primary, #001844);
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var today = new Date();
             if (today.getMonth() === 6 && today.getDate() === 5) {
                 document.getElementById('july5-popup').style.display = 'flex';
@@ -698,4 +719,5 @@
         });
     </script>
 </body>
+
 </html>
