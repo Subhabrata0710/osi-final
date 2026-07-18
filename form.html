@@ -343,13 +343,14 @@
                     <label class="category-card" id="special-offer-container" style="display: none;">
                         <input type="radio" id="cat-special" name="cat" data-price="9999">
                         <span class="cat-label">Special registration offer</span>
-                        <span class="cat-price">₹9,999</span>
+                        <span class="cat-price">₹11,000</span>
                     </label>
                     <label class="category-card" id="1day" style="display: none;">
                         <input type="radio" id="1day" name="cat" data-price="2000">
                         <span class="cat-label">1 DAY IMPLANT EXTRAVAGANZA</span>
                         <span class="cat-price">₹2,000</span>
                     </label>
+
                     <label class="category-card">
                         <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
                         <span class="cat-label">Non OSI Member</span>
@@ -437,7 +438,7 @@
         // Dynamic Pricing Logic
         const categoryPricing = {
             "1day": [2000, 2000, 2000, 2000, 2000],
-            "cat-special": [9999, 9999, 9999, 9999, 9999],
+            "cat-special": [11000, 11000, 11000, 11000, 11000],
             "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
             "cat-osi": [10620, 12390, 14160, 15930, 17700],
             "cat-student": [5500, 5500, 5500, 5500, 5500],
@@ -466,7 +467,7 @@
             const specialContainer = document.getElementById('special-offer-container');
             const oneDayContainer = document.getElementById('1day');
             // Show only from 3rd May 2026 to 4th May 2026 midnight
-            if (now >= new Date('2026-07-05T00:00:00+05:30') && now < new Date('2026-07-06T00:00:00+05:30')) {
+            if (now >= new Date('2026-07-18T00:00:00+05:30') && now < new Date('2026-07-22T00:00:00+05:30')) {
                 if (specialContainer) specialContainer.style.display = 'flex';
             } else {
                 if (specialContainer) specialContainer.style.display = 'none';
