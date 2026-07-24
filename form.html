@@ -519,6 +519,9 @@
                 if (voucherCode === 'IMPACT_OSI') {
                     amount = 10500;
                 }
+                if (voucherCode === 'SPECIAL_OSI') {
+                    amount = 11000;
+                }
 
                 const formatted = new Intl.NumberFormat('en-IN').format(amount);
                 totalDisplay.innerText = '₹' + formatted;
@@ -575,10 +578,16 @@
             if (voucherCode === 'IMPACT_OSI') {
                 amountInInr = 10500;
             }
+            if (voucherCode === 'SPECIAL_OSI') {
+                amountInInr = 11000;
+            }
 
             let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
             if (voucherCode === 'IMPACT_OSI') {
                 categoryLabel += " (Voucher: IMPACT_OSI)";
+            }
+            if (voucherCode === 'SPECIAL_OSI') {
+                categoryLabel += " (Voucher: SPECIAL_OSI)";
             }
 
             const options = {
