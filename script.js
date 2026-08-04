@@ -96,35 +96,35 @@ function initActiveNavLink() {
 }
 
 /* ---------------- Brochure popup ---------------- */
-function initBrochurePopup() {
-    const popup = document.getElementById('brochurePopup');
-    const closeBtn = document.querySelector('.brochure-close');
-    if (!popup) return;
+// function initBrochurePopup() {
+//     const popup = document.getElementById('brochurePopup');
+//     const closeBtn = document.querySelector('.brochure-close');
+//     if (!popup) return;
 
-    // Show popup 1 second after load, on every page
-    setTimeout(() => popup.classList.remove('hidden'), 1000);
+//     // Show popup 1 second after load, on every page
+//     setTimeout(() => popup.classList.remove('hidden'), 1000);
 
-    function closePopup() {
-        popup.classList.add('hidden');
-    }
+//     function closePopup() {
+//         popup.classList.add('hidden');
+//     }
 
-    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+//     if (closeBtn) closeBtn.addEventListener('click', closePopup);
 
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) closePopup();
-    });
+//     popup.addEventListener('click', (e) => {
+//         if (e.target === popup) closePopup();
+//     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closePopup();
-    });
-}
+//     document.addEventListener('keydown', (e) => {
+//         if (e.key === 'Escape') closePopup();
+//     });
+// }
 
 /* ---------------- July 5th popup ---------------- */
-function initJuly5Popup() {
-    const popup = document.getElementById('july5-popup');
-    if (!popup) return;
-    const today = new Date();
-    if (today.getMonth() === 6 && today.getDate() === 4) {
-        popup.style.display = 'flex';
-    }
-}
+// function initJuly5Popup() {
+//     const popup = document.getElementById('july5-popup');
+//     if (!popup) return;
+//     const today = new Date();
+//     if (today.getMonth() === 6 && today.getDate() === 4) {
+//         popup.style.display = 'flex';
+//     }
+// }
