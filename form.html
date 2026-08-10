@@ -310,10 +310,35 @@
                     <input type="tel" id="userPhone" placeholder="+91" required>
                 </div>
                 <div class="input-group">
-                    <label>OSI Membership Number *</label>
-                    <input type="member" id="usermember" placeholder="Write NA if you are not an OSI Member" required>
+                    <label>I am a *</label>
+                    <select id="userType" required style="width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: #f9fafb; font-family: inherit; font-size: 14px; box-sizing: border-box;" onchange="toggleMembershipField()">
+                        <option value="">Select Option</option>
+                        <option value="osi_member">OSI Member</option>
+                        <option value="non_osi_member">Non OSI Member</option>
+                        <option value="student">Student</option>
+                    </select>
                 </div>
             </div>
+            <div class="input-group" id="membershipField" style="display: none;">
+                <label>OSI Membership Number *</label>
+                <input type="text" id="usermember" placeholder="Enter your OSI Membership Number">
+            </div>
+            <script>
+                function toggleMembershipField() {
+                    const userType = document.getElementById('userType').value;
+                    const membershipField = document.getElementById('membershipField');
+                    const usermemberInput = document.getElementById('usermember');
+                    if (userType === 'osi_member') {
+                        membershipField.style.display = 'block';
+                        usermemberInput.required = true;
+                        usermemberInput.value = '';
+                    } else {
+                        membershipField.style.display = 'none';
+                        usermemberInput.required = false;
+                        usermemberInput.value = 'NA';
+                    }
+                }
+            </script>
             <div class="grid-row">
                 <div class="input-group">
                     <label>State *</label>
@@ -351,6 +376,7 @@
                         <span class="cat-label">1 DAY IMPLANT EXTRAVAGANZA</span>
                         <span class="cat-price">₹2,000</span>
                     </label>
+
 
                     <label class="category-card">
                         <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
@@ -413,6 +439,24 @@
                         <span class="cat-price">₹44,170</span>
                     </label>
 
+                </div>
+            </div>
+
+            <div class="section-header">
+                Select Workshop (Optional)
+            </div>
+            <div class="scroll-wrapper">
+                <div class="category-container" style="max-height: max-content;">
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox" value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox" value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)" data-price="18000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)</span>
+                        <span class="cat-price">₹18,000</span>
+                    </label>
                 </div>
             </div>
 
@@ -513,8 +557,9 @@
         // 1. Total Price Calculation Logic
         function updateTotal() {
             const selectedRadio = document.querySelector('input[name="cat"]:checked');
+            let amount = 0;
             if (selectedRadio) {
-                let amount = parseInt(selectedRadio.getAttribute('data-price'));
+                amount = parseInt(selectedRadio.getAttribute('data-price'));
                 const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
 
                 if (voucherCode === 'IMPACT_OSI') {
@@ -523,7 +568,18 @@
                 if (voucherCode === 'SPECIAL_OSI') {
                     amount = 11000;
                 }
+            }
 
+            const workshopLecture = document.getElementById('workshop-lecture');
+            const workshopHandsOn = document.getElementById('workshop-hands-on');
+            if (workshopLecture && workshopLecture.checked) {
+                amount += parseInt(workshopLecture.getAttribute('data-price'));
+            }
+            if (workshopHandsOn && workshopHandsOn.checked) {
+                amount += parseInt(workshopHandsOn.getAttribute('data-price'));
+            }
+
+            if (amount > 0) {
                 const formatted = new Intl.NumberFormat('en-IN').format(amount);
                 totalDisplay.innerText = '₹' + formatted;
 
@@ -532,11 +588,13 @@
                     { transform: 'scale(1.1)', color: '#818cf8' },
                     { transform: 'scale(1)', color: '#fff' }
                 ], { duration: 300 });
+            } else {
+                totalDisplay.innerText = '₹0';
             }
         }
 
         form.addEventListener('change', (e) => {
-            if (e.target.name === 'cat') {
+            if (e.target.name === 'cat' || e.target.classList.contains('workshop-checkbox')) {
                 updateTotal();
             }
         });
@@ -589,6 +647,17 @@
             }
             if (voucherCode === 'SPECIAL_OSI') {
                 categoryLabel += " (Voucher: SPECIAL_OSI)";
+            }
+
+            const workshopLecture = document.getElementById('workshop-lecture');
+            const workshopHandsOn = document.getElementById('workshop-hands-on');
+            if (workshopLecture && workshopLecture.checked) {
+                amountInInr += parseInt(workshopLecture.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLecture.value;
+            }
+            if (workshopHandsOn && workshopHandsOn.checked) {
+                amountInInr += parseInt(workshopHandsOn.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOn.value;
             }
 
             const options = {
