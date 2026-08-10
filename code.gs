@@ -45,10 +45,93 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({
-    success: true, 
-    message: 'OSICON Kolkata 2026 Registration API is up and running.'
-  })).setMimeType(ContentService.MimeType.JSON);
+  try {
+    var action = e && e.parameter && e.parameter.action;
+
+    // --- Invoice Download Page support ---
+    if (action === 'lookup') {
+      return handleInvoiceLookup(e.parameter);
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true, 
+      message: 'OSICON Kolkata 2026 Registration API is up and running.'
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    console.log('doGet Error: ' + error.toString());
+    return jsonOut({ success: false, message: 'Server Error: ' + error.toString() });
+  }
+}
+
+// ============================================================
+// INVOICE LOOKUP (used by invoice-download.html)
+// ============================================================
+// Matching rule:
+//  - Email + Phone must always match a row in "Registrations".
+//  - If a Reg ID (Serial No) is also supplied, it must match that same row too.
+//  - If no Reg ID is supplied, Email + Phone alone is sufficient.
+function handleInvoiceLookup(params) {
+  var email = (params.email || '').toString().trim().toLowerCase();
+  var phone = normalizePhone(params.phone || '');
+  var regId = (params.regid || params.regId || '').toString().trim().toUpperCase();
+
+  if (!email || !phone) {
+    return jsonOut({ success: false, message: 'Please provide both email and phone number.' });
+  }
+
+  var sheet = getSheet('Registrations');
+  var allData = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < allData.length; i++) {
+    var row = allData[i];
+    var rowEmail = (row[3] || '').toString().trim().toLowerCase();
+    var rowPhone = normalizePhone(row[4] || '');
+    var rowSerial = (row[1] || '').toString().trim().toUpperCase();
+
+    if (rowEmail === email && rowPhone === phone) {
+      // Email + Phone matched this row. If a Reg ID was supplied, it must also match.
+      if (regId && rowSerial !== regId) {
+        continue; // keep looking in case of a data entry edge-case
+      }
+
+      return jsonOut({
+        success: true,
+        data: {
+          serialNumber: row[1],
+          name: row[2],
+          email: row[3],
+          phone: row[4],
+          member: row[5],
+          category: row[6],
+          amount: row[7],
+          paymentId: row[8],
+          state: row[10],
+          city: row[11],
+          timestamp: row[0] ? new Date(row[0]).toISOString() : ''
+        }
+      });
+    }
+  }
+
+  return jsonOut({
+    success: false,
+    message: regId
+      ? 'No matching registration found for the Email, Phone and Reg ID provided. Please check the details and try again.'
+      : 'No matching registration found for the Email and Phone provided. Please check the details and try again.'
+  });
+}
+
+// Normalizes phone numbers for comparison: strips everything but digits,
+// then keeps only the last 10 digits (so +91-98765-43210, 09876543210, and
+// 9876543210 are all treated as the same number).
+function normalizePhone(p) {
+  var digits = p.toString().replace(/\D/g, '');
+  if (digits.length > 10) digits = digits.slice(-10);
+  return digits;
+}
+
+function jsonOut(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }
 
 // ============================================================

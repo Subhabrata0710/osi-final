@@ -311,7 +311,9 @@
                 </div>
                 <div class="input-group">
                     <label>I am a *</label>
-                    <select id="userType" required style="width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: #f9fafb; font-family: inherit; font-size: 14px; box-sizing: border-box;" onchange="toggleMembershipField()">
+                    <select id="userType" required
+                        style="width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: #f9fafb; font-family: inherit; font-size: 14px; box-sizing: border-box;"
+                        onchange="toggleMembershipField()">
                         <option value="">Select Option</option>
                         <option value="osi_member">OSI Member</option>
                         <option value="non_osi_member">Non OSI Member</option>
@@ -448,12 +450,15 @@
             <div class="scroll-wrapper">
                 <div class="category-container" style="max-height: max-content;">
                     <label class="category-card">
-                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox" value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
+                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
                         <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)</span>
                         <span class="cat-price">₹5,000</span>
                     </label>
                     <label class="category-card">
-                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox" value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)" data-price="18000">
+                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)"
+                            data-price="18000">
                         <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)</span>
                         <span class="cat-price">₹18,000</span>
                     </label>
@@ -552,7 +557,7 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6aFDw6-6rXjN1cHVAKHE_XqPew4aYtcQKSFyzScTwFqisjbVeB1p5np8wNKmhOF4w/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNFcQjaP8B-uarFt3jxpyV2ylA4Smn1rTb-GDrrmI1ZG16kHZ3vRHQdhs-Ile3Zj1J/exec';
 
         // 1. Total Price Calculation Logic
         function updateTotal() {

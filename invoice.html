@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Download | OSICON Kolkata 2026</title>
+    <meta name="description" content="Download your registration invoice for the 3rd OSI Conference Kolkata 2026.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Site stylesheet (shared with the rest of the site) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jsPDF (client-side PDF generation) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* Page-specific styles only. Everything else (colors, fonts, buttons,
+           form fields, card look) is inherited from style.css so this page
+           matches the rest of the site. */
+
+        .invoice-page {
+            min-height: 70vh;
+            background: var(--gray-50);
+            padding-bottom: 80px;
+        }
+
+        .invoice-shell {
+            max-width: 560px;
+            margin: -60px auto 0;
+            padding: 0 20px;
+        }
+
+        .invoice-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 36px 32px;
+        }
+
+        .invoice-card h2 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .invoice-subtext {
+            color: var(--gray-600);
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .field-hint {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-top: 6px;
+        }
+
+        #lookupBtn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+
+        #lookupBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status-box {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-box.show {
+            display: block;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .status-loading {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        /* Result summary */
+        .result-panel {
+            display: none;
+            margin-top: 28px;
+            border-top: 1px dashed var(--gray-200);
+            padding-top: 24px;
+        }
+
+        .result-panel.show {
+            display: block;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-50);
+            font-size: 14px;
+        }
+
+        .result-row span:first-child {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .result-row span:last-child {
+            color: var(--text-dark);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        #downloadBtn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 22px;
+            font-size: 0.85rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            font-size: 13px;
+            color: var(--gray-600);
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body data-page="invoice-download">
+
+    <div class="page-banner">
+        <span>OSICON Kolkata 2026</span>
+        <h1>Invoice Download</h1>
+    </div>
+
+    <div class="invoice-page">
+        <div class="invoice-shell">
+            <div class="invoice-card">
+
+                <h2>Get Your Registration Invoice</h2>
+                <p class="invoice-subtext">
+                    Enter the email and phone number you registered with. Your Registration ID is optional,
+                    but if you enter it, it must match your registration too.
+                </p>
+
+                <div id="statusBox" class="status-box"></div>
+
+                <form id="invoiceForm" novalidate>
+                    <div class="form-group">
+                        <label for="userEmail">Email Address *</label>
+                        <input type="email" id="userEmail" name="userEmail" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number *</label>
+                        <input type="tel" id="userPhone" name="userPhone" placeholder="98765 43210" required>
+                        <div class="field-hint">10-digit mobile number used at registration.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userRegId">Registration ID (optional)</label>
+                        <input type="text" id="userRegId" name="userRegId" placeholder="e.g. OSI-1005">
+                        <div class="field-hint">If you enter this, it must match your record exactly.</div>
+                    </div>
+
+                    <button type="submit" id="lookupBtn" class="btn btn-primary">Find My Invoice</button>
+                </form>
+
+                <div id="resultPanel" class="result-panel">
+                    <div class="result-row"><span>Registration ID</span><span id="rSerial"></span></div>
+                    <div class="result-row"><span>Name</span><span id="rName"></span></div>
+                    <div class="result-row"><span>Category</span><span id="rCategory"></span></div>
+                    <div class="result-row"><span>Amount Paid</span><span id="rAmount"></span></div>
+                    <div class="result-row"><span>Payment ID</span><span id="rPaymentId"></span></div>
+
+                    <button type="button" id="downloadBtn" class="btn btn-primary">Download Invoice (PDF)</button>
+                </div>
+
+                <p class="back-link">Need help? Email us at <a
+                        href="mailto:registration@osiconkolkata.com">registration@osiconkolkata.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // CONFIG — same Apps Script deployment used by the registration form.
+        // Make sure code.gs on that deployment includes the "lookup" action
+        // (handleInvoiceLookup) before this page will work.
+        // ============================================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNFcQjaP8B-uarFt3jxpyV2ylA4Smn1rTb-GDrrmI1ZG16kHZ3vRHQdhs-Ile3Zj1J/exec';
+
+        const form = document.getElementById('invoiceForm');
+        const lookupBtn = document.getElementById('lookupBtn');
+        const statusBox = document.getElementById('statusBox');
+        const resultPanel = document.getElementById('resultPanel');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        let currentRecord = null; // holds the matched delegate's data for PDF generation
+
+        function showStatus(message, type) {
+            statusBox.textContent = message;
+            statusBox.className = 'status-box show status-' + type;
+        }
+
+        function hideStatus() {
+            statusBox.className = 'status-box';
+        }
+
+        function formatCurrency(amount) {
+            const n = Number(amount) || 0;
+            return '₹' + new Intl.NumberFormat('en-IN').format(n);
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideStatus();
+            resultPanel.classList.remove('show');
+            currentRecord = null;
+
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const regId = document.getElementById('userRegId').value.trim();
+
+            // Basic client-side validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+            const digitsOnly = phone.replace(/\D/g, '');
+            if (digitsOnly.length < 10) {
+                showStatus('Please enter a valid 10-digit phone number.', 'error');
+                return;
+            }
+
+            lookupBtn.disabled = true;
+            lookupBtn.textContent = 'Searching...';
+            showStatus('Looking up your registration...', 'loading');
+
+            const params = new URLSearchParams({
+                action: 'lookup',
+                email: email,
+                phone: digitsOnly,
+                regid: regId
+            });
+
+            fetch(GOOGLE_SCRIPT_URL + '?' + params.toString(), { method: 'GET' })
+                .then(res => res.json())
+                .then(data => {
+                    lookupBtn.disabled = false;
+                    lookupBtn.textContent = 'Find My Invoice';
+
+                    if (data.success && data.data) {
+                        hideStatus();
+                        currentRecord = data.data;
+                        renderResult(currentRecord);
+                    } else {
+                        showStatus(data.message || 'No matching registration found. Please check your details.', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error('Lookup error:', err);
+                    lookupBtn.disabled = false;
+                    lookupBtn.textContent = 'Find My Invoice';
+                    showStatus('Something went wrong while contacting the server. Please try again in a moment.', 'error');
+                });
+        });
+
+        function renderResult(rec) {
+            document.getElementById('rSerial').textContent = rec.serialNumber || '-';
+            document.getElementById('rName').textContent = rec.name || '-';
+            document.getElementById('rCategory').textContent = rec.category || '-';
+            document.getElementById('rAmount').textContent = formatCurrency(rec.amount);
+            document.getElementById('rPaymentId').textContent = rec.paymentId || '-';
+            resultPanel.classList.add('show');
+        }
+
+        downloadBtn.addEventListener('click', function () {
+            if (!currentRecord) return;
+            generateInvoicePdf(currentRecord);
+        });
+
+        // ============================================================
+        // PDF GENERATION (client-side, via jsPDF)
+        // No fixed invoice format was supplied, so this uses a clean,
+        // generic receipt/invoice layout. Adjust freely — colors, GSTIN,
+        // organizer bank details, terms, etc. — in this one function.
+        // ============================================================
+        function generateInvoicePdf(rec) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+
+            const navy = [0, 24, 68];      // matches --primary
+            const gold = [212, 175, 55];   // matches --secondary
+            const gray = [100, 116, 139];
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 48;
+
+            // --- Header band ---
+            doc.setFillColor(navy[0], navy[1], navy[2]);
+            doc.rect(0, 0, pageWidth, 110, 'F');
+
+            doc.setTextColor(255, 255, 255);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(20);
+            doc.text('OSICON KOLKATA 2026', margin, 48);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(11);
+            doc.text('3rd Annual Conference of the Osseointegration Society of India', margin, 66);
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(13);
+            doc.setTextColor(gold[0], gold[1], gold[2]);
+            doc.text('PAYMENT RECEIPT / INVOICE', margin, 90);
+
+            // --- Invoice meta (top right) ---
+            const issueDate = rec.timestamp ? new Date(rec.timestamp) : new Date();
+            const formattedDate = issueDate.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+
+            doc.setTextColor(255, 255, 255);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.text('Invoice No: ' + (rec.serialNumber || '-'), pageWidth - margin, 48, { align: 'right' });
+            doc.text('Date: ' + formattedDate, pageWidth - margin, 62, { align: 'right' });
+
+            // --- Bill To ---
+            let y = 150;
+            doc.setTextColor(navy[0], navy[1], navy[2]);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.text('BILLED TO', margin, y);
+
+            y += 18;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(11);
+            doc.setTextColor(30, 41, 59);
+            doc.text(rec.name || '-', margin, y);
+            y += 16;
+            doc.setFontSize(10);
+            doc.setTextColor(gray[0], gray[1], gray[2]);
+            doc.text('Email: ' + (rec.email || '-'), margin, y);
+            y += 14;
+            doc.text('Phone: ' + (rec.phone || '-'), margin, y);
+            if (rec.city || rec.state) {
+                y += 14;
+                doc.text('Location: ' + [rec.city, rec.state].filter(Boolean).join(', '), margin, y);
+            }
+            if (rec.member) {
+                y += 14;
+                doc.text('OSI Member No: ' + rec.member, margin, y);
+            }
+
+            // --- Line items table ---
+            y += 36;
+            doc.setFillColor(248, 250, 252);
+            doc.rect(margin, y, pageWidth - margin * 2, 26, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(navy[0], navy[1], navy[2]);
+            doc.text('DESCRIPTION', margin + 10, y + 17);
+            doc.text('AMOUNT', pageWidth - margin - 10, y + 17, { align: 'right' });
+
+            y += 26;
+            const rowHeight = 30;
+            doc.setDrawColor(226, 232, 240);
+            doc.line(margin, y, pageWidth - margin, y);
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(30, 41, 59);
+            doc.text(rec.category || 'Conference Registration', margin + 10, y + 20, { maxWidth: pageWidth - margin * 2 - 140 });
+            doc.text(formatCurrency(rec.amount), pageWidth - margin - 10, y + 20, { align: 'right' });
+
+            y += rowHeight;
+            doc.line(margin, y, pageWidth - margin, y);
+
+            // --- Total ---
+            y += 30;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(12);
+            doc.setTextColor(navy[0], navy[1], navy[2]);
+            doc.text('Total Paid', margin + 10, y);
+            doc.text(formatCurrency(rec.amount), pageWidth - margin - 10, y, { align: 'right' });
+
+            y += 10;
+            doc.setDrawColor(navy[0], navy[1], navy[2]);
+            doc.setLineWidth(1.2);
+            doc.line(margin, y, pageWidth - margin, y);
+
+            // --- Payment info ---
+            y += 28;
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(gray[0], gray[1], gray[2]);
+            doc.text('Payment ID: ' + (rec.paymentId || 'N/A'), margin, y);
+            y += 14;
+            doc.text('Payment Status: Paid', margin, y);
+
+            // --- Footer ---
+            const footerY = doc.internal.pageSize.getHeight() - 90;
+            doc.setDrawColor(226, 232, 240);
+            doc.line(margin, footerY, pageWidth - margin, footerY);
+
+            doc.setFontSize(9);
+            doc.setTextColor(gray[0], gray[1], gray[2]);
+            doc.text('Osseointegration Society of India (OSI) — OSICON Kolkata 2026', margin, footerY + 20);
+            doc.text('Venue: The Westin, Rajarhat, Kolkata 700135', margin, footerY + 34);
+            doc.text('Email: registration@osiconkolkata.com  |  Website: www.osiconkolkata2026.com', margin, footerY + 48);
+            doc.text('This is a system-generated receipt and does not require a signature.', margin, footerY + 64);
+
+            doc.save('Invoice_' + (rec.serialNumber || 'OSICON2026') + '.pdf');
+        }
+    </script>
+</body>
+
+</html>
