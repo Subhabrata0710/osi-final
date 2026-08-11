@@ -379,6 +379,19 @@
                         <span class="cat-price">₹2,000</span>
                     </label>
 
+                    <div style="width: 100%; display: flex; flex-direction: column;">
+                        <label class="category-card">
+                            <input type="radio" id="cat-workshop-only" name="cat" data-price="0">
+                            <span class="cat-label">Already Registered?</span>
+                            <span class="cat-price">₹0</span>
+                        </label>
+                        <div id="regIdField" style="display: none; margin-top: 10px; margin-bottom: 10px;">
+                            <input type="text" id="registrationId"
+                                placeholder="Enter Regs ID (sent to mail) or contact 9830367423"
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 13px; background: #fff;">
+                        </div>
+                    </div>
+
 
                     <label class="category-card">
                         <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
@@ -487,6 +500,7 @@
 
         // Dynamic Pricing Logic
         const categoryPricing = {
+            "cat-workshop-only": [0, 0, 0, 0, 0],
             "1day": [2000, 2000, 2000, 2000, 2000],
             "cat-special": [11000, 11000, 11000, 11000, 11000],
             "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
@@ -599,7 +613,18 @@
         }
 
         form.addEventListener('change', (e) => {
-            if (e.target.name === 'cat' || e.target.classList.contains('workshop-checkbox')) {
+            if (e.target.name === 'cat') {
+                const regIdField = document.getElementById('regIdField');
+                const regIdInput = document.getElementById('registrationId');
+                if (document.getElementById('cat-workshop-only').checked) {
+                    regIdField.style.display = 'block';
+                    regIdInput.required = true;
+                } else {
+                    regIdField.style.display = 'none';
+                    regIdInput.required = false;
+                }
+                updateTotal();
+            } else if (e.target.classList.contains('workshop-checkbox')) {
                 updateTotal();
             }
         });
@@ -647,6 +672,11 @@
             }
 
             let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
+            if (selectedRadio.id === 'cat-workshop-only') {
+                const regId = document.getElementById('registrationId').value.trim();
+                categoryLabel += " (Reg ID: " + regId + ")";
+            }
+
             if (voucherCode === 'IMPACT_OSI') {
                 categoryLabel += " (Voucher: IMPACT_OSI)";
             }
@@ -663,6 +693,11 @@
             if (workshopHandsOn && workshopHandsOn.checked) {
                 amountInInr += parseInt(workshopHandsOn.getAttribute('data-price'));
                 categoryLabel += " + " + workshopHandsOn.value;
+            }
+
+            if (amountInInr <= 0) {
+                alert("Please select at least one valid workshop or registration category.");
+                return;
             }
 
             const options = {
