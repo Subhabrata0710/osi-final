@@ -295,7 +295,12 @@
         </div>
 
         <form id="mainForm">
-            <div class="section-header">Delegate Information</div>
+            <div class="section-header" style="justify-content: space-between;">
+                <span>Delegate Information</span>
+                <button type="button" id="fetchDetailsBtn"
+                    style="font-size: 12px; padding: 6px 12px; border-radius: 6px; background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary); cursor: pointer; font-weight: 600;">Already
+                    Registered? Fetch Details</button>
+            </div>
             <div class="input-group">
                 <label>Full Name *</label>
                 <input type="text" id="userName" placeholder="Enter your full name" required>
@@ -362,6 +367,28 @@
                 <span id="validTillText" style="font-size: 0.75em; font-weight: bold;">(* Prices are valid till 15th
                     April 2026)</span>
             </div>
+
+            <div class="section-header">
+                Select Workshop (Optional)
+            </div>
+            <div class="scroll-wrapper">
+                <div class="category-container" style="max-height: max-content;">
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)"
+                            data-price="18000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)</span>
+                        <span class="cat-price">₹18,000</span>
+                    </label>
+                </div>
+            </div>
+
             <div class="scroll-wrapper">
                 <!--<div id="scrollBadge" class="scroll-badge">
                 <span>See more options</span> <span>↓</span>
@@ -457,26 +484,6 @@
                 </div>
             </div>
 
-            <div class="section-header">
-                Select Workshop (Optional)
-            </div>
-            <div class="scroll-wrapper">
-                <div class="category-container" style="max-height: max-content;">
-                    <label class="category-card">
-                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
-                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
-                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)</span>
-                        <span class="cat-price">₹5,000</span>
-                    </label>
-                    <label class="category-card">
-                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox"
-                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)"
-                            data-price="18000">
-                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)</span>
-                        <span class="cat-price">₹18,000</span>
-                    </label>
-                </div>
-            </div>
 
             <div class="summary-bar">
                 <div>
@@ -618,7 +625,7 @@
                 const regIdInput = document.getElementById('registrationId');
                 if (document.getElementById('cat-workshop-only').checked) {
                     regIdField.style.display = 'block';
-                    regIdInput.required = true;
+                    regIdInput.required = false; // Registration ID is no longer mandatory since we fetch it
                 } else {
                     regIdField.style.display = 'none';
                     regIdInput.required = false;
@@ -626,6 +633,55 @@
                 updateTotal();
             } else if (e.target.classList.contains('workshop-checkbox')) {
                 updateTotal();
+            }
+        });
+
+        // Fetch Details Logic
+        document.getElementById('fetchDetailsBtn').addEventListener('click', async () => {
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+
+            if (!email || !phone) {
+                alert('Please enter both Email and Mobile Number to fetch your details.');
+                return;
+            }
+
+            const btn = document.getElementById('fetchDetailsBtn');
+            const originalText = btn.innerText;
+            btn.innerText = 'Fetching...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=lookup&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    document.getElementById('userName').value = result.data.name || '';
+                    document.getElementById('userState').value = result.data.state || '';
+                    document.getElementById('userCity').value = result.data.city || '';
+
+                    if (result.data.member && result.data.member !== 'N/A') {
+                        document.getElementById('userType').value = 'osi_member';
+                        toggleMembershipField();
+                        document.getElementById('usermember').value = result.data.member;
+                    }
+
+                    // Auto-select "Already Registered" and fill Reg ID
+                    document.getElementById('cat-workshop-only').checked = true;
+                    document.getElementById('regIdField').style.display = 'block';
+                    document.getElementById('registrationId').value = result.data.serialNumber || '';
+
+                    updateTotal();
+                    alert('Details fetched successfully! You can now select your workshops.');
+                } else {
+                    alert(result.message || 'No registration found for this Email and Phone.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('An error occurred while fetching details. Please try again.');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         });
 
