@@ -216,7 +216,7 @@ function registerUser(data) {
           count++;
         }
       }
-      if (count >= 30) {
+      if (count >= 20) {
         return { success: false, message: 'Sorry, the Osseodensification course is sold out (Max 30 delegates reached).' };
       }
     }
