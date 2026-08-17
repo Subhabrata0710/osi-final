@@ -370,6 +370,12 @@
             <div class="scroll-wrapper">
                 <div class="category-container" style="max-height: max-content;">
                     <label class="category-card">
+                        <input type="checkbox" id="workshop-osseo" class="workshop-checkbox"
+                            value="Course Topic: Osseodensification" data-price="20000">
+                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification</span>
+                        <span class="cat-price">₹20,000</span>
+                    </label>
+                    <label class="category-card">
                         <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
                             value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
                         <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)</span>
@@ -580,7 +586,24 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNFcQjaP8B-uarFt3jxpyV2ylA4Smn1rTb-GDrrmI1ZG16kHZ3vRHQdhs-Ile3Zj1J/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLR1iCHemp7nvXWge66unTDM0u0UzlpqENsfGKvys3Brq5wFUnNfk3HHK-XC7NM1w/exec';
+
+        // Check Osseodensification Capacity
+        fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.count >= 30) {
+                    const osseoInput = document.getElementById('workshop-osseo');
+                    if (osseoInput) {
+                        osseoInput.disabled = true;
+                        osseoInput.parentElement.style.opacity = '0.5';
+                        osseoInput.parentElement.style.pointerEvents = 'none';
+                        const label = document.getElementById('osseo-label');
+                        if (label) label.innerText = 'Course Topic: Osseodensification (SOLD OUT)';
+                    }
+                }
+            })
+            .catch(err => console.error('Error fetching capacity', err));
 
         // 1. Total Price Calculation Logic
         function updateTotal() {
@@ -598,8 +621,12 @@
                 }
             }
 
+            const workshopOsseo = document.getElementById('workshop-osseo');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
+            if (workshopOsseo && workshopOsseo.checked) {
+                amount += parseInt(workshopOsseo.getAttribute('data-price'));
+            }
             if (workshopLecture && workshopLecture.checked) {
                 amount += parseInt(workshopLecture.getAttribute('data-price'));
             }
@@ -742,8 +769,13 @@
                 categoryLabel += " (Voucher: SPECIAL_OSI)";
             }
 
+            const workshopOsseo = document.getElementById('workshop-osseo');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
+            if (workshopOsseo && workshopOsseo.checked) {
+                amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
+                categoryLabel += " + " + workshopOsseo.value;
+            }
             if (workshopLecture && workshopLecture.checked) {
                 amountInInr += parseInt(workshopLecture.getAttribute('data-price'));
                 categoryLabel += " + " + workshopLecture.value;

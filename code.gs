@@ -53,6 +53,11 @@ function doGet(e) {
       return handleInvoiceLookup(e.parameter);
     }
 
+    // --- Capacity Check ---
+    if (action === 'getCapacity') {
+      return handleCapacityCheck();
+    }
+
     return ContentService.createTextOutput(JSON.stringify({
       success: true, 
       message: 'OSICON Kolkata 2026 Registration API is up and running.'
@@ -61,6 +66,25 @@ function doGet(e) {
     console.log('doGet Error: ' + error.toString());
     return jsonOut({ success: false, message: 'Server Error: ' + error.toString() });
   }
+}
+
+// ============================================================
+// CAPACITY LOOKUP
+// ============================================================
+function handleCapacityCheck() {
+  var sheet = getSheet('Registrations');
+  var allData = sheet.getDataRange().getValues();
+  var count = 0;
+  for (var i = 1; i < allData.length; i++) {
+    var rowCategory = (allData[i][6] || '').toString();
+    if (rowCategory.indexOf('Osseodensification') !== -1) {
+      count++;
+    }
+  }
+  return jsonOut({
+    success: true,
+    count: count
+  });
 }
 
 // ============================================================
@@ -180,6 +204,20 @@ function registerUser(data) {
     for (var i = 1; i < allData.length; i++) {
       if (allData[i][3] && allData[i][3].toString().toLowerCase().trim() === data.email.toLowerCase().trim()) {
         return { success: false, message: 'This email is already registered!' };
+      }
+    }
+
+    // Capacity Check for Osseodensification
+    if (data.category && data.category.indexOf('Osseodensification') !== -1) {
+      var count = 0;
+      for (var j = 1; j < allData.length; j++) {
+        var rowCat = (allData[j][6] || '').toString();
+        if (rowCat.indexOf('Osseodensification') !== -1) {
+          count++;
+        }
+      }
+      if (count >= 30) {
+        return { success: false, message: 'Sorry, the Osseodensification course is sold out (Max 30 delegates reached).' };
       }
     }
 
