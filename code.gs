@@ -74,16 +74,27 @@ function doGet(e) {
 function handleCapacityCheck() {
   var sheet = getSheet('Registrations');
   var allData = sheet.getDataRange().getValues();
-  var count = 0;
+  var countOsseo = 0;
+  var countLecture = 0;
+  var countHandsOn = 0;
   for (var i = 1; i < allData.length; i++) {
     var rowCategory = (allData[i][6] || '').toString();
     if (rowCategory.indexOf('Osseodensification') !== -1) {
-      count++;
+      countOsseo++;
+    }
+    if (rowCategory.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)') !== -1) {
+      countLecture++;
+    }
+    if (rowCategory.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)') !== -1) {
+      countHandsOn++;
     }
   }
   return jsonOut({
     success: true,
-    count: count
+    count: countOsseo,
+    countOsseo: countOsseo,
+    countLecture: countLecture,
+    countHandsOn: countHandsOn
   });
 }
 
@@ -218,6 +229,34 @@ function registerUser(data) {
       }
       if (count >= 20) {
         return { success: false, message: 'Sorry, the Osseodensification course is sold out (Max 30 delegates reached).' };
+      }
+    }
+
+    // Capacity Check for Reaching Unreachables (Lecture)
+    if (data.category && data.category.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)') !== -1) {
+      var countLec = 0;
+      for (var j = 1; j < allData.length; j++) {
+        var rowCat = (allData[j][6] || '').toString();
+        if (rowCat.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)') !== -1) {
+          countLec++;
+        }
+      }
+      if (countLec >= 30) {
+        return { success: false, message: 'Sorry, the Reaching Unreachables Lecture is sold out (Max 30 delegates reached).' };
+      }
+    }
+
+    // Capacity Check for Reaching Unreachables (Hands on)
+    if (data.category && data.category.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)') !== -1) {
+      var countHO = 0;
+      for (var j = 1; j < allData.length; j++) {
+        var rowCat = (allData[j][6] || '').toString();
+        if (rowCat.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)') !== -1) {
+          countHO++;
+        }
+      }
+      if (countHO >= 30) {
+        return { success: false, message: 'Sorry, the Reaching Unreachables Hands-on is sold out (Max 30 delegates reached).' };
       }
     }
 

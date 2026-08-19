@@ -394,14 +394,18 @@
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-lecture-henry" class="workshop-checkbox"
-                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)" data-price="5000">
-                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture) [DR. HENRY DIEDERICH]</span>
+                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)"
+                            data-price="5000">
+                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery
+                            (Lecture) [DR. HENRY DIEDERICH]</span>
                         <span class="cat-price">₹5,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-hands-on-henry" class="workshop-checkbox"
-                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)" data-price="10000">
-                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on) [DR. HENRY DIEDERICH]</span>
+                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)"
+                            data-price="10000">
+                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery
+                            (Lecture with Hands on) [DR. HENRY DIEDERICH]</span>
                         <span class="cat-price">₹10,000</span>
                     </label>
                 </div>
@@ -602,20 +606,42 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwg3zmKHYxNx74i6fAfPEKfaROeb50Rlv-VHxG550soP9TAPo8cGm-ISzxug6EhPrQU/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_iBlR7yRANYPlQ-poyLlgjFzvBdjSPGgHTd6DCjjWoxD9rG7TC9T0GtWmHFH_0e2o/exec';
 
-        // Check Osseodensification Capacity
+        // Check Osseodensification and New Workshops Capacity
         fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
             .then(res => res.json())
             .then(data => {
-                if (data.success && data.count >= 30) {
-                    const osseoInput = document.getElementById('workshop-osseo');
-                    if (osseoInput) {
-                        osseoInput.disabled = true;
-                        osseoInput.parentElement.style.opacity = '0.5';
-                        osseoInput.parentElement.style.pointerEvents = 'none';
-                        const label = document.getElementById('osseo-label');
-                        if (label) label.innerText = 'Course Topic: Osseodensification (SOLD OUT)';
+                if (data.success) {
+                    if (data.countOsseo >= 30) {
+                        const osseoInput = document.getElementById('workshop-osseo');
+                        if (osseoInput) {
+                            osseoInput.disabled = true;
+                            osseoInput.parentElement.style.opacity = '0.5';
+                            osseoInput.parentElement.style.pointerEvents = 'none';
+                            const label = document.getElementById('osseo-label');
+                            if (label) label.innerText = 'Course Topic: Osseodensification (SOLD OUT)';
+                        }
+                    }
+                    if (data.countLecture >= 30) {
+                        const lectureInput = document.getElementById('workshop-lecture-henry');
+                        if (lectureInput) {
+                            lectureInput.disabled = true;
+                            lectureInput.parentElement.style.opacity = '0.5';
+                            lectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = lectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture) [DR. HENRY DIEDERICH] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countHandsOn >= 30) {
+                        const handsOnInput = document.getElementById('workshop-hands-on-henry');
+                        if (handsOnInput) {
+                            handsOnInput.disabled = true;
+                            handsOnInput.parentElement.style.opacity = '0.5';
+                            handsOnInput.parentElement.style.pointerEvents = 'none';
+                            const label = handsOnInput.nextElementSibling;
+                            if (label) label.innerText = 'Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on) [DR. HENRY DIEDERICH] (SOLD OUT)';
+                        }
                     }
                 }
             })
@@ -640,6 +666,8 @@
             const workshopOsseo = document.getElementById('workshop-osseo');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
+            const workshopLectureHenry = document.getElementById('workshop-lecture-henry');
+            const workshopHandsOnHenry = document.getElementById('workshop-hands-on-henry');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
             }
@@ -648,6 +676,12 @@
             }
             if (workshopHandsOn && workshopHandsOn.checked) {
                 amount += parseInt(workshopHandsOn.getAttribute('data-price'));
+            }
+            if (workshopLectureHenry && workshopLectureHenry.checked) {
+                amount += parseInt(workshopLectureHenry.getAttribute('data-price'));
+            }
+            if (workshopHandsOnHenry && workshopHandsOnHenry.checked) {
+                amount += parseInt(workshopHandsOnHenry.getAttribute('data-price'));
             }
 
             if (amount > 0) {
