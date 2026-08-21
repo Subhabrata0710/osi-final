@@ -1,146 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3RD OSI CONFERENCE KOLKATA 2026 | Program</title>
-    <meta name="description" content="India's Premier Conference on Osseointegration &amp; Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
+    <meta name="description"
+        content="India's Premier Conference on Osseointegration &amp; Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---- Program page additions (uses existing site color variables) ---- */
+        .session-item {
+            border-left: 4px solid var(--secondary);
+        }
+
+        .session-item.type-break,
+        .session-item.type-ceremony {
+            border-left-color: var(--gray-200);
+        }
+
+        .session-speaker {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-top: -2px;
+            margin-bottom: 8px;
+        }
+
+        .session-type.panel {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .session-type.industrial {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .session-type.live {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .session-divider {
+            margin: 32px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--secondary-light);
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+        }
+
+        .session-divider:first-of-type {
+            margin-top: 8px;
+        }
+
+        .session-divider small {
+            display: block;
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--secondary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .day-contact {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 13px;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        .day-contact strong {
+            color: var(--primary);
+        }
+
+        .placeholder-note {
+            text-align: center;
+            padding: 60px 24px;
+            color: var(--gray-600);
+            background: var(--gray-50);
+            border: 1px dashed var(--gray-200);
+            border-radius: var(--radius);
+        }
+
+        .placeholder-note h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body data-page="program">
     <div id="marquee-placeholder"></div>
     <div id="nav-placeholder"></div>
 
     <main class="page-section active">
 
-<div class="page-banner">
-<span>Schedule</span>
-<h1>Scientific Program</h1>
-</div>
-<div class="content-section">
-<div class="container">
-<div class="program-tabs">
-<button class="program-tab active" onclick="showDay(1)">Day 1</button>
-<button class="program-tab" onclick="showDay(2)">Day 2</button>
-<button class="program-tab" onclick="showDay(3)">Day 3</button>
-</div>
-<div class="program-day active" id="day-1">
-<div class="program-header">
-<div>
-<h3>27th November 2026</h3>
-<p>Foundations &amp; Fundamentals</p>
-</div>
-<span class="badge">8 Sessions</span>
-</div>
-<div class="session-item"><span class="session-time">08:00 - 09:00</span>
-<div class="session-content"><span class="session-type break">BREAK</span>
-<h4>Registration &amp; Welcome Coffee</h4>
-<div class="session-meta"><span>📍 Main Lobby</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">09:00 - 09:30</span>
-<div class="session-content"><span class="session-type ceremony">CEREMONY</span>
-<h4>Inaugural Ceremony</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 Chief Guest</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">09:30 - 10:30</span>
-<div class="session-content"><span class="session-type keynote">KEYNOTE</span>
-<h4>The Evolution of Osseointegration</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 International Expert</span>
-</div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">11:00 - 13:00</span>
-<div class="session-content"><span class="session-type session">SESSION</span>
-<h4>Scientific Session I: Implant Surface Technology</h4>
-<div class="session-meta"><span>📍 Hall A</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">14:00 - 16:00</span>
-<div class="session-content"><span class="session-type workshop">WORKSHOP</span>
-<h4>Hands-on: Basic Implant Placement</h4>
-<div class="session-meta"><span>📍 Workshop Room 1</span><span>⚠️ Limited Seats</span></div>
-</div>
-</div>
-</div>
-<div class="program-day" id="day-2">
-<div class="program-header">
-<div>
-<h3>28th November 2026</h3>
-<p>Advanced Techniques &amp; Innovation</p>
-</div>
-<span class="badge">8 Sessions</span>
-</div>
-<div class="session-item"><span class="session-time">09:00 - 10:30</span>
-<div class="session-content"><span class="session-type session">SESSION</span>
-<h4>Full Arch Rehabilitation</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">11:00 - 13:00</span>
-<div class="session-content"><span class="session-type keynote">LIVE</span>
-<h4>Live Surgery Demonstration</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">14:00 - 16:00</span>
-<div class="session-content"><span class="session-type workshop">WORKSHOP</span>
-<h4>Guided Implant Surgery</h4>
-<div class="session-meta"><span>📍 Workshop Room 2</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">19:30</span>
-<div class="session-content"><span class="session-type ceremony">SOCIAL</span>
-<h4>Gala Dinner &amp; Cultural Program</h4>
-<div class="session-meta"><span>📍 Poolside Lawn</span></div>
-</div>
-</div>
-</div>
-<div class="program-day" id="day-3">
-<div class="program-header">
-<div>
-<h3>29th November 2026</h3>
-<p>Clinical Excellence &amp; Future Directions</p>
-</div>
-<span class="badge">8 Sessions</span>
-</div>
-<div class="session-item"><span class="session-time">09:00 - 10:30</span>
-<div class="session-content"><span class="session-type session">SESSION</span>
-<h4>Soft Tissue Management</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">11:00 - 12:30</span>
-<div class="session-content"><span class="session-type session">PRESENTATIONS</span>
-<h4>Free Paper Presentations</h4>
-<div class="session-meta"><span>📍 Halls A &amp; B</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">13:30 - 15:00</span>
-<div class="session-content"><span class="session-type session">COMPETITION</span>
-<h4>Case Presentation Competition</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">15:00 - 16:00</span>
-<div class="session-content"><span class="session-type keynote">KEYNOTE</span>
-<h4>Future of Digital Implantology</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-<div class="session-item"><span class="session-time">16:00 - 17:00</span>
-<div class="session-content"><span class="session-type ceremony">CEREMONY</span>
-<h4>Valedictory &amp; Prize Distribution</h4>
-<div class="session-meta"><span>📍 Grand Ballroom</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <div class="page-banner">
+            <span>Schedule</span>
+            <h1>Scientific Program</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="program-tabs">
+                    <button class="program-tab active" onclick="showDay(1)">Day 1</button>
+                    <button class="program-tab" onclick="showDay(2)">Day 2</button>
+                    <button class="program-tab" onclick="showDay(3)">Day 3</button>
+                </div>
+
+                <!-- ================= DAY 1 ================= -->
+                <div class="program-day active" id="day-1">
+                    <div class="program-header">
+                        <div>
+                            <h3>27th November 2026</h3>
+                            <p>Foundations &amp; Fundamentals</p>
+                        </div>
+                        <span class="badge">TBA</span>
+                    </div>
+                    <div class="placeholder-note">
+                        <h3>Day 1 Schedule Coming Soon</h3>
+                        <p>The detailed scientific program for Day 1 is being finalized and will be published here
+                            shortly. Please check back for updates.</p>
+                    </div>
+                </div>
+
+                <!-- ================= DAY 2 ================= -->
+                <div class="program-day" id="day-2">
+                    <div class="program-header">
+                        <div>
+                            <h3>28th November 2026</h3>
+                            <p>Scientific Extravaganza</p>
+                        </div>
+                        <span class="badge">27 Sessions</span>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">07:30 onwards</span>
+                        <div class="session-content"><span class="session-type break">REGISTRATION</span>
+                            <h4>Registration</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">08:00 - 09:00</span>
+                        <div class="session-content"><span class="session-type industrial">INDUSTRIAL SESSION</span>
+                            <h4>Industrial Session</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 1<small>Genesis of Implantology &amp; Peri-Implant
+                            Track</small></div>
+
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 1</span>
+                            <h4>Understanding Osseointegration: Then Vs Now</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span><span>🏷️ Genesis of
+                                    Implantology</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 4</span>
+                            <h4>Does the design, shape and surface matter in clinical success?</h4>
+                            <p class="session-speaker">👤 Dr Bruno M</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">09:30 - 10:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 2</span>
+                            <h4>Does Drilling Matter?</h4>
+                            <p class="session-speaker">👤 Dr Salah Huwais (VERSAH)</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:30 - 10:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 5/6</span>
+                            <h4>Are we extracting too many teeth in lieu of implants? (FOR)</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">10:00 - 10:45</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 3</span>
+                            <h4>The Umbrella Concept</h4>
+                            <p class="session-speaker">👤 Dr Alberto Miselli (Blue M)</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">10:00 - 10:45</span>
+                        <div class="session-content"><span class="session-type session">LECTURE</span>
+                            <h4>Are we extracting too many teeth in lieu of implants? (AGAINST)</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">10:45 - 11:00</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item type-break"><span class="session-time">10:45 - 11:00</span>
+                        <div class="session-content"><span class="session-type break">TEA BREAK</span>
+                            <h4>Tea Break</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 2<small>Peri-Implant Engineering &amp; Immediate vs Delayed —
+                            The Dilemma</small></div>
+
+                    <div class="session-item"><span class="session-time">11:00 - 12:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 7</span>
+                            <h4>Peri-Implant Engineering</h4>
+                            <p class="session-speaker">👤 Dr Frank Schwartz (Geistlich)</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:00 - 11:40</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 10</span>
+                            <h4>Clinical Strategies for Immediate Implant Therapy: Managing Hard and Soft Tissue
+                                Stability</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">12:00 - 12:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 8</span>
+                            <h4>How Can We Truly Engineer Peri-Implant Tissues?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:40 - 12:20</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 11</span>
+                            <h4>Immediate Loading Implant in Full Arch Rehabilitation</h4>
+                            <p class="session-speaker">👤 Dr J Marquis (SIN)</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">12:30 - 13:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 9</span>
+                            <h4>Soft Tissue Grafting Around Implants: Necessity or Over-Treatment?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">12:20 - 13:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 12</span>
+                            <h4>Aesthetic and Long-Term Outcomes: Does Timing Truly Influence Success?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">13:00 - 13:15</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">13:30 - 14:30</span>
+                        <div class="session-content"><span class="session-type break">LUNCH</span>
+                            <h4>Lunch Break</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 3<small>Digital Treatment Chains &amp; Occlusion
+                            Simplified</small></div>
+
+                    <div class="session-item"><span class="session-time">14:30 - 15:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 13</span>
+                            <h4>From Single Implant to Full-Arch Rehabilitation: How Predictable Is the Digital
+                                Workflow?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">14:30 - 15:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 16</span>
+                            <h4>Occlusion Simplified</h4>
+                            <p class="session-speaker">👤 Dr Robert Kirstein</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">15:30 - 16:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 14</span>
+                            <h4>Digital Treatment Chains</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">15:30 - 16:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 17</span>
+                            <h4>Implant-Protected Occlusion: Concept, Evidence or Clinical Myth?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">16:00 - 16:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 15</span>
+                            <h4>Digital Prosthetic Workflow</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">16:00 - 16:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 18</span>
+                            <h4>Occlusion Driven Complications</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">16:30 - 17:00</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">17:30 - 18:30</span>
+                        <div class="session-content"><span class="session-type industrial">INDUSTRIAL SYMPOSIUM</span>
+                            <h4>Industrial Symposium</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">19:30 - 22:30</span>
+                        <div class="session-content"><span class="session-type ceremony">GALA</span>
+                            <h4>Gala Banquet</h4>
+                        </div>
+                    </div>
+
+                    <div class="day-contact">
+                        For further details: <strong>Dr Dipanjana Sinha</strong> (Scientific Chairperson) · 9836250905
+                        &nbsp;|&nbsp; <strong>Dr Sounak Ghosh</strong> (Scientific Co-Chairperson) · 8335958341
+                        &nbsp;|&nbsp; scientific@osiconkolkata.com
+                    </div>
+                </div>
+
+                <!-- ================= DAY 3 ================= -->
+                <div class="program-day" id="day-3">
+                    <div class="program-header">
+                        <div>
+                            <h3>29th November 2026</h3>
+                            <p>Scientific Extravaganza</p>
+                        </div>
+                        <span class="badge">26 Sessions</span>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">07:30 onwards</span>
+                        <div class="session-content"><span class="session-type break">REGISTRATION</span>
+                            <h4>Registration</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">08:00 - 09:00</span>
+                        <div class="session-content"><span class="session-type industrial">INDUSTRIAL SESSION</span>
+                            <h4>Industrial Session</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 1<small>Future Horizons in Implantology &amp; Market &amp;
+                            Practice Evolution</small></div>
+
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 19</span>
+                            <h4>AI and Robotics</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 22</span>
+                            <h4>Implant Practice Management <em>(tentative topic)</em></h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">09:30 - 10:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 20</span>
+                            <h4>Photogrammetry in Implantology</h4>
+                            <p class="session-speaker">👤 Dr George Abraham</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:30 - 10:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 23</span>
+                            <h4>Selection of Equipment: CBCT / Scanner?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">10:00 - 11:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE</span>
+                            <h4>Cement / Screw Retained? And Beyond — The Next Future</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">10:00 - 11:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 24</span>
+                            <h4>Effective Communication to Lab in Digital Era</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">10:45 - 11:00</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item type-break"><span class="session-time">10:45 - 11:00</span>
+                        <div class="session-content"><span class="session-type break">TEA BREAK</span>
+                            <h4>Tea Break</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 2<small>Regenerative Biology &amp; Tissue Engineering /
+                            Edentulous Extremes — FMR</small></div>
+
+                    <div class="session-item"><span class="session-time">11:00 - 12:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 25</span>
+                            <h4>Biomaterials — The Ideal Choice</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:00 - 12:00</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 28</span>
+                            <h4>Bone Grafting in Edentulous Arch: Is It Still Relevant?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">12:00 - 12:40</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 26</span>
+                            <h4>Soft Tissue &amp; Crestal Sinus Lift: Are We Pushing the Boundaries?</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">12:00 - 12:40</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 29</span>
+                            <h4>Conventional vs Remote Anchorage in Full Mouth Rehab</h4>
+                            <p class="session-speaker">👤 Dr Henry Diedrich</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">12:40 - 13:10</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 27</span>
+                            <h4>Complex Bone Augmentation Procedures: Khoury Technique to Autogenous Bone Ring</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">12:40 - 13:10</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 30</span>
+                            <h4>Prosthetic Complications in FMR</h4>
+                            <p class="session-speaker">👤 Dr Ongart</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">13:10 - 13:30</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-break"><span class="session-time">13:30 - 14:30</span>
+                        <div class="session-content"><span class="session-type break">LUNCH</span>
+                            <h4>Lunch Break</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-divider">Session 3<small>Implant Maintenance — The Japanese Team Method /
+                            Disasters by Masters — Crisis Management</small></div>
+
+                    <div class="session-item"><span class="session-time">14:30 - 15:15</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 31</span>
+                            <h4>Implant Maintenance — The Japanese Team Method</h4>
+                            <p class="session-speaker">👤 Dr Yoshi Naito</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">14:30 - 15:15</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 34</span>
+                            <h4>Complications in Integration</h4>
+                            <p class="session-speaker">👤 Dr Sameer Kaura</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">15:10 - 15:50</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 32</span>
+                            <h4>Implant Maintenance — The Japanese Team Method</h4>
+                            <p class="session-speaker">👤 Dr Kazuya Doi</p>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">15:10 - 15:50</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 35</span>
+                            <h4>Complications of Regeneration</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item"><span class="session-time">15:50 - 16:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 33</span>
+                            <h4>Implant Maintenance — The Japanese Team Method</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">15:50 - 16:30</span>
+                        <div class="session-content"><span class="session-type session">LECTURE 36</span>
+                            <h4>Prosthetics Complications</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">16:30 - 16:45</span>
+                        <div class="session-content"><span class="session-type panel">PANEL</span>
+                            <h4>Panel Discussion</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1 &amp; 2</span></div>
+                        </div>
+                    </div>
+
+                    <div class="session-item type-ceremony"><span class="session-time">16:45 - 17:45</span>
+                        <div class="session-content"><span class="session-type ceremony">VALEDICTORY</span>
+                            <h4>Valedictory Ceremony</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom 1</span></div>
+                        </div>
+                    </div>
+
+                    <div class="day-contact">
+                        For further details: <strong>Dr Dipanjana Sinha</strong> (Scientific Chairperson) · 9836250905
+                        &nbsp;|&nbsp; <strong>Dr Sounak Ghosh</strong> (Scientific Co-Chairperson) · 8335958341
+                        &nbsp;|&nbsp; scientific@osiconkolkata.com
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </main>
 
@@ -156,4 +570,5 @@
         }
     </script>
 </body>
+
 </html>
