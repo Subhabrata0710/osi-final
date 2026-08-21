@@ -408,6 +408,18 @@
                             (Lecture with Hands on) [DR. HENRY DIEDERICH]</span>
                         <span class="cat-price">₹10,000</span>
                     </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture-komal" class="workshop-checkbox"
+                            value="Workshop: Dr Komal Mazumdar precon workshop Lecture" data-price="2000">
+                        <span class="cat-label">Dr Komal Mazumdar precon workshop Lecture</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on-komal" class="workshop-checkbox"
+                            value="Workshop: Dr Komal Mazumdar precon workshop lecture with hands on" data-price="5000">
+                        <span class="cat-label">Dr Komal Mazumdar precon workshop lecture with hands on</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
                 </div>
             </div>
 
@@ -606,7 +618,7 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_iBlR7yRANYPlQ-poyLlgjFzvBdjSPGgHTd6DCjjWoxD9rG7TC9T0GtWmHFH_0e2o/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4AVGjwslXjqC0syMY-ZZol1asl9DyrI6qIV5didO6gp4SSAxDBUrkTkgvsST2VMPH/exec';
 
         // Check Osseodensification and New Workshops Capacity
         fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
@@ -643,6 +655,26 @@
                             if (label) label.innerText = 'Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on) [DR. HENRY DIEDERICH] (SOLD OUT)';
                         }
                     }
+                    if (data.countLectureKomal >= 70) {
+                        const lectureKomalInput = document.getElementById('workshop-lecture-komal');
+                        if (lectureKomalInput) {
+                            lectureKomalInput.disabled = true;
+                            lectureKomalInput.parentElement.style.opacity = '0.5';
+                            lectureKomalInput.parentElement.style.pointerEvents = 'none';
+                            const label = lectureKomalInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop Lecture (SOLD OUT)';
+                        }
+                    }
+                    if (data.countHandsOnKomal >= 30) {
+                        const handsOnKomalInput = document.getElementById('workshop-hands-on-komal');
+                        if (handsOnKomalInput) {
+                            handsOnKomalInput.disabled = true;
+                            handsOnKomalInput.parentElement.style.opacity = '0.5';
+                            handsOnKomalInput.parentElement.style.pointerEvents = 'none';
+                            const label = handsOnKomalInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop lecture with hands on (SOLD OUT)';
+                        }
+                    }
                 }
             })
             .catch(err => console.error('Error fetching capacity', err));
@@ -668,6 +700,8 @@
             const workshopHandsOn = document.getElementById('workshop-hands-on');
             const workshopLectureHenry = document.getElementById('workshop-lecture-henry');
             const workshopHandsOnHenry = document.getElementById('workshop-hands-on-henry');
+            const workshopLectureKomal = document.getElementById('workshop-lecture-komal');
+            const workshopHandsOnKomal = document.getElementById('workshop-hands-on-komal');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
             }
@@ -682,6 +716,12 @@
             }
             if (workshopHandsOnHenry && workshopHandsOnHenry.checked) {
                 amount += parseInt(workshopHandsOnHenry.getAttribute('data-price'));
+            }
+            if (workshopLectureKomal && workshopLectureKomal.checked) {
+                amount += parseInt(workshopLectureKomal.getAttribute('data-price'));
+            }
+            if (workshopHandsOnKomal && workshopHandsOnKomal.checked) {
+                amount += parseInt(workshopHandsOnKomal.getAttribute('data-price'));
             }
 
             if (amount > 0) {

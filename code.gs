@@ -77,6 +77,8 @@ function handleCapacityCheck() {
   var countOsseo = 0;
   var countLecture = 0;
   var countHandsOn = 0;
+  var countLectureKomal = 0;
+  var countHandsOnKomal = 0;
   for (var i = 1; i < allData.length; i++) {
     var rowCategory = (allData[i][6] || '').toString();
     if (rowCategory.indexOf('Osseodensification') !== -1) {
@@ -88,13 +90,21 @@ function handleCapacityCheck() {
     if (rowCategory.indexOf('Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)') !== -1) {
       countHandsOn++;
     }
+    if (rowCategory.indexOf('Dr Komal Mazumdar precon workshop Lecture') !== -1) {
+      countLectureKomal++;
+    }
+    if (rowCategory.indexOf('Dr Komal Mazumdar precon workshop lecture with hands on') !== -1) {
+      countHandsOnKomal++;
+    }
   }
   return jsonOut({
     success: true,
     count: countOsseo,
     countOsseo: countOsseo,
     countLecture: countLecture,
-    countHandsOn: countHandsOn
+    countHandsOn: countHandsOn,
+    countLectureKomal: countLectureKomal,
+    countHandsOnKomal: countHandsOnKomal
   });
 }
 
