@@ -525,6 +525,17 @@
             </div>
 
 
+            <div id="accommodation-dates" style="display: none; margin-bottom: 20px;">
+                <div class="input-group">
+                    <label>Check-in Date *</label>
+                    <input type="date" id="checkinDate" name="checkinDate">
+                </div>
+                <div class="input-group">
+                    <label>Check-out Date *</label>
+                    <input type="date" id="checkoutDate" name="checkoutDate">
+                </div>
+            </div>
+
             <div class="summary-bar">
                 <div>
                     <div class="total-text">Total Payable Amount</div>
@@ -618,7 +629,7 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4AVGjwslXjqC0syMY-ZZol1asl9DyrI6qIV5didO6gp4SSAxDBUrkTkgvsST2VMPH/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxGzkyzKe1Ty21inopgNImqY2vJ3LrrAwjWnKquvItlGFtQI4Mf6ydBNjzDGNjkI34/exec';
 
         // Check Osseodensification and New Workshops Capacity
         fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
@@ -724,6 +735,25 @@
                 amount += parseInt(workshopHandsOnKomal.getAttribute('data-price'));
             }
 
+            const voucherCodeVal = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
+            const todayStr = new Date().toLocaleDateString('en-CA');
+            if (voucherCodeVal === 'DIS1000' && todayStr === '2026-08-24') {
+                amount = Math.max(0, amount - 1000);
+            }
+
+            const accDatesDiv = document.getElementById('accommodation-dates');
+            const checkinInput = document.getElementById('checkinDate');
+            const checkoutInput = document.getElementById('checkoutDate');
+            if (selectedRadio && selectedRadio.id.includes('westin')) {
+                if (accDatesDiv) accDatesDiv.style.display = 'block';
+                if (checkinInput) checkinInput.required = true;
+                if (checkoutInput) checkoutInput.required = true;
+            } else {
+                if (accDatesDiv) accDatesDiv.style.display = 'none';
+                if (checkinInput) checkinInput.required = false;
+                if (checkoutInput) checkoutInput.required = false;
+            }
+
             if (amount > 0) {
                 const formatted = new Intl.NumberFormat('en-IN').format(amount);
                 totalDisplay.innerText = '₹' + formatted;
@@ -736,6 +766,11 @@
             } else {
                 totalDisplay.innerText = '₹0';
             }
+        }
+
+        const voucherInput = document.getElementById('voucherCode');
+        if (voucherInput) {
+            voucherInput.addEventListener('input', updateTotal);
         }
 
         form.addEventListener('change', (e) => {
@@ -862,6 +897,8 @@
             const workshopOsseo = document.getElementById('workshop-osseo');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
+            const workshopLectureKomalEl = document.getElementById('workshop-lecture-komal');
+            const workshopHandsOnKomalEl = document.getElementById('workshop-hands-on-komal');
             if (workshopOsseo && workshopOsseo.checked) {
                 amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
                 categoryLabel += " + " + workshopOsseo.value;
@@ -874,6 +911,25 @@
                 amountInInr += parseInt(workshopHandsOn.getAttribute('data-price'));
                 categoryLabel += " + " + workshopHandsOn.value;
             }
+            if (workshopLectureKomalEl && workshopLectureKomalEl.checked) {
+                amountInInr += parseInt(workshopLectureKomalEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureKomalEl.value;
+            }
+            if (workshopHandsOnKomalEl && workshopHandsOnKomalEl.checked) {
+                amountInInr += parseInt(workshopHandsOnKomalEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOnKomalEl.value;
+            }
+
+            // Apply DIS1000 flat discount
+            const todayStr = new Date().toLocaleDateString('en-CA');
+            if (voucherCode === 'DIS1000' && todayStr === '2026-08-24') {
+                amountInInr = Math.max(0, amountInInr - 1000);
+                categoryLabel += " (Voucher: DIS1000 -₹1000)";
+            }
+
+            // Collect accommodation dates
+            const checkinDate = document.getElementById('checkinDate') ? document.getElementById('checkinDate').value : '';
+            const checkoutDate = document.getElementById('checkoutDate') ? document.getElementById('checkoutDate').value : '';
 
             if (amountInInr <= 0) {
                 alert("Please select at least one valid workshop or registration category.");
@@ -888,7 +944,7 @@
                 "description": "Registration for " + categoryLabel,
                 "handler": function (response) {
                     // This triggers ONLY after successful payment
-                    saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id, state, city);
+                    saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id, state, city, checkinDate, checkoutDate, voucherCode);
                 },
                 "prefill": {
                     "name": name,
@@ -907,9 +963,9 @@
 
 
 
-            // // Test Mode: Bypass Razorpay
+            // Test Mode: Bypass Razorpay
             // if (confirm("TEST MODE: Bypass Razorpay payment and submit directly?")) {
-            //     saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, "pay_test_" + Date.now());
+            //     saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, "pay_test_" + Date.now(), state, city, checkinDate, checkoutDate, voucherCode);
             //     return;
             // }
 
@@ -928,19 +984,20 @@
         };
 
         // 4. Send Data to Google Sheets
-        function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId, state, city) {
+        function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId, state, city, checkinDate, checkoutDate, voucherCode) {
             const formData = new URLSearchParams();
-            const voucherCode = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
 
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
             formData.append('member', member);
-            formData.append('state', state);
-            formData.append('city', city);
+            formData.append('state', state || '');
+            formData.append('city', city || '');
             formData.append('category', category);
             formData.append('amount', amount);
             formData.append('payment_id', paymentId);
+            formData.append('checkinDate', checkinDate || '');
+            formData.append('checkoutDate', checkoutDate || '');
             if (voucherCode) {
                 formData.append('voucherCode', voucherCode);
             }

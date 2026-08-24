@@ -200,7 +200,10 @@ function getSheet(name) {
         'Payment ID', 
         'QR Code URL',
         'State',
-        'City'
+        'City',
+        'Check-in Date',
+        'Check-out Date',
+        'Voucher Code'
       ]);
       sheet.setFrozenRows(1);
     }
@@ -311,7 +314,10 @@ function registerUser(data) {
       data.payment_id || '',
       savedQrUrl,
       data.state || '',
-      data.city || ''
+      data.city || '',
+      data.checkinDate || '',
+      data.checkoutDate || '',
+      data.voucherCode || ''
     ]);
 
     // Send confirmation email
