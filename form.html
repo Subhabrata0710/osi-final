@@ -715,6 +715,9 @@
                 if (voucherCode === 'SPECIAL_OSI') {
                     amount = 11000;
                 }
+                if (voucherCode === 'KOL12K') {
+                    amount = 12000;
+                }
             }
 
             const workshopOsseo = document.getElementById('workshop-osseo');
@@ -891,6 +894,9 @@
             if (voucherCode === 'SPECIAL_OSI') {
                 amountInInr = 11000;
             }
+            if (voucherCode === 'KOL12K') {
+                amountInInr = 12000;
+            }
 
             let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
             if (selectedRadio.id === 'cat-workshop-only') {
@@ -903,6 +909,9 @@
             }
             if (voucherCode === 'SPECIAL_OSI') {
                 categoryLabel += " (Voucher: SPECIAL_OSI)";
+            }
+            if (voucherCode === 'KOL12K') {
+                categoryLabel += " (Voucher: KOL12K)";
             }
 
             const workshopOsseo = document.getElementById('workshop-osseo');
