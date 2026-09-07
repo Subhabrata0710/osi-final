@@ -535,3 +535,228 @@ function sendFailureEmail(error, rawData) {
     console.log('Failure alert email also failed: ' + e.toString()); 
   }
 }
+// ============================================================
+// >>> ADD THIS TO THE END OF OSI's Code.gs <<<
+// Nothing above this line is touched. registerUser(), doPost(),
+// doGet(), sendConfirmationEmail(), sendFailureEmail(), getSheet(),
+// etc. are all left exactly as they are.
+//
+// FEATURE: Writing "send" in column P of the "Registrations" sheet
+// re-sends the confirmation email for that row, with the SAME body,
+// CC, BCC and from-alias as the normal registration email — the only
+// difference is the QR code, which now encodes ONLY the Registration
+// ID (instead of the full name/category/amount text), sent as an
+// inline + attached image. The existing QR link (column J) is still
+// shown as a clickable link in the email too, just like today.
+//
+// SETUP REQUIRED (one-time, in the Apps Script editor):
+//   1. Click the clock icon (Triggers) on the left sidebar.
+//   2. + Add Trigger
+//        Function to run:      onOsiRegistrationEdit
+//        Event source:         From spreadsheet
+//        Event type:           On edit
+//   3. Save. (This must be an INSTALLABLE trigger — a plain onEdit()
+//      simple trigger is not allowed to send email in Apps Script.)
+//   4. Optional: add "Action" as the header in P1 and "Status" in Q1
+//      of the Registrations sheet — purely cosmetic, the code doesn't
+//      require it.
+//
+// USAGE: In any registration row, type "send" in column P. After
+// ~1 minute, column Q will update to "Success ..." or "Failed: ...".
+// ============================================================
+
+function onOsiRegistrationEdit(e) {
+  if (!e || !e.range) return;
+
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== 'Registrations') return;
+
+  const col = e.range.getColumn();
+  if (col !== 16) return; // Column P = Action
+
+  const val = (e.value || '').toString().toLowerCase().trim();
+  if (val !== 'send') return;
+
+  const row = e.range.getRow();
+  if (row <= 1) return;
+
+  // Feedback while we wait, same pattern as the PEDICON script
+  sheet.getRange(row, 17).setValue('Pending (1 min delay)...'); // Column Q
+
+  const trigger = ScriptApp.newTrigger('processOsiSendAction')
+    .timeBased()
+    .after(60000)
+    .create();
+
+  PropertiesService.getScriptProperties().setProperty(
+    trigger.getUniqueId(),
+    JSON.stringify({ row: row })
+  );
+}
+
+function processOsiSendAction(e) {
+  const triggerId = e.triggerUid;
+  const props = PropertiesService.getScriptProperties();
+  const dataStr = props.getProperty(triggerId);
+
+  // Always clean up the trigger so it doesn't pile up
+  const triggers = ScriptApp.getProjectTriggers();
+  for (let i = 0; i < triggers.length; i++) {
+    if (triggers[i].getUniqueId() === triggerId) {
+      ScriptApp.deleteTrigger(triggers[i]);
+      break;
+    }
+  }
+  if (!dataStr) return;
+
+  const tData = JSON.parse(dataStr);
+  props.deleteProperty(triggerId);
+
+  const row = tData.row;
+  const sheet = getSheet('Registrations'); // reuses your existing, unmodified helper
+  if (!sheet) return;
+
+  const rowData = sheet.getRange(row, 1, 1, 15).getValues()[0];
+
+  const rowInfo = {
+    name: rowData[2],        // C
+    email: rowData[3],       // D
+    phone: rowData[4],       // E
+    member: rowData[5],      // F
+    category: rowData[6],    // G
+    amount: rowData[7],      // H
+    payment_id: rowData[8],  // I
+    state: rowData[10],      // K
+    city: rowData[11]        // L
+  };
+  const serialNumber = rowData[1]; // B
+  const existingQrUrl = rowData[9]; // J - existing QR Code URL/link
+
+  try {
+    sendLinkQrConfirmationEmail(rowInfo, serialNumber, existingQrUrl);
+    sheet.getRange(row, 17).setValue('Success ' + new Date().toISOString());
+  } catch (err) {
+    sheet.getRange(row, 17).setValue('Failed: ' + err.toString() + ' ' + new Date().toISOString());
+  }
+}
+
+// ============================================================
+// SAME body / CC / BCC / from-alias as sendConfirmationEmail().
+// Only the QR is different: it encodes ONLY the Registration ID.
+// ============================================================
+function sendLinkQrConfirmationEmail(data, serialNumber, existingQrUrl) {
+  var subject = 'Registration Confirmation — OSICON Kolkata 2026 [' + serialNumber + ']';
+
+  // QR encodes ONLY the Reg ID this time
+  var qrApiUrl = 'https://quickchart.io/qr?text=' + encodeURIComponent(serialNumber) + '&margin=2&size=300';
+  var inlineBlob = null, attachBlob = null, hasQr = false;
+
+  try {
+    var response = UrlFetchApp.fetch(qrApiUrl);
+    var qrBlob = response.getBlob().getAs(MimeType.PNG).setName('QR_' + serialNumber + '.png');
+    inlineBlob = qrBlob.copyBlob().setName('qrCode.png');
+    attachBlob = qrBlob.copyBlob().setName('OSICON_QR_' + serialNumber + '.png');
+    hasQr = true;
+  } catch (qrErr) {
+    console.log('Link-based QR generation failed, falling back to link only: ' + qrErr.toString());
+  }
+
+  var plainBody =
+    'Dear ' + data.name + ',\n\n' +
+    'Thank you for registering for the 3rd Annual Conference of the Osseointegration Society of India (OSICON Kolkata 2026)!\n\n' +
+    'Your registration has been confirmed. Details:\n' +
+    '────────────────────────────────────────────────\n' +
+    'Registration ID : ' + serialNumber + '\n' +
+    'Category        : ' + (data.category || '') + '\n' +
+    'OSI Member No   : ' + (data.member || 'N/A') + '\n' +
+    'State           : ' + (data.state || 'N/A') + '\n' +
+    'City            : ' + (data.city || 'N/A') + '\n' +
+    'Amount Paid     : ₹' + data.amount + '\n' +
+    'Payment ID      : ' + (data.payment_id || 'N/A') + '\n' +
+    '────────────────────────────────────────────────\n\n' +
+    (existingQrUrl ? 'QR Code URL: ' + existingQrUrl + '\n\n' : '') +
+    (hasQr ? 'Please present the attached QR code at the registration desk for entry.\n\n' : '') +
+    'Event details:\n' +
+    'Dates: 27th - 29th November 2026\n' +
+    'Venue: Kolkata\n' +
+    'Website: www.osiconkolkata2026.com\n\n' +
+    'We look forward to welcoming you to the cultural capital of India!\n\n' +
+    'Best regards,\n' +
+    'Organizing Committee\n' +
+    'OSICON Kolkata 2026\n' +
+    'Email: registration@osiconkolkata.com';
+
+  var htmlBody =
+    '<div style="font-family: \'Inter\', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1a202c;">' +
+      '<div style="background: linear-gradient(135deg, #002366 0%, #0c4a6e 100%); padding: 30px; border-radius: 8px 8px 0 0; text-align: center; color: #ffffff;">' +
+        '<h2 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">OSICON Kolkata 2026</h2>' +
+        '<p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">3rd Annual Conference of Osseointegration Society of India</p>' +
+      '</div>' +
+      '<div style="padding: 24px 10px;">' +
+        '<p style="font-size: 16px; line-height: 1.6; margin-top: 0;">Dear <strong>' + data.name + '</strong>,</p>' +
+        '<p style="font-size: 15px; line-height: 1.6;">Thank you for registering for the prestigious <strong>OSICON Kolkata 2026</strong>. We are thrilled to confirm your registration for this highlight annual event!</p>' +
+        '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 24px 0;">' +
+          '<h3 style="margin-top: 0; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #cbd5e1; padding-bottom: 6px; color: #002366;">Registration Details</h3>' +
+          '<table style="width: 100%; font-size: 14px; border-collapse: collapse;">' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; width: 140px; color: #475569;">Registration ID</td><td style="padding: 6px 0; font-weight: 700; color: #0f172a;">' + serialNumber + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Category</td><td style="padding: 6px 0; color: #0f172a;">' + (data.category || '') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">OSI Member No</td><td style="padding: 6px 0; color: #0f172a;">' + (data.member || 'N/A') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">State</td><td style="padding: 6px 0; color: #0f172a;">' + (data.state || 'N/A') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">City</td><td style="padding: 6px 0; color: #0f172a;">' + (data.city || 'N/A') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Amount Paid</td><td style="padding: 6px 0; font-weight: 700; color: #002366;">₹' + new Intl.NumberFormat('en-IN').format(data.amount) + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Payment ID</td><td style="padding: 6px 0; font-family: monospace; color: #0f172a;">' + (data.payment_id || 'N/A') + '</td></tr>' +
+          '</table>' +
+        '</div>';
+
+  if (hasQr) {
+    htmlBody +=
+        '<div style="text-align: center; margin: 30px 0; padding: 20px; border: 1px dashed #cbd5e1; border-radius: 8px; background-color: #fafafa;">' +
+          '<p style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600; color: #475569;">Your Event Entrance QR Code</p>' +
+          '<img src="cid:qrCode" alt="Event QR Code" style="width: 180px; height: 180px; border: 1px solid #e2e8f0; display: inline-block;" />' +
+          '<p style="margin: 10px 0 0 0; font-size: 12px; color: #64748b;">Please present this code at the registration desk for verification.</p>' +
+        '</div>';
+  }
+
+  htmlBody +=
+        '<div style="background-color: #f1f5f9; border-radius: 8px; padding: 15px; margin: 24px 0; font-size: 14px; line-height: 1.5;">' +
+          '<strong>📅 Conference Dates:</strong> 27th - 29th November 2026<br>' +
+          '<strong>📍 Venue Location:</strong> Westin Kolkata, India<br>' +
+          '<strong>🌐 Website:</strong> <a href="https://www.osiconkolkata2026.com" style="color: #002366; text-decoration: none; font-weight: 600;">www.osiconkolkata2026.com</a>' +
+        '</div>' +
+        '<p style="font-size: 14px; line-height: 1.6; margin-bottom: 0;">If you have any questions or require additional assistance, feel free to reply to this email or reach us at <a href="mailto:registration@osiconkolkata.com" style="color: #002366;">registration@osiconkolkata.com</a>.</p>' +
+      '</div>' +
+      '<div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; color: #64748b; font-size: 13px; line-height: 1.5;">' +
+        '<p style="margin: 0; font-weight: 600; color: #475569;">Organizing Committee — OSICON Kolkata 2026</p>' +
+        '<p style="margin: 4px 0 0 0;">Osseointegration Society of India</p>' +
+      '</div>' +
+    '</div>';
+
+  var emailOptions = {
+    to: data.email,
+    name: EMAIL_FROM_NAME,
+    subject: subject,
+    body: plainBody,
+    htmlBody: htmlBody
+  };
+
+  if (hasQr) {
+    emailOptions.inlineImages = { qrCode: inlineBlob };
+    emailOptions.attachments = [attachBlob];
+  }
+
+  if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+    emailOptions.from = EMAIL_FROM.trim();
+  }
+  if (EMAIL_CC && EMAIL_CC.trim().length > 0) {
+    emailOptions.cc = EMAIL_CC.trim();
+  }
+  if (EMAIL_BCC && EMAIL_BCC.trim().length > 0) {
+    emailOptions.bcc = EMAIL_BCC.trim();
+  }
+
+  if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+    GmailApp.sendEmail(data.email, subject, plainBody, emailOptions);
+  } else {
+    MailApp.sendEmail(emailOptions);
+  }
+}
