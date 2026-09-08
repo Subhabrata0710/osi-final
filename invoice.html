@@ -393,9 +393,11 @@
             doc.setDrawColor(226, 232, 240);
             doc.line(margin, y, pageWidth - margin, y);
 
-            doc.setFont('helvetica', 'normal');
+            doc.setFont('NotoSans', 'normal');
             doc.setFontSize(10);
             doc.setTextColor(30, 41, 59);
+            doc.text('Invoice No: ' + (rec.serialNumber || '-'), pageWidth - margin, 48, { align: 'right' });
+            doc.text('Registration No: ' + (rec.serialNumber || '-'), pageWidth - margin, 48, { align: 'right' });
             doc.text(rec.category || 'Conference Registration', margin + 10, y + 20, { maxWidth: pageWidth - margin * 2 - 140 });
             doc.text(formatCurrency(rec.amount), pageWidth - margin - 10, y + 20, { align: 'right' });
 
@@ -404,7 +406,7 @@
 
             // --- Total ---
             y += 30;
-            doc.setFont('helvetica', 'bold');
+            doc.setFont('NotoSans', 'bold');
             doc.setFontSize(12);
             doc.setTextColor(navy[0], navy[1], navy[2]);
             doc.text('Total Paid', margin + 10, y);
