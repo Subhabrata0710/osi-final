@@ -12,12 +12,16 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- Site stylesheet (shared with the rest of the site) -->
     <link rel="stylesheet" href="style.css">
 
     <!-- jsPDF (client-side PDF generation) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="notosans-font.js"></script>
 
     <style>
         /* Page-specific styles only. Everything else (colors, fonts, buttons,
@@ -322,7 +326,10 @@
             const gray = [100, 116, 139];
             const pageWidth = doc.internal.pageSize.getWidth();
             const margin = 48;
-
+            doc.addFileToVFS('NotoSans-Regular.ttf', window.NotoSansRegularBase64);
+            doc.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
+            doc.addFileToVFS('NotoSans-Bold.ttf', window.NotoSansBoldBase64);
+            doc.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
             // --- Header band ---
             doc.setFillColor(navy[0], navy[1], navy[2]);
             doc.rect(0, 0, pageWidth, 110, 'F');
@@ -373,20 +380,22 @@
                 y += 14;
                 doc.text('Location: ' + [rec.city, rec.state].filter(Boolean).join(', '), margin, y);
             }
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(10);
             if (rec.member) {
                 y += 14;
                 doc.text('OSI Member No: ' + rec.member, margin, y);
             }
             doc.text(
                 'Invoice Number: ' + (rec.invoiceNumber || rec.serialNumber || '-'),
-                margin + 10,
+                margin + 0,
                 y += 14
             );
 
             // Registration Number
             doc.text(
                 'Registration Number: ' + (rec.serialNumber || '-'),
-                margin + 10,
+                margin + 0,
                 y + 14
             );
 
