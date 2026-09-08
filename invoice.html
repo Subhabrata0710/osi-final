@@ -396,8 +396,19 @@
             doc.setFont('NotoSans', 'normal');
             doc.setFontSize(10);
             doc.setTextColor(30, 41, 59);
-            doc.text('Invoice No: ' + (rec.serialNumber || '-'), pageWidth - margin, 48, { align: 'right' });
-            doc.text('Registration No: ' + (rec.serialNumber || '-'), pageWidth - margin, 48, { align: 'right' });
+            doc.text(
+                'Invoice Number: ' + (rec.invoiceNumber || rec.serialNumber || '-'),
+                margin + 10,
+                y + 18
+            );
+
+            // Registration Number
+            doc.text(
+                'Registration Number: ' + (rec.serialNumber || '-'),
+                margin + 10,
+                y + 34
+            );
+
             doc.text(rec.category || 'Conference Registration', margin + 10, y + 20, { maxWidth: pageWidth - margin * 2 - 140 });
             doc.text(formatCurrency(rec.amount), pageWidth - margin - 10, y + 20, { align: 'right' });
 
