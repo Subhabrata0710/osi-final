@@ -377,6 +377,18 @@
                 y += 14;
                 doc.text('OSI Member No: ' + rec.member, margin, y);
             }
+            doc.text(
+                'Invoice Number: ' + (rec.invoiceNumber || rec.serialNumber || '-'),
+                margin + 10,
+                y += 14
+            );
+
+            // Registration Number
+            doc.text(
+                'Registration Number: ' + (rec.serialNumber || '-'),
+                margin + 10,
+                y + 14
+            );
 
             // --- Line items table ---
             y += 36;
@@ -396,18 +408,6 @@
             doc.setFont('NotoSans', 'normal');
             doc.setFontSize(10);
             doc.setTextColor(30, 41, 59);
-            doc.text(
-                'Invoice Number: ' + (rec.invoiceNumber || rec.serialNumber || '-'),
-                margin + 10,
-                y + 18
-            );
-
-            // Registration Number
-            doc.text(
-                'Registration Number: ' + (rec.serialNumber || '-'),
-                margin + 10,
-                y + 34
-            );
 
             doc.text(rec.category || 'Conference Registration', margin + 10, y + 20, { maxWidth: pageWidth - margin * 2 - 140 });
             doc.text(formatCurrency(rec.amount), pageWidth - margin - 10, y + 20, { align: 'right' });
