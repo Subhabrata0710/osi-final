@@ -66,9 +66,9 @@ function handleFileUpload(data) {
     // Save to Google Drive if UPLOAD_FOLDER_ID is configured
     if (UPLOAD_FOLDER_ID && UPLOAD_FOLDER_ID.trim().length > 0) {
       var parentFolder = DriveApp.getFolderById(UPLOAD_FOLDER_ID);
-      // Create an "Uploads" folder if you want them separated
-      var uploadFolders = parentFolder.getFoldersByName('Delegate_Uploads');
-      var uploadFolder = uploadFolders.hasNext() ? uploadFolders.next() : parentFolder.createFolder('Delegate_Uploads');
+      var uploadFolderName = data.uploadType === 'poster' ? 'Poster_Uploads' : 'Abstract_Uploads';
+      var uploadFolders = parentFolder.getFoldersByName(uploadFolderName);
+      var uploadFolder = uploadFolders.hasNext() ? uploadFolders.next() : parentFolder.createFolder(uploadFolderName);
       
       // Prepend the Registration ID to the file name to know who uploaded it
       var finalName = (data.regId ? data.regId + '_' : '') + data.filename;
@@ -76,8 +76,26 @@ function handleFileUpload(data) {
       
       var file = uploadFolder.createFile(blob);
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      var fileUrl = file.getUrl();
       
-      return { success: true, url: file.getUrl(), message: 'File uploaded successfully' };
+      // Update the Sheet with the file URL in Column R (Abstract) or S (Poster)
+      if (data.regId) {
+        var sheet = getSheet('Registrations');
+        var allData = sheet.getDataRange().getValues();
+        for (var i = 1; i < allData.length; i++) {
+          if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === data.regId.trim().toUpperCase()) {
+            var rowNum = i + 1;
+            if (data.uploadType === 'poster') {
+              sheet.getRange(rowNum, 19).setValue(fileUrl); // Column S (19) for Poster
+            } else {
+              sheet.getRange(rowNum, 18).setValue(fileUrl); // Column R (18) for Abstract
+            }
+            break;
+          }
+        }
+      }
+
+      return { success: true, url: fileUrl, message: 'File uploaded successfully' };
     } else {
       return { success: false, message: 'UPLOAD_FOLDER_ID is not configured in code.gs' };
     }
@@ -89,6 +107,11 @@ function handleFileUpload(data) {
 function doGet(e) {
   try {
     var action = e && e.parameter && e.parameter.action;
+
+    // --- Login Lookup ---
+    if (action === 'login') {
+      return handleLoginLookup(e.parameter);
+    }
 
     // --- Invoice Download Page support ---
     if (action === 'lookup') {
@@ -147,6 +170,44 @@ function handleCapacityCheck() {
     countHandsOn: countHandsOn,
     countLectureKomal: countLectureKomal,
     countHandsOnKomal: countHandsOnKomal
+  });
+}
+
+// ============================================================
+// LOGIN LOOKUP
+// ============================================================
+function handleLoginLookup(params) {
+  var phone = normalizePhone(params.phone || '');
+  var regId = (params.regId || '').toString().trim().toUpperCase();
+
+  if (!regId || !phone) {
+    return jsonOut({ success: false, message: 'Please provide both Registration ID and Phone number.' });
+  }
+
+  var sheet = getSheet('Registrations');
+  var allData = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < allData.length; i++) {
+    var row = allData[i];
+    var rowSerial = (row[1] || '').toString().trim().toUpperCase();
+    var rowPhone = normalizePhone(row[4] || '');
+
+    if (rowSerial === regId && rowPhone === phone) {
+      return jsonOut({
+        success: true,
+        data: {
+          serialNumber: row[1],
+          name: row[2],
+          email: row[3],
+          phone: row[4]
+        }
+      });
+    }
+  }
+
+  return jsonOut({
+    success: false,
+    message: 'Invalid Registration ID or Phone Number. Please try again.'
   });
 }
 

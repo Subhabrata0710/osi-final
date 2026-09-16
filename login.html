@@ -62,6 +62,8 @@
 
     <script src="script.js"></script>
     <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxG7jzHYmB8J4IsU_bq-s9rh7dgr7-hVZVWbBKXM8RZ6dcZrgG-3ycRjGbZ1j-imbWV/exec';
+
         function loginUser() {
             const regId = document.getElementById('login-reg-id').value.trim();
             const phone = document.getElementById('login-phone').value.trim();
@@ -71,17 +73,35 @@
                 return;
             }
 
-            // Note: Update this logic to hit your actual backend endpoint.
-            // Currently, it just stores the data in localStorage and redirects.
-            // Example backend call:
-            // fetch('/api/login', { method: 'POST', body: JSON.stringify({ regId, phone }) })
+            const btn = document.querySelector('[data-testid="login-btn"]');
+            btn.innerText = 'Logging in...';
+            btn.disabled = true;
 
-            localStorage.setItem('userRegId', regId);
-            localStorage.setItem('userPhone', phone);
-            localStorage.setItem('isLoggedIn', 'true');
+            fetch(`${SCRIPT_URL}?action=login&regId=${encodeURIComponent(regId)}&phone=${encodeURIComponent(phone)}`)
+                .then(response => response.json())
+                .then(data => {
+                    btn.innerText = 'Login';
+                    btn.disabled = false;
 
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
+                    if (data.success && data.data) {
+                        localStorage.setItem('userRegId', data.data.serialNumber);
+                        localStorage.setItem('userPhone', data.data.phone);
+                        localStorage.setItem('userName', data.data.name);
+                        localStorage.setItem('userEmail', data.data.email);
+                        localStorage.setItem('isLoggedIn', 'true');
+
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(data.message || 'Login failed. Please check your details.');
+                    }
+                })
+                .catch(err => {
+                    btn.innerText = 'Login';
+                    btn.disabled = false;
+                    alert('An error occurred during login. Please try again.');
+                    console.error(err);
+                });
         }
     </script>
 </body>

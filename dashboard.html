@@ -72,15 +72,20 @@
 
                     <div class="upload-area" id="upload-area">
                         <div class="upload-icon">📁</div>
-                        <p><strong>Click to upload</strong> or drag and drop</p>
+                        <p><strong>Click to select a file</strong> or drag and drop</p>
                         <p class="text-muted">PDF, DOC, PPT, Images (Max 10MB)</p>
                         <input type="file" id="file-upload" class="file-input"
                             accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
                     </div>
 
-                    <button class="btn btn-primary w-100" onclick="uploadFile()" data-testid="upload-btn">
-                        Upload File
-                    </button>
+                    <div style="display: flex; gap: 15px; margin-top: 15px;">
+                        <button class="btn btn-primary w-100" onclick="uploadFile('abstract')" data-testid="upload-abstract-btn">
+                            Upload as Abstract
+                        </button>
+                        <button class="btn btn-gold w-100" onclick="uploadFile('poster')" data-testid="upload-poster-btn">
+                            Upload as Poster
+                        </button>
+                    </div>
 
                     <p id="upload-status" class="upload-status"></p>
                 </div>
@@ -175,6 +180,7 @@
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const userRegId = localStorage.getItem('userRegId');
             const userPhone = localStorage.getItem('userPhone');
+            const userName = localStorage.getItem('userName');
 
             if (!isLoggedIn || !userRegId) {
                 // If not logged in, redirect to login page
@@ -183,7 +189,7 @@
             }
 
             // Update UI with user info
-            document.getElementById('user-name').innerText = userRegId;
+            document.getElementById('user-name').innerText = userName || userRegId;
             document.getElementById('user-email').innerText = userPhone;
         }
 
@@ -229,7 +235,7 @@
         });
 
         // Handle file upload
-        function uploadFile() {
+        function uploadFile(uploadType) {
             const fileInput = document.getElementById('file-upload');
             const file = fileInput.files[0];
 
@@ -253,11 +259,12 @@
                     filename: file.name,
                     mimeType: file.type,
                     base64Data: base64Data,
-                    regId: localStorage.getItem('userRegId')
+                    regId: localStorage.getItem('userRegId'),
+                    uploadType: uploadType
                 };
 
                 // NOTE: Replace this URL with your actual Google Apps Script Web App URL
-                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyohTHJSa1NGob82IYBCi9gDLz3umpZ5FAIQHzUwrDzeHaeAe907JRMvwDGB1rkWb5-/exec';
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxG7jzHYmB8J4IsU_bq-s9rh7dgr7-hVZVWbBKXM8RZ6dcZrgG-3ycRjGbZ1j-imbWV/exec';
 
                 fetch(SCRIPT_URL, {
                     method: 'POST',
