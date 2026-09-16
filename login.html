@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Login | ABC Children’s Conclave</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LUXURY NAVIGATION -->
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+    <!-- <marquee class="cme-marquee" scrollamount="15" direction="left" onmouseover="this.stop();"
+        onmouseout="this.start();">10 CME Point approved by WBMC</marquee> -->
+
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h2>Delegate Login & Abstract Submission</h2>
+        <span>Access Your Conference Account</span>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <section class="register-section">
+        <div class="container">
+            <div class="login-card">
+                <h3 class="text-center mb-4">Welcome back</h3>
+
+                <input id="login-reg-id" type="text" class="form-control" placeholder="Registration ID (e.g. OSI-1234)"
+                    data-testid="login-reg-id">
+
+                <input id="login-phone" type="tel" class="form-control" placeholder="Registered Phone Number"
+                    data-testid="login-phone">
+
+                <button class="btn btn-primary w-100" onclick="loginUser()" data-testid="login-btn">
+                    Login
+                </button><br>
+
+                <button class="btn btn-outline"
+                    style="background-color:#003A8C; color:white; border:none; padding:6px 14px; margin-top:10px;"
+                    onclick="window.location.href='images/ABC_Abstracts.pdf'">
+                    Click here to download abstract submission guideline
+                </button>
+
+                <!-- <p class="text-center" style="margin-top: 15px;">
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </p> -->
+
+                <p class="text-center" style="margin-top: 20px; font-size: 0.95rem; color: var(--text-grey);">
+                    Don't have an account? <a href="form.html"
+                        style="color: var(--apollo-blue); text-decoration: underline; font-weight: 600;">Register
+                        here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+        function loginUser() {
+            const regId = document.getElementById('login-reg-id').value.trim();
+            const phone = document.getElementById('login-phone').value.trim();
+
+            if (!regId || !phone) {
+                alert('Please enter both Registration ID and Phone Number.');
+                return;
+            }
+
+            // Note: Update this logic to hit your actual backend endpoint.
+            // Currently, it just stores the data in localStorage and redirects.
+            // Example backend call:
+            // fetch('/api/login', { method: 'POST', body: JSON.stringify({ regId, phone }) })
+
+            localStorage.setItem('userRegId', regId);
+            localStorage.setItem('userPhone', phone);
+            localStorage.setItem('isLoggedIn', 'true');
+
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+
+</html>

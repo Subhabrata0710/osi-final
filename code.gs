@@ -28,6 +28,13 @@ function doPost(e) {
       data = e.parameter;
     }
 
+    // Branch to file upload if action is upload
+    if (data.action === 'upload') {
+      const uploadResponse = handleFileUpload(data);
+      return ContentService.createTextOutput(JSON.stringify(uploadResponse))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     const response = registerUser(data);
     
     return ContentService.createTextOutput(JSON.stringify(response))
@@ -41,6 +48,41 @@ function doPost(e) {
       success: false, 
       message: 'Server Error: ' + error.toString()
     })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// ============================================================
+// FILE UPLOAD HANDLER
+// ============================================================
+function handleFileUpload(data) {
+  try {
+    if (!data.base64Data || !data.filename) {
+      return { success: false, message: 'Missing file data or filename.' };
+    }
+    
+    var decoded = Utilities.base64Decode(data.base64Data);
+    var blob = Utilities.newBlob(decoded, data.mimeType || 'application/octet-stream', data.filename);
+    
+    // Save to Google Drive if UPLOAD_FOLDER_ID is configured
+    if (UPLOAD_FOLDER_ID && UPLOAD_FOLDER_ID.trim().length > 0) {
+      var parentFolder = DriveApp.getFolderById(UPLOAD_FOLDER_ID);
+      // Create an "Uploads" folder if you want them separated
+      var uploadFolders = parentFolder.getFoldersByName('Delegate_Uploads');
+      var uploadFolder = uploadFolders.hasNext() ? uploadFolders.next() : parentFolder.createFolder('Delegate_Uploads');
+      
+      // Prepend the Registration ID to the file name to know who uploaded it
+      var finalName = (data.regId ? data.regId + '_' : '') + data.filename;
+      blob.setName(finalName);
+      
+      var file = uploadFolder.createFile(blob);
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      
+      return { success: true, url: file.getUrl(), message: 'File uploaded successfully' };
+    } else {
+      return { success: false, message: 'UPLOAD_FOLDER_ID is not configured in code.gs' };
+    }
+  } catch (err) {
+    return { success: false, message: 'Upload Error: ' + err.toString() };
   }
 }
 

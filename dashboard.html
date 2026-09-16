@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Dashboard | ABC Children’s Conclave</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LUXURY NAVIGATION -->
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+    <!-- <marquee class="cme-marquee" scrollamount="15" direction="left" onmouseover="this.stop();"
+        onmouseout="this.start();">10 CME Point approved by WBMC</marquee> -->
+
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h2>Delegate Dashboard</h2>
+        <span id="user-welcome">Welcome Back</span>
+    </div>
+
+    <!-- DASHBOARD CONTENT -->
+    <section class="section">
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-content">
+                        <h3 id="user-name">Loading...</h3>
+                        <p id="user-type">Delegate</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📧</div>
+                    <div class="stat-content">
+                        <h3 id="user-email">Loading...</h3>
+                        <p>Phone Number</p>
+                    </div>
+                </div>
+
+                <!-- <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3>8-10 May 2026</h3>
+                        <p>Conference Dates</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏨</div>
+                    <div class="stat-content">
+                        <h3>Hyatt Regency</h3>
+                        <p>Venue</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- File Upload Section -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📤 Upload Documents</h3>
+                        <p>Upload your research papers, abstracts, or presentations</p>
+                    </div>
+
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">📁</div>
+                        <p><strong>Click to upload</strong> or drag and drop</p>
+                        <p class="text-muted">PDF, DOC, PPT, Images (Max 10MB)</p>
+                        <input type="file" id="file-upload" class="file-input"
+                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
+                    </div>
+
+                    <button class="btn btn-primary w-100" onclick="uploadFile()" data-testid="upload-btn">
+                        Upload File
+                    </button>
+
+                    <p id="upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- Registration Details -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>✅ Registration Details</h3>
+                        <p>Your conference registration information</p>
+                    </div>
+
+                    <div class="info-list">
+                        <!-- <div class="info-item">
+                            <span class="info-label">Registration ID:</span>
+                            <span class="info-value" id="reg-id">Loading...</span>
+                        </div>-->
+                        <!-- <div class="info-item">
+                            <span class="info-label">Registration Type:</span>
+                            <span class="info-value" id="reg-type">Standard</span>
+                        </div>-->
+                        <div class="info-item">
+                            <span class="info-label">Payment Status:</span>
+                            <span class="badge badge-success">Confirmed</span>
+                        </div>
+                        <!--  <div class="info-item">
+                            <span class="info-label">Amount Paid:</span>
+                            <span class="info-value" id="reg-amount">₹3,500</span>
+                        </div>-->
+                    </div>
+
+                    <!-- <button class="btn btn-outline w-100" style="margin-top: 20px;">
+                        Download Receipt
+                    </button>-->
+                </div>
+            </div>
+
+            <!-- Your Files Section -->
+            <div class="dashboard-card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <h3>📂 Your Uploaded Files</h3>
+                    <p>Manage your documents and presentations</p>
+                </div>
+
+                <div id="file-list" class="file-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>No files uploaded yet</p>
+                        <p class="text-muted">Upload your first document above</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Information -->
+            <div class="dashboard-grid" style="margin-top: 30px;">
+                <div class="info-card">
+                    <div class="info-card-icon">📅</div>
+                    <h4>Scientific Program</h4>
+                    <p>View the complete conference schedule and sessions</p>
+                    <a href="index.html#program" class="btn btn-gold">View Program</a>
+                </div>
+
+                <!-- <div class="info-card">
+                    <div class="info-card-icon">👥</div>
+                    <h4>Speaker Panel</h4>
+                    <p>Meet our distinguished international faculty</p>
+                    <a href="index.html#speakers" class="btn btn-gold">View Speakers</a>
+                </div> -->
+
+                <div class="info-card">
+                    <div class="info-card-icon">🏨</div>
+                    <h4>Venue Details</h4>
+                    <p>Information about Westin Kolkata</p>
+                    <a href="venue.html" class="btn btn-gold">View Venue</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" style="display: none;">
+        <div class="loader-spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRegId = localStorage.getItem('userRegId');
+            const userPhone = localStorage.getItem('userPhone');
+
+            if (!isLoggedIn || !userRegId) {
+                // If not logged in, redirect to login page
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update UI with user info
+            document.getElementById('user-name').innerText = userRegId;
+            document.getElementById('user-email').innerText = userPhone;
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+        });
+
+        // File upload drag and drop
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-upload');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--apollo-blue)';
+            uploadArea.style.backgroundColor = 'var(--light-grey)';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'var(--cool-grey)';
+            uploadArea.style.backgroundColor = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--cool-grey)';
+            uploadArea.style.backgroundColor = 'transparent';
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                document.getElementById('upload-status').innerHTML =
+                    `<span style="color: var(--apollo-blue);">✓ ${files[0].name} selected</span>`;
+            }
+        });
+
+        fileInput.addEventListener('change', function () {
+            if (this.files.length > 0) {
+                document.getElementById('upload-status').innerHTML =
+                    `<span style="color: var(--apollo-blue);">✓ ${this.files[0].name} selected</span>`;
+            }
+        });
+
+        // Handle file upload
+        function uploadFile() {
+            const fileInput = document.getElementById('file-upload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file to upload first.');
+                return;
+            }
+
+            // Show loader
+            const loader = document.getElementById('loader');
+            loader.style.display = 'flex';
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const dataUrl = e.target.result;
+                const base64Data = dataUrl.split(',')[1];
+
+                // Construct the payload
+                const payload = {
+                    action: 'upload',
+                    filename: file.name,
+                    mimeType: file.type,
+                    base64Data: base64Data,
+                    regId: localStorage.getItem('userRegId')
+                };
+
+                // NOTE: Replace this URL with your actual Google Apps Script Web App URL
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyohTHJSa1NGob82IYBCi9gDLz3umpZ5FAIQHzUwrDzeHaeAe907JRMvwDGB1rkWb5-/exec';
+
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        loader.style.display = 'none';
+
+                        if (data.success) {
+                            // Clear the status text
+                            document.getElementById('upload-status').innerHTML = '';
+                            // Reset file input
+                            fileInput.value = '';
+
+                            // Add to uploaded files list
+                            const fileList = document.getElementById('file-list');
+                            const emptyState = fileList.querySelector('.empty-state');
+
+                            if (emptyState) {
+                                emptyState.style.display = 'none';
+                            }
+
+                            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'file-item';
+                            fileItem.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid var(--cool-grey); border-radius: 8px; margin-bottom: 10px;';
+                            fileItem.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 24px;">📄</div>
+                                <div>
+                                    <h4 style="margin: 0; color: var(--apollo-blue); font-size: 1rem;">${file.name}</h4>
+                                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-grey);">${fileSizeMB} MB</p>
+                                </div>
+                            </div>
+                            <span class="badge" style="background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"><a href="${data.url}" target="_blank" style="text-decoration:none; color:inherit;">Uploaded to Drive</a></span>
+                        `;
+
+                            fileList.appendChild(fileItem);
+                            alert('File successfully uploaded to Google Drive!');
+                        } else {
+                            alert('Upload failed: ' + data.message);
+                        }
+                    })
+                    .catch(err => {
+                        loader.style.display = 'none';
+                        alert('An error occurred during upload.');
+                        console.error(err);
+                    });
+            };
+
+            // Read file as data URL to extract base64
+            reader.readAsDataURL(file);
+        }
+    </script>
+
+</body>
+
+</html>
