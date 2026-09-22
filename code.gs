@@ -79,21 +79,25 @@ function handleFileUpload(data) {
       var fileUrl = file.getUrl();
       
       // Update the Sheet with the file URL in Column R (Abstract) or S (Poster)
-      if (data.regId) {
-        var sheet = getSheet('Registrations');
-        var allData = sheet.getDataRange().getValues();
-        for (var i = 1; i < allData.length; i++) {
-          if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === data.regId.trim().toUpperCase()) {
-            var rowNum = i + 1;
-            if (data.uploadType === 'poster') {
-              sheet.getRange(rowNum, 19).setValue(fileUrl); // Column S (19) for Poster
-            } else {
-              sheet.getRange(rowNum, 18).setValue(fileUrl); // Column R (18) for Abstract
+            if (data.regId) {
+              var sheet = getSheet('Registrations');
+              var allData = sheet.getDataRange().getValues();
+              for (var i = 1; i < allData.length; i++) {
+                if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === data.regId.trim().toUpperCase()) {
+                  var rowNum = i + 1;
+                  if (data.uploadType === 'poster') {
+                    sheet.getRange(rowNum, 19).setValue(fileUrl); // Column S (19) for Poster/Paper
+                  } else if (data.uploadType === 'photo') {
+                    sheet.getRange(rowNum, 20).setValue(fileUrl); // Column T (20) for Photo
+                  } else if (data.uploadType === 'bonafide') {
+                    sheet.getRange(rowNum, 21).setValue(fileUrl); // Column U (21) for Bonafide Cert
+                  } else {
+                    sheet.getRange(rowNum, 18).setValue(fileUrl); // Column R (18) for Abstract (default)
+                  }
+                  break;
+                }
+              }
             }
-            break;
-          }
-        }
-      }
 
       return { success: true, url: fileUrl, message: 'File uploaded successfully' };
     } else {

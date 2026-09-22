@@ -333,8 +333,10 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            background: var(--gray-100);
-            color: var(--primary);
+            background: var(--secondary);
+            color: var(--primary) !important;
+            font-weight: 700;
+            border-radius: 6px;
         }
 
         .nav-cta {
@@ -803,15 +805,18 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, var(--secondary), var(--secondary-dark));
-            color: var(--white);
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%);
+            color: var(--primary);
             border: none;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.55);
+            font-weight: 800;
+            letter-spacing: 1.5px;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.75);
+            background: linear-gradient(135deg, #F4D03F 0%, #D4AF37 100%);
         }
 
         .btn-outline {
@@ -1075,17 +1080,16 @@
             margin-bottom: 12px;
         }
 
-        /* Committee Cards */
+        /* Committee Cards (New Design) */
         .committee-card {
             position: relative;
-            background: #ffffff;
-            border-radius: 80px;
-            padding: 30px 20px;
-            padding-top: 60px;
-            /* pushes content down */
+            background: transparent;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             transition: 0.3s ease;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .committee-card:hover {
@@ -1095,11 +1099,12 @@
         .committee-card .card-image {
             width: 250px;
             height: 180px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
+            margin: 0 auto;
+            border-radius: 16px; /* square with rounded corners */
             overflow: hidden;
-            border: 4px solid #d4af37;
-            /* gold border */
+            border: 4px solid #003A8C; /* Royal Blue border */
+            position: relative;
+            z-index: 1;
         }
 
         .committee-card .card-image img {
@@ -1109,47 +1114,44 @@
         }
 
         .committee-card .card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 24px;
-            /* background: linear-gradient(transparent, rgba(0, 35, 102, 0.9)); */
-            color: var(--white);
+            position: relative;
+            z-index: 2;
+            margin-top: -24px; /* overlap the image */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+        }
+
+        /* Gold Badge */
+        .committee-card .card-badge {
+            display: inline-block;
+            background-color: #d4af37;
+            font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            line-height: 1.3;
         }
 
         /* Organising Committee Name - Gold */
-        .committee-card:not(.text-only) h3,
-        h31 {
-            background: linear-gradient(180deg, #f5d37a, #caa23a);
+        .committee-card:not(.text-only) h3 {
+            background: linear-gradient(180deg, #d4af37, #9c7f21);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
-        }
-
-        .committee-card .card-overlay h3,
-        h31 {
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .committee-card h3,
-        h31 {
-            font-size: 18px;
-            margin-bottom: 6px;
-            color: #0b1d3a;
-        }
-
-        .committee-card .card-badge {
-            display: inline-block;
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.25rem;
+            margin-top: 4px;
+            margin-bottom: 0;
         }
 
         .committee-card .card-overlay p {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-grey);
             font-size: 13px;
         }
 
@@ -3505,3 +3507,263 @@
     margin-bottom: 15px;
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Payment Status Bar */
+.payment-status-bar {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border: 1px solid #86efac;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.payment-status-label {
+    font-weight: 700;
+    color: #166534;
+    font-size: 1rem;
+}
+
+/* =========================================================
+   WHY OSI KOLKATA 2026 — HOMEPAGE SECTION
+   ========================================================= */
+.why-osi-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, #001844 0%, #003A8C 100%);
+    color: #fff;
+    text-align: center;
+}
+.why-osi-section h2 {
+    color: var(--secondary);
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+.why-osi-section .section-tagline {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.15rem;
+    margin-bottom: 48px;
+}
+.why-osi-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 60px;
+}
+.why-stat-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 16px;
+    padding: 28px 20px;
+    transition: 0.3s;
+}
+.why-stat-card:hover {
+    background: rgba(212,175,55,0.12);
+    transform: translateY(-4px);
+}
+.why-stat-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    font-family: 'Playfair Display', serif;
+}
+.why-stat-card .stat-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 6px;
+}
+
+/* Featured Topics */
+.featured-topics-section {
+    padding: 70px 20px;
+    background: #f8fafc;
+    text-align: center;
+}
+.featured-topics-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.featured-topics-section .section-sub {
+    color: var(--text-grey);
+    margin-bottom: 36px;
+}
+.topics-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 860px;
+    margin: 0 auto;
+}
+.topic-pill {
+    background: linear-gradient(135deg, #001844, #003A8C);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.25s;
+    cursor: default;
+    border: 2px solid transparent;
+}
+.topic-pill:hover {
+    background: var(--secondary);
+    color: var(--primary);
+    transform: scale(1.05);
+}
+
+/* Speakers Strip on Homepage */
+.hp-speakers-section {
+    padding: 70px 20px;
+    background: linear-gradient(180deg, #fff 0%, #f0f4ff 100%);
+    text-align: center;
+}
+.hp-speakers-section h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+.hp-speakers-section .section-sub {
+    color: var(--text-grey);
+    margin-bottom: 40px;
+}
+.hp-speakers-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto 36px;
+}
+.hp-speaker-card {
+    width: 200px;
+    text-align: center;
+}
+.hp-speaker-card .sp-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--secondary);
+    overflow: hidden;
+    margin: 0 auto 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.hp-speaker-card .sp-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hp-speaker-card h4 {
+    color: var(--primary);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+.hp-speaker-card .sp-flag {
+    height: 18px;
+    border-radius: 2px;
+}
+
+/* Countdown */
+.countdown-section {
+    padding: 20px 20px 50px;
+    background: #001844;
+    text-align: center;
+}
+.countdown-section .countdown-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.countdown-timer {
+    display: inline-flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.countdown-unit {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 12px;
+    padding: 16px 24px;
+    min-width: 90px;
+}
+.countdown-unit .c-num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--secondary);
+    font-family: 'Playfair Display', serif;
+    display: block;
+    line-height: 1;
+}
+.countdown-unit .c-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Registration Pricing */
+.reg-pricing-section {
+    padding: 70px 20px;
+    background: #fff;
+    text-align: center;
+}
+.reg-pricing-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.reg-pricing-section .section-sub {
+    color: var(--text-grey);
+    margin-bottom: 40px;
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+.pricing-card {
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 32px 24px;
+    position: relative;
+    transition: 0.3s;
+}
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,24,68,0.15);
+}
+.pricing-card.featured {
+    background: linear-gradient(135deg, #001844, #003A8C);
+    color: #fff;
+    border-color: var(--secondary);
+}
+.pricing-card.featured h4 { color: var(--secondary); }
+.pricing-card .price-tag {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+}
+.pricing-card.featured .price-tag { color: var(--secondary); }
+.pricing-card h4 {
+    font-size: 1.05rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+.pricing-card .price-note {
+    font-size: 0.82rem;
+    color: var(--text-grey);
+    margin-top: 8px;
+}
+.pricing-card.featured .price-note { color: rgba(255,255,255,0.7); }
+

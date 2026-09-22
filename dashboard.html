@@ -63,66 +63,102 @@
 
             <!-- Main Dashboard Grid -->
             <div class="dashboard-grid">
-                <!-- File Upload Section -->
+                <!-- Abstract Upload -->
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <h3>📤 Upload Documents</h3>
-                        <p>Upload your research papers, abstracts, or presentations</p>
+                        <h3>📄 Abstract Upload</h3>
+                        <p>Submit your research abstract (PDF only)</p>
                     </div>
-
-                    <div class="upload-area" id="upload-area">
-                        <div class="upload-icon">📁</div>
-                        <p><strong>Click to select a file</strong> or drag and drop</p>
-                        <p class="text-muted">PDF, DOC, PPT, Images (Max 10MB)</p>
-                        <input type="file" id="file-upload" class="file-input"
-                            accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png">
+                    <div class="upload-area" id="abstract-upload-area">
+                        <div class="upload-icon">📝</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF only · Max 10MB</p>
+                        <input type="file" id="abstract-file-upload" class="file-input" accept=".pdf">
                     </div>
-
-                    <div style="display: flex; gap: 15px; margin-top: 15px;">
-                        <button class="btn btn-primary w-100" onclick="uploadFile('abstract')"
-                            data-testid="upload-abstract-btn">
-                            Upload as Abstract
-                        </button>
-                        <button class="btn btn-gold w-100" onclick="uploadFile('poster')"
-                            data-testid="upload-poster-btn">
-                            Upload as Poster
-                        </button>
-                    </div>
-
-                    <p id="upload-status" class="upload-status"></p>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('abstract', 'abstract-file-upload')"
+                        data-testid="upload-abstract-btn">
+                        Upload Abstract
+                    </button>
+                    <p id="abstract-upload-status" class="upload-status"></p>
                 </div>
 
-                <!-- Registration Details -->
+                <!-- Paper / Presentation Upload -->
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <h3>✅ Registration Details</h3>
-                        <p>Your conference registration information</p>
+                        <h3>📊 Paper / Presentation</h3>
+                        <p>Submit your presentation slides (PPT / PPTX only)</p>
                     </div>
-
-                    <div class="info-list">
-                        <!-- <div class="info-item">
-                            <span class="info-label">Registration ID:</span>
-                            <span class="info-value" id="reg-id">Loading...</span>
-                        </div>-->
-                        <!-- <div class="info-item">
-                            <span class="info-label">Registration Type:</span>
-                            <span class="info-value" id="reg-type">Standard</span>
-                        </div>-->
-                        <div class="info-item">
-                            <span class="info-label">Payment Status:</span>
-                            <span class="badge badge-success">Confirmed</span>
-                        </div>
-                        <!--  <div class="info-item">
-                            <span class="info-label">Amount Paid:</span>
-                            <span class="info-value" id="reg-amount">₹3,500</span>
-                        </div>-->
+                    <div class="upload-area" id="paper-upload-area">
+                        <div class="upload-icon">📑</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PPT / PPTX only · Max 10MB</p>
+                        <input type="file" id="paper-file-upload" class="file-input" accept=".ppt,.pptx">
                     </div>
-
-                    <!-- <button class="btn btn-outline w-100" style="margin-top: 20px;">
-                        Download Receipt
-                    </button>-->
+                    <button class="btn btn-gold w-100" onclick="uploadFile('poster', 'paper-file-upload')"
+                        data-testid="upload-paper-btn">
+                        Upload Paper / Presentation
+                    </button>
+                    <p id="paper-upload-status" class="upload-status"></p>
                 </div>
             </div>
+
+            <!-- Second Row: Photo + Bonafide -->
+            <div class="dashboard-grid" style="margin-top: 24px;">
+                <!-- Photo / Selfie Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🤳 Photo Upload</h3>
+                        <p>Upload a passport-size photo or take a selfie</p>
+                    </div>
+                    <div class="upload-area" id="photo-upload-area">
+                        <div class="upload-icon">🖼️</div>
+                        <p class="text-muted">JPG / PNG · Max 5MB</p>
+                        <input type="file" id="photo-file-upload" class="file-input" accept="image/*">
+                        <!-- Camera input for mobile selfie -->
+                        <input type="file" id="selfie-file-upload" class="file-input" accept="image/*" capture="user">
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 14px;">
+                        <button class="btn btn-primary w-100" onclick="triggerInput('photo-file-upload', 'photo')"
+                            data-testid="upload-photo-btn">
+                            📁 Browse Photo
+                        </button>
+                        <button class="btn btn-gold w-100" onclick="openCameraModal()" data-testid="take-selfie-btn">
+                            📷 Take Selfie
+                        </button>
+                    </div>
+                    <p id="photo-upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- Bonafide Certificate Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🏫 Bonafide Certificate</h3>
+                        <p>Upload certificate signed by Head of Department/Institution</p>
+                    </div>
+                    <div class="upload-area" id="bonafide-upload-area">
+                        <div class="upload-icon">📜</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF or Image · Max 10MB</p>
+                        <input type="file" id="bonafide-file-upload" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('bonafide', 'bonafide-file-upload')"
+                        data-testid="upload-bonafide-btn">
+                        Upload Certificate
+                    </button>
+                    <p id="bonafide-upload-status" class="upload-status"></p>
+                </div>
+            </div>
+
+            <!-- Payment Status Compact Bar -->
+            <div class="payment-status-bar" style="margin-top: 24px;">
+                <span class="payment-status-label">✅ Registration Status</span>
+                <div style="display:flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <span class="badge badge-success" style="font-size:0.95rem; padding: 6px 18px;">Payment
+                        Confirmed</span>
+                    <span id="reg-id-display" style="font-weight:600; color: var(--primary); font-size:0.95rem;"></span>
+                </div>
+            </div>
+
 
             <!-- Your Files Section -->
             <div class="dashboard-card" style="margin-top: 30px;">
@@ -169,6 +205,34 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
+        <div
+            style="background: white; padding: 20px; border-radius: 12px; text-align: center; max-width: 90%; width: 400px;">
+            <h3 style="margin-top: 0; color: var(--primary);">Take a Selfie</h3>
+            <div
+                style="position: relative; width: 100%; aspect-ratio: 4/3; background: #000; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                <video id="camera-stream" autoplay playsinline
+                    style="width: 100%; height: 100%; object-fit: cover;"></video>
+                <img id="camera-preview" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+                <canvas id="camera-canvas" style="display: none;"></canvas>
+            </div>
+
+            <div id="camera-controls">
+                <button class="btn btn-gold w-100" onclick="captureSelfie()">📸 Capture Photo</button>
+                <button class="btn btn-outline w-100" onclick="closeCameraModal()"
+                    style="margin-top: 10px;">Cancel</button>
+            </div>
+
+            <div id="preview-controls" style="display: none;">
+                <button class="btn btn-primary w-100" onclick="uploadSelfie()">✅ Confirm & Upload</button>
+                <button class="btn btn-outline w-100" onclick="retakeSelfie()" style="margin-top: 10px;">🔄
+                    Retake</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Loader -->
     <div id="loader" class="loader" style="display: none;">
         <div class="loader-spinner"></div>
@@ -177,6 +241,8 @@
 
     <script src="script.js"></script>
     <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTFa9upgl7CCB83PCAQU55CuYuYfsakN7dcfNSIehDbCLmekirTZU54mNkKHNMPYhS/exec';
+
         // Check if user is logged in
         function checkAuth() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -185,77 +251,119 @@
             const userName = localStorage.getItem('userName');
 
             if (!isLoggedIn || !userRegId) {
-                // If not logged in, redirect to login page
                 window.location.href = 'login.html';
                 return;
             }
 
-            // Update UI with user info
             document.getElementById('user-name').innerText = userName || userRegId;
             document.getElementById('user-email').innerText = userPhone;
+
+            const regIdDisplay = document.getElementById('reg-id-display');
+            if (regIdDisplay) regIdDisplay.innerText = 'Reg ID: ' + userRegId;
         }
 
         window.addEventListener('DOMContentLoaded', function () {
             checkAuth();
+            initUploadAreas();
         });
 
-        // File upload drag and drop
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-upload');
+        // Wire up all upload areas for click + drag-drop
+        function initUploadAreas() {
+            const areas = [
+                { areaId: 'abstract-upload-area', inputId: 'abstract-file-upload', statusId: 'abstract-upload-status' },
+                { areaId: 'paper-upload-area', inputId: 'paper-file-upload', statusId: 'paper-upload-status' },
+                { areaId: 'photo-upload-area', inputId: 'photo-file-upload', statusId: 'photo-upload-status' },
+                { areaId: 'bonafide-upload-area', inputId: 'bonafide-file-upload', statusId: 'bonafide-upload-status' },
+            ];
 
-        uploadArea.addEventListener('click', () => fileInput.click());
+            areas.forEach(({ areaId, inputId, statusId }) => {
+                const area = document.getElementById(areaId);
+                const input = document.getElementById(inputId);
+                if (!area || !input) return;
 
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = 'var(--apollo-blue)';
-            uploadArea.style.backgroundColor = 'var(--light-grey)';
-        });
+                area.addEventListener('click', () => input.click());
 
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = 'var(--cool-grey)';
-            uploadArea.style.backgroundColor = 'transparent';
-        });
+                area.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = 'var(--apollo-blue)';
+                });
+                area.addEventListener('dragleave', () => {
+                    area.style.borderColor = 'var(--cool-grey)';
+                });
+                area.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = 'var(--cool-grey)';
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        document.getElementById(statusId).innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${files[0].name} selected</span>`;
+                    }
+                });
 
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = 'var(--cool-grey)';
-            uploadArea.style.backgroundColor = 'transparent';
+                input.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        document.getElementById(statusId).innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} selected</span>`;
+                    }
+                });
+            });
 
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                fileInput.files = files;
-                document.getElementById('upload-status').innerHTML =
-                    `<span style="color: var(--apollo-blue);">✓ ${files[0].name} selected</span>`;
+            // Photo selfie input also updates status
+            const selfieInput = document.getElementById('selfie-file-upload');
+            if (selfieInput) {
+                selfieInput.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        document.getElementById('photo-upload-status').innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} selected</span>`;
+                    }
+                });
             }
-        });
+        }
 
-        fileInput.addEventListener('change', function () {
-            if (this.files.length > 0) {
-                document.getElementById('upload-status').innerHTML =
-                    `<span style="color: var(--apollo-blue);">✓ ${this.files[0].name} selected</span>`;
-            }
-        });
+        // Trigger a specific file input (used for Browse Photo / Take Selfie buttons)
+        function triggerInput(inputId, uploadType) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            // Store which type to use when this input fires
+            input.dataset.uploadType = uploadType;
+            input.onchange = function () {
+                if (this.files.length > 0) {
+                    document.getElementById('photo-upload-status').innerHTML =
+                        `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} — click Upload below</span>`;
+                    // Auto-trigger upload
+                    doUpload(this.files[0], uploadType, 'photo-upload-status');
+                }
+            };
+            input.click();
+        }
 
-        // Handle file upload
-        function uploadFile(uploadType) {
-            const fileInput = document.getElementById('file-upload');
-            const file = fileInput.files[0];
+        // Main upload function – called from buttons
+        function uploadFile(uploadType, inputId) {
+            const fileInput = document.getElementById(inputId);
+            const file = fileInput ? fileInput.files[0] : null;
 
             if (!file) {
-                alert('Please select a file to upload first.');
+                alert('Please select a file first.');
                 return;
             }
 
-            // Show loader
+            const statusId = inputId.replace('file-upload', 'upload-status')
+                .replace('abstract-', 'abstract-')
+                .replace('paper-', 'paper-')
+                .replace('bonafide-', 'bonafide-');
+            doUpload(file, uploadType, statusId);
+            fileInput.value = '';
+        }
+
+        function doUpload(file, uploadType, statusId) {
             const loader = document.getElementById('loader');
             loader.style.display = 'flex';
 
             const reader = new FileReader();
             reader.onload = function (e) {
-                const dataUrl = e.target.result;
-                const base64Data = dataUrl.split(',')[1];
+                const base64Data = e.target.result.split(',')[1];
 
-                // Construct the payload
                 const payload = {
                     action: 'upload',
                     filename: file.name,
@@ -265,49 +373,17 @@
                     uploadType: uploadType
                 };
 
-                // NOTE: Replace this URL with your actual Google Apps Script Web App URL
-                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxG7jzHYmB8J4IsU_bq-s9rh7dgr7-hVZVWbBKXM8RZ6dcZrgG-3ycRjGbZ1j-imbWV/exec';
-
                 fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify(payload)
                 })
-                    .then(response => response.json())
+                    .then(r => r.json())
                     .then(data => {
                         loader.style.display = 'none';
-
                         if (data.success) {
-                            // Clear the status text
-                            document.getElementById('upload-status').innerHTML = '';
-                            // Reset file input
-                            fileInput.value = '';
-
-                            // Add to uploaded files list
-                            const fileList = document.getElementById('file-list');
-                            const emptyState = fileList.querySelector('.empty-state');
-
-                            if (emptyState) {
-                                emptyState.style.display = 'none';
-                            }
-
-                            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-
-                            const fileItem = document.createElement('div');
-                            fileItem.className = 'file-item';
-                            fileItem.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid var(--cool-grey); border-radius: 8px; margin-bottom: 10px;';
-                            fileItem.innerHTML = `
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div style="font-size: 24px;">📄</div>
-                                <div>
-                                    <h4 style="margin: 0; color: var(--apollo-blue); font-size: 1rem;">${file.name}</h4>
-                                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-grey);">${fileSizeMB} MB</p>
-                                </div>
-                            </div>
-                            <span class="badge" style="background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;"><a href="${data.url}" target="_blank" style="text-decoration:none; color:inherit;">Uploaded to Drive</a></span>
-                        `;
-
-                            fileList.appendChild(fileItem);
-                            alert('File successfully uploaded to Google Drive!');
+                            const statusEl = document.getElementById(statusId);
+                            if (statusEl) statusEl.innerHTML = `<span style="color:#166534">✅ Uploaded successfully — <a href="${data.url}" target="_blank">View file</a></span>`;
+                            addToFileList(file, uploadType, data.url);
                         } else {
                             alert('Upload failed: ' + data.message);
                         }
@@ -318,12 +394,143 @@
                         console.error(err);
                     });
             };
-
-            // Read file as data URL to extract base64
             reader.readAsDataURL(file);
         }
-    </script>
 
+        function addToFileList(file, uploadType, url) {
+            const fileList = document.getElementById('file-list');
+            const emptyState = fileList.querySelector('.empty-state');
+            if (emptyState) emptyState.style.display = 'none';
+
+            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
+            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
+
+            let fileSizeMB = 'Unknown';
+            if (file.size) {
+                fileSizeMB = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+            } else {
+                fileSizeMB = 'Live Capture';
+            }
+
+            const item = document.createElement('div');
+            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;';
+            item.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="font-size:22px;">${icons[uploadType] || '📄'}</div>
+                    <div>
+                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${file.name}</h4>
+                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · ${fileSizeMB}</p>
+                    </div>
+                </div>
+                <a href="${url}" target="_blank" class="badge badge-success" style="text-decoration:none;padding:5px 12px;">View in Drive</a>
+            `;
+            fileList.appendChild(item);
+        }
+
+        // --- Camera Modal Logic ---
+        let stream = null;
+        let capturedDataUrl = null;
+
+        function openCameraModal() {
+            const modal = document.getElementById('camera-modal');
+            const video = document.getElementById('camera-stream');
+
+            modal.style.display = 'flex';
+            document.getElementById('camera-controls').style.display = 'block';
+            document.getElementById('preview-controls').style.display = 'none';
+            document.getElementById('camera-preview').style.display = 'none';
+            video.style.display = 'block';
+            capturedDataUrl = null;
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+                .then(function (s) {
+                    stream = s;
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function (err) {
+                    console.error("Camera error: ", err);
+                    alert("Could not access camera. Please ensure permissions are granted.");
+                    closeCameraModal();
+                });
+        }
+
+        function closeCameraModal() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            document.getElementById('camera-modal').style.display = 'none';
+        }
+
+        function captureSelfie() {
+            const video = document.getElementById('camera-stream');
+            const canvas = document.getElementById('camera-canvas');
+            const preview = document.getElementById('camera-preview');
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            capturedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            preview.src = capturedDataUrl;
+
+            video.style.display = 'none';
+            preview.style.display = 'block';
+            document.getElementById('camera-controls').style.display = 'none';
+            document.getElementById('preview-controls').style.display = 'block';
+        }
+
+        function retakeSelfie() {
+            document.getElementById('camera-preview').style.display = 'none';
+            document.getElementById('camera-stream').style.display = 'block';
+            document.getElementById('camera-controls').style.display = 'block';
+            document.getElementById('preview-controls').style.display = 'none';
+            capturedDataUrl = null;
+        }
+
+        function uploadSelfie() {
+            if (!capturedDataUrl) return;
+
+            closeCameraModal();
+
+            const loader = document.getElementById('loader');
+            loader.style.display = 'flex';
+
+            const base64Data = capturedDataUrl.split(',')[1];
+            const timestamp = new Date().getTime();
+            const fileName = 'Selfie_' + localStorage.getItem('userRegId') + '_' + timestamp + '.jpg';
+
+            const payload = {
+                action: 'upload',
+                filename: fileName,
+                mimeType: 'image/jpeg',
+                base64Data: base64Data,
+                regId: localStorage.getItem('userRegId'),
+                uploadType: 'photo'
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    loader.style.display = 'none';
+                    if (data.success) {
+                        document.getElementById('photo-upload-status').innerHTML = `<span style="color:#166534">✅ Uploaded successfully — <a href="${data.url}" target="_blank">View file</a></span>`;
+                        addToFileList({ name: fileName, size: null }, 'photo', data.url);
+                    } else {
+                        alert('Upload failed: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    loader.style.display = 'none';
+                    alert('An error occurred during upload.');
+                    console.error(err);
+                });
+        }
+    </script>
 </body>
 
 </html>
