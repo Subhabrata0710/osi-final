@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSICON Cricket League 2026 | Player Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002366;
+            --primary-light: #f5f3ff;
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --bg-gradient: linear-gradient(135deg, #002366 0%, #002366 100%);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 25px;
+        }
+
+        .conference-name {
+            display: block;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .society-name {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 5px 0 15px 0;
+        }
+
+        .info-pill {
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .info-pill a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .intro-panel {
+            background: linear-gradient(135deg, #002366 0%, #0c4a6e 100%);
+            color: #fff;
+            border-radius: 20px;
+            padding: 22px 24px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .intro-panel h2 {
+            margin: 0 0 10px 0;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .intro-panel ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .intro-panel .badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 14px 0;
+        }
+
+        .intro-panel .badge {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f9fafb;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .choice-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .choice-card {
+            flex: 1;
+            min-width: 140px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 8px;
+            transition: 0.2s;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .choice-card:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .choice-card:has(input:checked) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .choice-card input {
+            display: none;
+        }
+
+        .team-section {
+            border: 1px dashed var(--primary);
+            background: var(--primary-light);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 10px;
+        }
+
+        .team-section .section-header {
+            margin-top: 0;
+        }
+
+        .note-box {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: #7c2d12;
+            margin-top: 18px;
+        }
+
+        .consent-box {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+
+        .consent-box input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: var(--primary);
+        }
+
+        .consent-box label {
+            margin: 0;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .team-confirm-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-top: 4px;
+        }
+
+        .team-confirm-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: var(--primary);
+        }
+
+        .team-confirm-row label {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 26px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #001844;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 500px) {
+
+            .grid-row,
+            .choice-row {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-wrapper">
+        <div class="event-header">
+            <span class="conference-name">🏏 OSICON Cricket League 2026</span>
+            <span class="society-name">Player Registration</span>
+            <div class="info-pill">
+                <strong>OSICON Kolkata 2026</strong> | 27th - 29th November 2026<br>
+                <a href="mailto:registration@osiconkolkata.com">registration@osiconkolkata.com</a>
+            </div>
+        </div>
+
+        <div class="intro-panel">
+            <h2>Time to play! 🏏</h2>
+            <p>Welcome to the OSICON Cricket League 2026 — a fun-filled sporting experience for OSICON participants
+                and their families.</p>
+            <div class="badges">
+                <span class="badge">Men's Cricket — 8 players/side</span>
+                <span class="badge">Women's Cricket — 6 players/side</span>
+                <span class="badge">✨ Complimentary Registration</span>
+            </div>
+            <p style="margin-bottom: 4px;"><strong>Open for:</strong></p>
+            <ul>
+                <li>Conference participants not attending the pre-conference courses</li>
+                <li>Family members of conference participants</li>
+            </ul>
+            <p style="margin-bottom: 4px;"><strong>Minimum age:</strong> 16 years</p>
+            <p>You may register as a team or as an individual. Teams will be finalized through a lucky draw after the
+                registration cut-off date.</p>
+            <p style="margin-bottom: 0;"><strong>Register now and see you on the pitch! 🏆</strong></p>
+        </div>
+
+        <form id="cricketForm">
+            <div class="section-header">Player Information</div>
+
+            <div class="input-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="grid-row">
+                <div class="input-group">
+                    <label>Age *</label>
+                    <input type="number" id="age" min="16" placeholder="Minimum 16 years" required>
+                </div>
+                <div class="input-group">
+                    <label>Gender *</label>
+                    <div class="choice-row">
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Male" required>
+                            <span>Male</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Female" required>
+                            <span>Female</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-row">
+                <div class="input-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" id="mobile" placeholder="+91" required>
+                </div>
+                <div class="input-group">
+                    <label>Email ID *</label>
+                    <input type="email" id="email" placeholder="name@domain.com" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>City *</label>
+                <input type="text" id="city" placeholder="Enter your city" required>
+            </div>
+
+            <div class="input-group">
+                <label>Are you a registered OSICON 2026 conference participant? *</label>
+                <div class="choice-row">
+                    <label class="choice-card">
+                        <input type="radio" name="participantStatus" value="Yes" required>
+                        <span>Yes</span>
+                    </label>
+                    <label class="choice-card">
+                        <input type="radio" name="participantStatus" value="No - Family Member" required>
+                        <span>No, I am a family member of a participant</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group" id="accompanyingField" style="display: none;">
+                <label>Name of OSICON Participant You Are Accompanying *</label>
+                <input type="text" id="accompanyingName" placeholder="Full name of the participant">
+            </div>
+
+            <div class="input-group">
+                <label id="regNoLabel">OSICON 2026 Registration No. *</label>
+                <input type="text" id="regNo" placeholder="Your conference registration number" required>
+            </div>
+
+            <div class="section-header">How would you like to register?</div>
+            <div class="choice-row">
+                <label class="choice-card">
+                    <input type="radio" name="registrationType" value="Team" required>
+                    <span>🏆 As a Team</span>
+                </label>
+                <label class="choice-card">
+                    <input type="radio" name="registrationType" value="Individual" required>
+                    <span>🙋 As an Individual</span>
+                </label>
+            </div>
+
+            <div class="team-section" id="teamSection" style="display: none;">
+                <div class="section-header">🏆 Register Your Team</div>
+
+                <div class="input-group">
+                    <label>Team Category *</label>
+                    <div class="choice-row">
+                        <label class="choice-card">
+                            <input type="radio" name="teamCategory" value="Men's Cricket (8 players)">
+                            <span>Men's Cricket (8 players)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="teamCategory" value="Women's Cricket (6 players)">
+                            <span>Women's Cricket (6 players)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Team Name *</label>
+                    <input type="text" id="teamName" placeholder="Enter your team name">
+                </div>
+
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Team Captain's Name</label>
+                        <input type="text" id="captainName" placeholder="Captain's full name">
+                    </div>
+                    <div class="input-group">
+                        <label>Captain's Mobile Number</label>
+                        <input type="tel" id="captainMobile" placeholder="+91">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Number of Players in Your Team</label>
+                    <select id="numPlayers">
+                        <option value="">Select number of players</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Names of Team Members</label>
+                    <textarea id="teamMembers"
+                        placeholder="List the names of all team members, one per line"></textarea>
+                </div>
+
+                <div class="team-confirm-row">
+                    <input type="checkbox" id="teamConfirm">
+                    <label for="teamConfirm">Team Captain Confirmation — I confirm that the information provided for
+                        my team is correct.</label>
+                </div>
+
+                <div class="note-box">
+                    <strong>Important Note:</strong> Teams will be finalized after the registration cut-off date. The
+                    final team structure will be determined through a lucky draw, as applicable.
+                </div>
+            </div>
+
+            <div class="consent-box">
+                <input type="checkbox" id="consent" required>
+                <label for="consent">I confirm that the information provided by me is accurate and that I meet the
+                    eligibility requirements for participation in the OSICON Cricket League. I understand that team
+                    formation/finalization will be carried out after the registration cut-off date.</label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
+        </form>
+    </div>
+
+    <script>
+        // Replace with your actual Deployed Web App URL (same backend as the main registration form)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2czGfwbXMTUjAS-6Px1bvJbN_zHB2NTCLmZrX2K2jOUCDx5JYANoxZl4jqWCIY6Uv/exec';
+
+        const form = document.getElementById('cricketForm');
+
+        const accompanyingField = document.getElementById('accompanyingField');
+        const accompanyingNameInput = document.getElementById('accompanyingName');
+        const regNoLabel = document.getElementById('regNoLabel');
+
+        // Toggle "accompanying participant" field based on participant status
+        form.addEventListener('change', (e) => {
+            if (e.target.name === 'participantStatus') {
+                if (e.target.value === 'Yes') {
+                    accompanyingField.style.display = 'none';
+                    accompanyingNameInput.required = false;
+                    accompanyingNameInput.value = '';
+                    regNoLabel.textContent = 'OSICON 2026 Registration No. *';
+                } else {
+                    accompanyingField.style.display = 'block';
+                    accompanyingNameInput.required = true;
+                    regNoLabel.textContent = "OSICON 2026 Registration No. of the Participant You Are Accompanying *";
+                }
+            }
+        });
+
+        // Toggle Team section
+        const teamSection = document.getElementById('teamSection');
+        const teamName = document.getElementById('teamName');
+        const teamConfirm = document.getElementById('teamConfirm');
+        const teamCategoryRadios = () => document.querySelectorAll('input[name="teamCategory"]');
+
+        form.addEventListener('change', (e) => {
+            if (e.target.name === 'registrationType') {
+                if (e.target.value === 'Team') {
+                    teamSection.style.display = 'block';
+                    teamName.required = true;
+                    teamCategoryRadios().forEach(r => r.required = true);
+                } else {
+                    teamSection.style.display = 'none';
+                    teamName.required = false;
+                    teamCategoryRadios().forEach(r => r.required = false);
+                }
+            }
+        });
+
+        // Populate number-of-players dropdown based on team category
+        const numPlayersSelect = document.getElementById('numPlayers');
+        form.addEventListener('change', (e) => {
+            if (e.target.name === 'teamCategory') {
+                const max = e.target.value.indexOf('6') !== -1 ? 6 : 8;
+                numPlayersSelect.innerHTML = '<option value="">Select number of players</option>';
+                for (let i = 1; i <= max; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = i;
+                    numPlayersSelect.appendChild(opt);
+                }
+            }
+        });
+
+        // Submit handler
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const registrationType = document.querySelector('input[name="registrationType"]:checked');
+            if (registrationType && registrationType.value === 'Team') {
+                if (!teamName.value.trim()) {
+                    alert('Please enter your Team Name.');
+                    return;
+                }
+                if (!teamConfirm.checked) {
+                    alert('Please confirm the Team Captain Confirmation checkbox.');
+                    return;
+                }
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const genderVal = document.querySelector('input[name="gender"]:checked');
+            const participantStatusVal = document.querySelector('input[name="participantStatus"]:checked');
+            const teamCategoryVal = document.querySelector('input[name="teamCategory"]:checked');
+
+            const formData = new URLSearchParams();
+            formData.append('action', 'cricket');
+            formData.append('name', document.getElementById('fullName').value.trim());
+            formData.append('age', document.getElementById('age').value);
+            formData.append('gender', genderVal ? genderVal.value : '');
+            formData.append('mobile', document.getElementById('mobile').value.trim());
+            formData.append('email', document.getElementById('email').value.trim());
+            formData.append('city', document.getElementById('city').value.trim());
+            formData.append('participantStatus', participantStatusVal ? participantStatusVal.value : '');
+            formData.append('accompanyingName', accompanyingNameInput.value.trim());
+            formData.append('regNo', document.getElementById('regNo').value.trim());
+            formData.append('registrationType', registrationType ? registrationType.value : '');
+            formData.append('teamCategory', teamCategoryVal ? teamCategoryVal.value : '');
+            formData.append('teamName', teamName.value.trim());
+            formData.append('captainName', document.getElementById('captainName').value.trim());
+            formData.append('captainMobile', document.getElementById('captainMobile').value.trim());
+            formData.append('numPlayers', numPlayersSelect.value);
+            formData.append('teamMembers', document.getElementById('teamMembers').value.trim());
+            formData.append('teamConfirm', teamConfirm.checked ? 'Yes' : 'No');
+            formData.append('consent', document.getElementById('consent').checked ? 'Yes' : 'No');
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+                .then(() => {
+                    alert('Registration successful! We\'ll be in touch with further details before the event. See you on the pitch! 🏆');
+                    form.reset();
+                    teamSection.style.display = 'none';
+                    accompanyingField.style.display = 'none';
+                    numPlayersSelect.innerHTML = '<option value="">Select number of players</option>';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Registration';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('There was an error submitting your registration. Please try again or contact support.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Registration';
+                });
+        });
+    </script>
+</body>
+
+</html>

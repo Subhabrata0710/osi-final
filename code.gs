@@ -35,6 +35,14 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // Branch to Cricket League registration (writes to its own sheet,
+    // see registerCricketPlayer() near the end of this file)
+    if (data.action === 'cricket') {
+      const cricketResponse = registerCricketPlayer(data);
+      return ContentService.createTextOutput(JSON.stringify(cricketResponse))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     const response = registerUser(data);
     
     return ContentService.createTextOutput(JSON.stringify(response))
@@ -850,6 +858,200 @@ function sendLinkQrConfirmationEmail(data, serialNumber, existingQrUrl) {
     emailOptions.inlineImages = { qrCode: inlineBlob };
     emailOptions.attachments = [attachBlob];
   }
+
+  if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+    emailOptions.from = EMAIL_FROM.trim();
+  }
+  if (EMAIL_CC && EMAIL_CC.trim().length > 0) {
+    emailOptions.cc = EMAIL_CC.trim();
+  }
+  if (EMAIL_BCC && EMAIL_BCC.trim().length > 0) {
+    emailOptions.bcc = EMAIL_BCC.trim();
+  }
+
+  if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+    GmailApp.sendEmail(data.email, subject, plainBody, emailOptions);
+  } else {
+    MailApp.sendEmail(emailOptions);
+  }
+}
+// ============================================================
+// >>> ADDED: OSICON CRICKET LEAGUE 2026 — PLAYER REGISTRATION <<<
+// Nothing above this line is touched. This writes to its own
+// "Cricket Registrations" sheet in the same spreadsheet and is
+// completely separate from the conference "Registrations" sheet.
+// Hooked into doPost() via `data.action === 'cricket'` (see the
+// small branch added near the top of doPost()).
+//
+// This is a free/complimentary registration — no payment, no QR
+// code — so the flow is intentionally simpler than registerUser().
+// ============================================================
+
+const CRICKET_SHEET_NAME = 'Cricket Registrations';
+
+// ------------------------------------------------------------
+// GET OR CREATE THE "Cricket Registrations" SHEET
+// ------------------------------------------------------------
+function getCricketSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(CRICKET_SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(CRICKET_SHEET_NAME);
+    sheet.appendRow([
+      'Timestamp',
+      'Full Name',
+      'Age',
+      'Gender',
+      'Mobile Number',
+      'Email',
+      'City',
+      'Registered OSICON Participant?',
+      'Accompanying Participant Name',
+      'OSICON Registration No.',
+      'Registration Type',
+      'Team Category',
+      'Team Name',
+      'Team Captain Name',
+      "Captain's Mobile Number",
+      'Number of Players',
+      'Names of Team Members',
+      'Team Captain Confirmed',
+      'Eligibility Consent'
+    ]);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+// ------------------------------------------------------------
+// REGISTER A CRICKET LEAGUE ENTRY (team or individual)
+// ------------------------------------------------------------
+function registerCricketPlayer(data) {
+  if (!data || !data.email || !data.name) {
+    return { success: false, message: 'Missing required registration data.' };
+  }
+
+  const lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(30000);
+    const sheet = getCricketSheet();
+    const allData = sheet.getDataRange().getValues();
+
+    // Duplicate check on Email (column index 5)
+    for (var i = 1; i < allData.length; i++) {
+      if (allData[i][5] && allData[i][5].toString().toLowerCase().trim() === data.email.toLowerCase().trim()) {
+        return { success: false, message: 'This email has already been used for a Cricket League registration!' };
+      }
+    }
+
+    sheet.appendRow([
+      new Date(),
+      data.name || '',
+      data.age || '',
+      data.gender || '',
+      data.mobile || '',
+      data.email || '',
+      data.city || '',
+      data.participantStatus || '',
+      data.accompanyingName || '',
+      data.regNo || '',
+      data.registrationType || '',
+      data.teamCategory || '',
+      data.teamName || '',
+      data.captainName || '',
+      data.captainMobile || '',
+      data.numPlayers || '',
+      data.teamMembers || '',
+      data.teamConfirm || '',
+      data.consent || ''
+    ]);
+
+    // Send confirmation email (failure here should not fail the registration)
+    try {
+      sendCricketConfirmationEmail(data);
+    } catch (emailErr) {
+      console.log('Cricket confirmation email failed, but record was saved: ' + emailErr.toString());
+    }
+
+    return {
+      success: true,
+      message: 'Registration successful! A confirmation email has been sent.'
+    };
+
+  } catch (e) {
+    console.log('Cricket Registration Error: ' + e.toString());
+    sendFailureEmail(e, JSON.stringify(data));
+    return { success: false, message: 'Registration failed: ' + e.toString() };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// ------------------------------------------------------------
+// CRICKET LEAGUE CONFIRMATION EMAIL
+// ------------------------------------------------------------
+function sendCricketConfirmationEmail(data) {
+  var subject = 'OSICON Cricket League 2026 — Registration Received';
+  var isTeam = (data.registrationType || '').toLowerCase().indexOf('team') !== -1;
+
+  var plainBody =
+    'Dear ' + data.name + ',\n\n' +
+    'Thank you for registering for the OSICON Cricket League 2026!\n\n' +
+    'Details received:\n' +
+    '────────────────────────────────────────────────\n' +
+    'Registration Type : ' + (data.registrationType || '') + '\n' +
+    (isTeam ? 'Team Name          : ' + (data.teamName || '') + '\n' : '') +
+    (isTeam ? 'Team Category      : ' + (data.teamCategory || '') + '\n' : '') +
+    'Gender Category    : ' + (data.gender || '') + '\n' +
+    'Mobile Number      : ' + (data.mobile || '') + '\n' +
+    'City               : ' + (data.city || '') + '\n' +
+    '────────────────────────────────────────────────\n\n' +
+    'Teams will be finalized through a lucky draw after the registration cut-off date. ' +
+    'We will be in touch with further details closer to the event.\n\n' +
+    'See you on the pitch! 🏆\n\n' +
+    'Best regards,\n' +
+    'Organizing Committee\n' +
+    'OSICON Kolkata 2026\n' +
+    'Email: registration@osiconkolkata.com';
+
+  var htmlBody =
+    '<div style="font-family: \'Inter\', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1a202c;">' +
+      '<div style="background: linear-gradient(135deg, #002366 0%, #0c4a6e 100%); padding: 30px; border-radius: 8px 8px 0 0; text-align: center; color: #ffffff;">' +
+        '<h2 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;">OSICON Cricket League 2026</h2>' +
+        '<p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">Player Registration Confirmation</p>' +
+      '</div>' +
+      '<div style="padding: 24px 10px;">' +
+        '<p style="font-size: 16px; line-height: 1.6; margin-top: 0;">Dear <strong>' + data.name + '</strong>,</p>' +
+        '<p style="font-size: 15px; line-height: 1.6;">Thank you for registering for the <strong>OSICON Cricket League 2026</strong>. Your details have been received successfully.</p>' +
+        '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 24px 0;">' +
+          '<h3 style="margin-top: 0; margin-bottom: 15px; font-size: 16px; border-bottom: 2px solid #cbd5e1; padding-bottom: 6px; color: #002366;">Registration Summary</h3>' +
+          '<table style="width: 100%; font-size: 14px; border-collapse: collapse;">' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; width: 170px; color: #475569;">Registration Type</td><td style="padding: 6px 0; color: #0f172a;">' + (data.registrationType || '') + '</td></tr>' +
+            (isTeam ? '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Team Name</td><td style="padding: 6px 0; color: #0f172a;">' + (data.teamName || '') + '</td></tr>' : '') +
+            (isTeam ? '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Team Category</td><td style="padding: 6px 0; color: #0f172a;">' + (data.teamCategory || '') + '</td></tr>' : '') +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Gender Category</td><td style="padding: 6px 0; color: #0f172a;">' + (data.gender || '') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">Mobile Number</td><td style="padding: 6px 0; color: #0f172a;">' + (data.mobile || '') + '</td></tr>' +
+            '<tr><td style="padding: 6px 0; font-weight: 600; color: #475569;">City</td><td style="padding: 6px 0; color: #0f172a;">' + (data.city || '') + '</td></tr>' +
+          '</table>' +
+        '</div>' +
+        '<div style="background-color: #f1f5f9; border-radius: 8px; padding: 15px; margin: 24px 0; font-size: 14px; line-height: 1.5;">' +
+          'Teams will be finalized through a lucky draw after the registration cut-off date. We will reach out with further details closer to the event.' +
+        '</div>' +
+        '<p style="font-size: 14px; line-height: 1.6; margin-bottom: 0;">Questions? Reach us at <a href="mailto:registration@osiconkolkata.com" style="color: #002366;">registration@osiconkolkata.com</a>.</p>' +
+      '</div>' +
+      '<div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; color: #64748b; font-size: 13px; line-height: 1.5;">' +
+        '<p style="margin: 0; font-weight: 600; color: #475569;">Organizing Committee — OSICON Kolkata 2026</p>' +
+        '<p style="margin: 4px 0 0 0;">Osseointegration Society of India</p>' +
+      '</div>' +
+    '</div>';
+
+  var emailOptions = {
+    to: data.email,
+    name: EMAIL_FROM_NAME,
+    subject: subject,
+    body: plainBody,
+    htmlBody: htmlBody
+  };
 
   if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
     emailOptions.from = EMAIL_FROM.trim();
