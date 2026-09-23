@@ -362,8 +362,34 @@
                     style="text-transform: uppercase;">
             </div>
 
-
-
+            <div class="section-header">
+                Select Special Registration Category
+            </div>
+            <div class="scroll-wrapper">
+                <!--<div id="scrollBadge" class="scroll-badge">
+                <span>See more options</span> <span>↓</span>
+            </div>-->
+                <div class="category-container" id="categoryList">
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-without-banquet" name="cat" data-price="13000"
+                            required>
+                        <span class="cat-label">Registration without banquet</span>
+                        <span class="cat-price">₹13000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-student-without-hospitality" name="cat"
+                            data-price="5000" required>
+                        <span class="cat-label">Student Registration without hospitality</span>
+                        <span class="cat-price">₹5000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-student-with-hospitality" name="cat" data-price="7500"
+                            required>
+                        <span class="cat-label">Student Registration with Hospitality</span>
+                        <span class="cat-price">₹7500</span>
+                    </label>
+                </div>
+            </div>
             <div class="section-header">
                 Select Workshop (Optional)
             </div>
@@ -588,6 +614,9 @@
             "cat-workshop-only": [0, 0, 0, 0, 0],
             "1day": [2000, 2000, 2000, 2000, 2000],
             "cat-registration": [15000, 15000, 15000, 15000, 15000],
+            "cat-student-without-hospitality": [5000, 5000, 5000, 5000, 5000],
+            "cat-student-with-hospitality": [7500, 7500, 7500, 7500, 7500],
+            "cat-registration-without-hospitality": [13000, 13000, 13000, 13000, 13000],
             "cat-special": [11000, 11000, 11000, 11000, 11000],
             "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
             "cat-osi": [10620, 12390, 14160, 15930, 17700],
