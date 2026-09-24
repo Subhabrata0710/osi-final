@@ -360,6 +360,7 @@
                 <label>Voucher Code (Optional)</label>
                 <input type="text" id="voucherCode" placeholder="Enter voucher code if any"
                     style="text-transform: uppercase;">
+                <div id="couponHint" style="display:none; margin-top:6px; font-size:0.8em; color:#818cf8;"></div>
             </div>
 
             <div class="section-header">
@@ -370,6 +371,11 @@
                 <span>See more options</span> <span>↓</span>
             </div>-->
                 <div class="category-container" id="categoryList">
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration" name="cat" data-price="15000" required>
+                        <span class="cat-label">Registration with banquet</span>
+                        <span class="cat-price">₹15000</span>
+                    </label>
                     <label class="category-card">
                         <input type="radio" id="cat-registration-without-banquet" name="cat" data-price="13000"
                             required>
@@ -449,11 +455,11 @@
                 </div>
             </div>
 
-            <div class="section-header">
-                Select Registration Category
+            <!-- <div class="section-header">
+                Additional Registration Category
                 <span id="validTillText" style="font-size: 0.75em; font-weight: bold;">(* Prices are valid till 15th
                     April 2026)</span>
-            </div>
+            </div> -->
 
             <div class="scroll-wrapper">
                 <!--<div id="scrollBadge" class="scroll-badge">
@@ -748,6 +754,49 @@
             })
             .catch(err => console.error('Error fetching capacity', err));
 
+        // ---- Special coupon: flat Rs 11,000 = Registration + any ONE lecture ----
+        const LECTURE_COUPON = 'LECTURE11K';
+        const LECTURE_COUPON_PRICE = 11000;
+        const COUPON_LECTURE_IDS = ['workshop-lecture', 'workshop-lecture-henry', 'workshop-lecture-komal'];
+
+        const LECTURE_COUPON_CATEGORY_ID = 'cat-registration'; // the plain "Registration" option
+        function isLectureCouponCode() {
+            const v = document.getElementById('voucherCode');
+            return !!v && v.value.trim().toUpperCase() === LECTURE_COUPON;
+        }
+        // Coupon only applies when code is entered AND plain "Registration" is selected
+        function isLectureCoupon() {
+            const r = document.querySelector('input[name="cat"]:checked');
+            return isLectureCouponCode() && !!r && r.id === LECTURE_COUPON_CATEGORY_ID;
+        }
+        function getCouponLectureEls() {
+            return COUPON_LECTURE_IDS.map(id => document.getElementById(id)).filter(Boolean);
+        }
+        function getIncludedLecture() {
+            return getCouponLectureEls().find(el => el.checked) || null;
+        }
+        // Allow only one of the 3 lectures while the coupon is active
+        function enforceSingleLecture(keepEl) {
+            if (!isLectureCoupon()) return;
+            let kept = keepEl && keepEl.checked ? keepEl : getIncludedLecture();
+            getCouponLectureEls().forEach(el => { if (el !== kept) el.checked = false; });
+        }
+        function refreshCouponHint() {
+            const hint = document.getElementById('couponHint');
+            if (!hint) return;
+            if (isLectureCouponCode() && !isLectureCoupon()) {
+                hint.style.display = 'block';
+                hint.innerText = 'This coupon is valid only with the "Registration" category. Please select "Registration" above.';
+            } else if (isLectureCoupon()) {
+                hint.style.display = 'block';
+                hint.innerText = getIncludedLecture()
+                    ? '✓ Coupon applied: ₹11,000 includes Registration + your selected lecture.'
+                    : 'Coupon applied: ₹11,000 = Registration + any ONE lecture. Please tick one lecture below (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).';
+            } else {
+                hint.style.display = 'none';
+            }
+        }
+
         // 1. Total Price Calculation Logic
         function updateTotal() {
             const selectedRadio = document.querySelector('input[name="cat"]:checked');
@@ -764,6 +813,9 @@
                 }
                 if (voucherCode === 'KOL12K') {
                     amount = 12000;
+                }
+                if (voucherCode === LECTURE_COUPON && selectedRadio.id === LECTURE_COUPON_CATEGORY_ID) {
+                    amount = LECTURE_COUPON_PRICE;
                 }
             }
 
@@ -794,6 +846,15 @@
             }
             if (workshopHandsOnKomal && workshopHandsOnKomal.checked) {
                 amount += parseInt(workshopHandsOnKomal.getAttribute('data-price'));
+            }
+
+            // Coupon: the chosen lecture is included in the Rs 11,000
+            if (isLectureCoupon()) {
+                const inc = getIncludedLecture();
+                if (inc) amount -= parseInt(inc.getAttribute('data-price'));
+                refreshCouponHint();
+            } else {
+                refreshCouponHint();
             }
 
             const voucherCodeVal = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
@@ -845,8 +906,10 @@
                     regIdField.style.display = 'none';
                     regIdInput.required = false;
                 }
+                enforceSingleLecture();
                 updateTotal();
             } else if (e.target.classList.contains('workshop-checkbox')) {
+                if (COUPON_LECTURE_IDS.includes(e.target.id)) enforceSingleLecture(e.target);
                 updateTotal();
             }
         });
@@ -901,6 +964,7 @@
         });
 
         document.getElementById('voucherCode').addEventListener('input', () => {
+            enforceSingleLecture();
             updateTotal();
         });
 
@@ -944,6 +1008,17 @@
             if (voucherCode === 'KOL12K') {
                 amountInInr = 12000;
             }
+            if (voucherCode === LECTURE_COUPON && selectedRadio.id !== LECTURE_COUPON_CATEGORY_ID) {
+                alert('The coupon LECTURE11K is valid only with the "Registration" category. Please select "Registration" or remove the coupon.');
+                return;
+            }
+            if (voucherCode === LECTURE_COUPON) {
+                amountInInr = LECTURE_COUPON_PRICE;
+                if (!getIncludedLecture()) {
+                    alert("With this coupon, please select any ONE lecture (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).");
+                    return;
+                }
+            }
 
             let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
             if (selectedRadio.id === 'cat-workshop-only') {
@@ -960,10 +1035,15 @@
             if (voucherCode === 'KOL12K') {
                 categoryLabel += " (Voucher: KOL12K)";
             }
+            if (voucherCode === LECTURE_COUPON) {
+                categoryLabel += " (Voucher: LECTURE11K - Registration + 1 Lecture)";
+            }
 
             const workshopOsseo = document.getElementById('workshop-osseo');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
+            const workshopLectureHenryEl = document.getElementById('workshop-lecture-henry');
+            const workshopHandsOnHenryEl = document.getElementById('workshop-hands-on-henry');
             const workshopLectureKomalEl = document.getElementById('workshop-lecture-komal');
             const workshopHandsOnKomalEl = document.getElementById('workshop-hands-on-komal');
             if (workshopOsseo && workshopOsseo.checked) {
@@ -978,6 +1058,14 @@
                 amountInInr += parseInt(workshopHandsOn.getAttribute('data-price'));
                 categoryLabel += " + " + workshopHandsOn.value;
             }
+            if (workshopLectureHenryEl && workshopLectureHenryEl.checked) {
+                amountInInr += parseInt(workshopLectureHenryEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureHenryEl.value;
+            }
+            if (workshopHandsOnHenryEl && workshopHandsOnHenryEl.checked) {
+                amountInInr += parseInt(workshopHandsOnHenryEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOnHenryEl.value;
+            }
             if (workshopLectureKomalEl && workshopLectureKomalEl.checked) {
                 amountInInr += parseInt(workshopLectureKomalEl.getAttribute('data-price'));
                 categoryLabel += " + " + workshopLectureKomalEl.value;
@@ -985,6 +1073,11 @@
             if (workshopHandsOnKomalEl && workshopHandsOnKomalEl.checked) {
                 amountInInr += parseInt(workshopHandsOnKomalEl.getAttribute('data-price'));
                 categoryLabel += " + " + workshopHandsOnKomalEl.value;
+            }
+
+            // Coupon: chosen lecture is included in the flat price
+            if (voucherCode === LECTURE_COUPON) {
+                amountInInr -= parseInt(getIncludedLecture().getAttribute('data-price'));
             }
 
             // Apply DIS1000 flat discount
