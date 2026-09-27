@@ -786,7 +786,7 @@
             if (!hint) return;
             if (isLectureCouponCode() && !isLectureCoupon()) {
                 hint.style.display = 'block';
-                hint.innerText = 'This coupon is valid only with the "Registration" category. Please select "Registration" above.';
+                hint.innerText = 'This coupon is valid only with the "Registration with Banquet" category and any one lecture.';
             } else if (isLectureCoupon()) {
                 hint.style.display = 'block';
                 hint.innerText = getIncludedLecture()
