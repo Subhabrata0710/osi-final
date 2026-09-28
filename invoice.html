@@ -458,7 +458,7 @@
             doc.text('Email: registration@osiconkolkata.com  |  Website: www.osiconkolkata2026.com', margin, footerY + 48);
             doc.text('This is a system-generated receipt and does not require a signature.', margin, footerY + 64);
 
-            doc.save('Invoice_' + (rec.serialNumber || 'OSICON2026') + '.pdf');
+            doc.save('Invoice_' + (rec.name || 'OSICON2026') + '.pdf');
         }
     </script>
 </body>
