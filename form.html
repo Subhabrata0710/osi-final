@@ -459,6 +459,24 @@
                         <span class="cat-label">Dr. Udatta Kher's precon workshop lecture with hands on</span>
                         <span class="cat-price">₹3,000</span>
                     </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-bhandari-lecture" class="workshop-checkbox"
+                            value="Workshop: Dr. Piyush Bhandari's Treating the Atrophic Maxilla using Zygomatic n Pterygoid Implants Lecture"
+                            data-price="2000">
+                        <span class="cat-label">Dr. Piyush Bhandari's Treating the Atrophic
+                            Maxilla using Zygomatic n
+                            Pterygoid Implants Lecture</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-bhandari-hands-on" class="workshop-checkbox"
+                            value="Workshop: Dr. Piyush Bhandari's Treating the Atrophic Maxilla using Zygomatic n Pterygoid Implants Hands on"
+                            data-price="5000">
+                        <span class="cat-label">Dr. Piyush Bhandari's Treating the Atrophic
+                            Maxilla using Zygomatic n
+                            Pterygoid Implants Hands on</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
                 </div>
             </div>
 
@@ -833,6 +851,8 @@
             const workshopHandsOnHenry = document.getElementById('workshop-hands-on-henry');
             const workshopLectureKomal = document.getElementById('workshop-lecture-komal');
             const workshopHandsOnKomal = document.getElementById('workshop-hands-on-komal');
+            const workshopBhandariLecture = document.getElementById('workshop-bhandari-lecture');
+            const workshopBhandariHandsOn = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
@@ -1057,6 +1077,8 @@
             const workshopHandsOnHenryEl = document.getElementById('workshop-hands-on-henry');
             const workshopLectureKomalEl = document.getElementById('workshop-lecture-komal');
             const workshopHandsOnKomalEl = document.getElementById('workshop-hands-on-komal');
+            const workshopBhandariLectureEl = document.getElementById('workshop-bhandari-lecture');
+            const workshopBhandariHandsOnEl = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
 
             if (workshopOsseo && workshopOsseo.checked) {
