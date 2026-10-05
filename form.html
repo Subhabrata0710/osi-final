@@ -878,6 +878,12 @@
             if (workshopUdatta && workshopUdatta.checked) {
                 amount += parseInt(workshopUdatta.getAttribute('data-price'));
             }
+            if (workshopBhandariLecture && workshopBhandariLecture.checked) {
+                amount += parseInt(workshopBhandariLecture.getAttribute('data-price'));
+            }
+            if (workshopBhandariHandsOn && workshopBhandariHandsOn.checked) {
+                amount += parseInt(workshopBhandariHandsOn.getAttribute('data-price'));
+            }
 
             // Coupon: the chosen lecture is included in the Rs 11,000
             if (isLectureCoupon()) {
