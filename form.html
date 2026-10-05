@@ -1145,6 +1145,18 @@
                 amountInInr += parseInt(workshopHandsOnKomalEl.getAttribute('data-price'));
                 categoryLabel += " + " + workshopHandsOnKomalEl.value;
             }
+            if (workshopBhandariLectureEl && workshopBhandariLectureEl.checked) {
+                amountInInr += parseInt(workshopBhandariLectureEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopBhandariLectureEl.value;
+            }
+            if (workshopBhandariHandsOnEl && workshopBhandariHandsOnEl.checked) {
+                amountInInr += parseInt(workshopBhandariHandsOnEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopBhandariHandsOnEl.value;
+            }
+            if (workshopUdatta && workshopUdatta.checked) {
+                amountInInr += parseInt(workshopUdatta.getAttribute('data-price'));
+                categoryLabel += " + " + workshopUdatta.value;
+            }
 
             // Coupon: chosen lecture is included in the flat price
             if (voucherCode === LECTURE_COUPON) {
