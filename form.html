@@ -775,6 +775,36 @@
                             if (label) label.innerText = 'Dr Komal Mazumdar precon workshop lecture with hands on (SOLD OUT)';
                         }
                     }
+                    if (data.countUdatta >= 3000) {
+                        const UdattaInput = document.getElementById('workshop-udatta');
+                        if (UdattaInput) {
+                            UdattaInput.disabled = true;
+                            UdattaInput.parentElement.style.opacity = '0.5';
+                            UdattaInput.parentElement.style.pointerEvents = 'none';
+                            const label = UdattaInput.nextElementSibling;
+                            if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
+                        }
+                    }
+                    if (data.countBhandariLecture >= 7000) {
+                        const bhandariLectureInput = document.getElementById('workshop-bhandari-lecture');
+                        if (bhandariLectureInput) {
+                            bhandariLectureInput.disabled = true;
+                            bhandariLectureInput.parentElement.style.opacity = '0.5';
+                            bhandariLectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = bhandariLectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr. S K Bhandari, Dr. Sandip Kumar, Dr. Suvranil Som (Lecture) (SOLD OUT)';
+                        }
+                    }
+                    if (data.countBhandariHandsOn >= 3000) {
+                        const bhandariHandsOnInput = document.getElementById('workshop-bhandari-hands-on');
+                        if (bhandariHandsOnInput) {
+                            bhandariHandsOnInput.disabled = true;
+                            bhandariHandsOnInput.parentElement.style.opacity = '0.5';
+                            bhandariHandsOnInput.parentElement.style.pointerEvents = 'none';
+                            const label = bhandariHandsOnInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr. S K Bhandari, Dr. Sandip Kumar, Dr. Suvranil Som (Lecture with Hands on) (SOLD OUT)';
+                        }
+                    }
                 }
             })
             .catch(err => console.error('Error fetching capacity', err));
