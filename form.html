@@ -404,9 +404,16 @@
                     <label class="category-card">
                         <input type="checkbox" id="workshop-osseo" class="workshop-checkbox"
                             value="Course Topic: Osseodensification" data-price="20000">
-                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification [Dr. Salah
-                            Huwais]</span>
+                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification (Hands on
+                            workshop) [Dr. Salah Huwais]</span>
                         <span class="cat-price">₹20,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture-salah" class="workshop-checkbox"
+                            value="Course Topic: Osseodensification" data-price="5000">
+                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification (Lecture)[Dr. Salah
+                            Huwais]</span>
+                        <span class="cat-price">₹5,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
@@ -735,6 +742,16 @@
                             if (label) label.innerText = 'Course Topic: Osseodensification (SOLD OUT)';
                         }
                     }
+                    if (data.countOsseoLectureSalah >= 20) {
+                        const osseoInput = document.getElementById('workshop-lecture-salah');
+                        if (osseoInput) {
+                            osseoInput.disabled = true;
+                            osseoInput.parentElement.style.opacity = '0.5';
+                            osseoInput.parentElement.style.pointerEvents = 'none';
+                            const label = document.getElementById('osseo-lecture-salah-label');
+                            if (label) label.innerText = 'Course Topic: Osseodensification (Lecture) (SOLD OUT)';
+                        }
+                    }
                     if (data.countLecture >= 30) {
                         const lectureInput = document.getElementById('workshop-lecture-henry');
                         if (lectureInput) {
@@ -875,6 +892,7 @@
             }
 
             const workshopOsseo = document.getElementById('workshop-osseo');
+            const workshopLectureSalah = document.getElementById('workshop-lecture-salah');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
             const workshopLectureHenry = document.getElementById('workshop-lecture-henry');
@@ -886,6 +904,9 @@
             const workshopUdatta = document.getElementById('workshop-udatta');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
+            }
+            if (workshopLectureSalah && workshopLectureSalah.checked) {
+                amount += parseInt(workshopLectureSalah.getAttribute('data-price'));
             }
             if (workshopLecture && workshopLecture.checked) {
                 amount += parseInt(workshopLecture.getAttribute('data-price'));
@@ -1107,6 +1128,7 @@
             }
 
             const workshopOsseo = document.getElementById('workshop-osseo');
+            const workshopLectureSalah = document.getElementById('workshop-lecture-salah');
             const workshopLecture = document.getElementById('workshop-lecture');
             const workshopHandsOn = document.getElementById('workshop-hands-on');
             const workshopLectureHenryEl = document.getElementById('workshop-lecture-henry');
@@ -1120,6 +1142,10 @@
             if (workshopOsseo && workshopOsseo.checked) {
                 amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
                 categoryLabel += " + " + workshopOsseo.value;
+            }
+            if (workshopLectureSalah && workshopLectureSalah.checked) {
+                amountInInr += parseInt(workshopLectureSalah.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureSalah.value;
             }
             if (workshopLecture && workshopLecture.checked) {
                 amountInInr += parseInt(workshopLecture.getAttribute('data-price'));

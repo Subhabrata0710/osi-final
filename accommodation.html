@@ -79,21 +79,20 @@
                     <h2>Room Categories</h2>
                 </div>
                 <div class="grid-2">
-                    <div class="room-card" data-price="15000" data-room="Single Occupancy">
+                    <div class="room-card" data-price="13865" data-room="Deluxe Room (Lower Floors)">
                         <div class="room-card-image"><img alt="Deluxe Room"
                                 src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&amp;h=200&amp;fit=crop" />
                         </div>
                         <div class="room-card-content">
-                            <h3>Single Occupancy</h3>
+                            <h3>Deluxe Room <span style="font-size: 14px; font-weight: normal; color: #666;"><br>(Lower
+                                    Floors)</span></h3>
                             <div class="room-price">
-                                <h3>₹15,000</h3><span>/night</span>
+                                <h3>₹13,865</h3><span>/room per day</span>
                             </div>
                             <ul class="pricing-features">
-                                <li>King/Twin beds</li>
-                                <li>42 sqm</li>
-                                <li>Breakfast included</li>
+                                <li>Single/Double sharing</li>
+                                <li>All inclusive (with 18% GST)</li>
                             </ul>
-                            <!-- <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
                                 <button class="minus">−</button>
                                 <span class="nights">1</span>
@@ -101,22 +100,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="room-card" data-price="7500" data-room="Double Occupancy">
-                        <!-- <div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"><span class="room-badge">RECOMMENDED</span></div> -->
-                        <div class="room-card-image"><img alt="Premium Room"
+                    <div class="room-card" data-price="14750" data-room="Club Room (Higher Floors)">
+                        <div class="room-card-image"><img alt="Club Room"
                                 src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&amp;h=200&amp;fit=crop" />
                         </div>
                         <div class="room-card-content">
-                            <h3>Double Occupancy</h3>
+                            <h3>Club Room <span style="font-size: 14px; font-weight: normal; color: #666;"><br>(Higher
+                                    Floors)</span></h3>
                             <div class="room-price">
-                                <h3>₹7,500</h3><span>/night(on twin sharing basis)</span>
+                                <h3>₹14,750</h3><span>/room per day</span>
                             </div>
                             <ul class="pricing-features">
-                                <li>King/Twin beds</li>
-                                <li>42 sqm</li>
-                                <li>Breakfast included</li>
+                                <li>Single/Double sharing</li>
+                                <li>All inclusive (with 18% GST)</li>
                             </ul>
-                            <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
                             <div class="night-selector hidden">
                                 <button class="minus">−</button>
                                 <span class="nights">1</span>
@@ -124,20 +121,26 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="room-card" data-room="Executive Suite" data-price="12000">
-                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=200&fit=crop" alt="Executive Suite"></div>
+                    <div class="room-card" data-price="23600" data-room="Suite Room">
+                        <div class="room-card-image"><img
+                                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=200&fit=crop"
+                                alt="Suite Room"></div>
                         <div class="room-card-content">
-                            <h3>Executive Suite</h3>
-                            <div class="room-price"><h3>₹12,000</h3><span>/night</span></div>
-                            <ul class="pricing-features"><li>King bed, 65 sqm</li><li>Panoramic view</li><li>Club access</li></ul>
-                            <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a> -->
-                    <!-- <div class="night-selector hidden">
+                            <h3>Suite Room</h3>
+                            <div class="room-price">
+                                <h3>₹23,600</h3><span>/room per day</span>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>Single/Double sharing</li>
+                                <li>All inclusive (with 18% GST)</li>
+                            </ul>
+                            <div class="night-selector hidden">
                                 <button class="minus">−</button>
                                 <span class="nights">1</span>
                                 <button class="plus">+</button>
-                            </div>                             
+                            </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div id="guest-details" style="display:none; margin-top:30px;">
                     <div class="section-header">Guest Details</div>
@@ -148,6 +151,18 @@
                     <div class="input-group">
                         <label>Mobile Number *</label>
                         <input id="accPhone" placeholder="+91" type="tel" />
+                    </div>
+                    <div class="input-group">
+                        <label>OSI Registration Number *</label>
+                        <input id="accOsiReg" placeholder="Enter OSI Reg Number" type="text" />
+                    </div>
+                    <div class="input-group">
+                        <label>Check-in Date *</label>
+                        <input id="accCheckIn" type="date" />
+                    </div>
+                    <div class="input-group">
+                        <label>Check-out Date *</label>
+                        <input id="accCheckOut" type="date" />
                     </div>
                 </div>
                 <div id="booking-summary" style="display:none; margin-top:40px;">
@@ -180,6 +195,9 @@
             const accGuestDetails = document.getElementById("guest-details");
             const accNameInput = document.getElementById("accName");
             const accPhoneInput = document.getElementById("accPhone");
+            const accOsiRegInput = document.getElementById("accOsiReg");
+            const accCheckInInput = document.getElementById("accCheckIn");
+            const accCheckOutInput = document.getElementById("accCheckOut");
             const guestNameSummary = document.getElementById("guest-name-summary");
             const payNowBtn = document.getElementById("pay-now");
 
@@ -284,9 +302,12 @@
             payNowBtn.addEventListener("click", () => {
                 const name = accNameInput.value.trim();
                 const phone = accPhoneInput.value.trim();
+                const osiReg = accOsiRegInput.value.trim();
+                const checkIn = accCheckInInput.value;
+                const checkOut = accCheckOutInput.value;
 
-                if (!name || !phone) {
-                    alert("Please enter name and phone number");
+                if (!name || !phone || !osiReg || !checkIn || !checkOut) {
+                    alert("Please fill in all required fields (Name, Phone, OSI Reg Number, Check-in, Check-out).");
                     return;
                 }
 
@@ -308,6 +329,9 @@
                         saveAccommodationToSheet(
                             name,
                             phone,
+                            osiReg,
+                            checkIn,
+                            checkOut,
                             booking.summaryText,
                             booking.totalAmount,
                             response.razorpay_payment_id
@@ -321,11 +345,14 @@
             });
 
             // --- 7️⃣ Google Sheet Submission ---
-            function saveAccommodationToSheet(name, phone, rooms, amount, paymentId) {
+            function saveAccommodationToSheet(name, phone, osiReg, checkIn, checkOut, rooms, amount, paymentId) {
                 const formData = new URLSearchParams();
                 formData.append("type", "Accommodation");
                 formData.append("name", name);
                 formData.append("phone", phone);
+                formData.append("osi_reg", osiReg);
+                formData.append("check_in", checkIn);
+                formData.append("check_out", checkOut);
                 formData.append("rooms", rooms);
                 formData.append("amount", amount);
                 formData.append("payment_id", paymentId);
