@@ -93,10 +93,11 @@
                                 <li>Single/Double sharing</li>
                                 <li>All inclusive (with 18% GST)</li>
                             </ul>
-                            <div class="night-selector hidden">
-                                <button class="minus">−</button>
-                                <span class="nights">1</span>
-                                <button class="plus">+</button>
+                            <div class="room-selector hidden" style="display: none; align-items: center; justify-content: center; gap: 12px; margin-top: 15px; padding: 10px; background: #f8fafc; border-radius: 8px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #475569;">Rooms:</span>
+                                <button type="button" class="minus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">−</button>
+                                <span class="num-rooms" style="font-weight: 700; font-size: 16px; min-width: 20px; text-align: center; color: #0f172a;">1</span>
+                                <button type="button" class="plus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">+</button>
                             </div>
                         </div>
                     </div>
@@ -114,10 +115,11 @@
                                 <li>Single/Double sharing</li>
                                 <li>All inclusive (with 18% GST)</li>
                             </ul>
-                            <div class="night-selector hidden">
-                                <button class="minus">−</button>
-                                <span class="nights">1</span>
-                                <button class="plus">+</button>
+                            <div class="room-selector hidden" style="display: none; align-items: center; justify-content: center; gap: 12px; margin-top: 15px; padding: 10px; background: #f8fafc; border-radius: 8px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #475569;">Rooms:</span>
+                                <button type="button" class="minus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">−</button>
+                                <span class="num-rooms" style="font-weight: 700; font-size: 16px; min-width: 20px; text-align: center; color: #0f172a;">1</span>
+                                <button type="button" class="plus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">+</button>
                             </div>
                         </div>
                     </div>
@@ -134,10 +136,11 @@
                                 <li>Single/Double sharing</li>
                                 <li>All inclusive (with 18% GST)</li>
                             </ul>
-                            <div class="night-selector hidden">
-                                <button class="minus">−</button>
-                                <span class="nights">1</span>
-                                <button class="plus">+</button>
+                            <div class="room-selector hidden" style="display: none; align-items: center; justify-content: center; gap: 12px; margin-top: 15px; padding: 10px; background: #f8fafc; border-radius: 8px;">
+                                <span style="font-size: 14px; font-weight: 600; color: #475569;">Rooms:</span>
+                                <button type="button" class="minus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">−</button>
+                                <span class="num-rooms" style="font-weight: 700; font-size: 16px; min-width: 20px; text-align: center; color: #0f172a;">1</span>
+                                <button type="button" class="plus" style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; color: #334155;">+</button>
                             </div>
                         </div>
                     </div>
@@ -204,14 +207,24 @@
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2czGfwbXMTUjAS-6Px1bvJbN_zHB2NTCLmZrX2K2jOUCDx5JYANoxZl4jqWCIY6Uv/exec";
 
             // --- 2️⃣ Room Summary Calculation ---
+            function calculateNights() {
+                const checkInDate = new Date(accCheckInInput.value);
+                const checkOutDate = new Date(accCheckOutInput.value);
+                if (isNaN(checkInDate) || isNaN(checkOutDate)) return 1;
+                const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
+                let nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                return nights > 0 ? nights : 1;
+            }
+
             function getRoomSummary() {
                 let lines = [];
                 let total = 0;
+                let nights = calculateNights();
 
                 Object.entries(rooms).forEach(([room, data]) => {
-                    const line = `${room} (${data.nights} night${data.nights > 1 ? 's' : ''})`;
+                    const line = `${room} (${data.numRooms} room${data.numRooms > 1 ? 's' : ''}, ${nights} night${nights > 1 ? 's' : ''})`;
                     lines.push(line);
-                    total += data.price * data.nights;
+                    total += data.price * data.numRooms * nights;
                 });
 
                 return { summaryText: lines.join(' | '), totalAmount: total };
@@ -220,11 +233,12 @@
             // --- 3️⃣ Update Summary ---
             function updateSummary() {
                 const keys = Object.keys(rooms);
+                const nights = calculateNights();
 
                 if (!keys.length) {
                     summaryBox.style.display = "none";
                     accGuestDetails.style.display = "none";
-                    guestNameSummary.textContent = "";
+                    if (guestNameSummary) guestNameSummary.textContent = "";
                     return;
                 }
 
@@ -234,65 +248,77 @@
                 let total = 0;
 
                 keys.forEach(room => {
-                    const { price, nights } = rooms[room];
-                    const roomTotal = price * nights;
+                    const { price, numRooms } = rooms[room];
+                    const roomTotal = price * numRooms * nights;
                     total += roomTotal;
 
                     summaryList.innerHTML += `
-                <p>${room} — ${nights} night(s) × ₹${price} = ₹${roomTotal}</p>
+                <p style="margin: 8px 0; font-size: 15px; color: #334155;"><strong>${room}</strong> — ${numRooms} room(s) × ${nights} night(s) × ₹${price} = <strong>₹${roomTotal}</strong></p>
             `;
                 });
 
                 totalAmountEl.textContent = total;
-                guestNameSummary.textContent = accNameInput.value
-                    ? `Guest: ${accNameInput.value}`
-                    : "";
+                if (guestNameSummary) {
+                    guestNameSummary.textContent = accNameInput.value
+                        ? `Guest: ${accNameInput.value}`
+                        : "";
+                }
             }
 
             // --- 4️⃣ Guest Name Dynamic Update ---
             accNameInput.addEventListener("input", updateSummary);
+            accCheckInInput.addEventListener("change", updateSummary);
+            accCheckOutInput.addEventListener("change", updateSummary);
 
             // --- 5️⃣ Room Selection Logic ---
             document.querySelectorAll(".room-card").forEach(card => {
                 const roomName = card.dataset.room;
                 const price = Number(card.dataset.price);
 
-                const selector = card.querySelector(".night-selector");
-                const nightsEl = card.querySelector(".nights");
+                const selector = card.querySelector(".room-selector");
+                const numRoomsEl = card.querySelector(".num-rooms");
                 const plus = card.querySelector(".plus");
                 const minus = card.querySelector(".minus");
 
-                if (!selector || !plus || !minus || !nightsEl) return;
+                if (!selector || !plus || !minus || !numRoomsEl) return;
 
-                card.addEventListener("click", () => {
+                card.addEventListener("click", (e) => {
+                    if (e.target.closest('.room-selector')) return;
+
                     if (!rooms[roomName]) {
-                        rooms[roomName] = { price, nights: 1 };
+                        rooms[roomName] = { price, numRooms: 1 };
                         card.classList.add("selected");
+                        card.style.borderColor = "var(--primary, #002366)";
+                        card.style.backgroundColor = "var(--primary-light, #f5f3ff)";
                         selector.classList.remove("hidden");
+                        selector.style.display = "flex";
                         accNameInput.focus();
                     } else {
                         delete rooms[roomName];
                         card.classList.remove("selected");
+                        card.style.borderColor = "";
+                        card.style.backgroundColor = "";
                         selector.classList.add("hidden");
-                        nightsEl.textContent = "1";
+                        selector.style.display = "none";
+                        numRoomsEl.textContent = "1";
                     }
                     updateSummary();
                 });
 
                 plus.addEventListener("click", e => {
                     e.stopPropagation();
-                    if (rooms[roomName].nights < 3) {
-                        rooms[roomName].nights++;
-                        nightsEl.textContent = rooms[roomName].nights;
+                    if (rooms[roomName] && rooms[roomName].numRooms < 10) {
+                        rooms[roomName].numRooms++;
+                        numRoomsEl.textContent = rooms[roomName].numRooms;
                         updateSummary();
                     }
                 });
 
                 minus.addEventListener("click", e => {
                     e.stopPropagation();
-                    if (rooms[roomName].nights > 1) {
-                        rooms[roomName].nights--;
-                        nightsEl.textContent = rooms[roomName].nights;
+                    if (rooms[roomName] && rooms[roomName].numRooms > 1) {
+                        rooms[roomName].numRooms--;
+                        numRoomsEl.textContent = rooms[roomName].numRooms;
                         updateSummary();
                     }
                 });
