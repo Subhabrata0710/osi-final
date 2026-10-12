@@ -383,17 +383,18 @@
                         <span class="cat-price">₹13000</span>
                     </label>
                     <label class="category-card">
-                        <input type="radio" id="cat-registration-student-without-hospitality" name="cat"
-                            data-price="5000" required>
-                        <span class="cat-label">Student Registration without hospitality</span>
-                        <span class="cat-price">₹5000</span>
-                    </label>
-                    <label class="category-card">
                         <input type="radio" id="cat-registration-student-with-hospitality" name="cat" data-price="7500"
                             required>
                         <span class="cat-label">Student Registration with Hospitality</span>
                         <span class="cat-price">₹7500</span>
                     </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-student-without-hospitality" name="cat"
+                            data-price="5000" required>
+                        <span class="cat-label">Student Registration without hospitality</span>
+                        <span class="cat-price">₹5000</span>
+                    </label>
+
                 </div>
             </div>
             <div class="section-header">
@@ -853,14 +854,39 @@
             let kept = keepEl && keepEl.checked ? keepEl : getIncludedLecture();
             getCouponLectureEls().forEach(el => { if (el !== kept) el.checked = false; });
         }
+        function isDeloCoupon() {
+            const v = document.getElementById('voucherCode');
+            return !!v && v.value.trim().toUpperCase() === 'DELO3000';
+        }
+        function isDeloEligibleCategory(selectedRadio) {
+            if (!selectedRadio) return false;
+            return selectedRadio.id === 'cat-registration' || selectedRadio.id === 'cat-registration-without-banquet';
+        }
+
         function refreshCouponHint() {
             const hint = document.getElementById('couponHint');
             if (!hint) return;
+            const selectedRadio = document.querySelector('input[name="cat"]:checked');
+
+            if (isDeloCoupon()) {
+                hint.style.display = 'block';
+                if (isDeloEligibleCategory(selectedRadio)) {
+                    hint.style.color = '#16a34a';
+                    hint.innerText = '✓ Coupon DELO3000 applied: ₹3,000 discount applied!';
+                } else {
+                    hint.style.color = '#ef4444';
+                    hint.innerText = 'Coupon DELO3000 is valid only for "Registration with banquet" and "Registration without banquet".';
+                }
+                return;
+            }
+
             if (isLectureCouponCode() && !isLectureCoupon()) {
                 hint.style.display = 'block';
+                hint.style.color = '#818cf8';
                 hint.innerText = 'This coupon is valid only with the "Registration with Banquet" category and any one lecture.';
             } else if (isLectureCoupon()) {
                 hint.style.display = 'block';
+                hint.style.color = '#818cf8';
                 hint.innerText = getIncludedLecture()
                     ? '✓ Coupon applied: ₹11,000 includes Registration + your selected lecture.'
                     : 'Coupon applied: ₹11,000 = Registration + any ONE lecture. Please tick one lecture below (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).';
@@ -885,6 +911,9 @@
                 }
                 if (voucherCode === 'KOL12K0') {
                     amount = 12000;
+                }
+                if (voucherCode === 'DELO3000' && isDeloEligibleCategory(selectedRadio)) {
+                    amount = Math.max(0, amount - 3000);
                 }
                 if (voucherCode === LECTURE_COUPON && selectedRadio.id === LECTURE_COUPON_CATEGORY_ID) {
                     amount = LECTURE_COUPON_PRICE;
@@ -1096,6 +1125,13 @@
             if (voucherCode === 'KOL12K0') {
                 amountInInr = 12000;
             }
+            if (voucherCode === 'DELO3000') {
+                if (!isDeloEligibleCategory(selectedRadio)) {
+                    alert('The coupon DELO3000 is valid only for "Registration with banquet" and "Registration without banquet".');
+                    return;
+                }
+                amountInInr = Math.max(0, amountInInr - 3000);
+            }
             if (voucherCode === LECTURE_COUPON && selectedRadio.id !== LECTURE_COUPON_CATEGORY_ID) {
                 alert('The coupon LECTURE11K is valid only with the "Registration" category. Please select "Registration" or remove the coupon.');
                 return;
@@ -1122,6 +1158,9 @@
             }
             if (voucherCode === 'KOL12K0') {
                 categoryLabel += " (Voucher: KOL12K)";
+            }
+            if (voucherCode === 'DELO3000') {
+                categoryLabel += " (Voucher: DELO3000 -₹3000)";
             }
             if (voucherCode === LECTURE_COUPON) {
                 categoryLabel += " (Voucher: LECTURE11K - Registration + 1 Lecture)";
