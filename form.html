@@ -827,7 +827,7 @@
             .catch(err => console.error('Error fetching capacity', err));
 
         // ---- Special coupon: flat Rs 11,000 = Registration + any ONE lecture ----
-        const LECTURE_COUPON = 'LECTURE11K';
+        const LECTURE_COUPON = 'LECTURE11K0';
         const LECTURE_COUPON_PRICE = 11000;
         const COUPON_LECTURE_IDS = ['workshop-lecture', 'workshop-lecture-henry', 'workshop-lecture-komal'];
 
@@ -877,13 +877,13 @@
                 amount = parseInt(selectedRadio.getAttribute('data-price'));
                 const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
 
-                if (voucherCode === 'IMPACT_OSI') {
+                if (voucherCode === 'IMPACT_OSI0') {
                     amount = 10500;
                 }
-                if (voucherCode === 'SPECIAL_OSI') {
+                if (voucherCode === 'SPECIAL_OSI0') {
                     amount = 11000;
                 }
-                if (voucherCode === 'KOL12K') {
+                if (voucherCode === 'KOL12K0') {
                     amount = 12000;
                 }
                 if (voucherCode === LECTURE_COUPON && selectedRadio.id === LECTURE_COUPON_CATEGORY_ID) {
@@ -947,7 +947,7 @@
             //hu
             const voucherCodeVal = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
             const todayStr = new Date().toLocaleDateString('en-CA');
-            if (voucherCodeVal === 'DIS1000' && todayStr === '2026-08-24') {
+            if (voucherCodeVal === 'DIS1000n' && todayStr === '2026-08-24') {
                 amount = Math.max(0, amount - 1000);
             }
 
@@ -1087,13 +1087,13 @@
 
             let amountInInr = parseInt(selectedRadio.getAttribute('data-price'));
             const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
-            if (voucherCode === 'IMPACT_OSI') {
+            if (voucherCode === 'IMPACT_OSI0') {
                 amountInInr = 10500;
             }
-            if (voucherCode === 'SPECIAL_OSI') {
+            if (voucherCode === 'SPECIAL_OSI0') {
                 amountInInr = 11000;
             }
-            if (voucherCode === 'KOL12K') {
+            if (voucherCode === 'KOL12K0') {
                 amountInInr = 12000;
             }
             if (voucherCode === LECTURE_COUPON && selectedRadio.id !== LECTURE_COUPON_CATEGORY_ID) {
@@ -1114,13 +1114,13 @@
                 categoryLabel += " (Reg ID: " + regId + ")";
             }
 
-            if (voucherCode === 'IMPACT_OSI') {
+            if (voucherCode === 'IMPACT_OSI0') {
                 categoryLabel += " (Voucher: IMPACT_OSI)";
             }
-            if (voucherCode === 'SPECIAL_OSI') {
+            if (voucherCode === 'SPECIAL_OSI0') {
                 categoryLabel += " (Voucher: SPECIAL_OSI)";
             }
-            if (voucherCode === 'KOL12K') {
+            if (voucherCode === 'KOL12K0') {
                 categoryLabel += " (Voucher: KOL12K)";
             }
             if (voucherCode === LECTURE_COUPON) {
