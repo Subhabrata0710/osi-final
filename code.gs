@@ -125,6 +125,11 @@ function doGet(e) {
       return handleLoginLookup(e.parameter);
     }
 
+    // --- User Files Lookup ---
+    if (action === 'getFiles') {
+      return handleGetUserFiles(e.parameter);
+    }
+
     // --- Invoice Download Page support ---
     if (action === 'lookup') {
       return handleInvoiceLookup(e.parameter);
@@ -211,7 +216,11 @@ function handleLoginLookup(params) {
           serialNumber: row[1],
           name: row[2],
           email: row[3],
-          phone: row[4]
+          phone: row[4],
+          abstractUrl: row[17] || '',
+          posterUrl: row[18] || '',
+          photoUrl: row[19] || '',
+          bonafideUrl: row[20] || ''
         }
       });
     }
@@ -220,6 +229,44 @@ function handleLoginLookup(params) {
   return jsonOut({
     success: false,
     message: 'Invalid Registration ID or Phone Number. Please try again.'
+  });
+}
+
+// ============================================================
+// USER FILES LOOKUP (used by dashboard.html to refresh uploaded files)
+// ============================================================
+function handleGetUserFiles(params) {
+  var regId = (params.regId || '').toString().trim().toUpperCase();
+
+  if (!regId) {
+    return jsonOut({ success: false, message: 'Please provide Registration ID.' });
+  }
+
+  var sheet = getSheet('Registrations');
+  var allData = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < allData.length; i++) {
+    var row = allData[i];
+    var rowSerial = (row[1] || '').toString().trim().toUpperCase();
+
+    if (rowSerial === regId) {
+      return jsonOut({
+        success: true,
+        data: {
+          serialNumber: row[1],
+          name: row[2],
+          abstractUrl: row[17] || '',
+          posterUrl: row[18] || '',
+          photoUrl: row[19] || '',
+          bonafideUrl: row[20] || ''
+        }
+      });
+    }
+  }
+
+  return jsonOut({
+    success: false,
+    message: 'Registration ID not found.'
   });
 }
 

@@ -241,7 +241,7 @@
 
     <script src="script.js"></script>
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2czGfwbXMTUjAS-6Px1bvJbN_zHB2NTCLmZrX2K2jOUCDx5JYANoxZl4jqWCIY6Uv/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrOUri1HlBYRNfVwyvlbCPckqqBAwz8bfxlbxW07nvJ1WECOJNWL0-FVkiI_v5pL9M/exec';
 
         // Check if user is logged in
         function checkAuth() {
@@ -260,6 +260,101 @@
 
             const regIdDisplay = document.getElementById('reg-id-display');
             if (regIdDisplay) regIdDisplay.innerText = 'Reg ID: ' + userRegId;
+
+            loadUserFiles(userRegId);
+        }
+
+        // Fetch and display already uploaded files from DB/Google Sheets
+        function loadUserFiles(regId) {
+            const fileList = document.getElementById('file-list');
+
+            // 1. Immediately show cached files from localStorage if present
+            const cachedFiles = [
+                { type: 'abstract', key: 'abstractUrl', label: 'Abstract' },
+                { type: 'poster', key: 'posterUrl', label: 'Presentation' },
+                { type: 'photo', key: 'photoUrl', label: 'Photo' },
+                { type: 'bonafide', key: 'bonafideUrl', label: 'Bonafide Cert' }
+            ];
+
+            cachedFiles.forEach(item => {
+                const url = localStorage.getItem(item.key);
+                if (url) {
+                    renderUploadedFile(item.type, url, regId + '_' + item.label);
+                }
+            });
+
+            // 2. Fetch live data from backend
+            fetch(`${SCRIPT_URL}?action=getFiles&regId=${encodeURIComponent(regId)}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success && res.data) {
+                        const data = res.data;
+                        if (data.abstractUrl) {
+                            localStorage.setItem('abstractUrl', data.abstractUrl);
+                            renderUploadedFile('abstract', data.abstractUrl, regId + '_Abstract');
+                        }
+                        if (data.posterUrl) {
+                            localStorage.setItem('posterUrl', data.posterUrl);
+                            renderUploadedFile('poster', data.posterUrl, regId + '_Presentation');
+                        }
+                        if (data.photoUrl) {
+                            localStorage.setItem('photoUrl', data.photoUrl);
+                            renderUploadedFile('photo', data.photoUrl, regId + '_Photo');
+                        }
+                        if (data.bonafideUrl) {
+                            localStorage.setItem('bonafideUrl', data.bonafideUrl);
+                            renderUploadedFile('bonafide', data.bonafideUrl, regId + '_BonafideCert');
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching user files:', err);
+                });
+        }
+
+        function renderUploadedFile(uploadType, url, defaultFileName) {
+            if (!url) return;
+            const fileList = document.getElementById('file-list');
+            const emptyState = fileList.querySelector('.empty-state');
+            if (emptyState) emptyState.style.display = 'none';
+
+            // Avoid duplicate cards
+            const existing = document.getElementById('file-card-' + uploadType);
+            if (existing) {
+                const link = existing.querySelector('a');
+                if (link) link.href = url;
+                return;
+            }
+
+            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
+            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
+
+            const item = document.createElement('div');
+            item.id = 'file-card-' + uploadType;
+            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;';
+            item.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="font-size:22px;">${icons[uploadType] || '📄'}</div>
+                    <div>
+                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${defaultFileName || labels[uploadType] || uploadType}</h4>
+                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · Uploaded</p>
+                    </div>
+                </div>
+                <a href="${url}" target="_blank" class="badge badge-success" style="text-decoration:none;padding:5px 12px;">View in Drive</a>
+            `;
+            fileList.appendChild(item);
+
+            // Also update the respective upload section status
+            const statusMap = {
+                abstract: 'abstract-upload-status',
+                poster: 'paper-upload-status',
+                photo: 'photo-upload-status',
+                bonafide: 'bonafide-upload-status'
+            };
+            const statusEl = document.getElementById(statusMap[uploadType]);
+            if (statusEl && !statusEl.innerHTML) {
+                statusEl.innerHTML = `<span style="color:#166534">✅ Previously uploaded — <a href="${url}" target="_blank">View file</a></span>`;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', function () {
@@ -398,27 +493,37 @@
         }
 
         function addToFileList(file, uploadType, url) {
+            const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+            if (keyMap[uploadType] && url) {
+                localStorage.setItem(keyMap[uploadType], url);
+            }
+
             const fileList = document.getElementById('file-list');
             const emptyState = fileList.querySelector('.empty-state');
             if (emptyState) emptyState.style.display = 'none';
+
+            // Remove existing card of this uploadType if present
+            const existing = document.getElementById('file-card-' + uploadType);
+            if (existing) existing.remove();
 
             const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
             const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
 
             let fileSizeMB = 'Unknown';
-            if (file.size) {
+            if (file && file.size) {
                 fileSizeMB = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
             } else {
                 fileSizeMB = 'Live Capture';
             }
 
             const item = document.createElement('div');
-            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;';
+            item.id = 'file-card-' + uploadType;
+            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;';
             item.innerHTML = `
                 <div style="display:flex;align-items:center;gap:12px;">
                     <div style="font-size:22px;">${icons[uploadType] || '📄'}</div>
                     <div>
-                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${file.name}</h4>
+                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${file ? file.name : (labels[uploadType] || uploadType)}</h4>
                         <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · ${fileSizeMB}</p>
                     </div>
                 </div>

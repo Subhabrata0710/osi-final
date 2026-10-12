@@ -68,7 +68,7 @@
 
     <script src="script.js"></script>
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2czGfwbXMTUjAS-6Px1bvJbN_zHB2NTCLmZrX2K2jOUCDx5JYANoxZl4jqWCIY6Uv/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrOUri1HlBYRNfVwyvlbCPckqqBAwz8bfxlbxW07nvJ1WECOJNWL0-FVkiI_v5pL9M/exec';
 
         function loginUser() {
             const regId = document.getElementById('login-reg-id').value.trim();
@@ -94,6 +94,10 @@
                         localStorage.setItem('userPhone', data.data.phone);
                         localStorage.setItem('userName', data.data.name);
                         localStorage.setItem('userEmail', data.data.email);
+                        if (data.data.abstractUrl) localStorage.setItem('abstractUrl', data.data.abstractUrl);
+                        if (data.data.posterUrl) localStorage.setItem('posterUrl', data.data.posterUrl);
+                        if (data.data.photoUrl) localStorage.setItem('photoUrl', data.data.photoUrl);
+                        if (data.data.bonafideUrl) localStorage.setItem('bonafideUrl', data.data.bonafideUrl);
                         localStorage.setItem('isLoggedIn', 'true');
 
                         // Redirect to dashboard
