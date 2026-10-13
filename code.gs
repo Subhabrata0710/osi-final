@@ -93,8 +93,12 @@ function handleFileUpload(data) {
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
       var fileUrl = file.getUrl();
       
-      // Update the Sheet with the file URL in Column R (Abstract), S (Poster), T (Photo), U (Bonafide)
+      // Update the Registrations Sheet with the file URL
       // Supporting MULTIPLE files: append new URL separated by newline / comma if already present
+      var delegateName = '';
+      var delegateEmail = '';
+      var delegatePhone = '';
+      
       if (data.regId) {
         var sheet = getSheet('Registrations');
         var allData = sheet.getDataRange().getValues();
@@ -119,10 +123,25 @@ function handleFileUpload(data) {
               newVal = fileUrl;
             }
             sheet.getRange(rowNum, colIndex).setValue(newVal);
+
+            // Capture delegate info for the log sheet
+            delegateName  = (allData[i][2] || '').toString().trim();
+            delegateEmail = (allData[i][3] || '').toString().trim();
+            delegatePhone = (allData[i][4] || '').toString().trim();
             break;
           }
         }
       }
+
+      // Log this upload in a dedicated per-type sheet
+      logUploadToSheet(data.uploadType, {
+        regId:    (data.regId || '').toString().trim().toUpperCase(),
+        name:     delegateName,
+        email:    delegateEmail,
+        phone:    delegatePhone,
+        filename: finalName,
+        fileUrl:  fileUrl
+      });
 
       return { success: true, url: fileUrl, filename: finalName, message: 'File uploaded successfully' };
     } else {
@@ -130,6 +149,79 @@ function handleFileUpload(data) {
     }
   } catch (err) {
     return { success: false, message: 'Upload Error: ' + err.toString() };
+  }
+}
+
+// ============================================================
+// LOG UPLOAD TO DEDICATED SHEET
+// Creates/finds the sheet for each upload type and appends a row.
+// ============================================================
+function logUploadToSheet(uploadType, info) {
+  try {
+    var sheetNames = {
+      abstract: 'Abstracts_Log',
+      poster:   'Papers_Log',
+      photo:    'Photos_Log',
+      bonafide: 'Bonafide_Log'
+    };
+    var sheetName = sheetNames[uploadType] || (uploadType + '_Log');
+
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var logSheet = ss.getSheetByName(sheetName);
+
+    // Create sheet with headers if it doesn't exist
+    if (!logSheet) {
+      logSheet = ss.insertSheet(sheetName);
+      logSheet.appendRow([
+        'S.No.',
+        'Registration ID',
+        'Delegate Name',
+        'Email',
+        'Phone',
+        'File Name',
+        'Upload Date & Time',
+        'File Link'
+      ]);
+      // Format header row
+      var headerRange = logSheet.getRange(1, 1, 1, 8);
+      headerRange.setFontWeight('bold');
+      headerRange.setBackground('#1a3c5e');
+      headerRange.setFontColor('#ffffff');
+      logSheet.setFrozenRows(1);
+      logSheet.setColumnWidth(1, 60);   // S.No.
+      logSheet.setColumnWidth(2, 130);  // Reg ID
+      logSheet.setColumnWidth(3, 180);  // Name
+      logSheet.setColumnWidth(4, 200);  // Email
+      logSheet.setColumnWidth(5, 130);  // Phone
+      logSheet.setColumnWidth(6, 240);  // File Name
+      logSheet.setColumnWidth(7, 170);  // Date & Time
+      logSheet.setColumnWidth(8, 320);  // File Link
+    }
+
+    // Next serial number = number of data rows + 1
+    var lastRow = logSheet.getLastRow();
+    var sNo = lastRow; // row 1 is header, so data starts from row 2 → sNo = lastRow when appending
+
+    var uploadTime = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'dd-MMM-yyyy HH:mm:ss');
+
+    logSheet.appendRow([
+      sNo,
+      info.regId,
+      info.name,
+      info.email,
+      info.phone,
+      info.filename,
+      uploadTime,
+      info.fileUrl
+    ]);
+
+    // Make the file link clickable
+    var newRow = logSheet.getLastRow();
+    logSheet.getRange(newRow, 8).setFormula('=HYPERLINK("' + info.fileUrl + '","View File")');
+
+  } catch (logErr) {
+    // Non-fatal: log error to console but don't fail the upload response
+    console.log('logUploadToSheet Error: ' + logErr.toString());
   }
 }
 
