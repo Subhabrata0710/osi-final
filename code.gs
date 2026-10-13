@@ -35,6 +35,13 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    // Branch to file delete if action is delete_file
+    if (data.action === 'delete_file') {
+      const deleteResponse = handleFileDelete(data);
+      return ContentService.createTextOutput(JSON.stringify(deleteResponse))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
     // Branch to Cricket League registration (writes to its own sheet,
     // see registerCricketPlayer() near the end of this file)
     if (data.action === 'cricket') {
@@ -74,7 +81,7 @@ function handleFileUpload(data) {
     // Save to Google Drive if UPLOAD_FOLDER_ID is configured
     if (UPLOAD_FOLDER_ID && UPLOAD_FOLDER_ID.trim().length > 0) {
       var parentFolder = DriveApp.getFolderById(UPLOAD_FOLDER_ID);
-      var uploadFolderName = data.uploadType === 'poster' ? 'Poster_Uploads' : 'Abstract_Uploads';
+      var uploadFolderName = data.uploadType === 'poster' ? 'Poster_Uploads' : (data.uploadType === 'photo' ? 'Photo_Uploads' : (data.uploadType === 'bonafide' ? 'Bonafide_Uploads' : 'Abstract_Uploads'));
       var uploadFolders = parentFolder.getFoldersByName(uploadFolderName);
       var uploadFolder = uploadFolders.hasNext() ? uploadFolders.next() : parentFolder.createFolder(uploadFolderName);
       
@@ -86,33 +93,99 @@ function handleFileUpload(data) {
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
       var fileUrl = file.getUrl();
       
-      // Update the Sheet with the file URL in Column R (Abstract) or S (Poster)
-            if (data.regId) {
-              var sheet = getSheet('Registrations');
-              var allData = sheet.getDataRange().getValues();
-              for (var i = 1; i < allData.length; i++) {
-                if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === data.regId.trim().toUpperCase()) {
-                  var rowNum = i + 1;
-                  if (data.uploadType === 'poster') {
-                    sheet.getRange(rowNum, 19).setValue(fileUrl); // Column S (19) for Poster/Paper
-                  } else if (data.uploadType === 'photo') {
-                    sheet.getRange(rowNum, 20).setValue(fileUrl); // Column T (20) for Photo
-                  } else if (data.uploadType === 'bonafide') {
-                    sheet.getRange(rowNum, 21).setValue(fileUrl); // Column U (21) for Bonafide Cert
-                  } else {
-                    sheet.getRange(rowNum, 18).setValue(fileUrl); // Column R (18) for Abstract (default)
-                  }
-                  break;
-                }
-              }
-            }
+      // Update the Sheet with the file URL in Column R (Abstract), S (Poster), T (Photo), U (Bonafide)
+      // Supporting MULTIPLE files: append new URL separated by newline / comma if already present
+      if (data.regId) {
+        var sheet = getSheet('Registrations');
+        var allData = sheet.getDataRange().getValues();
+        for (var i = 1; i < allData.length; i++) {
+          if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === data.regId.trim().toUpperCase()) {
+            var rowNum = i + 1;
+            var colIndex = 18; // default Column R (18) for Abstract
+            if (data.uploadType === 'poster') colIndex = 19;     // Column S (19)
+            else if (data.uploadType === 'photo') colIndex = 20; // Column T (20)
+            else if (data.uploadType === 'bonafide') colIndex = 21; // Column U (21)
 
-      return { success: true, url: fileUrl, message: 'File uploaded successfully' };
+            var existingVal = (allData[i][colIndex - 1] || '').toString().trim();
+            var newVal = '';
+            if (existingVal) {
+              // Check if URL is already present
+              var urls = existingVal.split(/[\n,]+/).map(function(u) { return u.trim(); }).filter(Boolean);
+              if (urls.indexOf(fileUrl) === -1) {
+                urls.push(fileUrl);
+              }
+              newVal = urls.join('\n');
+            } else {
+              newVal = fileUrl;
+            }
+            sheet.getRange(rowNum, colIndex).setValue(newVal);
+            break;
+          }
+        }
+      }
+
+      return { success: true, url: fileUrl, filename: finalName, message: 'File uploaded successfully' };
     } else {
       return { success: false, message: 'UPLOAD_FOLDER_ID is not configured in code.gs' };
     }
   } catch (err) {
     return { success: false, message: 'Upload Error: ' + err.toString() };
+  }
+}
+
+// ============================================================
+// FILE DELETE HANDLER
+// ============================================================
+function handleFileDelete(data) {
+  try {
+    var regId = (data.regId || '').toString().trim().toUpperCase();
+    var fileUrl = (data.fileUrl || '').toString().trim();
+    var uploadType = (data.uploadType || '').toString().trim();
+
+    if (!regId || !fileUrl) {
+      return { success: false, message: 'Missing Registration ID or File URL.' };
+    }
+
+    // Try deleting or trashing the file from Google Drive
+    try {
+      // Extract file ID from URL (e.g., https://drive.google.com/file/d/FILE_ID/view or ?id=FILE_ID)
+      var fileId = '';
+      var m = fileUrl.match(/[-\w]{25,}/);
+      if (m) {
+        fileId = m[0];
+        DriveApp.getFileById(fileId).setTrashed(true);
+      }
+    } catch (driveErr) {
+      console.log('Drive delete warning: ' + driveErr.toString());
+    }
+
+    // Remove the file URL from Google Sheet
+    var sheet = getSheet('Registrations');
+    var allData = sheet.getDataRange().getValues();
+    for (var i = 1; i < allData.length; i++) {
+      if (allData[i][1] && allData[i][1].toString().trim().toUpperCase() === regId) {
+        var rowNum = i + 1;
+        var colIndices = [18, 19, 20, 21];
+        if (uploadType === 'abstract') colIndices = [18];
+        else if (uploadType === 'poster') colIndices = [19];
+        else if (uploadType === 'photo') colIndices = [20];
+        else if (uploadType === 'bonafide') colIndices = [21];
+
+        colIndices.forEach(function(col) {
+          var val = (allData[i][col - 1] || '').toString().trim();
+          if (val && val.indexOf(fileUrl) !== -1) {
+            var urls = val.split(/[\n,]+/).map(function(u) { return u.trim(); }).filter(Boolean);
+            urls = urls.filter(function(u) { return u !== fileUrl; });
+            sheet.getRange(rowNum, col).setValue(urls.join('\n'));
+          }
+        });
+        break;
+      }
+    }
+
+    return { success: true, message: 'File deleted successfully' };
+  } catch (err) {
+    return { success: false, message: 'Delete Error: ' + err.toString() };
   }
 }
 

@@ -72,8 +72,8 @@
                     <div class="upload-area" id="abstract-upload-area">
                         <div class="upload-icon">📝</div>
                         <p><strong>Click to select</strong> or drag and drop</p>
-                        <p class="text-muted">PDF only · Max 10MB</p>
-                        <input type="file" id="abstract-file-upload" class="file-input" accept=".pdf">
+                        <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="abstract-file-upload" class="file-input" accept=".pdf" multiple>
                     </div>
                     <button class="btn btn-primary w-100" onclick="uploadFile('abstract', 'abstract-file-upload')"
                         data-testid="upload-abstract-btn">
@@ -91,8 +91,8 @@
                     <div class="upload-area" id="paper-upload-area">
                         <div class="upload-icon">📑</div>
                         <p><strong>Click to select</strong> or drag and drop</p>
-                        <p class="text-muted">PPT / PPTX only · Max 10MB</p>
-                        <input type="file" id="paper-file-upload" class="file-input" accept=".ppt,.pptx">
+                        <p class="text-muted">PPT / PPTX only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="paper-file-upload" class="file-input" accept=".ppt,.pptx" multiple>
                     </div>
                     <button class="btn btn-gold w-100" onclick="uploadFile('poster', 'paper-file-upload')"
                         data-testid="upload-paper-btn">
@@ -112,8 +112,8 @@
                     </div>
                     <div class="upload-area" id="photo-upload-area">
                         <div class="upload-icon">🖼️</div>
-                        <p class="text-muted">JPG / PNG · Max 5MB</p>
-                        <input type="file" id="photo-file-upload" class="file-input" accept="image/*">
+                        <p class="text-muted">JPG / PNG · Max 5MB (Multiple allowed)</p>
+                        <input type="file" id="photo-file-upload" class="file-input" accept="image/*" multiple>
                         <!-- Camera input for mobile selfie -->
                         <input type="file" id="selfie-file-upload" class="file-input" accept="image/*" capture="user">
                     </div>
@@ -138,8 +138,9 @@
                     <div class="upload-area" id="bonafide-upload-area">
                         <div class="upload-icon">📜</div>
                         <p><strong>Click to select</strong> or drag and drop</p>
-                        <p class="text-muted">PDF or Image · Max 10MB</p>
-                        <input type="file" id="bonafide-file-upload" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+                        <p class="text-muted">PDF or Image · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="bonafide-file-upload" class="file-input" accept=".pdf,.jpg,.jpeg,.png"
+                            multiple>
                     </div>
                     <button class="btn btn-primary w-100" onclick="uploadFile('bonafide', 'bonafide-file-upload')"
                         data-testid="upload-bonafide-btn">
@@ -241,7 +242,7 @@
 
     <script src="script.js"></script>
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrOUri1HlBYRNfVwyvlbCPckqqBAwz8bfxlbxW07nvJ1WECOJNWL0-FVkiI_v5pL9M/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzP7MHuCd7ZO3fHD6KDrSX4Q-PtrRmW-g5OqDaxsdxp0XqUjA_RZ-OmITJ8FpJnIAs/exec';
 
         // Check if user is logged in
         function checkAuth() {
@@ -264,23 +265,28 @@
             loadUserFiles(userRegId);
         }
 
+        // Helper to split stored newline/comma separated URLs
+        function splitUrls(val) {
+            if (!val) return [];
+            return val.toString().split(/[\n,]+/).map(u => u.trim()).filter(Boolean);
+        }
+
         // Fetch and display already uploaded files from DB/Google Sheets
         function loadUserFiles(regId) {
-            const fileList = document.getElementById('file-list');
-
-            // 1. Immediately show cached files from localStorage if present
-            const cachedFiles = [
+            const categories = [
                 { type: 'abstract', key: 'abstractUrl', label: 'Abstract' },
                 { type: 'poster', key: 'posterUrl', label: 'Presentation' },
                 { type: 'photo', key: 'photoUrl', label: 'Photo' },
                 { type: 'bonafide', key: 'bonafideUrl', label: 'Bonafide Cert' }
             ];
 
-            cachedFiles.forEach(item => {
-                const url = localStorage.getItem(item.key);
-                if (url) {
-                    renderUploadedFile(item.type, url, regId + '_' + item.label);
-                }
+            // 1. Immediately show cached files from localStorage if present
+            categories.forEach(item => {
+                const urls = splitUrls(localStorage.getItem(item.key));
+                urls.forEach((url, idx) => {
+                    const displayName = urls.length > 1 ? `${regId}_${item.label}_${idx + 1}` : `${regId}_${item.label}`;
+                    renderUploadedFile(item.type, url, displayName);
+                });
             });
 
             // 2. Fetch live data from backend
@@ -289,21 +295,42 @@
                 .then(res => {
                     if (res.success && res.data) {
                         const data = res.data;
-                        if (data.abstractUrl) {
-                            localStorage.setItem('abstractUrl', data.abstractUrl);
-                            renderUploadedFile('abstract', data.abstractUrl, regId + '_Abstract');
-                        }
-                        if (data.posterUrl) {
-                            localStorage.setItem('posterUrl', data.posterUrl);
-                            renderUploadedFile('poster', data.posterUrl, regId + '_Presentation');
-                        }
-                        if (data.photoUrl) {
-                            localStorage.setItem('photoUrl', data.photoUrl);
-                            renderUploadedFile('photo', data.photoUrl, regId + '_Photo');
-                        }
-                        if (data.bonafideUrl) {
-                            localStorage.setItem('bonafideUrl', data.bonafideUrl);
-                            renderUploadedFile('bonafide', data.bonafideUrl, regId + '_BonafideCert');
+                        const fileList = document.getElementById('file-list');
+                        // Remove existing file items to reload fresh from sheet
+                        const existingCards = fileList.querySelectorAll('.user-file-item');
+                        existingCards.forEach(c => c.remove());
+
+                        categories.forEach(item => {
+                            const raw = data[item.key] || '';
+                            localStorage.setItem(item.key, raw);
+                            const urls = splitUrls(raw);
+                            urls.forEach((url, idx) => {
+                                const displayName = urls.length > 1 ? `${regId}_${item.label}_${idx + 1}` : `${regId}_${item.label}`;
+                                renderUploadedFile(item.type, url, displayName);
+                            });
+
+                            // Update upload section status
+                            const statusMap = {
+                                abstract: 'abstract-upload-status',
+                                poster: 'paper-upload-status',
+                                photo: 'photo-upload-status',
+                                bonafide: 'bonafide-upload-status'
+                            };
+                            const statusEl = document.getElementById(statusMap[item.type]);
+                            if (statusEl) {
+                                if (urls.length > 0) {
+                                    statusEl.innerHTML = `<span style="color:#166534">✅ ${urls.length} file(s) on record — <a href="${urls[urls.length - 1]}" target="_blank">View latest</a></span>`;
+                                } else {
+                                    statusEl.innerHTML = '';
+                                }
+                            }
+                        });
+
+                        // If no files found, show empty state
+                        const anyFiles = fileList.querySelectorAll('.user-file-item');
+                        const emptyState = fileList.querySelector('.empty-state');
+                        if (emptyState) {
+                            emptyState.style.display = anyFiles.length > 0 ? 'none' : 'block';
                         }
                     }
                 })
@@ -312,49 +339,154 @@
                 });
         }
 
-        function renderUploadedFile(uploadType, url, defaultFileName) {
+        function renderUploadedFile(uploadType, url, defaultFileName, fileSize) {
             if (!url) return;
             const fileList = document.getElementById('file-list');
             const emptyState = fileList.querySelector('.empty-state');
             if (emptyState) emptyState.style.display = 'none';
 
-            // Avoid duplicate cards
-            const existing = document.getElementById('file-card-' + uploadType);
-            if (existing) {
-                const link = existing.querySelector('a');
-                if (link) link.href = url;
+            // Avoid duplicate card for identical URL
+            if (fileList.querySelector(`[data-file-url="${url}"]`)) {
                 return;
             }
 
             const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
             const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
 
+            let sizeText = 'Uploaded';
+            if (fileSize) {
+                sizeText = (fileSize / (1024 * 1024)).toFixed(2) + ' MB';
+            }
+
+            const cardId = 'file-card-' + Math.random().toString(36).substring(2, 10);
             const item = document.createElement('div');
-            item.id = 'file-card-' + uploadType;
-            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;';
+            item.className = 'user-file-item';
+            item.id = cardId;
+            item.dataset.fileUrl = url;
+            item.dataset.uploadType = uploadType;
+            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;gap:12px;flex-wrap:wrap;transition:all 0.2s ease;';
             item.innerHTML = `
-                <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="font-size:22px;">${icons[uploadType] || '📄'}</div>
-                    <div>
+                <div style="display:flex;align-items:center;gap:12px;min-width:200px;flex:1;">
+                    <div style="font-size:24px;">${icons[uploadType] || '📄'}</div>
+                    <div style="word-break:break-word;">
                         <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${defaultFileName || labels[uploadType] || uploadType}</h4>
-                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · Uploaded</p>
+                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · ${sizeText}</p>
                     </div>
                 </div>
-                <a href="${url}" target="_blank" class="badge badge-success" style="text-decoration:none;padding:5px 12px;">View in Drive</a>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <a href="${url}" target="_blank" rel="noopener noreferrer" class="badge badge-success" style="text-decoration:none;padding:7px 14px;display:inline-flex;align-items:center;gap:5px;font-size:0.85rem;">
+                        👁️ View in Drive
+                    </a>
+                    <button type="button" class="btn-delete-file" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.85rem;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;" onmouseover="this.style.background='#fecaca'" onmouseout="this.style.background='#fee2e2'">
+                        🗑️ Delete
+                    </button>
+                </div>
             `;
-            fileList.appendChild(item);
 
-            // Also update the respective upload section status
-            const statusMap = {
-                abstract: 'abstract-upload-status',
-                poster: 'paper-upload-status',
-                photo: 'photo-upload-status',
-                bonafide: 'bonafide-upload-status'
-            };
-            const statusEl = document.getElementById(statusMap[uploadType]);
-            if (statusEl && !statusEl.innerHTML) {
-                statusEl.innerHTML = `<span style="color:#166534">✅ Previously uploaded — <a href="${url}" target="_blank">View file</a></span>`;
+            // Attach delete click handler
+            const deleteBtn = item.querySelector('.btn-delete-file');
+            deleteBtn.addEventListener('click', function () {
+                deleteUploadedFile(url, uploadType, cardId);
+            });
+
+            fileList.appendChild(item);
+        }
+
+        // Delete uploaded file from Drive and Google Sheet
+        function deleteUploadedFile(fileUrl, uploadType, cardId) {
+            const regId = localStorage.getItem('userRegId');
+            if (!regId) {
+                alert('Session expired. Please log in again.');
+                return;
             }
+
+            if (!confirm('Are you sure you want to delete this file?\nIt will be permanently removed from your registration and Google Drive.')) {
+                return;
+            }
+
+            const card = document.getElementById(cardId) || document.querySelector(`[data-file-url="${fileUrl}"]`);
+            const deleteBtn = card ? card.querySelector('.btn-delete-file') : null;
+            if (deleteBtn) {
+                deleteBtn.disabled = true;
+                deleteBtn.innerHTML = '⏳ Deleting...';
+            }
+
+            const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
+            if (loaderText) loaderText.textContent = 'Deleting file from Drive & Sheet...';
+            loader.style.display = 'flex';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'delete_file',
+                    regId: regId,
+                    fileUrl: fileUrl,
+                    uploadType: uploadType
+                })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+
+                    if (data.success) {
+                        // Remove file card from UI
+                        if (card) card.remove();
+
+                        // Update localStorage for this type
+                        const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+                        const storageKey = keyMap[uploadType];
+                        if (storageKey) {
+                            const currentUrls = splitUrls(localStorage.getItem(storageKey));
+                            const updatedUrls = currentUrls.filter(u => u !== fileUrl);
+                            localStorage.setItem(storageKey, updatedUrls.join('\n'));
+                        }
+
+                        // Check if file list is now empty
+                        const fileList = document.getElementById('file-list');
+                        const remainingCards = fileList.querySelectorAll('.user-file-item');
+                        if (remainingCards.length === 0) {
+                            const emptyState = fileList.querySelector('.empty-state');
+                            if (emptyState) emptyState.style.display = 'block';
+                        }
+
+                        // Update category status label
+                        const remainingForType = fileList.querySelectorAll(`.user-file-item[data-upload-type="${uploadType}"]`);
+                        const statusMap = {
+                            abstract: 'abstract-upload-status',
+                            poster: 'paper-upload-status',
+                            photo: 'photo-upload-status',
+                            bonafide: 'bonafide-upload-status'
+                        };
+                        const statusEl = document.getElementById(statusMap[uploadType]);
+                        if (statusEl) {
+                            if (remainingForType.length === 0) {
+                                statusEl.innerHTML = '';
+                            } else {
+                                statusEl.innerHTML = `<span style="color:#166534">✅ ${remainingForType.length} file(s) on record</span>`;
+                            }
+                        }
+
+                        alert('File deleted successfully.');
+                    } else {
+                        alert('Could not delete file: ' + (data.message || 'Please try again.'));
+                        if (deleteBtn) {
+                            deleteBtn.disabled = false;
+                            deleteBtn.innerHTML = '🗑️ Delete';
+                        }
+                    }
+                })
+                .catch(err => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+                    console.error('Delete error:', err);
+                    alert('An error occurred while deleting the file.');
+                    if (deleteBtn) {
+                        deleteBtn.disabled = false;
+                        deleteBtn.innerHTML = '🗑️ Delete';
+                    }
+                });
         }
 
         window.addEventListener('DOMContentLoaded', function () {
@@ -391,15 +523,17 @@
                     const files = e.dataTransfer.files;
                     if (files.length > 0) {
                         input.files = files;
+                        const label = files.length === 1 ? files[0].name : `${files.length} files selected`;
                         document.getElementById(statusId).innerHTML =
-                            `<span style="color:var(--apollo-blue)">✓ ${files[0].name} selected</span>`;
+                            `<span style="color:var(--apollo-blue)">✓ ${label}</span>`;
                     }
                 });
 
                 input.addEventListener('change', function () {
                     if (this.files.length > 0) {
+                        const label = this.files.length === 1 ? this.files[0].name : `${this.files.length} files selected`;
                         document.getElementById(statusId).innerHTML =
-                            `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} selected</span>`;
+                            `<span style="color:var(--apollo-blue)">✓ ${label}</span>`;
                     }
                 });
             });
@@ -416,18 +550,20 @@
             }
         }
 
-        // Trigger a specific file input (used for Browse Photo / Take Selfie buttons)
+        // Trigger a specific file input (used for Browse Photo button)
         function triggerInput(inputId, uploadType) {
             const input = document.getElementById(inputId);
             if (!input) return;
-            // Store which type to use when this input fires
             input.dataset.uploadType = uploadType;
             input.onchange = function () {
                 if (this.files.length > 0) {
+                    const files = Array.from(this.files);
+                    const label = files.length === 1 ? files[0].name : `${files.length} files`;
                     document.getElementById('photo-upload-status').innerHTML =
-                        `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} — click Upload below</span>`;
-                    // Auto-trigger upload
-                    doUpload(this.files[0], uploadType, 'photo-upload-status');
+                        `<span style="color:var(--apollo-blue)">✓ ${label} selected — Uploading...</span>`;
+                    uploadFilesArray(files, uploadType, 'photo-upload-status', () => {
+                        input.value = '';
+                    });
                 }
             };
             input.click();
@@ -436,10 +572,10 @@
         // Main upload function – called from buttons
         function uploadFile(uploadType, inputId) {
             const fileInput = document.getElementById(inputId);
-            const file = fileInput ? fileInput.files[0] : null;
+            const files = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
 
-            if (!file) {
-                alert('Please select a file first.');
+            if (files.length === 0) {
+                alert('Please select at least one file first.');
                 return;
             }
 
@@ -447,89 +583,106 @@
                 .replace('abstract-', 'abstract-')
                 .replace('paper-', 'paper-')
                 .replace('bonafide-', 'bonafide-');
-            doUpload(file, uploadType, statusId);
-            fileInput.value = '';
+
+            uploadFilesArray(files, uploadType, statusId, () => {
+                fileInput.value = '';
+            });
         }
 
-        function doUpload(file, uploadType, statusId) {
+        // Read file as base64 helper
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const base64Data = e.target.result.split(',')[1];
+                    resolve(base64Data);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Upload multiple files sequentially to prevent timeout or concurrency issues
+        async function uploadFilesArray(files, uploadType, statusId, onComplete) {
             const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
             loader.style.display = 'flex';
 
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const base64Data = e.target.result.split(',')[1];
+            const statusEl = document.getElementById(statusId);
+            const regId = localStorage.getItem('userRegId');
+            let successCount = 0;
+            let failureCount = 0;
 
-                const payload = {
-                    action: 'upload',
-                    filename: file.name,
-                    mimeType: file.type,
-                    base64Data: base64Data,
-                    regId: localStorage.getItem('userRegId'),
-                    uploadType: uploadType
-                };
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (loaderText) {
+                    loaderText.textContent = `Uploading ${i + 1} of ${files.length} (${file.name})...`;
+                }
+                if (statusEl) {
+                    statusEl.innerHTML = `<span style="color:var(--apollo-blue)">⏳ Uploading ${i + 1} of ${files.length}: ${file.name}...</span>`;
+                }
 
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                })
-                    .then(r => r.json())
-                    .then(data => {
-                        loader.style.display = 'none';
-                        if (data.success) {
-                            const statusEl = document.getElementById(statusId);
-                            if (statusEl) statusEl.innerHTML = `<span style="color:#166534">✅ Uploaded successfully — <a href="${data.url}" target="_blank">View file</a></span>`;
-                            addToFileList(file, uploadType, data.url);
-                        } else {
-                            alert('Upload failed: ' + data.message);
-                        }
-                    })
-                    .catch(err => {
-                        loader.style.display = 'none';
-                        alert('An error occurred during upload.');
-                        console.error(err);
+                try {
+                    const base64Data = await readFileAsBase64(file);
+                    const payload = {
+                        action: 'upload',
+                        filename: file.name,
+                        mimeType: file.type || 'application/octet-stream',
+                        base64Data: base64Data,
+                        regId: regId,
+                        uploadType: uploadType
+                    };
+
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(payload)
                     });
-            };
-            reader.readAsDataURL(file);
+                    const data = await response.json();
+
+                    if (data.success && data.url) {
+                        successCount++;
+                        addToFileList(file, uploadType, data.url, data.filename || file.name);
+                    } else {
+                        failureCount++;
+                        console.error('File upload rejected:', file.name, data.message);
+                    }
+                } catch (err) {
+                    failureCount++;
+                    console.error('File upload network/processing error:', file.name, err);
+                }
+            }
+
+            loader.style.display = 'none';
+            if (loaderText) loaderText.textContent = 'Processing...';
+
+            if (statusEl) {
+                if (successCount > 0 && failureCount === 0) {
+                    statusEl.innerHTML = `<span style="color:#166534">✅ ${successCount} file${successCount > 1 ? 's' : ''} uploaded successfully</span>`;
+                } else if (successCount > 0 && failureCount > 0) {
+                    statusEl.innerHTML = `<span style="color:#b45309">⚠️ ${successCount} uploaded, ${failureCount} failed</span>`;
+                } else {
+                    statusEl.innerHTML = `<span style="color:#b91c1c">❌ Upload failed. Please try again.</span>`;
+                    alert('Upload failed. Please check file format and try again.');
+                }
+            }
+
+            if (typeof onComplete === 'function') onComplete();
         }
 
-        function addToFileList(file, uploadType, url) {
+        function addToFileList(file, uploadType, url, customName) {
             const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
-            if (keyMap[uploadType] && url) {
-                localStorage.setItem(keyMap[uploadType], url);
+            const storageKey = keyMap[uploadType];
+            if (storageKey && url) {
+                const current = splitUrls(localStorage.getItem(storageKey));
+                if (!current.includes(url)) {
+                    current.push(url);
+                    localStorage.setItem(storageKey, current.join('\n'));
+                }
             }
 
-            const fileList = document.getElementById('file-list');
-            const emptyState = fileList.querySelector('.empty-state');
-            if (emptyState) emptyState.style.display = 'none';
-
-            // Remove existing card of this uploadType if present
-            const existing = document.getElementById('file-card-' + uploadType);
-            if (existing) existing.remove();
-
-            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
-            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
-
-            let fileSizeMB = 'Unknown';
-            if (file && file.size) {
-                fileSizeMB = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
-            } else {
-                fileSizeMB = 'Live Capture';
-            }
-
-            const item = document.createElement('div');
-            item.id = 'file-card-' + uploadType;
-            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;';
-            item.innerHTML = `
-                <div style="display:flex;align-items:center;gap:12px;">
-                    <div style="font-size:22px;">${icons[uploadType] || '📄'}</div>
-                    <div>
-                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${file ? file.name : (labels[uploadType] || uploadType)}</h4>
-                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · ${fileSizeMB}</p>
-                    </div>
-                </div>
-                <a href="${url}" target="_blank" class="badge badge-success" style="text-decoration:none;padding:5px 12px;">View in Drive</a>
-            `;
-            fileList.appendChild(item);
+            const fileName = customName || (file ? file.name : null);
+            const fileSize = file ? file.size : null;
+            renderUploadedFile(uploadType, url, fileName, fileSize);
         }
 
         // --- Camera Modal Logic ---
@@ -600,18 +753,21 @@
             closeCameraModal();
 
             const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
+            if (loaderText) loaderText.textContent = 'Uploading selfie...';
             loader.style.display = 'flex';
 
             const base64Data = capturedDataUrl.split(',')[1];
             const timestamp = new Date().getTime();
-            const fileName = 'Selfie_' + localStorage.getItem('userRegId') + '_' + timestamp + '.jpg';
+            const regId = localStorage.getItem('userRegId');
+            const fileName = 'Selfie_' + regId + '_' + timestamp + '.jpg';
 
             const payload = {
                 action: 'upload',
                 filename: fileName,
                 mimeType: 'image/jpeg',
                 base64Data: base64Data,
-                regId: localStorage.getItem('userRegId'),
+                regId: regId,
                 uploadType: 'photo'
             };
 
@@ -622,15 +778,17 @@
                 .then(r => r.json())
                 .then(data => {
                     loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
                     if (data.success) {
-                        document.getElementById('photo-upload-status').innerHTML = `<span style="color:#166534">✅ Uploaded successfully — <a href="${data.url}" target="_blank">View file</a></span>`;
-                        addToFileList({ name: fileName, size: null }, 'photo', data.url);
+                        document.getElementById('photo-upload-status').innerHTML = `<span style="color:#166534">✅ Selfie uploaded — <a href="${data.url}" target="_blank">View file</a></span>`;
+                        addToFileList({ name: fileName, size: null }, 'photo', data.url, data.filename || fileName);
                     } else {
                         alert('Upload failed: ' + data.message);
                     }
                 })
                 .catch(err => {
                     loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
                     alert('An error occurred during upload.');
                     console.error(err);
                 });
