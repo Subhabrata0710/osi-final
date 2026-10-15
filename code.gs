@@ -219,9 +219,140 @@ function logUploadToSheet(uploadType, info) {
     var newRow = logSheet.getLastRow();
     logSheet.getRange(newRow, 8).setFormula('=HYPERLINK("' + info.fileUrl + '","View File")');
 
+    // Send confirmation email to delegate (non-fatal)
+    if (info.email) {
+      sendUploadConfirmationEmail(uploadType, info);
+    }
+
   } catch (logErr) {
     // Non-fatal: log error to console but don't fail the upload response
     console.log('logUploadToSheet Error: ' + logErr.toString());
+  }
+}
+
+// ============================================================
+// SEND UPLOAD CONFIRMATION EMAIL TO DELEGATE
+// Triggered after each successful file upload from the dashboard.
+// ============================================================
+function sendUploadConfirmationEmail(uploadType, info) {
+  try {
+    if (!info.email) return;
+
+    var typeLabels = {
+      abstract: 'Abstract',
+      poster:   'Paper / Presentation',
+      photo:    'Photo / Selfie',
+      bonafide: 'Bonafide Certificate'
+    };
+    var typeEmoji = {
+      abstract: '📄',
+      poster:   '📊',
+      photo:    '🖼️',
+      bonafide: '📜'
+    };
+    var typeLabel = typeLabels[uploadType] || uploadType;
+    var emoji     = typeEmoji[uploadType] || '📁';
+
+    var delegateName = info.name || 'Delegate';
+    var subject = '[OSICON Kolkata 2026] ' + typeLabel + ' Received — Reg ID: ' + info.regId;
+
+    var plainBody =
+      'Dear ' + delegateName + ',\n\n' +
+      'Thank you for submitting your ' + typeLabel + '. We have successfully received your file and it has been recorded against your registration.\n\n' +
+      'Details:\n' +
+      '  • Registration ID : ' + info.regId + '\n' +
+      '  • Document Type   : ' + typeLabel + '\n' +
+      '  • File Name       : ' + info.filename + '\n' +
+      '  • Received On     : ' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'dd-MMM-yyyy HH:mm:ss') + '\n\n' +
+      'If you need to make any changes or have questions, please feel free to write to us at registration@osiconkolkata.com.\n\n' +
+      'Warm regards,\n' +
+      'Organising Committee\n' +
+      'OSICON Kolkata 2026\n' +
+      'Osseointegration Society of India\n' +
+      '📅 27th – 29th November 2026 | 📍 Westin Kolkata';
+
+    var htmlBody =
+      '<div style="font-family: \'Segoe UI\', Arial, sans-serif; max-width: 620px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">' +
+
+        // Header
+        '<div style="background: linear-gradient(135deg, #002366 0%, #1a3c8f 100%); padding: 28px 30px; text-align: center;">' +
+          '<h1 style="margin: 0; color: #ffffff; font-size: 20px; letter-spacing: 0.5px;">OSICON Kolkata 2026</h1>' +
+          '<p style="margin: 6px 0 0; color: #bfcfef; font-size: 13px;">Osseointegration Society of India</p>' +
+        '</div>' +
+
+        // Body
+        '<div style="padding: 30px;">' +
+          '<p style="margin: 0 0 16px; font-size: 16px; color: #1e293b;">Dear <strong>' + delegateName + '</strong>,</p>' +
+          '<p style="margin: 0 0 24px; font-size: 15px; line-height: 1.6; color: #374151;">' +
+            'Thank you for your submission. We have successfully received your <strong>' + typeLabel + '</strong> and it has been recorded against your registration.' +
+          '</p>' +
+
+          // Receipt card
+          '<div style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #002366; border-radius: 8px; padding: 20px; margin-bottom: 24px;">' +
+            '<p style="margin: 0 0 14px; font-size: 14px; font-weight: 700; color: #002366; text-transform: uppercase; letter-spacing: 0.5px;">' + ' Submission Receipt</p>' +
+            '<table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #374151;">' +
+              '<tr><td style="padding: 6px 0; color: #6b7280; width: 42%;">Registration ID</td>' +
+                  '<td style="padding: 6px 0; font-weight: 600; color: #1e293b;">' + info.regId + '</td></tr>' +
+              '<tr><td style="padding: 6px 0; color: #6b7280;">Document Type</td>' +
+                  '<td style="padding: 6px 0; font-weight: 600; color: #1e293b;">' + typeLabel + '</td></tr>' +
+              '<tr><td style="padding: 6px 0; color: #6b7280;">File Name</td>' +
+                  '<td style="padding: 6px 0; font-weight: 600; color: #1e293b; word-break: break-all;">' + info.filename + '</td></tr>' +
+              '<tr><td style="padding: 6px 0; color: #6b7280;">Received On</td>' +
+                  '<td style="padding: 6px 0; font-weight: 600; color: #1e293b;">' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'dd-MMM-yyyy HH:mm:ss') + '</td></tr>' +
+            '</table>' +
+          '</div>' +
+
+          // View file button
+          '<div style="text-align: center; margin: 24px 0;">' +
+            '<a href="' + info.fileUrl + '" target="_blank" style="background: #002366; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; display: inline-block;">👁️ View Submitted File</a>' +
+          '</div>' +
+
+          // Info box
+          '<div style="background-color: #f1f5f9; border-radius: 8px; padding: 15px; font-size: 13px; line-height: 1.6; color: #475569; margin-bottom: 20px;">' +
+            '<strong>📅 Conference Dates:</strong> 27th – 29th November 2026<br>' +
+            '<strong>📍 Venue:</strong> Westin Kolkata, India<br>' +
+            '<strong>🌐 Website:</strong> <a href="https://www.osiconkolkata2026.com" style="color: #002366; text-decoration: none; font-weight: 600;">www.osiconkolkata2026.com</a>' +
+          '</div>' +
+
+          '<p style="font-size: 13px; color: #6b7280; line-height: 1.6; margin-bottom: 0;">' +
+            'For any queries, reply to this email or write to us at ' +
+            '<a href="mailto:registration@osiconkolkata.com" style="color: #002366;">registration@osiconkolkata.com</a>.' +
+          '</p>' +
+        '</div>' +
+
+        // Footer
+        '<div style="border-top: 1px solid #e2e8f0; padding: 18px 30px; text-align: center; background: #f8fafc; color: #64748b; font-size: 12px; line-height: 1.6;">' +
+          '<p style="margin: 0; font-weight: 600; color: #475569;">Organising Committee — OSICON Kolkata 2026</p>' +
+          '<p style="margin: 4px 0 0;">Osseointegration Society of India</p>' +
+        '</div>' +
+
+      '</div>';
+
+    var emailOptions = {
+      name:     EMAIL_FROM_NAME,
+      subject:  subject,
+      body:     plainBody,
+      htmlBody: htmlBody
+    };
+
+    if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+      emailOptions.from = EMAIL_FROM.trim();
+    }
+    // CC the admin so the organising team also sees every submission
+    if (EMAIL_CC && EMAIL_CC.trim().length > 0) {
+      emailOptions.cc = EMAIL_CC.trim();
+    }
+
+    if (EMAIL_FROM && EMAIL_FROM.trim().length > 0) {
+      GmailApp.sendEmail(info.email, subject, plainBody, emailOptions);
+    } else {
+      emailOptions.to = info.email;
+      MailApp.sendEmail(emailOptions);
+    }
+
+  } catch (mailErr) {
+    // Non-fatal: log and continue
+    console.log('sendUploadConfirmationEmail Error: ' + mailErr.toString());
   }
 }
 
