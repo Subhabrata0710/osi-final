@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3RD OSI CONFERENCE KOLKATA 2026 | Pre Conference and Masterclass</title>
+    <meta name="description" content="Pre Conference and Masterclass Sessions - 3rd OSI Conference Kolkata 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .masterclass-section {
+            padding: 50px 0 80px;
+            background: #f8fafc;
+            min-height: 70vh;
+        }
+
+        .masterclass-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 40px;
+        }
+
+        .section-intro p {
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Desktop: At most 2 images in a row */
+        .masterclass-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        .masterclass-card {
+            display: block;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 24px rgba(0, 24, 68, 0.06);
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.28s ease;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .masterclass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 24, 68, 0.16);
+            border-color: var(--secondary);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            background: #eef2f6;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .masterclass-card:hover .card-img-wrapper img {
+            transform: scale(1.02);
+        }
+
+        /* Elegant fallback placeholder displayed if image is missing */
+        .placeholder-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            width: 100%;
+            min-height: 420px;
+            background: linear-gradient(145deg, #001844 0%, #002d75 100%);
+            color: #ffffff;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .placeholder-box::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .placeholder-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .placeholder-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .placeholder-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin: 0 0 8px;
+        }
+
+        .placeholder-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 20px;
+            max-width: 280px;
+        }
+
+        .placeholder-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #001844;
+            background: #d4af37;
+            padding: 9px 20px;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .masterclass-card:hover .placeholder-cta {
+            background: #e5c358;
+            transform: scale(1.03);
+        }
+
+        .card-footer-info {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .card-footer-info .session-name {
+            font-weight: 700;
+            color: #001844;
+            font-size: 0.95rem;
+        }
+
+        .card-footer-info .register-link {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #b38b1d;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Mobile view: single column scrollable */
+        @media (max-width: 768px) {
+            .masterclass-section {
+                padding: 30px 0 60px;
+            }
+
+            .masterclass-container {
+                padding: 0 16px;
+            }
+
+            .masterclass-grid {
+                grid-template-columns: 1fr;
+                /* Single column, scrollable */
+                gap: 22px;
+            }
+
+            .card-img-wrapper {
+                min-height: 280px;
+            }
+
+            .placeholder-box {
+                min-height: 320px;
+                padding: 30px 16px;
+            }
+
+            .placeholder-title {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="preconference">
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+
+    <main class="page-section active">
+        <!-- Page Banner -->
+        <div class="page-banner">
+            <span>Special Hands-on & Intensive Sessions</span>
+            <h1>Pre Conference and Masterclass</h1>
+        </div>
+
+        <!-- Masterclass Content -->
+        <section class="masterclass-section">
+            <div class="masterclass-container">
+                <div class="section-intro">
+                    <p>Click on any workshop or masterclass card below to proceed directly to registration.</p>
+                </div>
+
+                <!-- 12 Masterclass Cards (Desktop: at most 2 in a row; Mobile: single column scrollable) -->
+                <div class="masterclass-grid">
+
+                    <!-- Card 1 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 1">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot1.png" alt="Pre Conference and Masterclass - Session 1"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 01</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot1</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 01</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 2 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 2">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot2.png" alt="Pre Conference and Masterclass - Session 2"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 02</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot2</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 02</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 3">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot3.png" alt="Pre Conference and Masterclass - Session 3"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 03</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot3</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 03</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 4 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 4">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot4.png" alt="Pre Conference and Masterclass - Session 4"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 04</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot4</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 04</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 5 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 5">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot5.png" alt="Pre Conference and Masterclass - Session 5"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 05</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot5</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 05</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 6 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 6">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot6.png" alt="Pre Conference and Masterclass - Session 6"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 06</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot6</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 06</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 7 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 7">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot7.png" alt="Pre Conference and Masterclass - Session 7"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 07</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot7</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 07</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 8 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 8">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot8.png" alt="Pre Conference and Masterclass - Session 8"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 08</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot8</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 08</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 9 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 9">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot9.png" alt="Pre Conference and Masterclass - Session 9"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 09</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot9</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 09</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 10 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 10">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot10.png" alt="Pre Conference and Masterclass - Session 10"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 10</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot10</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 10</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 11 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 11">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot11.png" alt="Pre Conference and Masterclass - Session 11"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 11</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot11</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 11</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                    <!-- Card 12 -->
+                    <a href="registration.html" class="masterclass-card" aria-label="Pre Conference and Masterclass 12">
+                        <div class="card-img-wrapper">
+                            <img src="images/brot12.png" alt="Pre Conference and Masterclass - Session 12"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="placeholder-box" style="display: none;">
+                                <span class="placeholder-badge">Masterclass 12</span>
+                                <div class="placeholder-icon">🎓</div>
+                                <h3 class="placeholder-title">brot12</h3>
+                                <p class="placeholder-desc">Click here to register for this session</p>
+                                <span class="placeholder-cta">Register Now →</span>
+                            </div>
+                        </div>
+                        <div class="card-footer-info">
+                            <span class="session-name">Masterclass Session 12</span>
+                            <span class="register-link">Register →</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Check if images fail or are not yet uploaded and display placeholders
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('.card-img-wrapper img');
+            images.forEach(function (img) {
+                // If complete with zero natural height, trigger fallback
+                if (img.complete && img.naturalHeight === 0) {
+                    img.style.display = 'none';
+                    if (img.nextElementSibling) {
+                        img.nextElementSibling.style.display = 'flex';
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
