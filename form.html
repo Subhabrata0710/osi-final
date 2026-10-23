@@ -467,6 +467,32 @@
                         <span class="cat-label">Dr. Udatta Kher's precon workshop lecture with hands on</span>
                         <span class="cat-price">₹3,000</span>
                     </label>
+
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-robert" class="workshop-checkbox"
+                            value="Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]" data-price="5000">
+                        <span class="cat-label">Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-sudeep" class="workshop-checkbox"
+                            value="Workshop: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN INSIDE THE SOFTWARE [MR. SUDEEP PAUL]"
+                            data-price="3000">
+                        <span class="cat-label">Masterclass: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN
+                            INSIDE THE
+                            SOFTWARE [MR. SUDEEP PAUL]</span>
+                        <span class="cat-price">₹3,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-zyrax-lecture" class="workshop-checkbox"
+                            value="Workshop: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN & TEAM]"
+                            data-price="2000">
+                        <span class="cat-label">Lecture: ZyRAX Protocol:
+                            Next-Gen Zygomatic Solution
+                            for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN
+                            & TEAM]</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-prabh" class="workshop-checkbox"
                             value="Workshop: Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal Lecture]"
@@ -811,6 +837,36 @@
                             if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
                         }
                     }
+                    if (data.countZyraxLecture >= 50) {
+                        const ZyraxLectureInput = document.getElementById('workshop-zyrax-lecture');
+                        if (ZyraxLectureInput) {
+                            ZyraxLectureInput.disabled = true;
+                            ZyraxLectureInput.parentElement.style.opacity = '0.5';
+                            ZyraxLectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = ZyraxLectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Lecture: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN & TEAM] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countSudeep >= 3000) {
+                        const SudeepInput = document.getElementById('workshop-sudeep');
+                        if (SudeepInput) {
+                            SudeepInput.disabled = true;
+                            SudeepInput.parentElement.style.opacity = '0.5';
+                            SudeepInput.parentElement.style.pointerEvents = 'none';
+                            const label = SudeepInput.nextElementSibling;
+                            if (label) label.innerText = 'FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN INSIDE THE SOFTWARE [MR. SUDEEP PAUL] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countRobert >= 3000) {
+                        const robertInput = document.getElementById('workshop-robert');
+                        if (robertInput) {
+                            robertInput.disabled = true;
+                            robertInput.parentElement.style.opacity = '0.5';
+                            robertInput.parentElement.style.pointerEvents = 'none';
+                            const label = robertInput.nextElementSibling;
+                            if (label) label.innerText = 'Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein] (SOLD OUT)';
+                        }
+                    }
                     if (data.countPrabh >= 20) {
                         const PrabhInput = document.getElementById('workshop-prabh');
                         if (PrabhInput) {
@@ -950,6 +1006,9 @@
             const workshopBhandariHandsOn = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
             const workshopPrabh = document.getElementById('workshop-prabh');
+            const workshopRobert = document.getElementById('workshop-robert');
+            const workshopSudeep = document.getElementById('workshop-sudeep');
+            const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
             }
@@ -979,6 +1038,15 @@
             }
             if (workshopPrabh && workshopPrabh.checked) {
                 amount += parseInt(workshopPrabh.getAttribute('data-price'));
+            }
+            if (workshopRobert && workshopRobert.checked) {
+                amount += parseInt(workshopRobert.getAttribute('data-price'));
+            }
+            if (workshopZyraxLecture && workshopZyraxLecture.checked) {
+                amount += parseInt(workshopZyraxLecture.getAttribute('data-price'));
+            }
+            if (workshopSudeep && workshopSudeep.checked) {
+                amount += parseInt(workshopSudeep.getAttribute('data-price'));
             }
             if (workshopBhandariLecture && workshopBhandariLecture.checked) {
                 amount += parseInt(workshopBhandariLecture.getAttribute('data-price'));
@@ -1200,6 +1268,9 @@
             const workshopBhandariHandsOnEl = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
             const workshopPrabh = document.getElementById('workshop-prabh');
+            const workshopRobert = document.getElementById('workshop-robert');
+            const workshopSudeep = document.getElementById('workshop-sudeep');
+            const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
 
             if (workshopOsseo && workshopOsseo.checked) {
                 amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
@@ -1249,6 +1320,19 @@
                 amountInInr += parseInt(workshopPrabh.getAttribute('data-price'));
                 categoryLabel += " + " + workshopPrabh.value;
             }
+            if (workshopRobert && workshopRobert.checked) {
+                amountInInr += parseInt(workshopRobert.getAttribute('data-price'));
+                categoryLabel += " + " + workshopRobert.value;
+            }
+            if (workshopSudeep && workshopSudeep.checked) {
+                amountInInr += parseInt(workshopSudeep.getAttribute('data-price'));
+                categoryLabel += " + " + workshopSudeep.value;
+            }
+            if (workshopZyraxLecture && workshopZyraxLecture.checked) {
+                amountInInr += parseInt(workshopZyraxLecture.getAttribute('data-price'));
+                categoryLabel += " + " + workshopZyraxLecture.value;
+            }
+
 
             // Coupon: chosen lecture is included in the flat price
             if (voucherCode === LECTURE_COUPON) {
