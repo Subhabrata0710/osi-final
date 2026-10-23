@@ -468,6 +468,14 @@
                         <span class="cat-price">₹3,000</span>
                     </label>
                     <label class="category-card">
+                        <input type="checkbox" id="workshop-prabh" class="workshop-checkbox"
+                            value="Workshop: Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal Lecture]"
+                            data-price="3000">
+                        <span class="cat-label">Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal
+                            Lecture]</span>
+                        <span class="cat-price">₹3,000</span>
+                    </label>
+                    <label class="category-card">
                         <input type="checkbox" id="workshop-bhandari-lecture" class="workshop-checkbox"
                             value="Workshop: Dr. Piyush Bhandari's Treating the Atrophic Maxilla using Zygomatic n Pterygoid Implants Lecture"
                             data-price="2000">
@@ -803,6 +811,16 @@
                             if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
                         }
                     }
+                    if (data.countPrabh >= 20) {
+                        const PrabhInput = document.getElementById('workshop-prabh');
+                        if (PrabhInput) {
+                            PrabhInput.disabled = true;
+                            PrabhInput.parentElement.style.opacity = '0.5';
+                            PrabhInput.parentElement.style.pointerEvents = 'none';
+                            const label = PrabhInput.nextElementSibling;
+                            if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
+                        }
+                    }
                     if (data.countBhandariLecture >= 7000) {
                         const bhandariLectureInput = document.getElementById('workshop-bhandari-lecture');
                         if (bhandariLectureInput) {
@@ -931,6 +949,7 @@
             const workshopBhandariLecture = document.getElementById('workshop-bhandari-lecture');
             const workshopBhandariHandsOn = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
+            const workshopPrabh = document.getElementById('workshop-prabh');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
             }
@@ -957,6 +976,9 @@
             }
             if (workshopUdatta && workshopUdatta.checked) {
                 amount += parseInt(workshopUdatta.getAttribute('data-price'));
+            }
+            if (workshopPrabh && workshopPrabh.checked) {
+                amount += parseInt(workshopPrabh.getAttribute('data-price'));
             }
             if (workshopBhandariLecture && workshopBhandariLecture.checked) {
                 amount += parseInt(workshopBhandariLecture.getAttribute('data-price'));
@@ -1177,6 +1199,7 @@
             const workshopBhandariLectureEl = document.getElementById('workshop-bhandari-lecture');
             const workshopBhandariHandsOnEl = document.getElementById('workshop-bhandari-hands-on');
             const workshopUdatta = document.getElementById('workshop-udatta');
+            const workshopPrabh = document.getElementById('workshop-prabh');
 
             if (workshopOsseo && workshopOsseo.checked) {
                 amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
@@ -1221,6 +1244,10 @@
             if (workshopUdatta && workshopUdatta.checked) {
                 amountInInr += parseInt(workshopUdatta.getAttribute('data-price'));
                 categoryLabel += " + " + workshopUdatta.value;
+            }
+            if (workshopPrabh && workshopPrabh.checked) {
+                amountInInr += parseInt(workshopPrabh.getAttribute('data-price'));
+                categoryLabel += " + " + workshopPrabh.value;
             }
 
             // Coupon: chosen lecture is included in the flat price
