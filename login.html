@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Login | ABC Children’s Conclave</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TDXQBN5VPM"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TDXQBN5VPM');
+</script>
+
+<body>
+
+    <!-- LUXURY NAVIGATION -->
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+    <!-- <marquee class="cme-marquee" scrollamount="15" direction="left" onmouseover="this.stop();"
+        onmouseout="this.start();">Last Date of Abstract submission is 18th November 2026.</marquee> -->
+
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h2>PG paper and Delegate Paper</h2>
+        <span>Access Your Conference Account</span>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <section class="register-section">
+        <div class="container">
+            <div class="login-card">
+                <h3 class="text-center mb-4">Welcome back</h3>
+
+                <input id="login-reg-id" type="text" class="form-control" placeholder="Registration ID (e.g. OSI-1234)"
+                    data-testid="login-reg-id">
+
+                <input id="login-phone" type="tel" class="form-control" placeholder="Registered Phone Number"
+                    data-testid="login-phone">
+
+                <button class="btn btn-primary w-100" onclick="loginUser()" data-testid="login-btn">
+                    Login
+                </button><br>
+
+                <button class="btn btn-outline"
+                    style="background-color:#003A8C; color:white; border:none; padding:6px 14px; margin-top:10px;"
+                    onclick="window.location.href='images/Delegate Paper.pdf'">
+                    Click here to download Abstract submission guideline
+                </button>
+
+                <button class="btn btn-outline"
+                    style="background-color:#8f8500; color:white; border:none; padding:6px 14px; margin-top:10px;"
+                    onclick="window.location.href='images/PGT Paper.pdf'">
+                    Click here to download Paper Submission guideline
+                </button>
+
+                <!-- <p class="text-center" style="margin-top: 15px;">
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </p> -->
+
+                <p class="text-center" style="margin-top: 20px; font-size: 0.95rem; color: var(--text-grey);">
+                    Don't have an account? <a href="form.html"
+                        style="color: var(--apollo-blue); text-decoration: underline; font-weight: 600;">Register
+                        here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+
+        function loginUser() {
+            const regId = document.getElementById('login-reg-id').value.trim();
+            const phone = document.getElementById('login-phone').value.trim();
+
+            if (!regId || !phone) {
+                alert('Please enter both Registration ID and Phone Number.');
+                return;
+            }
+
+            const btn = document.querySelector('[data-testid="login-btn"]');
+            btn.innerText = 'Logging in...';
+            btn.disabled = true;
+
+            fetch(`${SCRIPT_URL}?action=login&regId=${encodeURIComponent(regId)}&phone=${encodeURIComponent(phone)}`)
+                .then(response => response.json())
+                .then(data => {
+                    btn.innerText = 'Login';
+                    btn.disabled = false;
+
+                    if (data.success && data.data) {
+                        localStorage.setItem('userRegId', data.data.serialNumber);
+                        localStorage.setItem('userPhone', data.data.phone);
+                        localStorage.setItem('userName', data.data.name);
+                        localStorage.setItem('userEmail', data.data.email);
+                        if (data.data.abstractUrl) localStorage.setItem('abstractUrl', data.data.abstractUrl);
+                        if (data.data.posterUrl) localStorage.setItem('posterUrl', data.data.posterUrl);
+                        if (data.data.photoUrl) localStorage.setItem('photoUrl', data.data.photoUrl);
+                        if (data.data.bonafideUrl) localStorage.setItem('bonafideUrl', data.data.bonafideUrl);
+                        localStorage.setItem('isLoggedIn', 'true');
+
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(data.message || 'Login failed. Please check your details.');
+                    }
+                })
+                .catch(err => {
+                    btn.innerText = 'Login';
+                    btn.disabled = false;
+                    alert('An error occurred during login. Please try again.');
+                    console.error(err);
+                });
+        }
+    </script>
+</body>
+
+</html>

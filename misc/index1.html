@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3RD OSI CONFERENCE KOLKATA 2026 | Dental Implant Conference</title>
+    <meta name="description" content="India's Premier Conference on Osseointegration & Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+       :root {
+    /* UAT COLOR SYSTEM */
+    --primary: #002366;
+    --primary-light: #003399;
+    --primary-dark: #001844;
+
+    --secondary: #D4AF37;
+    --secondary-light: #F4E6B0;
+    --secondary-dark: #8A7018;
+
+    --white: #ffffff;
+
+    /* UAT uses cooler, softer grays */
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #0f172a;
+
+    /* UAT spacing + depth */
+    --radius: 18px;
+
+    /* Deeper, softer shadows (key difference) */
+    --shadow-3d: 0 25px 60px rgba(0, 35, 102, 0.22);
+    --text-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+	body {
+    	font-family: 'Manrope', sans-serif;
+    	font-size: 16px;
+   	font-weight: 400;
+    	letter-spacing: 0.2px;
+    	color: var(--gray-700);
+    	line-height: 1.7;
+	}
+	p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--gray-600);
+}
+
+
+        /* 3D Fonts & Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 6vw, 4.75rem);
+    font-weight: 800;
+    line-height: 1.05;
+    text-shadow: var(--text-shadow);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+
+        /* Shimmer Effect for Subheadings */
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 50%, var(--secondary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navigation with Dropdown --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 35, 102, 0.3);
+        }
+
+        .logo-text h3 {
+            font-size: 16px;
+            margin-bottom: 2px;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--gray-500);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--gray-100);
+            color: var(--primary);
+        }
+
+        /* --- NEW: More Dropdown --- */
+        .dropdown {
+            position: relative;
+	    pointer-events: auto;
+        }
+
+        .dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        
+        .dropdown-btn::after {
+            content: '▼';
+            font-size: 8px;
+            color: var(--secondary);
+            transform: translateY(1px);
+	    position: absolute;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: var(--radius);
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid var(--gray-100);
+            animation: slideUp 0.3s ease;
+	    pointer-events: auto;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            color: var(--gray-700);
+            font-size: 14px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--primary);
+            color: var(--secondary) !important;
+        }
+
+        .nav-cta {
+            background: var(--secondary) !important;
+            color: var(--primary) !important;
+            font-weight: 700 !important;
+            border-radius: 50px !important;
+            padding: 10px 24px !important;
+            margin-left: 12px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-cta:hover {
+            background: var(--secondary-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* --- Page Sections --- */
+        .page-section {
+            display: none;
+            padding-top: 80px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* --- Hero Section --- */
+	.hero p {
+    		font-size: 1.15rem;
+    		max-width: 620px;
+		}
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--gray-50) 0%, #e6f0ff 50%, var(--gray-100) 100%);
+            display: flex;
+            align-items: centre;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 35, 102, 0.05);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .hero-content {
+            max-width: 800px;
+	    align-items: left;
+            padding: 40px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 35, 102, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 35, 102, 0.1);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+.hero h1 {
+    font-weight: 800;
+}
+
+.hero h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+
+        .hero-details {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-detail-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 35, 102, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .hero-detail-text h4 {
+            font-size: 15px;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* --- Cards & Grid --- */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+        .card {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-3d);
+        }
+
+        .card-image {
+            height: 240px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content { padding: 24px; }
+        
+        .card-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Committee Cards --- */
+        .committee-card {
+            position: relative;
+        }
+        
+        .committee-card .card-image { height: 320px; }
+
+        .committee-card .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 35, 102, 0.95));
+            color: var(--white);
+        }
+
+        .committee-card h3 { color: var(--white); margin-bottom: 4px; }
+        .committee-card p { color: rgba(255,255,255,0.8); font-size: 13px; font-family: 'Manrope', sans-serif;}
+
+        /* --- Program Tabs --- */
+        .program-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            background: var(--gray-100);
+            padding: 6px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .program-tab {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-600);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .program-tab.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 35, 102, 0.3);
+        }
+
+        .program-day { display: none; }
+        .program-day.active { display: block; }
+
+        .session-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            transition: transform 0.3s;
+        }
+        
+        .session-item:hover {
+            transform: translateX(8px);
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .session-type {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .session-type.keynote { background: var(--secondary); color: var(--primary); }
+        .session-type.workshop { background: #dcfce7; color: #16a34a; }
+
+        /* --- Pricing --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .pricing-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            margin: 16px 0;
+            display: block;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+        
+        .footer-logo .logo-icon { background: var(--secondary); color: var(--primary); }
+        .footer h4 { color: var(--white); font-family: 'Manrope', sans-serif; letter-spacing: 1px; text-transform: uppercase; font-size: 14px;}
+        .footer a:hover { color: var(--secondary); }
+        
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .grid-4, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2, .grid-3, .grid-4, .pricing-grid { grid-template-columns: 1fr; }
+            .hero-details { flex-direction: column; gap: 16px; }
+            .pricing-card.popular { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" onclick="showPage('home')" class="logo">
+                <div class="logo-icon">OSI</div>
+                <div class="logo-text">
+                    <h3>3RD OSI</h3>
+                    <span>KOLKATA 2026</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#about" onclick="showPage('about')">About</a></li>
+                <li><a href="#committee" onclick="showPage('committee')">Committee</a></li>
+                <li><a href="#program" onclick="showPage('program')">Program</a></li>
+                <li><a href="#speakers" onclick="showPage('speakers')">Speakers</a></li>
+                <li><a href="#registration" onclick="showPage('registration')">Registration</a></li>
+                
+                <li class="dropdown">
+                    
+		    <a class="dropdown-btn" href="javascript:void(0)">More</a>
+
+                    <div class="dropdown-content">
+                        <a href="#accommodation" onclick="showPage('accommodation')">Accommodation</a>
+                        <a href="#sponsors" onclick="showPage('sponsors')">Sponsors</a>
+                        <a href="#venue" onclick="showPage('venue')">Venue</a>
+                        <a href="#downloads" onclick="showPage('downloads')">Downloads</a>
+                        <a href="#contact" onclick="showPage('contact')">Contact Us</a>
+                    </div>
+                </li>
+            </ul>
+
+            <a href="#registration" onclick="showPage('registration')" class="nav-cta btn">Register Now</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <section class="page-section active" id="page-home">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">National Conference 2026</div>
+                    <h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+                    <h2 class="shimmer-text">KOLKATA 2026</h2>
+                    <p>India's Premier Conference on <strong>Osseointegration</strong> & <strong>Implant Dentistry</strong> — Where Science Meets Clinical Excellence.</p>
+                    
+                    <div class="hero-details">
+                        <div class="hero-detail">
+                            <div class="hero-detail-icon">📅</div>
+                            <div class="hero-detail-text">
+                                <h4>27-29 Nov 2026</h4>
+                                <span>Save the Date</span>
+                            </div>
+                        </div>
+                        <div class="hero-detail">
+                            <div class="hero-detail-icon">📍</div>
+                            <div class="hero-detail-text">
+                                <h4>The Westin</h4>
+                                <span>Rajarhat, Kolkata</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#registration" onclick="showPage('registration')" class="btn btn-primary">Register Now →</a>
+                        <a href="#program" onclick="showPage('program')" class="btn btn-outline">Scientific Program</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="page-about">
+        <div class="container" style="padding: 80px 20px;">
+            <div class="grid-2">
+                <div>
+                    <span class="card-badge">About Us</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 24px; color: var(--primary);">Where <span style="color: var(--secondary);">Osseointegration</span> Meets Innovation</h2>
+                    <p style="color: var(--gray-600); margin-bottom: 20px; font-size: 1.1rem;">The <strong>3rd OSI Conference Kolkata 2026</strong> brings together the brightest minds in implant dentistry for three days of intensive learning, networking, and clinical excellence.</p>
+                    
+                    <div style="background: var(--primary); border-radius: var(--radius); padding: 24px; color: var(--white); box-shadow: var(--shadow-3d);">
+                        <h3 style="color: var(--secondary); font-size: 1.25rem; margin-bottom: 8px;">"From Beginners to Masters"</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 14px;">A comprehensive program designed for every level of expertise.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="grid-2">
+                        <div class="card" style="padding: 24px;">
+                            <div style="font-size: 32px; margin-bottom: 12px;">🎯</div>
+                            <h4>Clinical Excellence</h4>
+                            <p style="font-size: 13px; color: var(--gray-500);">Evidence-based practices</p>
+                        </div>
+                        <div class="card" style="padding: 24px;">
+                            <div style="font-size: 32px; margin-bottom: 12px;">🏆</div>
+                            <h4>Skill Development</h4>
+                            <p style="font-size: 13px; color: var(--gray-500);">Hands-on workshops</p>
+                        </div>
+                        <div class="card" style="padding: 24px;">
+                            <div style="font-size: 32px; margin-bottom: 12px;">💡</div>
+                            <h4>Innovation</h4>
+                            <p style="font-size: 13px; color: var(--gray-500);">Latest technologies</p>
+                        </div>
+                        <div class="card" style="padding: 24px;">
+                            <div style="font-size: 32px; margin-bottom: 12px;">👥</div>
+                            <h4>Networking</h4>
+                            <p style="font-size: 13px; color: var(--gray-500);">Global collaboration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="page-committee">
+        <div class="container" style="padding: 80px 20px;">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <span style="color: var(--secondary); font-weight: 700; letter-spacing: 2px; font-size: 12px; text-transform: uppercase;">Leadership</span>
+                <h2 style="font-size: 2.5rem;">Organizing Committee</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card committee-card">
+                    <div class="card-image"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=350&fit=crop" alt="Dr. Rajesh Kumar"></div>
+                    <div class="card-overlay">
+                        <span class="card-badge">Chairperson</span>
+                        <h3>Dr. Rajesh Kumar</h3>
+                        <p>Govt. Dental College, Kolkata</p>
+                    </div>
+                </div>
+                <div class="card committee-card">
+                    <div class="card-image"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=350&fit=crop" alt="Dr. Priya Sharma"></div>
+                    <div class="card-overlay">
+                        <span class="card-badge">Scientific Chair</span>
+                        <h3>Dr. Priya Sharma</h3>
+                        <p>AIIMS, New Delhi</p>
+                    </div>
+                </div>
+                <div class="card committee-card">
+                    <div class="card-image"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=350&fit=crop" alt="Dr. Sunil Menon"></div>
+                    <div class="card-overlay">
+                        <span class="card-badge">Secretary</span>
+                        <h3>Dr. Sunil Menon</h3>
+                        <p>Apollo Hospitals, Chennai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="page-program">
+        <div class="container" style="padding: 80px 20px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.5rem;">Scientific Program</h2>
+            </div>
+
+            <div class="program-tabs">
+                <button class="program-tab active" onclick="showDay(1)">Day 1</button>
+                <button class="program-tab" onclick="showDay(2)">Day 2</button>
+                <button class="program-tab" onclick="showDay(3)">Day 3</button>
+            </div>
+
+            <div class="program-day active" id="day-1" style="max-width: 900px; margin: 0 auto;">
+                <div class="session-item">
+                    <div style="min-width: 100px; font-weight: 700; color: var(--primary);">09:30 AM</div>
+                    <div>
+                        <span class="session-type keynote">KEYNOTE</span>
+                        <h4 style="font-size: 1.25rem;">The Evolution of Osseointegration</h4>
+                        <p style="font-size: 13px; color: var(--gray-500);">International Expert • Grand Ballroom</p>
+                    </div>
+                </div>
+                <div class="session-item">
+                    <div style="min-width: 100px; font-weight: 700; color: var(--primary);">11:00 AM</div>
+                    <div>
+                        <span class="session-type" style="background: #e0f2fe; color: #003399;">SESSION</span>
+                        <h4 style="font-size: 1.25rem;">Implant Surface Technology</h4>
+                        <p style="font-size: 13px; color: var(--gray-500);">Hall A • Scientific Session I</p>
+                    </div>
+                </div>
+                <div class="session-item">
+                    <div style="min-width: 100px; font-weight: 700; color: var(--primary);">02:00 PM</div>
+                    <div>
+                        <span class="session-type workshop">WORKSHOP</span>
+                        <h4 style="font-size: 1.25rem;">Hands-on: Basic Implant Placement</h4>
+                        <p style="font-size: 13px; color: var(--gray-500);">Workshop Room 1 • Limited Seats</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="program-day" id="day-2" style="max-width: 900px; margin: 0 auto;">
+                <div class="session-item" style="text-align: center; color: var(--gray-500);">Day 2 Schedule Loading...</div>
+            </div>
+             <div class="program-day" id="day-3" style="max-width: 900px; margin: 0 auto;">
+                <div class="session-item" style="text-align: center; color: var(--gray-500);">Day 3 Schedule Loading...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="page-registration">
+        <div class="container" style="padding: 80px 20px;">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 2.5rem;">Registration</h2>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div style="font-size: 40px; margin-bottom: 16px;">👥</div>
+                    <h3>Delegate</h3>
+                    <p style="color: var(--gray-500);">Practicing Dentists</p>
+                    <span class="price">₹12,000</span>
+                    <span style="display: block; font-size: 12px; color: var(--secondary-dark); font-weight: 700; margin-bottom: 24px;">EARLY BIRD</span>
+                    <button class="btn btn-outline" style="width: 100%;">Select</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div style="font-size: 40px; margin-bottom: 16px;">🎓</div>
+                    <h3>Student</h3>
+                    <p style="color: var(--gray-500);">PG Students & Interns</p>
+                    <span class="price">₹6,000</span>
+                    <span style="display: block; font-size: 12px; color: var(--secondary-dark); font-weight: 700; margin-bottom: 24px;">EARLY BIRD</span>
+                    <button class="btn btn-primary" style="width: 100%;">Register Now</button>
+                </div>
+                
+                 <div class="pricing-card">
+                    <div style="font-size: 40px; margin-bottom: 16px;">👤</div>
+                    <h3>Spouse</h3>
+                    <p style="color: var(--gray-500);">Accompanying Person</p>
+                    <span class="price">₹5,000</span>
+                    <span style="display: block; font-size: 12px; color: var(--secondary-dark); font-weight: 700; margin-bottom: 24px;">STANDARD</span>
+                    <button class="btn btn-outline" style="width: 100%;">Select</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-section" id="page-venue">
+        <div class="container" style="padding: 80px 20px; text-align: center;">
+            <h2 style="font-size: 2.5rem;">The Westin Kolkata Rajarhat</h2>
+            <div style="margin-top: 32px; height: 400px; background: #eee; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-3d);">
+                <p>Google Map Integration</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="page-section" id="page-contact">
+        <div class="container" style="padding: 80px 20px;">
+            <div class="grid-2">
+                <div style="background: var(--primary); padding: 40px; border-radius: var(--radius); color: var(--white);">
+                     <h2 style="color: var(--white);">Get in Touch</h2>
+                     <p style="opacity: 0.8; margin-bottom: 24px;">Have questions? Reach out to our secretariat.</p>
+                     <div>
+                         <p style="margin-bottom: 12px;"><strong>Email:</strong> info@osikonference.org</p>
+                         <p><strong>Phone:</strong> +91 98765 43210</p>
+                         <p><strong>Address:</strong> The Westin, Kolkata</p>
+                     </div>
+                </div>
+                <div class="card" style="padding: 40px;">
+                    <form>
+                        <input type="text" placeholder="Name" style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid var(--gray-200); border-radius: 8px;">
+                        <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid var(--gray-200); border-radius: 8px;">
+                        <textarea placeholder="Message" style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid var(--gray-200); border-radius: 8px; min-height: 120px;"></textarea>
+                        <button class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="grid-4">
+                <div style="grid-column: span 2;">
+                    <div class="logo footer-logo" style="margin-bottom: 24px;">
+                        <div class="logo-icon">OSI</div>
+                        <div class="logo-text">
+                            <h3 style="color: var(--white);">3RD OSI CONFERENCE</h3>
+                            <span style="color: rgba(255,255,255,0.6);">KOLKATA 2026</span>
+                        </div>
+                    </div>
+                    <p style="max-width: 400px; color: rgba(255,255,255,0.7);">India's premier national conference on Osseointegration & Implant Dentistry.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul style="list-style: none; margin-top: 20px; color: rgba(255,255,255,0.7);">
+                        <li style="margin-bottom: 12px;"><a href="#about" onclick="showPage('about')">About Us</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#program" onclick="showPage('program')">Scientific Program</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#registration" onclick="showPage('registration')">Registration</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul style="list-style: none; margin-top: 20px; color: rgba(255,255,255,0.7);">
+                        <li style="margin-bottom: 12px;">info@osikonference.org</li>
+                        <li style="margin-bottom: 12px;">+91 98765 43210</li>
+                        <li style="margin-bottom: 12px;">The Westin, Kolkata</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 13px; color: rgba(255,255,255,0.5);">
+                © 2026 3rd OSI Conference Kolkata. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(page) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const activeSection = document.getElementById('page-' + page);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+            
+            // Close mobile menu
+            const navLinks = document.querySelector('.nav-links');
+            if (window.innerWidth <= 768 && navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            }
+        }
+
+        function showDay(day) {
+            document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.program-day').forEach(d => d.style.display = 'none');
+            
+            event.target.classList.add('active');
+            document.getElementById('day-' + day).style.display = 'block';
+        }
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+            if(links.style.display === 'flex') {
+                links.style.flexDirection = 'column';
+                links.style.position = 'absolute';
+                links.style.top = '80px';
+                links.style.left = '0';
+                links.style.right = '0';
+                links.style.background = 'white';
+                links.style.padding = '20px';
+                links.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+            }
+        });
+        
+        // Initial Load
+        window.addEventListener('load', () => {
+             const hash = window.location.hash.replace('#', '') || 'home';
+             showPage(hash);
+        });
+    </script>
+</body>
+</html>

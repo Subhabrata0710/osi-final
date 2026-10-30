@@ -1,0 +1,17 @@
+Dr Y K Amdekar: images/dr_y_k_amdekar.jpg
+Dr RN Srivastava: images/dr_rn_srivastava.jpg
+Dr Vijay Yewale: images/dr_vijay_yewale.jpg
+Dr Nitin Shah: images/dr_nitin_shah.jpg
+Dr S K Kabra: images/dr_s_k_kabra.jpg
+Dr Jaydeep Choudhury: images/dr_jaydeep_choudhury.jpg
+Dr V Sripathi: images/dr_v_sripathi.jpg
+Dr Sushmita Banerjee: images/dr_sushmita_banerjee.jpg
+Dr Vidya Krishna: images/dr_vidya_krishna.jpg
+Dr Abhijeet Bagde: images/dr_abhijeet_bagde.jpg
+Dr Subhasish Roy: images/dr_subhasish_roy.jpg
+Dr Bijan Saha: images/dr_bijan_saha.jpg
+Dr Avneet Kaur: images/dr_avneet_kaur.jpg
+Dr Jasodhara Chaudhuri: images/dr_jasodhara_chaudhuri.jpg
+Dr Soumitra S Datta: images/dr_soumitra_s_datta.jpg
+Dr Abhishek Kulkarni: images/dr_abhishek_kulkarni.jpg
+Dr Brajagopal Ray: images/dr_brajagopal_ray.jpg

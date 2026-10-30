@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSICON Kolkata 2026 | Registration Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #002366;
+            --primary-light: #f5f3ff;
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --bg-gradient: linear-gradient(135deg, #002366 0%, #002366 100%);
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-wrapper {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 25px;
+        }
+
+        .conference-name {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .society-name {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 5px 0 15px 0;
+        }
+
+        .info-pill {
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .info-pill a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f9fafb;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .scroll-wrapper {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .category-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 1px solid #f3f4f6;
+            border-radius: 16px;
+            background: #fff;
+        }
+
+        .scroll-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: float 2s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                bottom: 20px;
+            }
+
+            50% {
+                bottom: 25px;
+            }
+        }
+
+        .category-card {
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .category-card:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .category-card:has(input:checked) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .category-card input {
+            display: none;
+        }
+
+        .cat-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dark);
+            max-width: 70%;
+        }
+
+        .cat-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .summary-bar {
+            background: #111827;
+            color: white;
+            padding: 24px;
+            border-radius: 20px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-text {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .total-val {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        .category-container::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .category-container::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .grid-row {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TDXQBN5VPM"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TDXQBN5VPM');
+</script>
+
+<body>
+
+    <div class="form-wrapper">
+        <div class="event-header">
+            <span class="conference-name">3rd Annual Conference</span>
+            <span class="society-name">Osseointegration Society of India</span>
+            <div class="info-pill">
+                <strong>27th - 29th November 2026</strong> | KOLKATA<br>
+                <!-- <a href="https://www.osiconkolkata2026.com" target="_blank">www.osiconkolkata2026.com</a> |  -->
+                <a href="mailto:registration@osiconkolkata.com">registration@osiconkolkata.com</a>
+            </div>
+        </div>
+
+        <form id="mainForm">
+            <div class="section-header" style="justify-content: space-between;">
+                <span>Delegate Information</span>
+                <button type="button" id="fetchDetailsBtn"
+                    style="font-size: 12px; padding: 6px 12px; border-radius: 6px; background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary); cursor: pointer; font-weight: 600;">Already
+                    Registered? Fetch Details</button>
+            </div>
+            <div class="input-group">
+                <label>Full Name *</label>
+                <input type="text" id="userName" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label>Email Address *</label>
+                <input type="email" id="userEmail" placeholder="name@domain.com" required>
+            </div>
+            <div class="grid-row">
+                <div class="input-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" id="userPhone" placeholder="+91" required>
+                </div>
+                <div class="input-group">
+                    <label>I am a *</label>
+                    <select id="userType" required
+                        style="width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--border); background: #f9fafb; font-family: inherit; font-size: 14px; box-sizing: border-box;"
+                        onchange="toggleMembershipField()">
+                        <option value="">Select Option</option>
+                        <option value="osi_member">OSI Member</option>
+                        <option value="non_osi_member">Non OSI Member</option>
+                        <option value="student">Student</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group" id="membershipField" style="display: none;">
+                <label>OSI Membership Number *</label>
+                <input type="text" id="usermember" placeholder="Enter your OSI Membership Number">
+            </div>
+            <script>
+                function toggleMembershipField() {
+                    const userType = document.getElementById('userType').value;
+                    const membershipField = document.getElementById('membershipField');
+                    const usermemberInput = document.getElementById('usermember');
+                    if (userType === 'osi_member') {
+                        membershipField.style.display = 'block';
+                        usermemberInput.required = true;
+                        usermemberInput.value = '';
+                    } else {
+                        membershipField.style.display = 'none';
+                        usermemberInput.required = false;
+                        usermemberInput.value = 'NA';
+                    }
+                }
+            </script>
+            <div class="grid-row">
+                <div class="input-group">
+                    <label>State *</label>
+                    <input type="text" id="userState" placeholder="Enter your state" required>
+                </div>
+                <div class="input-group">
+                    <label>City *</label>
+                    <input type="text" id="userCity" placeholder="Enter your city" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Voucher Code (Optional)</label>
+                <input type="text" id="voucherCode" placeholder="Enter voucher code if any"
+                    style="text-transform: uppercase;">
+                <div id="couponHint" style="display:none; margin-top:6px; font-size:0.8em; color:#818cf8;"></div>
+            </div>
+
+            <div class="section-header">
+                Select Special Registration Category
+            </div>
+            <div class="scroll-wrapper">
+                <!--<div id="scrollBadge" class="scroll-badge">
+                <span>See more options</span> <span>↓</span>
+            </div>-->
+                <div class="category-container" id="categoryList">
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration" name="cat" data-price="15000" required>
+                        <span class="cat-label">Registration with banquet</span>
+                        <span class="cat-price">₹15000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-without-banquet" name="cat" data-price="13000"
+                            required>
+                        <span class="cat-label">Registration without banquet</span>
+                        <span class="cat-price">₹13000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-student-with-hospitality" name="cat" data-price="7500"
+                            required>
+                        <span class="cat-label">Student Registration with Hospitality</span>
+                        <span class="cat-price">₹7500</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-registration-student-without-hospitality" name="cat"
+                            data-price="5000" required>
+                        <span class="cat-label">Student Registration without hospitality</span>
+                        <span class="cat-price">₹5000</span>
+                    </label>
+
+                </div>
+            </div>
+            <div class="section-header">
+                Select Workshop (Optional)
+            </div>
+            <div class="scroll-wrapper">
+                <div class="category-container" style="max-height: max-content;">
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-osseo" class="workshop-checkbox"
+                            value="Course Topic: Osseodensification" data-price="20000">
+                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification (Hands on
+                            workshop) [Dr. Salah Huwais]</span>
+                        <span class="cat-price">₹20,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture-salah" class="workshop-checkbox"
+                            value="Course Topic: Osseodensification" data-price="5000">
+                        <span class="cat-label" id="osseo-label">Course Topic: Osseodensification (Lecture)[Dr. Salah
+                            Huwais] (Limited to 20 seats only)</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture)" data-price="5000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Lecture) [DR. FRANK
+                            SCHWARZ]</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on" class="workshop-checkbox"
+                            value="Workshop: PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop)"
+                            data-price="18000">
+                        <span class="cat-label">PREDICTABLE MANAGEMENT OF PERI-IMPLANTITIS (Hands on workshop) [DR.
+                            FRANK
+                            SCHWARZ]</span>
+                        <span class="cat-price">₹18,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture-henry" class="workshop-checkbox"
+                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture)"
+                            data-price="5000">
+                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery
+                            (Lecture) [DR. HENRY DIEDERICH]</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on-henry" class="workshop-checkbox"
+                            value="Workshop: Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on)"
+                            data-price="10000">
+                        <span class="cat-label">Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery
+                            (Lecture with Hands on) [DR. HENRY DIEDERICH]</span>
+                        <span class="cat-price">₹10,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-lecture-komal" class="workshop-checkbox"
+                            value="Workshop: Dr Komal Mazumdar precon workshop Lecture" data-price="2000">
+                        <span class="cat-label">Dr Komal Mazumdar precon workshop Lecture</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-hands-on-komal" class="workshop-checkbox"
+                            value="Workshop: Dr Komal Mazumdar precon workshop lecture with hands on" data-price="5000">
+                        <span class="cat-label">Dr Komal Mazumdar precon workshop lecture with hands on</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-udatta" class="workshop-checkbox"
+                            value="Workshop: Udatta's Tips & Tricks in Implants-Part I: Anterior Single Tooth, 3i Tapered & Narrow Ridge Cases with Vertical Defects [DR. UDATTA KHER]"
+                            data-price="3000">
+                        <span class="cat-label">Dr. Udatta Kher's precon workshop lecture with hands on</span>
+                        <span class="cat-price">₹3,000</span>
+                    </label>
+
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-robert" class="workshop-checkbox"
+                            value="Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]" data-price="5000">
+                        <span class="cat-label">Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-sudeep" class="workshop-checkbox"
+                            value="Workshop: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN INSIDE THE SOFTWARE [MR. SUDEEP PAUL]"
+                            data-price="3000">
+                        <span class="cat-label">Masterclass: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN
+                            INSIDE THE
+                            SOFTWARE [MR. SUDEEP PAUL]</span>
+                        <span class="cat-price">₹3,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-zyrax-lecture" class="workshop-checkbox"
+                            value="Workshop: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN & TEAM]"
+                            data-price="2000">
+                        <span class="cat-label">Lecture: ZyRAX Protocol:
+                            Next-Gen Zygomatic Solution
+                            for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN
+                            & TEAM]</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-prabh" class="workshop-checkbox"
+                            value="Workshop: Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal Lecture]"
+                            data-price="3000">
+                        <span class="cat-label">Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal
+                            Lecture]</span>
+                        <span class="cat-price">₹3,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-bhandari-lecture" class="workshop-checkbox"
+                            value="Workshop: Dr. Piyush Bhandari's Treating the Atrophic Maxilla using Zygomatic n Pterygoid Implants Lecture"
+                            data-price="2000">
+                        <span class="cat-label">Dr. Piyush Bhandari's Treating the Atrophic
+                            Maxilla using Zygomatic n
+                            Pterygoid Implants Lecture</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-bhandari-hands-on" class="workshop-checkbox"
+                            value="Workshop: Dr. Piyush Bhandari's Treating the Atrophic Maxilla using Zygomatic n Pterygoid Implants Hands on"
+                            data-price="5000">
+                        <span class="cat-label">Dr. Piyush Bhandari's Treating the Atrophic
+                            Maxilla using Zygomatic n
+                            Pterygoid Implants Hands on</span>
+                        <span class="cat-price">₹5,000</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- <div class="section-header">
+                Additional Registration Category
+                <span id="validTillText" style="font-size: 0.75em; font-weight: bold;">(* Prices are valid till 15th
+                    April 2026)</span>
+            </div> -->
+
+            <div class="scroll-wrapper">
+                <!--<div id="scrollBadge" class="scroll-badge">
+                <span>See more options</span> <span>↓</span>
+            </div>-->
+                <div class="category-container" id="categoryList">
+                    <label class="category-card" id="special-offer-container" style="display: none;">
+                        <input type="radio" id="cat-special" name="cat" data-price="11000">
+                        <span class="cat-label">PRF Ocean & Osteoimmunology Masterclass Special registration
+                            offer</span>
+                        <span class="cat-price">₹11,000</span>
+                    </label>
+                    <label class="category-card" id="1day" style="display: none;">
+                        <input type="radio" id="1day" name="cat" data-price="2000">
+                        <span class="cat-label">1 DAY IMPLANT EXTRAVAGANZA</span>
+                        <span class="cat-price">₹2,000</span>
+                    </label>
+
+                    <div style="width: 100%; display: flex; flex-direction: column;">
+                        <label class="category-card">
+                            <input type="radio" id="cat-workshop-only" name="cat" data-price="0">
+                            <span class="cat-label">Already Registered?</span>
+                            <span class="cat-price">₹0</span>
+                        </label>
+                        <div id="regIdField" style="display: none; margin-top: 10px; margin-bottom: 10px;">
+                            <input type="text" id="registrationId"
+                                placeholder="Enter Regs ID (sent to mail) or contact 9830367423"
+                                style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border); font-size: 13px; background: #fff;">
+                        </div>
+                    </div>
+                    <!-- //////////////////////////////UNCHECK IF NEEDEED////////////////////////////// -->
+                    <!-- <label class="category-card">
+                        <input type="radio" id="cat-registration" name="cat" data-price="15000" required>
+                        <span class="cat-label">Registration</span>
+                        <span class="cat-price">₹15000</span>
+                    </label> -->
+                    <!-- ///////////////////////////////////////////////////////////// -->
+                    <!-- <label class="category-card">
+                        <input type="radio" id="cat-non-osi" name="cat" data-price="12390" required>
+                        <span class="cat-label">Non OSI Member</span>
+                        <span class="cat-price">₹12,390</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-excl-banquet" name="cat" data-price="11500">
+                        <span class="cat-label">Registration (Excluding Banquet Dinner)</span>
+                        <span class="cat-price">₹11,500</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-osi" name="cat" data-price="10620">
+                        <span class="cat-label">OSI Member</span>
+                        <span class="cat-price">₹10,620</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-student" name="cat" data-price="5500">
+                        <span class="cat-label">Students Offer (without hospitality)</span>
+                        <span class="cat-price">₹5,500</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-student-2" name="cat" data-price="7500">
+                        <span class="cat-label">Students Offer (with hospitality (excluding banquet))</span>
+                        <span class="cat-price">₹7,500</span>
+                    </label> -->
+
+
+                    <!-- Above is correct, Now i want to add only registration in rs 15000 in this form -->
+
+
+
+
+                    <!-- <label class="category-card">
+                        <input type="radio" id="cat-reg-life" name="cat" data-price="17700">
+                        <span class="cat-label">Registration + Life Membership</span>
+                        <span class="cat-price">₹17,700</span>
+                    </label> -->
+
+
+
+
+
+                    <!-- <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-2n-single" name="cat" data-price="46020">
+                        <span class="cat-label">Registration + Westin 2 nights (Single Occupancy)</span>
+                        <span class="cat-price">₹46,020</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-2n-twin" name="cat" data-price="28320">
+                        <span class="cat-label">Registration + Westin 2 nights (Twin Sharing)</span>
+                        <span class="cat-price">₹28,320</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-2n-twin-life" name="cat" data-price="35320">
+                        <span class="cat-label">Registration + Westin 2 nights (Twin) + Life Membership</span>
+                        <span class="cat-price">₹35,320</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-2n-single-life" name="cat" data-price="53020">
+                        <span class="cat-label">Registration + Westin 2 nights (Single) + Life Membership</span>
+                        <span class="cat-price">₹53,020</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-3n-single" name="cat" data-price="63720">
+                        <span class="cat-label">Registration + Westin 3 nights (Single Occupancy)</span>
+                        <span class="cat-price">₹63,720</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-3n-twin" name="cat" data-price="37170">
+                        <span class="cat-label">Registration + Westin 3 nights (Twin Sharing)</span>
+                        <span class="cat-price">₹37,170</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-3n-single-life" name="cat" data-price="70720">
+                        <span class="cat-label">Registration + Westin 3 nights (Single) + Life Membership</span>
+                        <span class="cat-price">₹70,720</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="radio" id="cat-reg-westin-3n-twin-life" name="cat" data-price="44170">
+                        <span class="cat-label">Registration + Westin 3 nights (Twin) + Life Membership</span>
+                        <span class="cat-price">₹44,170</span>
+                    </label> -->
+
+                </div>
+            </div>
+
+
+            <div id="accommodation-dates" style="display: none; margin-bottom: 20px;">
+                <div class="input-group">
+                    <label>Check-in Date *</label>
+                    <input type="date" id="checkinDate" name="checkinDate">
+                </div>
+                <div class="input-group">
+                    <label>Check-out Date *</label>
+                    <input type="date" id="checkoutDate" name="checkoutDate">
+                </div>
+            </div>
+
+            <div class="summary-bar">
+                <div>
+                    <div class="total-text">Total Payable Amount</div>
+                    <div style="font-size: 11px; opacity: 0.6;">(Inclusive of all taxes)</div>
+                </div>
+                <div class="total-val" id="totalDisplay">₹0</div>
+            </div>
+
+            <button type="submit" class="submit-btn">Complete Registration</button>
+        </form>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        const form = document.getElementById('mainForm');
+        const totalDisplay = document.getElementById('totalDisplay');
+        const categoryList = document.getElementById('categoryList');
+        const scrollBadge = document.getElementById('scrollBadge');
+
+        // Dynamic Pricing Logic
+        const categoryPricing = {
+            "cat-workshop-only": [0, 0, 0, 0, 0],
+            "1day": [2000, 2000, 2000, 2000, 2000],
+            "cat-registration": [15000, 15000, 15000, 15000, 15000],
+            "cat-student-without-hospitality": [5000, 5000, 5000, 5000, 5000],
+            "cat-student-with-hospitality": [7500, 7500, 7500, 7500, 7500],
+            "cat-registration-without-hospitality": [13000, 13000, 13000, 13000, 13000],
+            "cat-special": [11000, 11000, 11000, 11000, 11000],
+            "cat-non-osi": [12390, 14160, 15930, 17700, 19470],
+            "cat-osi": [10620, 12390, 14160, 15930, 17700],
+            "cat-student": [5500, 5500, 5500, 5500, 5500],
+            "cat-student-2": [7500, 7500, 7500, 7500, 7500],
+            "cat-reg-life": [17700, 19470, 21240, 23010, 24780],
+            "cat-reg-westin-2n-single": [46020, 47790, 49560, 51330, 53100],
+            "cat-reg-westin-2n-twin": [28320, 30090, 31860, 33630, 35400],
+            "cat-reg-westin-2n-twin-life": [35320, 37090, 38860, 40630, 42400],
+            "cat-reg-westin-2n-single-life": [53020, 54790, 56560, 58330, 60100],
+            "cat-reg-westin-3n-single": [63720, 65490, 67260, 69030, 70800],
+            "cat-reg-westin-3n-twin": [37170, 38940, 40710, 42480, 44250],
+            "cat-reg-westin-3n-single-life": [70720, 72490, 74260, 76030, 77800],
+            "cat-reg-westin-3n-twin-life": [44170, 45940, 47710, 49480, 51250]
+        };
+
+        function getCurrentTier() {
+            const now = new Date();
+            if (now < new Date('2026-04-16T00:00:00+05:30')) return { index: 0, label: "Prices are valid till 15th April 2026" };
+            if (now < new Date('2026-06-01T00:00:00+05:30')) return { index: 1, label: "Prices are valid till 31st May 2026" };
+            if (now < new Date('2026-09-01T00:00:00+05:30')) return { index: 2, label: "Prices are valid till 31st August 2026" };
+            if (now < new Date('2026-11-27T00:00:00+05:30')) return { index: 3, label: "Prices are valid till 26th November 2026" };
+            return { index: 4, label: "Spot Registration Prices" };
+        }
+
+        function updateDynamicPricing() {
+            const now = new Date();
+            const specialContainer = document.getElementById('special-offer-container');
+            const oneDayContainer = document.getElementById('1day');
+            // Show only from 3rd May 2026 to 4th May 2026 midnight
+            if (now >= new Date('2026-07-26T00:00:00+05:30') && now < new Date('2026-07-27T00:00:00+05:30')) {
+                if (specialContainer) specialContainer.style.display = 'flex';
+            } else {
+                if (specialContainer) specialContainer.style.display = 'none';
+            }
+
+
+            if (now >= new Date('2026-07-02T00:00:00+05:30') && now < new Date('2026-07-06T00:00:00+05:30')) {
+                if (oneDayContainer) oneDayContainer.style.display = 'flex';
+            } else {
+                if (oneDayContainer) oneDayContainer.style.display = 'none';
+            }
+            const tier = getCurrentTier();
+
+            const validTillSpan = document.getElementById('validTillText');
+            if (validTillSpan) {
+                if (tier.index === 4) {
+                    validTillSpan.innerText = `(* ${tier.label})`;
+                } else {
+                    validTillSpan.innerText = `(* ${tier.label})`;
+                }
+            }
+
+            for (const [id, prices] of Object.entries(categoryPricing)) {
+                const input = document.getElementById(id);
+                if (input) {
+                    const currentPrice = prices[tier.index];
+                    input.setAttribute('data-price', currentPrice);
+                    const priceDisplay = input.parentElement.querySelector('.cat-price');
+                    if (priceDisplay) {
+                        priceDisplay.innerText = `₹${new Intl.NumberFormat('en-IN').format(currentPrice)}`;
+                    }
+                }
+            }
+        }
+
+        // Run on load
+        updateDynamicPricing();
+
+        // Replace with your actual Deployed Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+
+        // Check Osseodensification and New Workshops Capacity
+        fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.countOsseo >= 30) {
+                        const osseoInput = document.getElementById('workshop-osseo');
+                        if (osseoInput) {
+                            osseoInput.disabled = true;
+                            osseoInput.parentElement.style.opacity = '0.5';
+                            osseoInput.parentElement.style.pointerEvents = 'none';
+                            const label = document.getElementById('osseo-label');
+                            if (label) label.innerText = 'Course Topic: Osseodensification (SOLD OUT)';
+                        }
+                    }
+                    if (data.countOsseoLectureSalah >= 20) {
+                        const osseoInput = document.getElementById('workshop-lecture-salah');
+                        if (osseoInput) {
+                            osseoInput.disabled = true;
+                            osseoInput.parentElement.style.opacity = '0.5';
+                            osseoInput.parentElement.style.pointerEvents = 'none';
+                            const label = document.getElementById('osseo-lecture-salah-label');
+                            if (label) label.innerText = 'Course Topic: Osseodensification (Lecture) (SOLD OUT)';
+                        }
+                    }
+                    if (data.countLecture >= 30) {
+                        const lectureInput = document.getElementById('workshop-lecture-henry');
+                        if (lectureInput) {
+                            lectureInput.disabled = true;
+                            lectureInput.parentElement.style.opacity = '0.5';
+                            lectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = lectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture) [DR. HENRY DIEDERICH] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countHandsOn >= 30) {
+                        const handsOnInput = document.getElementById('workshop-hands-on-henry');
+                        if (handsOnInput) {
+                            handsOnInput.disabled = true;
+                            handsOnInput.parentElement.style.opacity = '0.5';
+                            handsOnInput.parentElement.style.pointerEvents = 'none';
+                            const label = handsOnInput.nextElementSibling;
+                            if (label) label.innerText = 'Reaching Unreachables: Pterygoid, Transnasal & Fast-Track Mastery (Lecture with Hands on) [DR. HENRY DIEDERICH] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countLectureKomal >= 70) {
+                        const lectureKomalInput = document.getElementById('workshop-lecture-komal');
+                        if (lectureKomalInput) {
+                            lectureKomalInput.disabled = true;
+                            lectureKomalInput.parentElement.style.opacity = '0.5';
+                            lectureKomalInput.parentElement.style.pointerEvents = 'none';
+                            const label = lectureKomalInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop Lecture (SOLD OUT)';
+                        }
+                    }
+                    if (data.countHandsOnKomal >= 30) {
+                        const handsOnKomalInput = document.getElementById('workshop-hands-on-komal');
+                        if (handsOnKomalInput) {
+                            handsOnKomalInput.disabled = true;
+                            handsOnKomalInput.parentElement.style.opacity = '0.5';
+                            handsOnKomalInput.parentElement.style.pointerEvents = 'none';
+                            const label = handsOnKomalInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop lecture with hands on (SOLD OUT)';
+                        }
+                    }
+                    if (data.countUdatta >= 3000) {
+                        const UdattaInput = document.getElementById('workshop-udatta');
+                        if (UdattaInput) {
+                            UdattaInput.disabled = true;
+                            UdattaInput.parentElement.style.opacity = '0.5';
+                            UdattaInput.parentElement.style.pointerEvents = 'none';
+                            const label = UdattaInput.nextElementSibling;
+                            if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
+                        }
+                    }
+                    if (data.countZyraxLecture >= 50) {
+                        const ZyraxLectureInput = document.getElementById('workshop-zyrax-lecture');
+                        if (ZyraxLectureInput) {
+                            ZyraxLectureInput.disabled = true;
+                            ZyraxLectureInput.parentElement.style.opacity = '0.5';
+                            ZyraxLectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = ZyraxLectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Lecture: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN & TEAM] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countSudeep >= 3000) {
+                        const SudeepInput = document.getElementById('workshop-sudeep');
+                        if (SudeepInput) {
+                            SudeepInput.disabled = true;
+                            SudeepInput.parentElement.style.opacity = '0.5';
+                            SudeepInput.parentElement.style.pointerEvents = 'none';
+                            const label = SudeepInput.nextElementSibling;
+                            if (label) label.innerText = 'FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN INSIDE THE SOFTWARE [MR. SUDEEP PAUL] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countRobert >= 3000) {
+                        const robertInput = document.getElementById('workshop-robert');
+                        if (robertInput) {
+                            robertInput.disabled = true;
+                            robertInput.parentElement.style.opacity = '0.5';
+                            robertInput.parentElement.style.pointerEvents = 'none';
+                            const label = robertInput.nextElementSibling;
+                            if (label) label.innerText = 'Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein] (SOLD OUT)';
+                        }
+                    }
+                    if (data.countPrabh >= 20) {
+                        const PrabhInput = document.getElementById('workshop-prabh');
+                        if (PrabhInput) {
+                            PrabhInput.disabled = true;
+                            PrabhInput.parentElement.style.opacity = '0.5';
+                            PrabhInput.parentElement.style.pointerEvents = 'none';
+                            const label = PrabhInput.nextElementSibling;
+                            if (label) label.innerText = 'Udatta oral Implant Training 2026 (SOLD OUT)';
+                        }
+                    }
+                    if (data.countBhandariLecture >= 7000) {
+                        const bhandariLectureInput = document.getElementById('workshop-bhandari-lecture');
+                        if (bhandariLectureInput) {
+                            bhandariLectureInput.disabled = true;
+                            bhandariLectureInput.parentElement.style.opacity = '0.5';
+                            bhandariLectureInput.parentElement.style.pointerEvents = 'none';
+                            const label = bhandariLectureInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr. S K Bhandari, Dr. Sandip Kumar, Dr. Suvranil Som (Lecture) (SOLD OUT)';
+                        }
+                    }
+                    if (data.countBhandariHandsOn >= 3000) {
+                        const bhandariHandsOnInput = document.getElementById('workshop-bhandari-hands-on');
+                        if (bhandariHandsOnInput) {
+                            bhandariHandsOnInput.disabled = true;
+                            bhandariHandsOnInput.parentElement.style.opacity = '0.5';
+                            bhandariHandsOnInput.parentElement.style.pointerEvents = 'none';
+                            const label = bhandariHandsOnInput.nextElementSibling;
+                            if (label) label.innerText = 'Dr. S K Bhandari, Dr. Sandip Kumar, Dr. Suvranil Som (Lecture with Hands on) (SOLD OUT)';
+                        }
+                    }
+                }
+            })
+            .catch(err => console.error('Error fetching capacity', err));
+
+        // ---- Special coupon: flat Rs 11,000 = Registration + any ONE lecture ----
+        const LECTURE_COUPON = 'LECTURE11K0';
+        const LECTURE_COUPON_PRICE = 11000;
+        const COUPON_LECTURE_IDS = ['workshop-lecture', 'workshop-lecture-henry', 'workshop-lecture-komal'];
+
+        const LECTURE_COUPON_CATEGORY_ID = 'cat-registration'; // the plain "Registration" option
+        function isLectureCouponCode() {
+            const v = document.getElementById('voucherCode');
+            return !!v && v.value.trim().toUpperCase() === LECTURE_COUPON;
+        }
+        // Coupon only applies when code is entered AND plain "Registration" is selected
+        function isLectureCoupon() {
+            const r = document.querySelector('input[name="cat"]:checked');
+            return isLectureCouponCode() && !!r && r.id === LECTURE_COUPON_CATEGORY_ID;
+        }
+        function getCouponLectureEls() {
+            return COUPON_LECTURE_IDS.map(id => document.getElementById(id)).filter(Boolean);
+        }
+        function getIncludedLecture() {
+            return getCouponLectureEls().find(el => el.checked) || null;
+        }
+        // Allow only one of the 3 lectures while the coupon is active
+        function enforceSingleLecture(keepEl) {
+            if (!isLectureCoupon()) return;
+            let kept = keepEl && keepEl.checked ? keepEl : getIncludedLecture();
+            getCouponLectureEls().forEach(el => { if (el !== kept) el.checked = false; });
+        }
+        function isDeloCoupon() {
+            const v = document.getElementById('voucherCode');
+            return !!v && v.value.trim().toUpperCase() === 'DELO3000';
+        }
+        function isDeloEligibleCategory(selectedRadio) {
+            if (!selectedRadio) return false;
+            return selectedRadio.id === 'cat-registration' || selectedRadio.id === 'cat-registration-without-banquet';
+        }
+
+        function refreshCouponHint() {
+            const hint = document.getElementById('couponHint');
+            if (!hint) return;
+            const selectedRadio = document.querySelector('input[name="cat"]:checked');
+
+            if (isDeloCoupon()) {
+                hint.style.display = 'block';
+                if (isDeloEligibleCategory(selectedRadio)) {
+                    hint.style.color = '#16a34a';
+                    hint.innerText = '✓ Coupon DELO3000 applied: ₹3,000 discount applied!';
+                } else {
+                    hint.style.color = '#ef4444';
+                    hint.innerText = 'Coupon DELO3000 is valid only for "Registration with banquet" and "Registration without banquet".';
+                }
+                return;
+            }
+
+            if (isLectureCouponCode() && !isLectureCoupon()) {
+                hint.style.display = 'block';
+                hint.style.color = '#818cf8';
+                hint.innerText = 'This coupon is valid only with the "Registration with Banquet" category and any one lecture.';
+            } else if (isLectureCoupon()) {
+                hint.style.display = 'block';
+                hint.style.color = '#818cf8';
+                hint.innerText = getIncludedLecture()
+                    ? '✓ Coupon applied: ₹11,000 includes Registration + your selected lecture.'
+                    : 'Coupon applied: ₹11,000 = Registration + any ONE lecture. Please tick one lecture below (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).';
+            } else {
+                hint.style.display = 'none';
+            }
+        }
+
+        // 1. Total Price Calculation Logic
+        function updateTotal() {
+            const selectedRadio = document.querySelector('input[name="cat"]:checked');
+            let amount = 0;
+            if (selectedRadio) {
+                amount = parseInt(selectedRadio.getAttribute('data-price'));
+                const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
+
+                if (voucherCode === 'IMPACT_OSI0') {
+                    amount = 10500;
+                }
+                if (voucherCode === 'SPECIAL_OSI0') {
+                    amount = 11000;
+                }
+                if (voucherCode === 'KOL12K0') {
+                    amount = 12000;
+                }
+                if (voucherCode === 'DELO3000' && isDeloEligibleCategory(selectedRadio)) {
+                    amount = Math.max(0, amount - 3000);
+                }
+                if (voucherCode === LECTURE_COUPON && selectedRadio.id === LECTURE_COUPON_CATEGORY_ID) {
+                    amount = LECTURE_COUPON_PRICE;
+                }
+            }
+
+            const workshopOsseo = document.getElementById('workshop-osseo');
+            const workshopLectureSalah = document.getElementById('workshop-lecture-salah');
+            const workshopLecture = document.getElementById('workshop-lecture');
+            const workshopHandsOn = document.getElementById('workshop-hands-on');
+            const workshopLectureHenry = document.getElementById('workshop-lecture-henry');
+            const workshopHandsOnHenry = document.getElementById('workshop-hands-on-henry');
+            const workshopLectureKomal = document.getElementById('workshop-lecture-komal');
+            const workshopHandsOnKomal = document.getElementById('workshop-hands-on-komal');
+            const workshopBhandariLecture = document.getElementById('workshop-bhandari-lecture');
+            const workshopBhandariHandsOn = document.getElementById('workshop-bhandari-hands-on');
+            const workshopUdatta = document.getElementById('workshop-udatta');
+            const workshopPrabh = document.getElementById('workshop-prabh');
+            const workshopRobert = document.getElementById('workshop-robert');
+            const workshopSudeep = document.getElementById('workshop-sudeep');
+            const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
+            if (workshopOsseo && workshopOsseo.checked) {
+                amount += parseInt(workshopOsseo.getAttribute('data-price'));
+            }
+            if (workshopLectureSalah && workshopLectureSalah.checked) {
+                amount += parseInt(workshopLectureSalah.getAttribute('data-price'));
+            }
+            if (workshopLecture && workshopLecture.checked) {
+                amount += parseInt(workshopLecture.getAttribute('data-price'));
+            }
+            if (workshopHandsOn && workshopHandsOn.checked) {
+                amount += parseInt(workshopHandsOn.getAttribute('data-price'));
+            }
+            if (workshopLectureHenry && workshopLectureHenry.checked) {
+                amount += parseInt(workshopLectureHenry.getAttribute('data-price'));
+            }
+            if (workshopHandsOnHenry && workshopHandsOnHenry.checked) {
+                amount += parseInt(workshopHandsOnHenry.getAttribute('data-price'));
+            }
+            if (workshopLectureKomal && workshopLectureKomal.checked) {
+                amount += parseInt(workshopLectureKomal.getAttribute('data-price'));
+            }
+            if (workshopHandsOnKomal && workshopHandsOnKomal.checked) {
+                amount += parseInt(workshopHandsOnKomal.getAttribute('data-price'));
+            }
+            if (workshopUdatta && workshopUdatta.checked) {
+                amount += parseInt(workshopUdatta.getAttribute('data-price'));
+            }
+            if (workshopPrabh && workshopPrabh.checked) {
+                amount += parseInt(workshopPrabh.getAttribute('data-price'));
+            }
+            if (workshopRobert && workshopRobert.checked) {
+                amount += parseInt(workshopRobert.getAttribute('data-price'));
+            }
+            if (workshopZyraxLecture && workshopZyraxLecture.checked) {
+                amount += parseInt(workshopZyraxLecture.getAttribute('data-price'));
+            }
+            if (workshopSudeep && workshopSudeep.checked) {
+                amount += parseInt(workshopSudeep.getAttribute('data-price'));
+            }
+            if (workshopBhandariLecture && workshopBhandariLecture.checked) {
+                amount += parseInt(workshopBhandariLecture.getAttribute('data-price'));
+            }
+            if (workshopBhandariHandsOn && workshopBhandariHandsOn.checked) {
+                amount += parseInt(workshopBhandariHandsOn.getAttribute('data-price'));
+            }
+
+            // Coupon: the chosen lecture is included in the Rs 11,000
+            if (isLectureCoupon()) {
+                const inc = getIncludedLecture();
+                if (inc) amount -= parseInt(inc.getAttribute('data-price'));
+                refreshCouponHint();
+            } else {
+                refreshCouponHint();
+            }
+            //hu
+            const voucherCodeVal = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
+            const todayStr = new Date().toLocaleDateString('en-CA');
+            if (voucherCodeVal === 'DIS1000n' && todayStr === '2026-08-24') {
+                amount = Math.max(0, amount - 1000);
+            }
+
+            const accDatesDiv = document.getElementById('accommodation-dates');
+            const checkinInput = document.getElementById('checkinDate');
+            const checkoutInput = document.getElementById('checkoutDate');
+            if (selectedRadio && selectedRadio.id.includes('westin')) {
+                if (accDatesDiv) accDatesDiv.style.display = 'block';
+                if (checkinInput) checkinInput.required = true;
+                if (checkoutInput) checkoutInput.required = true;
+            } else {
+                if (accDatesDiv) accDatesDiv.style.display = 'none';
+                if (checkinInput) checkinInput.required = false;
+                if (checkoutInput) checkoutInput.required = false;
+            }
+
+            if (amount > 0) {
+                const formatted = new Intl.NumberFormat('en-IN').format(amount);
+                totalDisplay.innerText = '₹' + formatted;
+
+                totalDisplay.animate([
+                    { transform: 'scale(1)', color: '#fff' },
+                    { transform: 'scale(1.1)', color: '#818cf8' },
+                    { transform: 'scale(1)', color: '#fff' }
+                ], { duration: 300 });
+            } else {
+                totalDisplay.innerText = '₹0';
+            }
+        }
+
+        const voucherInput = document.getElementById('voucherCode');
+        if (voucherInput) {
+            voucherInput.addEventListener('input', updateTotal);
+        }
+
+        form.addEventListener('change', (e) => {
+            if (e.target.name === 'cat') {
+                const regIdField = document.getElementById('regIdField');
+                const regIdInput = document.getElementById('registrationId');
+                if (document.getElementById('cat-workshop-only').checked) {
+                    regIdField.style.display = 'block';
+                    regIdInput.required = false; // Registration ID is no longer mandatory since we fetch it
+                } else {
+                    regIdField.style.display = 'none';
+                    regIdInput.required = false;
+                }
+                enforceSingleLecture();
+                updateTotal();
+            } else if (e.target.classList.contains('workshop-checkbox')) {
+                if (COUPON_LECTURE_IDS.includes(e.target.id)) enforceSingleLecture(e.target);
+                updateTotal();
+            }
+        });
+
+        // Fetch Details Logic
+        document.getElementById('fetchDetailsBtn').addEventListener('click', async () => {
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+
+            if (!email || !phone) {
+                alert('Please enter both Email and Mobile Number to fetch your details.');
+                return;
+            }
+
+            const btn = document.getElementById('fetchDetailsBtn');
+            const originalText = btn.innerText;
+            btn.innerText = 'Fetching...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=lookup&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`);
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    document.getElementById('userName').value = result.data.name || '';
+                    document.getElementById('userState').value = result.data.state || '';
+                    document.getElementById('userCity').value = result.data.city || '';
+
+                    if (result.data.member && result.data.member !== 'N/A') {
+                        document.getElementById('userType').value = 'osi_member';
+                        toggleMembershipField();
+                        document.getElementById('usermember').value = result.data.member;
+                    }
+
+                    // Auto-select "Already Registered" and fill Reg ID
+                    document.getElementById('cat-workshop-only').checked = true;
+                    document.getElementById('regIdField').style.display = 'block';
+                    document.getElementById('registrationId').value = result.data.serialNumber || '';
+
+                    updateTotal();
+                    alert('Details fetched successfully! You can now select your workshops.');
+                } else {
+                    alert(result.message || 'No registration found for this Email and Phone.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('An error occurred while fetching details. Please try again.');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('voucherCode').addEventListener('input', () => {
+            enforceSingleLecture();
+            updateTotal();
+        });
+
+        // 2. Floating Badge Logic
+        categoryList.addEventListener('scroll', () => {
+            if (categoryList.scrollTop > 10) {
+                scrollBadge.style.opacity = '0';
+                scrollBadge.style.visibility = 'hidden';
+            } else {
+                scrollBadge.style.opacity = '1';
+                scrollBadge.style.visibility = 'visible';
+            }
+        });
+
+        // 3. Unified Submission & Razorpay Logic
+        form.onsubmit = function (e) {
+            e.preventDefault();
+
+            // Capture data
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const phone = document.getElementById('userPhone').value;
+            const member = document.getElementById('usermember').value; // Matching your HTML ID
+            const state = document.getElementById('userState').value;
+            const city = document.getElementById('userCity').value;
+
+            const selectedRadio = document.querySelector('input[name="cat"]:checked');
+            if (!selectedRadio) {
+                alert("Please select a registration category");
+                return;
+            }
+
+            let amountInInr = parseInt(selectedRadio.getAttribute('data-price'));
+            const voucherCode = document.getElementById('voucherCode').value.trim().toUpperCase();
+            if (voucherCode === 'IMPACT_OSI0') {
+                amountInInr = 10500;
+            }
+            if (voucherCode === 'SPECIAL_OSI0') {
+                amountInInr = 11000;
+            }
+            if (voucherCode === 'KOL12K0') {
+                amountInInr = 12000;
+            }
+            if (voucherCode === 'DELO3000') {
+                if (!isDeloEligibleCategory(selectedRadio)) {
+                    alert('The coupon DELO3000 is valid only for "Registration with banquet" and "Registration without banquet".');
+                    return;
+                }
+                amountInInr = Math.max(0, amountInInr - 3000);
+            }
+            if (voucherCode === LECTURE_COUPON && selectedRadio.id !== LECTURE_COUPON_CATEGORY_ID) {
+                alert('The coupon LECTURE11K is valid only with the "Registration" category. Please select "Registration" or remove the coupon.');
+                return;
+            }
+            if (voucherCode === LECTURE_COUPON) {
+                amountInInr = LECTURE_COUPON_PRICE;
+                if (!getIncludedLecture()) {
+                    alert("With this coupon, please select any ONE lecture (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).");
+                    return;
+                }
+            }
+
+            let categoryLabel = selectedRadio.parentElement.querySelector('.cat-label').innerText;
+            if (selectedRadio.id === 'cat-workshop-only') {
+                const regId = document.getElementById('registrationId').value.trim();
+                categoryLabel += " (Reg ID: " + regId + ")";
+            }
+
+            if (voucherCode === 'IMPACT_OSI0') {
+                categoryLabel += " (Voucher: IMPACT_OSI)";
+            }
+            if (voucherCode === 'SPECIAL_OSI0') {
+                categoryLabel += " (Voucher: SPECIAL_OSI)";
+            }
+            if (voucherCode === 'KOL12K0') {
+                categoryLabel += " (Voucher: KOL12K)";
+            }
+            if (voucherCode === 'DELO3000') {
+                categoryLabel += " (Voucher: DELO3000 -₹3000)";
+            }
+            if (voucherCode === LECTURE_COUPON) {
+                categoryLabel += " (Voucher: LECTURE11K - Registration + 1 Lecture)";
+            }
+
+            const workshopOsseo = document.getElementById('workshop-osseo');
+            const workshopLectureSalah = document.getElementById('workshop-lecture-salah');
+            const workshopLecture = document.getElementById('workshop-lecture');
+            const workshopHandsOn = document.getElementById('workshop-hands-on');
+            const workshopLectureHenryEl = document.getElementById('workshop-lecture-henry');
+            const workshopHandsOnHenryEl = document.getElementById('workshop-hands-on-henry');
+            const workshopLectureKomalEl = document.getElementById('workshop-lecture-komal');
+            const workshopHandsOnKomalEl = document.getElementById('workshop-hands-on-komal');
+            const workshopBhandariLectureEl = document.getElementById('workshop-bhandari-lecture');
+            const workshopBhandariHandsOnEl = document.getElementById('workshop-bhandari-hands-on');
+            const workshopUdatta = document.getElementById('workshop-udatta');
+            const workshopPrabh = document.getElementById('workshop-prabh');
+            const workshopRobert = document.getElementById('workshop-robert');
+            const workshopSudeep = document.getElementById('workshop-sudeep');
+            const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
+
+            if (workshopOsseo && workshopOsseo.checked) {
+                amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
+                categoryLabel += " + " + workshopOsseo.value;
+            }
+            if (workshopLectureSalah && workshopLectureSalah.checked) {
+                amountInInr += parseInt(workshopLectureSalah.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureSalah.value;
+            }
+            if (workshopLecture && workshopLecture.checked) {
+                amountInInr += parseInt(workshopLecture.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLecture.value;
+            }
+            if (workshopHandsOn && workshopHandsOn.checked) {
+                amountInInr += parseInt(workshopHandsOn.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOn.value;
+            }
+            if (workshopLectureHenryEl && workshopLectureHenryEl.checked) {
+                amountInInr += parseInt(workshopLectureHenryEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureHenryEl.value;
+            }
+            if (workshopHandsOnHenryEl && workshopHandsOnHenryEl.checked) {
+                amountInInr += parseInt(workshopHandsOnHenryEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOnHenryEl.value;
+            }
+            if (workshopLectureKomalEl && workshopLectureKomalEl.checked) {
+                amountInInr += parseInt(workshopLectureKomalEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopLectureKomalEl.value;
+            }
+            if (workshopHandsOnKomalEl && workshopHandsOnKomalEl.checked) {
+                amountInInr += parseInt(workshopHandsOnKomalEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopHandsOnKomalEl.value;
+            }
+            if (workshopBhandariLectureEl && workshopBhandariLectureEl.checked) {
+                amountInInr += parseInt(workshopBhandariLectureEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopBhandariLectureEl.value;
+            }
+            if (workshopBhandariHandsOnEl && workshopBhandariHandsOnEl.checked) {
+                amountInInr += parseInt(workshopBhandariHandsOnEl.getAttribute('data-price'));
+                categoryLabel += " + " + workshopBhandariHandsOnEl.value;
+            }
+            if (workshopUdatta && workshopUdatta.checked) {
+                amountInInr += parseInt(workshopUdatta.getAttribute('data-price'));
+                categoryLabel += " + " + workshopUdatta.value;
+            }
+            if (workshopPrabh && workshopPrabh.checked) {
+                amountInInr += parseInt(workshopPrabh.getAttribute('data-price'));
+                categoryLabel += " + " + workshopPrabh.value;
+            }
+            if (workshopRobert && workshopRobert.checked) {
+                amountInInr += parseInt(workshopRobert.getAttribute('data-price'));
+                categoryLabel += " + " + workshopRobert.value;
+            }
+            if (workshopSudeep && workshopSudeep.checked) {
+                amountInInr += parseInt(workshopSudeep.getAttribute('data-price'));
+                categoryLabel += " + " + workshopSudeep.value;
+            }
+            if (workshopZyraxLecture && workshopZyraxLecture.checked) {
+                amountInInr += parseInt(workshopZyraxLecture.getAttribute('data-price'));
+                categoryLabel += " + " + workshopZyraxLecture.value;
+            }
+
+
+            // Coupon: chosen lecture is included in the flat price
+            if (voucherCode === LECTURE_COUPON) {
+                amountInInr -= parseInt(getIncludedLecture().getAttribute('data-price'));
+            }
+
+            // Apply DIS1000 flat discount
+            const todayStr = new Date().toLocaleDateString('en-CA');
+            if (voucherCode === 'DIS1000' && todayStr === '2026-08-24') {
+                amountInInr = Math.max(0, amountInInr - 1000);
+                categoryLabel += " (Voucher: DIS1000 -₹1000)";
+            }
+
+            // Collect accommodation dates
+            const checkinDate = document.getElementById('checkinDate') ? document.getElementById('checkinDate').value : '';
+            const checkoutDate = document.getElementById('checkoutDate') ? document.getElementById('checkoutDate').value : '';
+
+            if (amountInInr <= 0) {
+                alert("Please select at least one valid workshop or registration category.");
+                return;
+            }
+
+            const options = {
+                "key": "rzp_live_S9kFXcSkm7C1Rc",
+                "amount": amountInInr * 100,
+                "currency": "INR",
+                "name": "OSICON Kolkata 2026",
+                "description": "Registration for " + categoryLabel,
+                "handler": function (response) {
+                    // This triggers ONLY after successful payment
+                    saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, response.razorpay_payment_id, state, city, checkinDate, checkoutDate, voucherCode);
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email,
+                    "contact": phone
+                },
+                "theme": {
+                    "color": "#4f46e5"
+                }
+            };
+
+
+
+
+
+
+
+
+            // Test Mode: Bypass Razorpay
+            // if (confirm("TEST MODE: Bypass Razorpay payment and submit directly?")) {
+            //     saveToGoogleSheets(name, email, phone, member, categoryLabel, amountInInr, "pay_test_" + Date.now(), state, city, checkinDate, checkoutDate, voucherCode);
+            //     return;
+            // }
+
+
+
+
+
+
+
+
+            const rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response) {
+                alert("Payment Failed: " + response.error.description);
+            });
+            rzp1.open();
+        };
+
+        // 4. Send Data to Google Sheets
+        function saveToGoogleSheets(name, email, phone, member, category, amount, paymentId, state, city, checkinDate, checkoutDate, voucherCode) {
+            const formData = new URLSearchParams();
+
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('member', member);
+            formData.append('state', state || '');
+            formData.append('city', city || '');
+            formData.append('category', category);
+            formData.append('amount', amount);
+            formData.append('payment_id', paymentId);
+            formData.append('checkinDate', checkinDate || '');
+            formData.append('checkoutDate', checkoutDate || '');
+            if (voucherCode) {
+                formData.append('voucherCode', voucherCode);
+            }
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+                .then(() => {
+                    alert("Payment Successful! Your registration for OSICON 2026 is confirmed.");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Payment recorded, but there was an error updating the sheet. Please contact support.");
+                });
+        }
+    </script>
+    <!-- July 5th Popup -->
+    <!-- <div id="july5-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <span class="popup-close"
+                onclick="document.getElementById('july5-popup').style.display='none'">&times;</span>
+            <img src="images/brotes.jpg" alt="Brotes Special">
+        </div>
+    </div> -->
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary, #001844);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+        }
+
+        .popup-close:hover {
+            background: #D4AF37;
+            color: var(--primary, #001844);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date();
+            if (today.getMonth() === 6 && today.getDate() === 5) {
+                document.getElementById('july5-popup').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+
+</html>

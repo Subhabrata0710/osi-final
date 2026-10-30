@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3RD OSI CONFERENCE KOLKATA 2026 | Dental Implant Conference</title>
+    <meta name="description"
+        content="India's Premier Conference on Osseointegration & Implant Dentistry - 27-29 November 2026, The Westin, Kolkata">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        loader.classList.add("hide");
+
+        // Optional: remove from DOM after animation
+        setTimeout(() => {
+            loader.remove();
+        }, 700);
+    });
+</script>
+<!-- <script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const popup = document.getElementById("brochurePopup");
+      if (!sessionStorage.getItem("brochureClosed")) {
+        popup.classList.remove("hidden");
+      }
+    }, 1000);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("brochure-close")) {
+      document.getElementById("brochurePopup").classList.add("hidden");
+      sessionStorage.setItem("brochureClosed", "true");
+    }
+  });
+
+
+
+</script> -->
+<script>
+    window.addEventListener("load", () => {
+        const popup = document.getElementById("brochurePopup");
+        const closeBtn = document.querySelector(".brochure-close");
+
+        if (!popup) return;
+
+        // Show popup after 1 second on every load /////////////////////////////////////////////POP UUUUPPP ACTUaLLLLLLLLL??????????????????????????????????????
+        setTimeout(() => {
+            popup.classList.remove("hidden");
+        }, 1000);
+
+        // Close function
+        function closePopup() {
+            popup.classList.add("hidden");
+        }
+
+        // Close on button click
+        if (closeBtn) {
+            closeBtn.addEventListener("click", closePopup);
+        }
+
+        // Close when clicking outside content
+        popup.addEventListener("click", (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closePopup();
+            }
+        });
+    });
+</script>
+
+
+<script>
+    function toggleMobileDropdown(event) {
+        event.preventDefault();
+        const parent = event.target.closest(".mobile-dropdown");
+        parent.classList.toggle("active");
+    }
+</script>
+
+<!-- Brochure Popup -->
+<!-- <div id="brochurePopup" class="brochure-popup hidden">
+    <div class="brochure-content">
+        <button class="brochure-close" aria-label="Close">&times;</button>
+        <img src="images/popup1.jpg" alt="Conference Brochure">
+    </div>
+</div> -->
+<div id="brochurePopup" class="brochure-popup hidden">
+    <div class="brochure-content">
+        <button class="brochure-close" aria-label="Close">&times;</button>
+        <img src="images/popup.jpg" alt="Conference Brochure">
+    </div>
+</div>
+
+<body>
+
+    <div id="loader">
+        <img src="images/logo.png" alt="Loading Logo">
+    </div>
+
+
+    <!-- Quick Links Widget -->
+    <div class="quick-links-widget">
+        <a href="https://osindia.org/membership-benefits" target="_blank" class="quick-link">
+            <div class="quick-link-icon">👥</div>
+            <div class="quick-link-text">
+                <h4>OSI Membership</h4>
+                <span>Join Now</span>
+            </div>
+        </a>
+        <a href="https://osindia.org/fellows" target="_blank" class="quick-link">
+            <div class="quick-link-icon">🏆</div>
+            <div class="quick-link-text">
+                <h4>OSI Fellowship</h4>
+                <span>Apply Now</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- HOME PAGE -->
+    <section class="page-section" id="page-home">
+
+        <div class="hero">
+
+            <div class="container">
+                <div class="reg-announcement">
+                    <div class="reg-track">
+                        Special thanks to our Platinum Sponsor - Dentis India
+                    </div>
+                </div>
+                <div class="hero-content">
+                    <!--<div class="hero-badge">National Conference</div>-->
+                    <h1>3<sup>RD</sup> OSI<br>CONFERENCE</h1>
+                    <!-- <h1>3<sup>rd</sup> osi conference</h1>
+<h2 style="color: #002366; -webkit-text-fill-color: #002366; text-shadow: none; font-weight: 700;">KOLKATA 2026</h2> -->
+
+                    <h2>KOLKATA 2026</h2>
+                    <p>India's Premier Conference highlighting <strong>Journey Through Osseointegration</strong> — Where
+                        Science Meets Clinical Excellence</p>
+
+                    <div class="hero-details">
+                        <a href="#" class="hero-detail" onclick="addToCalendar(event)">
+                            <div class="hero-detail-icon">📅</div>
+                            <div class="hero-detail-text">
+                                <h4>27–29 November</h4>
+                                <span>2026</span>
+                            </div>
+                        </a>
+                        <script>
+                            function addToCalendar(e) {
+                                e.preventDefault();
+
+                                const ua = navigator.userAgent.toLowerCase();
+
+                                const icsFile = "./3rd-osi-conference-kolkata-2026.ics";
+
+                                const googleCalendarUrl =
+                                    "https://www.google.com/calendar/render?action=TEMPLATE" +
+                                    "&text=🦷+3RD+OSI+CONFERENCE+KOLKATA+2026" +
+                                    "&dates=20261127T080000/20261129T200000" +
+                                    "&details=India's+Premier+Conference+highlighting+A+Journey+Through+Osseointegration+—+Where+Science+Meets+Clinical+Excellence" +
+                                    "&location=The+Westin,+Rajarhat,+Kolkata";
+
+                                if (/iphone|ipad|ipod|android/.test(ua)) {
+                                    // Mobile → native calendar (ICS)
+                                    window.location.href = icsFile;
+                                } else {
+                                    // Desktop → Google Calendar
+                                    window.open(googleCalendarUrl, "_blank");
+                                }
+                            }
+                        </script>
+                        <a href="https://maps.app.goo.gl/BX4KxEKfH7iJqJxdA" target="_blank" rel="noopener noreferrer"
+                            class="hero-detail">
+                            <div class="hero-detail-icon">📍</div>
+                            <div class="hero-detail-text">
+                                <h4>The Westin</h4>
+                                <span>New Town, Kolkata</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <!-- <a href="https://forms.gle/ua21dgQ36R6jaGiDA" class="btn btn-primary">Register Now →</a> -->
+                        <a href="#registration" class="btn btn-primary" onclick="showPage('registration')">
+                            Register Now →
+                        </a>
+                        <a href="" class="btn btn-outline">Scientific Program,<br>Coming soon</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <h3>1500+</h3>
+                            <span>Delegates</span>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>50+</h3>
+                            <span>Speakers</span>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>30+</h3>
+                            <span>Sessions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITTEE PAGE -->
+    <!-- COMMITTEE PAGE -->
+    <section class="page-section" id="page-organising-committee">
+        <div class="page-banner">
+            <span>Leadership</span>
+            <h1>Organising Committee</h1>
+        </div>
+
+        <div class="content-section alt-bg">
+            <div class="containercom">
+                <!-- KEEP ALL YOUR IMAGE CARDS HERE AS-IS -->
+                <div class="content-section alt-bg">
+                    <div class="containercom">
+                        <!-- president                 -->
+                        <div class="grid-op">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/ramesh-choudhary.jpg" alt="Dr. Ramesh Choudhary">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">OSI President</span>
+                                    <h3>Dr. Ramesh Choudhary</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- org commi -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/biswajit-biswas.jpg" alt="Dr. Biswajit Kumar Biswas">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Chairperson</span>
+                                    <h3>Dr. Biswajit Kumar Biswas</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/ashishtaru-saha.jpg" alt="Dr. Ashishtaru Saha">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Co-Chairperson</span>
+                                    <h3>Dr. Ashishtaru Saha</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/samiran-ghosh.jpg" alt="Dr Samiran Ghosh">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Co-Chairperson</span>
+                                    <h3>Dr Samiran Ghosh</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2op">
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/aniket-chatterji.jpg" alt="Dr. Aniket Chatterji">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Organising Secretary</span>
+                                    <h3>Dr. Aniket Chatterji</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/saptarshi-dutta.jpg" alt="Dr. Saptarshi Dutta">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Joint Organising Secretary</span>
+                                    <h3>Dr. Saptarshi Dutta</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- treasurer and scientific -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/tapan-ghosh.jpg" alt="Dr. Tapan Ghosh">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Treasurer</span>
+                                    <h3>Dr. Tapan Ghosh</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/subashis-ghosh.jpg" alt="Dr Subashis Ghosh">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Joint Treasurer</span>
+                                    <h3>Dr Subashis Ghosh</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/dipanjana-sinha.jpg" alt="Dr. Dipanjana Sinha">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Scientific Chairman</span>
+                                    <h3>Dr. Dipanjana Sinha</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2op">
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/shg.png" alt="Dr Shounak Ghosh">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Scientific Committee Co-Chairperson</span>
+                                    <h3>Dr Shounak Ghosh</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/ab.png" alt="Dr. Abhijit Bagui">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Jt. Scientific Chairperson</span>
+                                    <h3>Dr. Abhijit Bagui</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- trade and registration -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/atul-tandon.jpg" alt="Dr. Atul Tandon">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Trade & Exhibition Chairperson</span>
+                                    <h3>Dr. Atul Tandon</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sbp.png" alt="Dr Shiv Bhusan Pandey">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Trade Committee Co-Chairperson</span>
+                                    <h3>Dr Shiv Bhusan Pandey</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/subhransu-ganguly.jpg" alt="Dr. Subhransu Ganguly">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Registration Chairperson</span>
+                                    <h31>Dr. Subhransu Ganguly</h31>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2op">
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/jc.png" alt="Dr. Jyotiska Chakraborty">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Audio Visual Committee Chairperson</span>
+                                    <h3>Dr. Jyotiska Chakraborty</h3>
+                                </div>
+                            </div>
+
+                            <!-- preconf -->
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/debadeep-chakraborty.jpg" alt="Dr Debadeep Chakraborty">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Pre-Conference Co-Chairman</span>
+                                    <h3>Dr Debadeep Chakraborty</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- masterclass, industrial session, audio visual co-chair -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/ar.png" alt="Dr. Argha Rudra">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Chairperson, MasterClass Committee</span>
+                                    <h3>Dr. Argha Rudra</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/mc.png" alt="Dr. Moon Chattaraj">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Chairperson, Industrial Session Committee</span>
+                                    <h3>Dr. Moon Chattaraj</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/bp.png" alt="Dr. Biswajit Panda">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Audio Visual Committee Co-Chairperson</span>
+                                    <h3>Dr. Biswajit Panda</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- reception, cultural, souvenir -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sdg.png" alt="Dr. Srabani Dasgupta Ghosh">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Reception Committee Chairperson</span>
+                                    <h3>Dr. Srabani Dasgupta Ghosh</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/bm.png" alt="Dr. Biswaroop Mukherjee">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Cultural Committee Chairperson</span>
+                                    <h3>Dr. Biswaroop Mukherjee</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/rc.png" alt="Dr. Ruchira Chakraborty">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Souvenir Committee Chairperson</span>
+                                    <h3>Dr. Ruchira Chakraborty</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PG & poster, banquet, hospitality -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/rg.png" alt="Dr. Rajashri Ganguly">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">PG & Poster Committee Chairperson</span>
+                                    <h3>Dr. Rajashri Ganguly</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sdm.png" alt="Dr. Suman Deb Mallick">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Banquet & Food Committee Chairperson</span>
+                                    <h3>Dr. Suman Deb Mallick</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sp.png" alt="Dr. Soumya Purkait">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Hospitality Committee Chairperson</span>
+                                    <h3>Dr. Soumya Purkait</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- accomodation, website & PR, banquet co-chair -->
+                        <div class="grid-3">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sc.png" alt="Dr. Sourav Chowdhury">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Accomodation & Travel Committee Chairperson</span>
+                                    <h3>Dr. Sourav Chowdhury</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/an.png" alt="Dr. Amit Nandy">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Website & PR Committee Chairperson</span>
+                                    <h3>Dr. Amit Nandy</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/apg.png" alt="Dr. Archana P Gupta">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Website & PR Committee Co-Chairperson</span>
+                                    <h3>Dr. Archana P Gupta</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- banquet co-chair, exhibition -->
+                        <div class="grid-2op">
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/jk.png" alt="Dr. Joydev Kundu">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Banquet & Food Committee Co-Chairperson</span>
+                                    <h3>Dr. Joydev Kundu</h3>
+                                </div>
+                            </div>
+
+                            <div class="card committee-card">
+                                <div class="card-image">
+                                    <img src="images/sb.png" alt="Dr. Sreetama Bhattacharya">
+                                </div>
+                                <div class="card-overlay">
+                                    <span class="card-badge">Exhibition Committee Chairperson</span>
+                                    <h3>Dr. Sreetama Bhattacharya</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+    </section>
+
+
+    <section class="page-section" id="page-conference-committee">
+        <div class="page-banner">
+            <span>Academic Leadership</span>
+            <h1>Conference Committee</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="container committee-credits">
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;"
+                        style="text-align:center; list-style-position:inside;">Patrons</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;"
+                        style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Amit Roy</li>
+                        <li>Dr. T K Pal</li>
+                        <li>Dr. Sekhar Chakraborty</li>
+                        <li>Dr. Subhra Nandy</li>
+                        <li>Dr. P J Goel</li>
+                        <li>Dr. Asit Pal</li>
+                    </ul>
+                </div>
+                <!-- scientific Committee               -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Scientific
+                        Committee: </h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Dipanjana Sinha – Chairperson</li>
+                        <li>Dr. Shounak Ghosh</li>
+                        <li>Dr Simrat Kaur</li>
+                    </ul>
+                </div>
+                <!-- conf masterclass                 -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Conference
+                        Masterclass</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Argha Rudra – Co-Chairman</li>
+                        <li>Dr. Ruchira Chakraborty – Co-Chairman</li>
+                    </ul>
+                </div>
+                <!-- trade com mem -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Trade Committee
+                    </h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Shivbhusan Pandey ( Co Convenor )</li>
+                        <li>Dr. Anuj Bhattacharya</li>
+                        <li>Dr. Sumit Saha</li>
+                        <li>Dr. P S Sethi</li>
+                        <li>Dr. Biswajit Panda</li>
+                        <li>Dr. Biswadeep Banerjee</li>
+                    </ul>
+                </div>
+                <!-- accomo and travel -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Accommodation &
+                        Travel</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Sourav Chowdhury – Chairperson</li>
+                        <li>Dr. Souvonik Bhattacharya – Joint Chairperson</li>
+                        <li>Dr. Sayak Mondal</li>
+                        <li>Dr. Chandan Karar</li>
+                        <li>Dr. Arnab Chakraborty</li>
+                        <li>Dr. Aveek Mukherjee</li>
+                    </ul>
+                </div>
+                <!-- marketing and comm -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Marketing &
+                        Communications</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Amit Nandi – Chairperson</li>
+                        <li>Dr. Archana Gupta – Joint Chairperson</li>
+                        <li>Dr. Soham Chatterjee</li>
+                        <li>Dr. Akansha Malawat</li>
+                        <li>Dr. Priyanka Shukla</li>
+                        <li>Dr. Shantanu Mukherjee</li>
+                        <li>Dr. Avijit Prasad</li>
+                    </ul>
+                </div>
+                <!-- banquet and food -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Banquet & Food
+                    </h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Suman Deb Mullick – Chairperson</li>
+                        <li>Dr. Jaydeb Kundu – Joint Chairperson</li>
+                        <li>Dr. Soumya Bandhopadhyay</li>
+                        <li>Dr. Arnab Acharya</li>
+                        <li>Dr. Arkendu Chatterjee</li>
+                    </ul>
+                </div>
+                <!-- hospila and social -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Hospitality &
+                        Social Events</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Soumya Purkait – Chairperson</li>
+                        <li>Dr. Rajeev Bhutta – Joint Chairperson</li>
+                        <li>Dr. Parnali Laha Roy</li>
+                        <li>Dr. Subhasatta Indra</li>
+                        <li>Dr. Suvalagna Das Chowdhury</li>
+                    </ul>
+                </div>
+                <!-- cultural comm -->
+
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Cultural
+                        Committee</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Biswaroop Mukherjee – Chairperson</li>
+                        <li>Dr. Shaon Mukherjee</li>
+                        <li>Dr. Chhaya Jha</li>
+                        <li>Dr. Shilpi Malhotra</li>
+                    </ul>
+                </div>
+                <!-- Malda -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Malda – Zonal
+                        Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Tanmay Das</li>
+                        <li>Dr Sandeep Dubey</li>
+                    </ul>
+                </div>
+
+                <!-- Krishnagar -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Krishnagar –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Utpal Chakraborty</li>
+                    </ul>
+                </div>
+
+                <!-- North Bengal -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">North Bengal –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Anirban Roy</li>
+                        <li>Dr Samuel Wu</li>
+                        <li>Dr Arka Prova Saha</li>
+                        <li>Dr Somjit Chatterjee</li>
+                    </ul>
+                </div>
+
+                <!-- Mizoram -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Mizoram – Zonal
+                        Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Dino Dinmawia</li>
+                    </ul>
+                </div>
+
+                <!-- Assam -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Assam – Zonal
+                        Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Diptangshu Shekar Bhattacharya</li>
+                        <li>Dr Pratim Talukdar</li>
+                    </ul>
+                </div>
+
+                <!-- Chhattisgarh -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Chhattisgarh –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Mahendra Anant</li>
+                        <li>Dr Rajendra Kumar Dubey</li>
+                    </ul>
+                </div>
+
+                <!-- Odisha -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Odisha – Zonal
+                        Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Nalini Kant Mahapatra</li>
+                        <li>Dr Jyoti Ranjan Sahoo</li>
+                        <li>Dr Smruti Bhusan Nanda</li>
+                    </ul>
+                </div>
+
+                <!-- Bihar -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Bihar – Zonal
+                        Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr L D Maheswari</li>
+                        <li>Dr Mayank Jha</li>
+                    </ul>
+                </div>
+
+                <!-- Jharkhand -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Jharkhand –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Ranjan Deb</li>
+                        <li>Dr Kunal Bunka</li>
+                        <li>Dr Santanu Dutta</li>
+                    </ul>
+                </div>
+
+                <!-- Uttar Pradesh -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Uttar Pradesh –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Col (Dr) Satyam Singh</li>
+                        <li>Dr Rajkumar R Choubey</li>
+                    </ul>
+                </div>
+
+                <!-- Rajasthan -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Rajasthan –
+                        Zonal Coordinator</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr Puneet Kalra</li>
+                        <li>Dr Shivani Kalra</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="page-section" id="page-committee">
+        <div class="page-banner">
+            <span>Leadership</span>
+            <h1>Organizing Committee</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="containercom">
+                <!-- president                 -->
+                <div class="grid-2">
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/ramesh-choudhary.jpg" alt="Dr. Ramesh Choudhary">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">OSI President</span>
+                            <h3>Dr. Ramesh Choudhary</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- org commi -->
+                <div class="grid-3">
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/biswajit-biswas.jpg" alt="Dr. Biswajit Kumar Biswas">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Chairperson</span>
+                            <h3>Dr. Biswajit Kumar Biswas</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/ashishtaru-saha.jpg" alt="Dr. Ashishtaru Saha">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Co-Chairperson</span>
+                            <h3>Dr. Ashishtaru Saha</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/samiran-ghosh.jpg" alt="Dr Samiran Ghosh">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Co-Chairperson</span>
+                            <h3>Dr Samiran Ghosh</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/aniket-chatterji.jpg" alt="Dr. Aniket Chatterji">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Organising Secretary</span>
+                            <h3>Dr. Aniket Chatterji</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/saptarshi-dutta.jpg" alt="Dr. Saptarshi Dutta">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Joint Organising Secretary</span>
+                            <h3>Dr. Saptarshi Dutta</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- treasurer and scientific -->
+                <div class="grid-3">
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/tapan-ghosh.jpg" alt="Dr. Tapan Ghosh">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Treasurer</span>
+                            <h3>Dr. Tapan Ghosh</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/subashis-ghosh.jpg" alt="Dr Subashis Ghosh">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Joint Treasurer</span>
+                            <h3>Dr Subashis Ghosh</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/dipanjana-sinha.jpg" alt="Dr. Dipanjana Sinha">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Scientific Chairman</span>
+                            <h3>Dr. Dipanjana Sinha</h3>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card committee-card">
+                    <div class="card-image">
+                        <img src="images/shounak-ghosh.jpg" alt="Dr Shounak Ghosh">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="card-badge">Joint Scientific Chairman</span>
+                        <h3>Dr Shounak Ghosh</h3>
+                    </div>
+                </div> -->
+
+                </div>
+                <!-- trade and registration -->
+                <div class="grid-3">
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/atul-tandon.jpg" alt="Dr. Atul Tandon">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Trade & Exhibition Chairperson</span>
+                            <h3>Dr. Atul Tandon</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/shivbhusan-pandey.jpg" alt="Dr Shivbhusan Pandey">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Joint Chairperson</span>
+                            <h3>Dr Shivbhusan Pandey</h3>
+                        </div>
+                    </div>
+
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/subhransu-ganguly.jpg" alt="Dr. Subhransu Ganguly">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Registration Chairperson</span>
+                            <h3>Dr. Subhransu Ganguly</h3>
+                        </div>
+                    </div>
+
+                    <!-- <div class="card committee-card">
+                    <div class="card-image">
+                        <img src="images/jyotiska-chakraborty.jpg" alt="Dr. Jyotiska Chakraborty">
+                    </div>
+                    <div class="card-overlay">
+                        <span class="card-badge">Joint Registration Chairperson</span>
+                        <h3>Dr. Jyotiska Chakraborty</h3>
+                    </div>
+                </div> -->
+                    <!-- preconf -->
+                    <div class="card committee-card">
+                        <div class="card-image">
+                            <img src="images/debadeep-chakraborty.jpg" alt="Dr Debadeep Chakraborty">
+                        </div>
+                        <div class="card-overlay">
+                            <span class="card-badge">Pre-Conference Co-Chairman</span>
+                            <h3>Dr Debadeep Chakraborty</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- patrion -->
+                <!-- <div class="grid-3">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Amit Roy</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr T K Pal</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Sekhar Chakraborty</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Subhra Nandy</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr P J Goel</h3></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Patron</span><h3>Dr Asit Pal</h3></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;"
+                        style="text-align:center; list-style-position:inside;">Patrons</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;"
+                        style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Amit Roy</li>
+                        <li>Dr. T K Pal</li>
+                        <li>Dr. Sekhar Chakraborty</li>
+                        <li>Dr. Subhra Nandy</li>
+                        <li>Dr. P J Goel</li>
+                        <li>Dr. Asit Pal</li>
+                    </ul>
+                </div>
+
+                <!-- conf masterclass                 -->
+                <!-- <div class="grid-2">
+            <div class="card committee-card text-only">
+                <div class="card-overlay">
+                <span class="card-badge">Conference Masterclass</span>
+                <h3>Dr Argha Rudra</h3>
+                <p>Co-Chairman</p>
+                </div>
+            </div>
+
+            <div class="card committee-card text-only">
+                <div class="card-overlay">
+                <span class="card-badge">Conference Masterclass</span>
+                <h3>Dr Ruchira Chakraborty</h3>
+                <p>Co-Chairman</p>
+                </div>
+            </div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Conference
+                        Masterclass</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Argha Rudra – Co-Chairman</li>
+                        <li>Dr. Ruchira Chakraborty – Co-Chairman</li>
+                    </ul>
+                </div>
+                <!-- trade com mem -->
+                <!-- <div class="grid-5">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Anuj Bhattacharya</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Sumit Saha</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr P S Sethi</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Biswajit Panda</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Trade Committee</span><h3>Dr Biswadeep Banerjee</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Trade Committee
+                    </h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Anuj Bhattacharya</li>
+                        <li>Dr. Sumit Saha</li>
+                        <li>Dr. P S Sethi</li>
+                        <li>Dr. Biswajit Panda</li>
+                        <li>Dr. Biswadeep Banerjee</li>
+                    </ul>
+                </div>
+                <!-- accomo and travel -->
+                <!-- <div class="grid-3">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Sourav Chowdhury</h3><p>Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Souvonik Bhattacharya</h3><p>Joint Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Sayak Mondal</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Chandan Karar</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Arnab Chakraborty</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Accommodation & Travel</span><h3>Dr Aveek Mukherjee</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Accommodation &
+                        Travel</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Sourav Chowdhury – Chairperson</li>
+                        <li>Dr. Souvonik Bhattacharya – Joint Chairperson</li>
+                        <li>Dr. Sayak Mondal</li>
+                        <li>Dr. Chandan Karar</li>
+                        <li>Dr. Arnab Chakraborty</li>
+                        <li>Dr. Aveek Mukherjee</li>
+                    </ul>
+                </div>
+                <!-- marketing and comm -->
+                <!-- <div class="grid-4">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Amit Nandi</h3><p>Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Archana Gupta</h3><p>Joint Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Soham Chatterjee</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Akansha Malawat</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Priyanka Shukla</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Shantanu Mukherjee</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Marketing & Communications</span><h3>Dr Avijit Prasad</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Marketing &
+                        Communications</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Amit Nandi – Chairperson</li>
+                        <li>Dr. Archana Gupta – Joint Chairperson</li>
+                        <li>Dr. Soham Chatterjee</li>
+                        <li>Dr. Akansha Malawat</li>
+                        <li>Dr. Priyanka Shukla</li>
+                        <li>Dr. Shantanu Mukherjee</li>
+                        <li>Dr. Avijit Prasad</li>
+                    </ul>
+                </div>
+                <!-- banquet and food -->
+                <!-- <div class="grid-5">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Suman Deb Mullick</h3><p>Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Jaydeb Kundu</h3><p>Joint Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Soumya Bandhopadhyay</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Arnab Acharya</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Banquet & Food</span><h3>Dr Arkendu Chatterjee</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Banquet & Food
+                    </h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Suman Deb Mullick – Chairperson</li>
+                        <li>Dr. Jaydeb Kundu – Joint Chairperson</li>
+                        <li>Dr. Soumya Bandhopadhyay</li>
+                        <li>Dr. Arnab Acharya</li>
+                        <li>Dr. Arkendu Chatterjee</li>
+                    </ul>
+                </div>
+                <!-- hospila and social -->
+                <!-- <div class="grid-5">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Soumya Purkait</h3><p>Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Rajeev Bhutta</h3><p>Joint Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Parnali Laha Roy</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Subhasatta Indra</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Hospitality & Social Events</span><h3>Dr Suvalagna Das Chowdhury</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Hospitality &
+                        Social Events</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Soumya Purkait – Chairperson</li>
+                        <li>Dr. Rajeev Bhutta – Joint Chairperson</li>
+                        <li>Dr. Parnali Laha Roy</li>
+                        <li>Dr. Subhasatta Indra</li>
+                        <li>Dr. Suvalagna Das Chowdhury</li>
+                    </ul>
+                </div>
+                <!-- cultural comm -->
+                <!-- <div class="grid-4">
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Biswaroop Mukherjee</h3><p>Chairperson</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Shaon Mukherjee</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Chhaya Jha</h3><p>Member</p></div></div>
+            <div class="card committee-card text-only"><div class="card-overlay"><span class="card-badge">Cultural Committee</span><h3>Dr Shilpi Malhotra</h3><p>Member</p></div></div>
+            </div> -->
+                <div class="committee-block">
+                    <h2 class="committee-heading" style="text-align:center; list-style-position:inside;">Cultural
+                        Committee</h2>
+                    <ul class="committee-list" style="text-align:center; list-style-position:inside;">
+                        <li>Dr. Biswaroop Mukherjee – Chairperson</li>
+                        <li>Dr. Shaon Mukherjee</li>
+                        <li>Dr. Chhaya Jha</li>
+                        <li>Dr. Shilpi Malhotra</li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM PAGE -->
+    <section class="page-section" id="page-program">
+        <div class="page-banner">
+            <span>Schedule</span>
+            <h1>Scientific Program</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="program-tabs">
+                    <button class="program-tab active" onclick="showDay(1)">Day 1</button>
+                    <button class="program-tab" onclick="showDay(2)">Day 2</button>
+                    <button class="program-tab" onclick="showDay(3)">Day 3</button>
+                </div>
+
+                <div class="program-day active" id="day-1">
+                    <div class="program-header">
+                        <div>
+                            <h3>27th November 2026</h3>
+                            <p>Foundations & Fundamentals</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">08:00 - 09:00</span>
+                        <div class="session-content"><span class="session-type break">BREAK</span>
+                            <h4>Registration & Welcome Coffee</h4>
+                            <div class="session-meta"><span>📍 Main Lobby</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 09:30</span>
+                        <div class="session-content"><span class="session-type ceremony">CEREMONY</span>
+                            <h4>Inaugural Ceremony</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 Chief Guest</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:30 - 10:30</span>
+                        <div class="session-content"><span class="session-type keynote">KEYNOTE</span>
+                            <h4>The Evolution of Osseointegration</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span><span>👤 International Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:00 - 13:00</span>
+                        <div class="session-content"><span class="session-type session">SESSION</span>
+                            <h4>Scientific Session I: Implant Surface Technology</h4>
+                            <div class="session-meta"><span>📍 Hall A</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">14:00 - 16:00</span>
+                        <div class="session-content"><span class="session-type workshop">WORKSHOP</span>
+                            <h4>Hands-on: Basic Implant Placement</h4>
+                            <div class="session-meta"><span>📍 Workshop Room 1</span><span>⚠️ Limited Seats</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-day" id="day-2">
+                    <div class="program-header">
+                        <div>
+                            <h3>28th November 2026</h3>
+                            <p>Advanced Techniques & Innovation</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 10:30</span>
+                        <div class="session-content"><span class="session-type session">SESSION</span>
+                            <h4>Full Arch Rehabilitation</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:00 - 13:00</span>
+                        <div class="session-content"><span class="session-type keynote">LIVE</span>
+                            <h4>Live Surgery Demonstration</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">14:00 - 16:00</span>
+                        <div class="session-content"><span class="session-type workshop">WORKSHOP</span>
+                            <h4>Guided Implant Surgery</h4>
+                            <div class="session-meta"><span>📍 Workshop Room 2</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">19:30</span>
+                        <div class="session-content"><span class="session-type ceremony">SOCIAL</span>
+                            <h4>Gala Dinner & Cultural Program</h4>
+                            <div class="session-meta"><span>📍 Poolside Lawn</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-day" id="day-3">
+                    <div class="program-header">
+                        <div>
+                            <h3>29th November 2026</h3>
+                            <p>Clinical Excellence & Future Directions</p>
+                        </div>
+                        <span class="badge">8 Sessions</span>
+                    </div>
+                    <div class="session-item"><span class="session-time">09:00 - 10:30</span>
+                        <div class="session-content"><span class="session-type session">SESSION</span>
+                            <h4>Soft Tissue Management</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">11:00 - 12:30</span>
+                        <div class="session-content"><span class="session-type session">PRESENTATIONS</span>
+                            <h4>Free Paper Presentations</h4>
+                            <div class="session-meta"><span>📍 Halls A & B</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">13:30 - 15:00</span>
+                        <div class="session-content"><span class="session-type session">COMPETITION</span>
+                            <h4>Case Presentation Competition</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">15:00 - 16:00</span>
+                        <div class="session-content"><span class="session-type keynote">KEYNOTE</span>
+                            <h4>Future of Digital Implantology</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                    <div class="session-item"><span class="session-time">16:00 - 17:00</span>
+                        <div class="session-content"><span class="session-type ceremony">CEREMONY</span>
+                            <h4>Valedictory & Prize Distribution</h4>
+                            <div class="session-meta"><span>📍 Grand Ballroom</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SPEAKERS PAGE -->
+    <section class="page-section" id="page-speakers">
+        <div class="page-banner">
+            <span>Expert Panel</span>
+            <h1>Distinguished Speakers</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <style>
+                    .brochure-speakers-container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 2rem;
+                        margin-bottom: 32px;
+                    }
+
+                    .brochure-row {
+                        display: flex;
+                        justify-content: center;
+                        gap: 2rem;
+                        flex-wrap: wrap;
+                    }
+
+                    .brochure-card {
+                        width: 220px;
+                        text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .brochure-image-wrapper {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        border: 4px solid var(--secondary);
+                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                        overflow: hidden;
+                        margin-bottom: 1rem;
+                        background-color: var(--white);
+                    }
+
+                    .brochure-image-wrapper img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    .brochure-details {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .brochure-details h3 {
+                        font-size: 1.1rem;
+                        color: var(--primary);
+                        margin-bottom: 0.5rem;
+                        font-weight: 700;
+                    }
+
+                    .brochure-flag {
+                        width: 32px;
+                        height: auto;
+                        border-radius: 2px;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        margin-top: 4px;
+                    }
+                </style>
+                <div class="brochure-speakers-container">
+                    <div class="brochure-row">
+                        <!-- Speaker 1 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/frank.jpg?w=500&h=400&fit=crop" alt="Dr Frank Schwarz">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Frank Schwarz</h3>
+                                <img src="https://flagcdn.com/de.svg" class="brochure-flag" alt="Germany">
+                                <!-- <p class="speaker-text">Description hidden...</p> -->
+                                <!-- <button class="see-more-btn">See more</button> -->
+                            </div>
+                        </div>
+                        <!-- Speaker 2 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/alberto.jpg?w=500&h=400&fit=crop" alt="Dr Alberto Miselli">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Alberto Miselli</h3>
+                                <img src="https://flagcdn.com/ve.svg" class="brochure-flag" alt="Venezuela">
+                            </div>
+                        </div>
+                        <!-- Speaker 3 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/robert.jpg?w=500&h=400&fit=crop" alt="Dr. Robert Kerstein">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr. Robert Kerstein</h3>
+                                <img src="https://flagcdn.com/us.svg" class="brochure-flag" alt="USA">
+                            </div>
+                        </div>
+                        <!-- Speaker 4 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/alexandre.jpg?w=500&h=400&fit=crop"
+                                    alt="Dr. Alexandre Junqueira Marques">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr. Alexandre Junqueira Marques</h3>
+                                <img src="https://flagcdn.com/br.svg" class="brochure-flag" alt="Brazil">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brochure-row">
+                        <!-- Speaker 5 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/bruno.jpg?w=500&h=400&fit=crop" alt="Dr Bruno Montenegro">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Bruno Montenegro</h3>
+                                <img src="https://flagcdn.com/pt.svg" class="brochure-flag" alt="Portugal">
+                            </div>
+                        </div>
+                        <!-- Speaker 6 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/Yoshihito.jpg?w=500&h=400&fit=crop" alt="Dr Yoshihito Naito">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Yoshihito Naito</h3>
+                                <img src="https://flagcdn.com/jp.svg" class="brochure-flag" alt="Japan">
+                                <!-- <p class="speaker-text">Description hidden...</p> -->
+                                <!-- <button class="see-more-btn">See more</button> -->
+                            </div>
+                        </div>
+                        <!-- Speaker 7 -->
+                        <div class="brochure-card">
+                            <div class="brochure-image-wrapper">
+                                <img src="images/ongart.jpg?w=500&h=400&fit=crop" alt="Dr Ongart Puttipisitchet">
+                            </div>
+                            <div class="brochure-details">
+                                <h3>Dr Ongart Puttipisitchet</h3>
+                                <img src="https://flagcdn.com/th.svg" class="brochure-flag" alt="Thailand">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="grid-4">
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Arjun K.</h3><p>Periodontics</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Kavitha R.</h3><p>Oral Pathology</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Workshop</span><h3 style="font-size: 1rem;">Dr. Rohit M.</h3><p>Digital Implantology</p></div></div>
+                    <div class="card"><div class="card-image"><img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=300&h=200&fit=crop" alt="Speaker"></div><div class="card-content"><span class="card-badge" style="font-size: 10px;">Guest Faculty</span><h3 style="font-size: 1rem;">Dr. Sunitha N.</h3><p>Implant Prosthodontics</p></div></div>
+                </div> -->
+        </div>
+        </div>
+        <script>
+            function toggleText(btn) {
+                const text = btn.previousElementSibling;
+                text.classList.toggle("expanded");
+
+                btn.textContent = text.classList.contains("expanded")
+                    ? "See less"
+                    : "See more";
+            }
+        </script>
+
+    </section>
+
+
+    <!-- REGISTRATION PAGE -->
+    <section class="page-section" id="page-registration">
+        <div class="page-banner">
+            <span>Join Us</span>
+            <h1>Registration</h1>
+        </div>
+        <div class="reg-announcement">
+            <!-- <div class="reg-track">
+            Register at special rate during 14–15 Feb at Expodent
+        </div> -->
+        </div>
+        <div class="content-section">
+            <div class="containercom">
+                <style>
+                    .embed-container {
+                        position: relative;
+                        width: 100%;
+                        overflow: hidden;
+                        border-radius: 20px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .embed-container iframe {
+                        width: 100%;
+                        height: 1500px;
+                        /* Adjust based on your form length */
+                        border: none;
+                    }
+                </style>
+
+                <div class="embed-container">
+                    <iframe src="form.html" title="OSICON Registration Form"></iframe>
+                </div>
+                <!-- <div class="section-header">
+                    <h2>Registration Categories</h2>
+                </div> -->
+                <!-- <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-icon">👥</div>
+                        <h3>Delegate</h3>
+                        <p class="subtitle">Practicing dentists</p>
+                        <div class="pricing-row"><span>Early Bird</span><span class="price">₹12,000</span></div>
+                        <div class="pricing-row"><span>Regular</span><span class="price">₹15,000</span></div>
+                        <div class="pricing-row"><span>On-site</span><span class="price">₹18,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Full 3-day access</li>
+                            <li>Workshop participation</li>
+                            <li>Gala dinner</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card popular">
+                        <div class="pricing-icon">🎓</div>
+                        <h3>Student</h3>
+                        <p class="subtitle">PG students & interns</p>
+                        <div class="pricing-row"><span>Early Bird</span><span class="price">₹6,000</span></div>
+                        <div class="pricing-row"><span>Regular</span><span class="price">₹8,000</span></div>
+                        <div class="pricing-row"><span>On-site</span><span class="price">₹10,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Full 3-day access</li>
+                            <li>Conference kit</li>
+                            <li>Poster competition</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-icon">👤</div>
+                        <h3>Accompanying</h3>
+                        <p class="subtitle">Family & companions</p>
+                        <div class="pricing-row"><span>Standard</span><span class="price">₹5,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Welcome reception</li>
+                            <li>Gala dinner</li>
+                            <li>City tour (optional)</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-icon">🔧</div>
+                        <h3>Workshop Only</h3>
+                        <p class="subtitle">Hands-on workshops</p>
+                        <div class="pricing-row"><span>Per Workshop</span><span class="price">₹3,000</span></div>
+                        <ul class="pricing-features">
+                            <li>Workshop access</li>
+                            <li>Materials provided</li>
+                            <li>Certificate</li>
+                        </ul>
+                    </div>
+                </div> -->
+
+                <!-- <div class="form-container">
+                    <h3>Register Now</h3>
+                    <p style="text-align: center; margin-bottom: 24px; color: var(--gray-600);">Fill out the Google Form to complete your registration</p>
+                    <div class="google-form-embed">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe5zWyuUOQR7kXVUkfMgJnIy8uknIJ1awkyGN-7KcKEglgGOw/viewform?embedded=true">Loading form...</iframe>
+                    </div>
+                    <p style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--gray-500);">
+                        Having trouble? <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5zWyuUOQR7kXVUkfMgJnIy8uknIJ1awkyGN-7KcKEglgGOw/viewform" target="_blank" style="color: var(--primary); font-weight: 600;">Open form in new tab →</a>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCOMMODATION PAGE -->
+    <section class="page-section" id="page-accommodation">
+        <div class="page-banner">
+            <span>Stay With Us</span>
+            <h1>Accommodation</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="hotel-overview">
+                    <div class="hotel-image">
+                        <img src="images/westin.jpg?w=600&h=450&fit=crop" alt="The Westin Kolkata">
+                        <div class="hotel-image-overlay">
+                            <div class="hotel-stars">★★★★★</div>
+                            <h3>The Westin Kolkata Rajarhat</h3>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 14px;">📍 Plot No, 2, AA II, Newtown,
+                                Kolkata 700135</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Official Conference Hotel</h2>
+                        <p style="margin: 16px 0;">Enjoy exclusive rates at The Westin Kolkata Rajarhat. World-class
+                            amenities, exceptional dining, and minutes away from the conference venue.</p>
+                        <div class="hotel-features">
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">📶</div><span>Free Wi-Fi</span>
+                            </div>
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">🚗</div><span>Parking</span>
+                            </div>
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">🍽️</div><span>Restaurant</span>
+                            </div>
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">💪</div><span>Fitness</span>
+                            </div>
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">☕</div><span>Lounge</span>
+                            </div>
+                            <div class="hotel-feature">
+                                <div class="hotel-feature-icon">⭐</div><span>5-Star</span>
+                            </div>
+                        </div>
+                        <div
+                            style="background: #fef9e7; border: 1px solid var(--secondary); border-radius: var(--radius); padding: 16px;">
+                            <strong style="color: var(--secondary);">Special Offer:</strong> Book accommodation during
+                            registration for exclusive delegate rates!
+                        </div>
+                    </div>
+                </div>
+                <!-- Accommodation Video Section -->
+                <div class="accommodation-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/room-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="section-header">
+                    <h2>Room Categories</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="room-card" data-room="Single Occupancy" data-price="15000">
+                        <div class="room-card-image"><img
+                                src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=200&fit=crop"
+                                alt="Deluxe Room"></div>
+                        <div class="room-card-content">
+                            <h3>Single Occupancy</h3>
+                            <div class="room-price">
+                                <h3>₹15,000</h3><span>/night</span>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>King/Twin beds</li>
+                                <li>42 sqm</li>
+                                <li>Breakfast included</li>
+                            </ul>
+                            <!-- <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a> -->
+                            <div class="night-selector hidden">
+                                <button class="minus">−</button>
+                                <span class="nights">1</span>
+                                <button class="plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room-card" data-room="Double Occupancy" data-price="7500">
+                        <!-- <div class="room-card-image"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop" alt="Premium Room"><span class="room-badge">RECOMMENDED</span></div> -->
+                        <div class="room-card-image"><img
+                                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&h=200&fit=crop"
+                                alt="Premium Room"></div>
+                        <div class="room-card-content">
+                            <h3>Double Occupancy</h3>
+                            <div class="room-price">
+                                <h3>₹7,500</h3><span>/night(on twin sharing basis)</span>
+                            </div>
+                            <ul class="pricing-features">
+                                <li>King/Twin beds</li>
+                                <li>42 sqm</li>
+                                <li>Breakfast included</li>
+                            </ul>
+                            <!-- <a href="/registration" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Book Now</a> -->
+                            <div class="night-selector hidden">
+                                <button class="minus">−</button>
+                                <span class="nights">1</span>
+                                <button class="plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="room-card" data-room="Executive Suite" data-price="12000">
+                        <div class="room-card-image"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=200&fit=crop" alt="Executive Suite"></div>
+                        <div class="room-card-content">
+                            <h3>Executive Suite</h3>
+                            <div class="room-price"><h3>₹12,000</h3><span>/night</span></div>
+                            <ul class="pricing-features"><li>King bed, 65 sqm</li><li>Panoramic view</li><li>Club access</li></ul>
+                            <a href="/registration" class="btn btn-outline" style="width: 100%; margin-top: 16px;">Book Now</a> -->
+                    <!-- <div class="night-selector hidden">
+                                <button class="minus">−</button>
+                                <span class="nights">1</span>
+                                <button class="plus">+</button>
+                            </div>                             
+                        </div>
+                    </div> -->
+                </div>
+                <div id="guest-details" style="display:none; margin-top:30px;">
+                    <div class="section-header">Guest Details</div>
+
+                    <div class="input-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="accName" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Mobile Number *</label>
+                        <input type="tel" id="accPhone" placeholder="+91">
+                    </div>
+                </div>
+
+
+                <div id="booking-summary" style="display:none; margin-top:40px;">
+                    <h2>Booking Summary</h2>
+
+                    <div id="selected-rooms" style="margin:12px 0;"></div>
+
+                    <h3>
+                        Total Amount: ₹<span id="total-amount">0</span>
+                    </h3>
+
+                    <button id="pay-now" class="btn btn-primary" style="margin-top:16px;">
+                        Pay Now
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- SPONSORS PAGE -->
+    <section class="page-section" id="page-sponsors">
+        <div class="page-banner">
+            <span>Our Partners</span>
+            <h1>Sponsors & Trade Exhibition</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon platinum">✨</div>
+                        <h3>Platinum Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos platinum">
+                        <div class="sponsor-logo"><a href="https://dentis.co.in/" target="_blank"><img
+                                    src="images/dentis.jpg" alt="Dentis India"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+                <div class="sponsor-tier diamond-sponsor-tier">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon diamond">💎</div>
+                        <h3>Diamond Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos platinum">
+                        <div class="sponsor-logo"><a href="https://pointimplant.us/" target="_blank"><img
+                                    src="https://pointimplant.us/assets/point-implant-logo-Bv0CjMX8.png"
+                                    alt="Dentis India"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon gold">🏆</div>
+                    <h3>Gold Sponsors</h3>
+                </div>
+                <div class="sponsor-logos gold">
+                    <div class="sponsor-logo"><a href="https://en.osstem.com/" target="_blank">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUEAAAB4CAMAAABb0rDSAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABdUExURUdwTIuLi+xiAOxiAO1iAOZwHuxhAPFmAOxiAMuNWoqKiuxiAIqKiuxiAO1jAOxhAOxhAOxiAIqKiu5jAO9kAOxiAImJiYyMjIqKioqKio2Nje1iAIqKiuthAImJiWfDyzAAAAAddFJOUwBGx7dnDfEadAaSp36DSPvm2NE4KJXqLma4GlmmEbiwhwAADS1JREFUeNrtXYu2ojoMlZZHK/IGUdHz/595PYDQR9oG9M7gLDLrzhoR+9hNspO0cA+HXXb5c8J5EAR8x2GlVE3x6CWk3Y7icklJj14RJyxpirzbEVkmQdzjF1fj5yjZIVwkUa+AebojsRbAvDfgoCeTquvSaMdkmQwa+AtbFYe9OZPdiJdI0oP2NGHeZI+XkPr/cbh1VaVPqaoo+HdsuFc7+pwdfeSkeIEYVh/viNH8IUhIWfVPhE3NSwVJXPc0PBjyYNafUz5GHoDkTfX1APIesJAfUjZeqUdNIR/sxM8fJvl6n1vpaNWjFn5samnxsAn5bj30H6MbFIQNMys+SlU28b+fiWUEo3FiH+HjMd+xylcbcgOp22h1n0hSOHEDGH51ZDNqSAQh6H9shaySxf9AMKPY0Ugl7FNu1iHfzSQJELpUDwSCUceSJiaE0IalJjOsMwSAhdJuEpM8DPOioI3/BTF3B6BFXRRZ+7Ec4GUkiVba8OORiHmLGvhk1N94oaN+jXSyYz6Rp4FJ0l+ENeXKqG6Mka6CGWlY5ydxMX81IVTHGewnN2nm/GUekzI1w0xqqk9NDE58c3hMa1ckGDZTm5E/dvSKpHhiNnna/yxlaOn1oUbcOMKQ+oKYlL5mydNxxZSQIg+zCR4maFHCEiLUZ6AUxppeZIzrGaOYBssQ130xaFT+yNpyLnoXhFBcKD+0O0cfdv9PwJ8euDFl1Y3YpibjyAOAkQwADgo/BoORI/OTzAXpWykS6adlQRcdcQXVuEQVPUqrC3dsRwKzEUOph98MAOZuRCI8gMPq52gWS+VJBOYyIEiAMGEWWjNViBm7AKGiA+EbmUuqTdMuERLxVHVlZgqNLSYKaXsRrQNQhLB4YIwDmIGu2gHiJnWxOiTSGjpZA0Ughp8OGqBrIVkNoGD+ocstTATvaptASvB/EQlYleLFw2pRvjyFMNFSgTpc6ISekiF1kDOUuyrwI2iQRBJDRALGcYmBg2YtSEIoaLM7qnw44aBfD0AEzSUYrYmcsu437s6FNQkyPIIdYAKQMIOFdu70NNExqp75aEHiBkxyAYug6ZRKgCqgc2FjrZMLRjRPoOrTlN4NVguIpBayreVEAjgc8m5Ns9KWQDpaw+CCH0X2qvw8llxIFI9u0F9AJBxJJAFMs3O0bC4xLSs/a240U6i6Aa1DU9wMrlVQu7GnYW8xQSSKujq19C0wpjQCxORFlIJbFMJs/0aVjyizDHKIzAC7a7jTDeqEU9dO11m4crDMUgcPjA7SEAraQzOMCup7yQzUcYA9ocMQ4fKKdeBMoBQisW2bpYbwyfK90afba4jTJCtjkUzefYNcV6jn7bl58NhJM9eIbDNmhhDepEDLiYQ4idwQPYN962pYLN/7ZM6Ngg7faGwvqyQmtl+4Ke+I6yhIZlWGKIKpM8gQENKHy8s1+BnnVisFdyqWEYk6QYZZx8Ca8MpqqBl77Nz+zBcSSXhYRCRii8SYZqIlx6QWjSEvMiSzYWpNi10HuSOnX1equ3QZkQgT8M1p41ojblBHOyp77SyTTLXBcbZ50r6LSJJlRDI3GYXvn7JIULu7idETm+ranTmc7DFO+DtjUlQn9jUJDlYzia02VL/BxDnubIJgpWnu3EUAM7CiQhMJX77POpNPbs4MTVXdbMk2tloSiXERQaWkttAYa4clZR3SNRN3BGamishykoIXlnolVlKcB6BWNe9Ab0K4I+gyuS8EkbhKYXPqI04wU/qeRxWuJxLmLD6CCZxyW01c5wb9zFLAcyRJvpP+LC0nYllS1rM5FAzj9QceY1woGTocBYccUx44t6J9DJHUK048VcAEYyY7ynnZGV1/VoqgPED0cPINc+ETNJndWZrGFK4gkgdEJExS3W5ehkIOLxcRiWqeMcpbZgR3Eo64T0QQt8ITxL4BikhSqeV4/lBFn8tIGlyA1mBu0t0ldGS4cxaCEmcAYdlQTKXRxIYMpHujtJWh2JFg3Bewe6btbbPMrYSdE+NVRJLlBv8ZRsriLzvcG2LIUTvmBrtavcyhN5eGzvi/cRKJ4nNDXSpgVWNDcOira1+9g6CP2gYIObISB9iDtrXPXETi7CfCeSlmKKurviwL3vGDDGXEMbLaDXqUzrEloR6qoy4iyZFVnhQk8axWVXPhgzYE4QcrZC6h39gg3GXxLpFgS1sRmAg36qIuffYgRmgXBXwvrhSXIO4KHS4jdS1Ugqs85SCL91F/grBDbCGpwGjWc9k5KugBB8OVonGGLOYaiSTFbRfEoEPqdBVZeKw7dY43KLBFXL0YTREJTri43LaeSDT0KUAGCx/BUtWaoba61LMbxlyrcy9aYS+7fJRIVIPKan1JFz+xSS3VAHNdCiqQssyxYQL3SO0+I3FtHS0hEjV8S4AlXfwQW2e1Tx5bSnC1K2PrB+laEraUSJRT0TgiyXLApMaj0G8RCeC8xLMvtf2YI/FHEHkaG4/z5YmItN5iZXcanyUSeYVSyCiWP/KqlaVIOmJYNfYM/vfbkFBKckemT1gV8ENQp41eic350jNHCsbM7/qtJfHvykQkotPLKJhVLH+WF9hJC0ncxGTBwWCMZI4aAHrfBtr561uf/05MRCIu0SuqfZNI4J207PGnRGWuyhlRLngKIoW8QaM2/SaRWDZN/4iwxWeOMM+dRHBGIv2+4CC1rXrqOsAeo4/zTwNIXad4Akwh92HYhKCQar38RAVHV+venRChkMmY6/G4xaI/WeUmEvzjdBCRTElPbPCrKx93rhEQ5r+LhoUwTBMMgLUjWs5wRGIoaESwajG5OBKhMxy7FrqQyZrAGjjr0HROLqfRijNHGCLpdIqMxM3tp3SGLulaBA+BfQNReDrbdxP1cEAwoo414e7gdB2R1MaMxFVQsmY4zipNgczfHImK8LZN2/ukaL3uzBHCO4Q2InF0+d5LeDrw7AbwLonUcvAnZ4H7TuitDcgzRwgiIVYisXf57nszavE1Av17Jzo4yUkpbMuFr94fMZKp8PnGzMnwTI3lDkAC/VZLqubqcLHwOvVZkiSsS2vb6YfIp+phGpLAJxd55TcxLcgzhY6TztrqgUt/3p0LpqGP9ji1ibyv6pLfV2M8oYkTv/p3Xhy6yy677LLLLrvssssuu+yyyy7mbPjUyw7Eaml/fqWcLxwHkTC9jBfnK/fyJdf7pRXvPfUXzR3237fKxUDvtL8w3NceAbltBcFLj+BRQfQpwj3eeEnA+fwjylVApOwvGPsb2rqAV39+WmUcw+fjDyDtVhC898PxFESfMq8xL8dLdx3nUc5zA/1no1cY27qriqn1cBEGUUIIbubd12cFrmm9PW16guZc1PmUXMLWM9rwiLhy+aqt21G4DQKw3AqAN3VC03pPanQ764aj25UH6I7J6+o3nLVeBWfAIQTvW0HQU4bD9SHeAcMZ5sd5cGtP8tTvVgUpdQ2f17FfSy6OY2iUe4P0Py7HD5shkqNinq1mJh5gOOL8RsM8iRjdrbQlU1cP0axbF7MzOFs97N+Sq2KegoNT1UYjbA9gVw5SreQPzjpZHzX/BjgDh4f9W/G0ap69Ed4FWPuplGeISG6iDrYinJ5lua4nnUr6L0rRvgFnYPewfzeeviqO6lJOUxnU5qJoqji/UbEkruUWG75d9HBusM+jMBjAGRwhEt9cPD3opHedPE4/7KsHEXY/v9vlLDVhIZLb6MdazdBH+2xnxudAVOkI1TcSTw9GyI8vhMbM4CQPPhhosyzPryjkfBO16Wju68m1XItGXvZ5nRYDcAb8Z5NEosbTp0GFLi9NKocpXWVcPGM0eDMTyQxKqerpyz69aTUAZ7BNItHi6fsAlTeS8WWc0dmQpGjJimdMWflMwYOqBYB9li89+xYi4Wo8fRg5d0C2DaSPt4MeYw++X9HhH3Pg2c43eYB9nl4retaJ5L6pXM4UT99e0xyU7jhmvBdFU6cc7Hwu75ebFq8YSf/e/spJ8WizfY4JpAc5g3JTuZycZLWKr5qG+5rZUcZlnB/nBr96NJZkJM2F7HNY0hJwBoEtVN9OPD1x7l2aaCnrjNnZGYnkpJcGzpB9jgHNVScSb5NEosXTE+eepEImVO06W2JmA7KK3CD7vEJK6grVtxNPH6bkzRNz4VbBxejsjGnDFULwAtmnECgdv4BI1Hh65txWjJQvUIX/aE58DStVXq/3a/9fKSEk2+dZD5FcofqG4umZc7k4iztU4Qc90oCUsB3UCplzoPi0ErTPyw9YhL1tkki0eFrg3LMwSYVIzKFtC/u6uzp7mcFk+5wq4mcgo2k3hqAWT88FhdFzeUK1AVEjuYB86+m8IEVRin0ezUSyucKMGk+LyZugjh5Y4Tc3qMR8Q2Ijq4+oldxQJT9hPOzG4ulAMM/L/NXJUuGHGhTkNMF6BEKTu5wHKcTtfQGRDOc9uJAm/8rojp7/aud/evMMb/2vWnODgrTTqRL52Yq2v3bRep378zz5fyq6rd2lXXbZZZd/V/4DoKM1zmu4GlQAAAAASUVORK5CYII="
+                                alt="osstem implant">
+                        </a></div>
+                </div>
+
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon silver">🥈</div>
+                    <h3>Silver Sponsors</h3>
+                </div>
+                <div class="sponsor-logos silver">
+                    <div class="sponsor-logo"><a href="https://www.dentium.com/" target="_blank">
+                            <img src="https://www.dentium.com/images/common/logo.svg" alt="Dentium">
+                        </a></div>
+                </div>
+
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon silver">🥈</div>
+                    <h3>Silver Sponsors</h3>
+                </div>
+                <div class="sponsor-logos silver">
+                    <div class="sponsor-logo"><a href="https://ortechhealthcare.com/" target="_blank">
+                            <img src="images/Ortech.png" alt="ORTECH Healthcare">
+                        </a></div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon silver">🥈</div>
+                    <h3>Silver Sponsors</h3>
+                </div>
+                <div class="sponsor-logos silver">
+                    <div class="sponsor-logo"><a href="https://bluemcare.com/" target="_blank">
+                            <img src="images/bluem.png" alt="bluemain">
+                        </a></div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon silver">🥈</div>
+                    <h3>Silver Sponsors</h3>
+                </div>
+                <div class="sponsor-logos silver">
+                    <div class="sponsor-logo"><a href="https://www.kataradental.com/" target="_blank">
+                            <img src="https://www.kataradental.com/images/katara_logo.png" alt="kataradental">
+                        </a></div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon silver">🥉</div>
+                        <h3>Bronze Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><a href="https://www.dentcaredental.com/" target="_blank"> <img
+                                    src="images/Dentcare.png" alt="DentCare"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon silver">🥉</div>
+                        <h3>Bronze Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><a href="https://www.sinimplantsystem.com/" target="_blank"> <img
+                                    src="images/sin.png" alt="S.I.N."></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon silver">🥉</div>
+                        <h3>Bronze Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><a href="https://www.geistlich.com/en-in/" target="_blank"> <img
+                                    src="images/geistlich.png" alt="Geistlich"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon silver">🥉</div>
+                        <h3>Bronze Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><a href="https://mgmconnect.com/" target="_blank"> <img
+                                    src="images/mgm.png" alt="MGM NEXUS"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-header">
+                        <div class="sponsor-tier-icon silver">🥉</div>
+                        <h3>Bronze Sponsor</h3>
+                    </div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><a href="https://crestbiologics.com/" target="_blank"> <img
+                                    src="images/crest.png" alt="Crest Biologics"></a></div>
+                        <!-- <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div> -->
+                    </div>
+                </div>
+
+                <!-- <div class="sponsor-tier-header">
+                    <div class="sponsor-tier-icon silver">🥈</div>
+                    <h3>Silver Sponsors</h3>
+                </div>
+                <div class="sponsor-logos silver">
+                    <div class="sponsor-logo"><img src="https://www.dentium.com/images/common/logo.svg" alt="Dentium">
+                    </div>
+                </div> -->
+
+
+                <!-- <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon platinum">⭐</div><h3>Platinum Sponsors</h3></div>
+                    <div class="sponsor-logos platinum">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Nobel+Biocare" alt="Nobel Biocare"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/180x60/002366/FFFFFF?text=Straumann" alt="Straumann"></div>
+                    </div>
+                </div>
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon gold">🏆</div><h3>Gold Sponsors</h3></div>
+                    <div class="sponsor-logos gold">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=Dentsply+Sirona" alt="Dentsply Sirona"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=Osstem" alt="Osstem"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/160x50/D4AF37/002366?text=BioHorizons" alt="BioHorizons"></div>
+                    </div>
+                </div>
+                <div class="sponsor-tier">
+                    <div class="sponsor-tier-header"><div class="sponsor-tier-icon silver">🥈</div><h3>Silver Sponsors</h3></div>
+                    <div class="sponsor-logos silver">
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=MegaGen" alt="MegaGen"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Neodent" alt="Neodent"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Zimmer+Biomet" alt="Zimmer Biomet"></div>
+                        <div class="sponsor-logo"><img src="https://via.placeholder.com/140x40/475569/FFFFFF?text=Anthogyr" alt="Anthogyr"></div>
+                    </div>
+                </div> -->
+                <section class="stall">
+                    <h2>Stall Layout</h2>
+                    <div class="stall-image">
+                        <img src="images/stall.jpg" alt="Stall Layout">
+                    </div>
+                </section>
+                <div class="trade-exhibition">
+                    <div>
+                        <h3>Trade Exhibition 2026</h3>
+                        <p>Explore the latest in implant technology, surgical instruments, and digital dentistry
+                            solutions.</p>
+                        <!-- <div class="exhibitor-tags">
+                            <span class="exhibitor-tag">Implant Direct</span>
+                            <span class="exhibitor-tag">MIS Implants</span>
+                            <span class="exhibitor-tag">BEGO</span>
+                            <span class="exhibitor-tag">Alpha Bio</span>
+                            <span class="exhibitor-tag">Bredent</span>
+                        </div> -->
+                        <div class="hero-buttons">
+                            <a href="images/OSI-letter.pdf" class="btn btn-primary">Become an Exhibitor</a>
+                            <a href="images/tradebro.pdf " target="_blank" class="btn btn-outline">Download Trade
+                                brocure</a>
+                        </div>
+                    </div>
+                    <div class="trade-stats">
+                        <div class="trade-stat">
+                            <h4>30+</h4><span>Exhibitors</span>
+                        </div>
+                        <div class="trade-stat">
+                            <h4>50+</h4><span>Stalls</span>
+                        </div>
+                        <div class="trade-stat">
+                            <h4>3</h4><span>Days</span>
+                        </div>
+                        <div class="trade-stat">
+                            <h4>1500+</h4><span>Delegates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENUE PAGE -->
+    <section class="page-section" id="page-venue">
+        <div class="page-banner">
+            <span>Location</span>
+            <h1>Venue & Travel</h1>
+        </div>
+        <div class="content-section">
+            <div class="container">
+                <div class="venue-grid">
+                    <div class="venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.6529321602216!2d88.47183427602077!3d22.592080532254695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027549287696d5%3A0xbdd849b4c2cf930b!2sThe%20Westin%20Kolkata%20Rajarhat!5e0!3m2!1sen!2sin!4v1770472433563!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="venue-map-overlay">
+                            <div class="venue-map-icon">📍</div>
+                            <div>
+                                <h4 style="font-size: 14px; margin-bottom: 2px;">The Westin Kolkata Rajarhat</h4>
+                                <p style="font-size: 12px; color: var(--gray-500);">Plot No, 2, AA II, Newtown, West
+                                    Bengal 700135</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            style="border-radius: var(--radius); overflow: hidden; height: 180px; margin-bottom: 24px;">
+                            <img src="images/westin.jpg?w=500&h=200&fit=crop" alt="Venue"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="margin-bottom: 16px;">How to Reach</h3>
+                        <div class="travel-option">
+                            <div class="travel-icon">✈️</div>
+                            <div>
+                                <h4 style="font-size: 15px;">By Air</h4>
+                                <p style="font-size: 13px; color: var(--gray-600);">Netaji Subhas Chandra Bose
+                                    International Airport (CCU)</p><span
+                                    style="font-size: 12px; color: var(--gray-400);">9.5 km from venue | ~30 mins
+                                    drive</span>
+                            </div>
+                        </div>
+                        <div class="travel-option">
+                            <div class="travel-icon">🚂</div>
+                            <div>
+                                <h4 style="font-size: 15px;">By Rail</h4>
+                                <p style="font-size: 13px; color: var(--gray-600);">Sealdah Station / Howrah Junction
+                                </p><span style="font-size: 12px; color: var(--gray-400);">18 km from venue | ~45 mins
+                                    drive</span>
+                            </div>
+                        </div>
+                        <div class="travel-option">
+                            <div class="travel-icon">🚗</div>
+                            <div>
+                                <h4 style="font-size: 15px;">By Road</h4>
+                                <p style="font-size: 13px; color: var(--gray-600);">Well-connected via EM Bypass</p>
+                                <span style="font-size: 12px; color: var(--gray-400);">Ample parking available</span>
+                            </div>
+                        </div>
+                        <a href="https://maps.google.com/?q=The+Westin+Kolkata+Rajarhat" target="_blank"
+                            class="btn btn-primary" style="margin-top: 16px;">🧭 Get Directions</a>
+                    </div>
+                </div>
+
+                <div class="city-info">
+                    <div class="city-info-content">
+                        <h3 style="color:#0b2c6b;">Welcome to Kolkata</h3>
+                        <p style="color: #0b2c6b;">The City of Joy — known for its rich cultural heritage, colonial
+                            architecture, and warm
+                            hospitality.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <h4>November</h4><span style="color: #0b2c6b;">Pleasant weather (18-28°C)</span>
+                            </div>
+                            <div class="city-stat">
+                                <h4>IST</h4><span style="color: #0b2c6b;">UTC +5:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="city-info-image">
+                        <img src="https://images.unsplash.com/photo-1558431382-27e303142255?w=500&h=350&fit=crop"
+                            alt="Kolkata">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOADS PAGE -->
+    <section class="page-section" id="page-downloads">
+        <div class="page-banner">
+            <span>Resources</span>
+            <h1>Downloads</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="grid-3">
+                    <div class="download-item">
+                        <div class="download-icon">📄</div>
+                        <div class="download-info">
+                            <h4>Conference Brochure</h4>
+                            <p>Complete details about the conference</p><span class="download-meta">PDF • 2.5 MB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">📋</div>
+                        <div class="download-info">
+                            <h4>Scientific Program</h4>
+                            <p>Detailed schedule of all sessions</p><span class="download-meta">PDF • 1.8 MB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">📝</div>
+                        <div class="download-info">
+                            <h4>Abstract Guidelines</h4>
+                            <p>Guidelines for abstract submission</p><span class="download-meta">PDF • 500 KB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">💼</div>
+                        <div class="download-info">
+                            <h4>Sponsorship Prospectus</h4>
+                            <p>Sponsorship opportunities</p><span class="download-meta">PDF • 3.2 MB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">🗺️</div>
+                        <div class="download-info">
+                            <h4>Exhibition Layout</h4>
+                            <p>Floor plan and stall details</p><span class="download-meta">PDF • 1.5 MB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                    <div class="download-item">
+                        <div class="download-icon">🏨</div>
+                        <div class="download-info">
+                            <h4>Accommodation Form</h4>
+                            <p>Hotel booking form</p><span class="download-meta">PDF • 400 KB</span>
+                        </div><button class="download-btn">⬇️</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 48px;">
+                    <h3 style="text-align: center; margin-bottom: 24px;">Quick Links</h3>
+                    <div class="grid-2" style="max-width: 700px; margin: 0 auto;">
+                        <a href="https://osindia.org/membership-benefits" target="_blank" class="download-item"
+                            style="text-decoration: none;">
+                            <div class="download-icon" style="background: #fef3c7;">👥</div>
+                            <div class="download-info">
+                                <h4>OSI Membership</h4>
+                                <p>Join the Osseointegration Society of India</p>
+                            </div>
+                            <span style="font-size: 20px;">↗️</span>
+                        </a>
+                        <a href="https://osindia.org/fellows" target="_blank" class="download-item"
+                            style="text-decoration: none;">
+                            <div class="download-icon" style="background: #fef3c7;">🏆</div>
+                            <div class="download-info">
+                                <h4>OSI Fellowship</h4>
+                                <p>Apply for OSI Fellowship program</p>
+                            </div>
+                            <span style="font-size: 20px;">↗️</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section class="page-section" id="page-contact">
+        <div class="page-banner">
+            <span>Get in Touch</span>
+            <h1>Contact Us</h1>
+        </div>
+        <div class="content-section alt-bg">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Conference Secretariat</h3>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">✉️</div>
+                            <div class="contact-item-text"><span>Email</span>
+                                <p>registration@osiconkolkata.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <!-- <div class="contact-item-icon">📞</div>
+                            <div class="contact-item-text"><span>Phone</span><p>+91 98765 43210</p></div>
+                        </div> -->
+                            <div class="contact-item">
+                                <div class="contact-item-icon">📍</div>
+                                <div class="contact-item-text"><span>Address</span>
+                                    <p>The Westin, Rajarhat<br>Kolkata 700135</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <h3>Send us a Message</h3>
+                            <!--SUCCESS_MESSAGE-->
+                            <form onsubmit="submitForm(event)">
+                                <div class="form-row">
+                                    <div class="form-group"><label>Full Name *</label><input type="text" name="name"
+                                            required placeholder="Your name"></div>
+                                    <div class="form-group"><label>Email *</label><input type="email" name="email"
+                                            required placeholder="your@email.com"></div>
+                                </div>
+                                <div class="form-row">
+                                    <!-- <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 43210"></div> -->
+                                    <div class="form-group"><label>Subject *</label><input type="text" name="subject"
+                                            required placeholder="How can we help?"></div>
+                                </div>
+                                <div class="form-group"><label>Message *</label><textarea name="message" required
+                                        placeholder="Your message..."></textarea></div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">📨 Send
+                                    Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <!-- <div class="logo-icon">OSI</div> -->
+                        <img src="images/logo.png" alt="3RD OSI Kolkata 2026 Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h3>3RD OSI CONFERENCE</h3>
+                            <span>KOLKATA 2026</span>
+                        </div>
+                    </div>
+                    <p class="footer-text">India's Premier Conference highlighting Journey Through Osseointegration —
+                        Where Science Meets Clinical Excellence</p>
+                    <div class="footer-details">
+                        <div class="footer-detail"><span class="footer-detail-icon">📅</span> 27-29 November 2026</div>
+                        <div class="footer-detail"><span class="footer-detail-icon">📍</span> The Westin, Kolkata</div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about">About</a></li>
+                        <!-- <li><a href="/program">Program</a></li> -->
+                        <li><a href="/speakers">Speakers</a></li>
+                        <li><a href="/registration">Registration</a></li>
+                        <li><a href="/downloads">Downloads</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:registration@osiconkolkata.com">Registration:
+                                registration@osiconkolkata.com</a></li>
+                        <li><a href="mailto:trade@osiconkolkata.com">Trade: trade@osiconkolkata.com</a></li>
+                        <li><a href="mailto:secretariat@osiconkolkata.com">Secretary OSI:
+                                secretariat@osiconkolkata.com</a></li>
+                        <!-- <li><a href="tel:+919876543210">+91 98765 43210</a></li> -->
+                        <li>Plot No, 2, AA II, Newtown,<br>Kolkata 700135</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 3rd OSI Conference Kolkata. All rights reserved.</p>
+                <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+            </div>
+        </div>
+    </footer>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        // Page navigation
+        const currentPage = '{{CURRENT_PAGE}}';
+        document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        const activeSection = document.getElementById('page-' + currentPage);
+        if (activeSection) {
+            activeSection.classList.add('active');
+        }
+
+        // Nav active state
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+        });
+        const activeNav = document.getElementById('nav-' + currentPage);
+        if (activeNav) {
+            activeNav.classList.add('active');
+        }
+
+        // Program tabs
+        function showDay(day) {
+            document.querySelectorAll('.program-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.program-day').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.program-tab')[day - 1].classList.add('active');
+            document.getElementById('day-' + day).classList.add('active');
+        }
+
+        // Mobile menu
+        document.querySelector('.mobile-menu-btn')?.addEventListener('click', function () {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+    <script>
+        function showPage(page) {
+            document.querySelectorAll(".page-section").forEach(sec => {
+                sec.classList.remove("active");
+            });
+
+            const active = document.getElementById("page-" + page);
+            if (active) active.classList.add("active");
+
+            history.pushState({}, "", "#" + page);
+        }
+
+        function loadFromHash() {
+            const page = location.hash.replace("#", "") || "home";
+            showPage(page);
+        }
+
+        window.addEventListener("load", loadFromHash);
+        window.addEventListener("popstate", loadFromHash);
+    </script>
+    <script>
+        async function submitForm(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+
+            const res = await fetch("https://osi-final.onrender.com/api/contact", {
+                method: "POST",
+                body: formData
+            });
+
+            if (res.ok) {
+                alert("Message sent successfully!");
+                e.target.reset();
+            } else {
+                alert("Something went wrong");
+            }
+        }
+    </script>
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        function handleMobileNav(page) {
+            showPage(page);          // your existing page switch logic
+            mobileMenu.classList.remove('active');
+        }
+    </script>
+
+
+
+    <script>
+        (function () {
+            const navContainer = document.querySelector('.nav-container');
+            const mainMenu = document.getElementById('navMenu');
+            const more = document.getElementById('moreToggle');
+            const moreMenu = document.getElementById('moreMenu');
+            if (!navContainer || !mainMenu || !more || !moreMenu) return;
+
+            // Update active class across BOTH menus
+            function updateActive(page) {
+                const allLinks = document.querySelectorAll('.nav-links a, .more-menu a');
+                allLinks.forEach(a => a.classList.remove('active'));
+                // Prefer href match, fallback to id match
+                const matchByHref = Array.from(allLinks).find(a => (a.getAttribute('href') || '').endsWith('#' + page));
+                if (matchByHref) matchByHref.classList.add('active');
+                const idMatch = document.getElementById('nav-' + page);
+                if (idMatch) idMatch.classList.add('active');
+            }
+
+            // Override router to also maintain active state
+            window.showPage = function (page) {
+                document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+                const active = document.getElementById('page-' + page);
+                if (active) active.classList.add('active');
+                history.pushState({}, '', '#' + page);
+                updateActive(page);
+            }
+            function loadFromHash() {
+                const page = location.hash.replace('#', '') || 'home';
+                window.showPage(page);
+            }
+            window.addEventListener('load', loadFromHash);
+            window.addEventListener('popstate', loadFromHash);
+
+            // Priority+ overflow algorithm
+            const itemsWidth = () => Array.from(mainMenu.children)
+                .reduce((w, li) => w + li.getBoundingClientRect().width, 0);
+            const moveToMore = () => { const last = mainMenu.lastElementChild; if (last) moreMenu.prepend(last); };
+            const moveBack = () => { const first = moreMenu.firstElementChild; if (first) mainMenu.appendChild(first); };
+
+            function adjustNav() {
+                // reset: move everything back first
+                while (moreMenu.children.length) moveBack();
+                more.style.display = 'none';
+                more.setAttribute('aria-expanded', 'false');
+
+                const containerWidth = navContainer.clientWidth;
+                const logo = navContainer.querySelector('.logo');
+                const mobileBtn = navContainer.querySelector('.mobile-menu-btn');
+                const logoW = logo ? logo.getBoundingClientRect().width : 0;
+                const mobileW = mobileBtn ? mobileBtn.getBoundingClientRect().width : 0;
+
+                // Temporarily show More to include its width in measurement
+                more.style.display = 'block';
+                const moreW = more.getBoundingClientRect().width;
+                const roomForMenu = containerWidth - logoW - mobileW - 24; // safety gap
+
+                while (itemsWidth() + moreW > roomForMenu && mainMenu.children.length) {
+                    moveToMore();
+                }
+                if (moreMenu.children.length === 0) {
+                    more.style.display = 'none';
+                }
+
+                // Keep active state accurate after moving items
+                const page = location.hash.replace('#', '') || 'home';
+                updateActive(page);
+            }
+
+            // Hover open (desktop) + click toggle
+            const canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+            if (canHover) {
+                more.addEventListener('mouseenter', () => more.setAttribute('aria-expanded', 'true'));
+                more.addEventListener('mouseleave', () => more.setAttribute('aria-expanded', 'false'));
+            }
+            more.addEventListener('click', (e) => {
+                // On touch/click devices still toggle
+                if (!canHover) {
+                    const expanded = more.getAttribute('aria-expanded') === 'true';
+                    more.setAttribute('aria-expanded', String(!expanded));
+                }
+            });
+            document.addEventListener('click', (e) => {
+                if (!more.contains(e.target)) more.setAttribute('aria-expanded', 'false');
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') more.setAttribute('aria-expanded', 'false'); });
+
+            window.addEventListener('load', adjustNav);
+            window.addEventListener('resize', adjustNav);
+        })();
+    </script>
+
+
+
+    <script>
+        (function () {
+            // --- 1️⃣ DOM References ---
+            const rooms = {};
+            const summaryBox = document.getElementById("booking-summary");
+            const summaryList = document.getElementById("selected-rooms");
+            const totalAmountEl = document.getElementById("total-amount");
+            const accGuestDetails = document.getElementById("guest-details");
+            const accNameInput = document.getElementById("accName");
+            const accPhoneInput = document.getElementById("accPhone");
+            const guestNameSummary = document.getElementById("guest-name-summary");
+            const payNowBtn = document.getElementById("pay-now");
+
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzVbQO4SEisX31OxlfYgXpkCzz4u4vKAe3act5j-eu2Wy2ChRzUHlvFoTkmp2h9V4iK/exec";
+
+            // --- 2️⃣ Room Summary Calculation ---
+            function getRoomSummary() {
+                let lines = [];
+                let total = 0;
+
+                Object.entries(rooms).forEach(([room, data]) => {
+                    const line = `${room} (${data.nights} night${data.nights > 1 ? 's' : ''})`;
+                    lines.push(line);
+                    total += data.price * data.nights;
+                });
+
+                return { summaryText: lines.join(' | '), totalAmount: total };
+            }
+
+            // --- 3️⃣ Update Summary ---
+            function updateSummary() {
+                const keys = Object.keys(rooms);
+
+                if (!keys.length) {
+                    summaryBox.style.display = "none";
+                    accGuestDetails.style.display = "none";
+                    guestNameSummary.textContent = "";
+                    return;
+                }
+
+                summaryBox.style.display = "block";
+                accGuestDetails.style.display = "block";
+                summaryList.innerHTML = "";
+                let total = 0;
+
+                keys.forEach(room => {
+                    const { price, nights } = rooms[room];
+                    const roomTotal = price * nights;
+                    total += roomTotal;
+
+                    summaryList.innerHTML += `
+                <p>${room} — ${nights} night(s) × ₹${price} = ₹${roomTotal}</p>
+            `;
+                });
+
+                totalAmountEl.textContent = total;
+                guestNameSummary.textContent = accNameInput.value
+                    ? `Guest: ${accNameInput.value}`
+                    : "";
+            }
+
+            // --- 4️⃣ Guest Name Dynamic Update ---
+            accNameInput.addEventListener("input", updateSummary);
+
+            // --- 5️⃣ Room Selection Logic ---
+            document.querySelectorAll(".room-card").forEach(card => {
+                const roomName = card.dataset.room;
+                const price = Number(card.dataset.price);
+
+                const selector = card.querySelector(".night-selector");
+                const nightsEl = card.querySelector(".nights");
+                const plus = card.querySelector(".plus");
+                const minus = card.querySelector(".minus");
+
+                if (!selector || !plus || !minus || !nightsEl) return;
+
+                card.addEventListener("click", () => {
+                    if (!rooms[roomName]) {
+                        rooms[roomName] = { price, nights: 1 };
+                        card.classList.add("selected");
+                        selector.classList.remove("hidden");
+                        accNameInput.focus();
+                    } else {
+                        delete rooms[roomName];
+                        card.classList.remove("selected");
+                        selector.classList.add("hidden");
+                        nightsEl.textContent = "1";
+                    }
+                    updateSummary();
+                });
+
+                plus.addEventListener("click", e => {
+                    e.stopPropagation();
+                    if (rooms[roomName].nights < 3) {
+                        rooms[roomName].nights++;
+                        nightsEl.textContent = rooms[roomName].nights;
+                        updateSummary();
+                    }
+                });
+
+                minus.addEventListener("click", e => {
+                    e.stopPropagation();
+                    if (rooms[roomName].nights > 1) {
+                        rooms[roomName].nights--;
+                        nightsEl.textContent = rooms[roomName].nights;
+                        updateSummary();
+                    }
+                });
+            });
+
+            // --- 6️⃣ Razorpay Payment ---
+            payNowBtn.addEventListener("click", () => {
+                const name = accNameInput.value.trim();
+                const phone = accPhoneInput.value.trim();
+
+                if (!name || !phone) {
+                    alert("Please enter name and phone number");
+                    return;
+                }
+
+                if (!Object.keys(rooms).length) {
+                    alert("Please select at least one room");
+                    return;
+                }
+
+                const booking = getRoomSummary();
+                const amountPaise = Math.round(booking.totalAmount * 100);
+
+                const options = {
+                    key: "rzp_live_S9kFXcSkm7C1Rc",
+                    amount: amountPaise,
+                    currency: "INR",
+                    name: "OSICON Kolkata 2026",
+                    description: "Accommodation Booking",
+                    handler: function (response) {
+                        saveAccommodationToSheet(
+                            name,
+                            phone,
+                            booking.summaryText,
+                            booking.totalAmount,
+                            response.razorpay_payment_id
+                        );
+                    },
+                    prefill: { name, contact: phone },
+                    theme: { color: "#4f46e5" }
+                };
+
+                new Razorpay(options).open();
+            });
+
+            // --- 7️⃣ Google Sheet Submission ---
+            function saveAccommodationToSheet(name, phone, rooms, amount, paymentId) {
+                const formData = new URLSearchParams();
+                formData.append("type", "Accommodation");
+                formData.append("name", name);
+                formData.append("phone", phone);
+                formData.append("rooms", rooms);
+                formData.append("amount", amount);
+                formData.append("payment_id", paymentId);
+
+                fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", body: formData })
+                    .then(() => {
+                        alert("Accommodation booked successfully!");
+                        window.location.reload();
+                    }).catch(err => {
+                        console.error(err);
+                        alert("Booking recorded but there was an error updating the sheet. Contact support.");
+                    });
+            }
+        })();
+    </script>
+
+
+    <!-- July 5th Popup -->
+    <div id="july5-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <span class="popup-close"
+                onclick="document.getElementById('july5-popup').style.display='none'">&times;</span>
+            <img src="images/brotes.jpg" alt="Brotes Special">
+        </div>
+    </div>
+    <style>
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary, #001844);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+        }
+
+        .popup-close:hover {
+            background: var(--secondary, #D4AF37);
+            color: var(--primary, #001844);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date();
+            if (today.getMonth() === 6 && today.getDate() === 5) {
+                document.getElementById('july5-popup').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+
+</html>

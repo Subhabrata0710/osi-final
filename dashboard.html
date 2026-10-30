@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Dashboard | ABC Children’s Conclave</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TDXQBN5VPM"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-TDXQBN5VPM');
+</script>
+
+<body>
+
+    <!-- LUXURY NAVIGATION -->
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+    <!-- <marquee class="cme-marquee" scrollamount="15" direction="left" onmouseover="this.stop();"
+        onmouseout="this.start();">10 CME Point approved by WBMC</marquee> -->
+
+
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+        <h2>Delegate Dashboard</h2>
+        <span id="user-welcome">Welcome Back</span>
+    </div>
+
+    <!-- DASHBOARD CONTENT -->
+    <section class="section">
+        <div class="container">
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">👤</div>
+                    <div class="stat-content">
+                        <h3 id="user-name">Loading...</h3>
+                        <p id="user-type">Delegate</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📧</div>
+                    <div class="stat-content">
+                        <h3 id="user-email">Loading...</h3>
+                        <p>Phone Number</p>
+                    </div>
+                </div>
+
+                <!-- <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <h3>8-10 May 2026</h3>
+                        <p>Conference Dates</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏨</div>
+                    <div class="stat-content">
+                        <h3>Hyatt Regency</h3>
+                        <p>Venue</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Abstract Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📄 Abstract Upload</h3>
+                        <p>Submit your research abstract (PDF only)</p>
+                    </div>
+                    <div class="upload-area" id="abstract-upload-area">
+                        <div class="upload-icon">📝</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="abstract-file-upload" class="file-input" accept=".pdf" multiple>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('abstract', 'abstract-file-upload')"
+                        data-testid="upload-abstract-btn">
+                        Upload Abstract
+                    </button>
+                    <p id="abstract-upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- Paper / Presentation Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📊 Paper / Presentation</h3>
+                        <p>Submit your presentation slides (PPT / PPTX only)</p>
+                    </div>
+                    <div class="upload-area" id="paper-upload-area">
+                        <div class="upload-icon">📑</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PPT / PPTX only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="paper-file-upload" class="file-input" accept=".ppt,.pptx" multiple>
+                    </div>
+                    <button class="btn btn-gold w-100" onclick="uploadFile('poster', 'paper-file-upload')"
+                        data-testid="upload-paper-btn">
+                        Upload Paper / Presentation
+                    </button>
+                    <p id="paper-upload-status" class="upload-status"></p>
+                </div>
+            </div>
+
+            <!-- Second Row: Photo + Bonafide -->
+            <div class="dashboard-grid" style="margin-top: 24px;">
+                <!-- Photo / Selfie Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🤳 Photo Upload</h3>
+                        <p>Upload a passport-size photo or take a selfie</p>
+                    </div>
+                    <div class="upload-area" id="photo-upload-area">
+                        <div class="upload-icon">🖼️</div>
+                        <p class="text-muted">JPG / PNG · Max 5MB (Multiple allowed)</p>
+                        <input type="file" id="photo-file-upload" class="file-input" accept="image/*" multiple>
+                        <!-- Camera input for mobile selfie -->
+                        <input type="file" id="selfie-file-upload" class="file-input" accept="image/*" capture="user">
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 14px;">
+                        <button class="btn btn-primary w-100" onclick="triggerInput('photo-file-upload', 'photo')"
+                            data-testid="upload-photo-btn">
+                            📁 Browse Photo
+                        </button>
+                        <button class="btn btn-gold w-100" onclick="openCameraModal()" data-testid="take-selfie-btn">
+                            📷 Take Selfie
+                        </button>
+                    </div>
+                    <p id="photo-upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- Bonafide Certificate Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🏫 Bonafide Certificate</h3>
+                        <p>Upload certificate signed by Head of Department/Institution</p>
+                    </div>
+                    <div class="upload-area" id="bonafide-upload-area">
+                        <div class="upload-icon">📜</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF or Image · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="bonafide-file-upload" class="file-input" accept=".pdf,.jpg,.jpeg,.png"
+                            multiple>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('bonafide', 'bonafide-file-upload')"
+                        data-testid="upload-bonafide-btn">
+                        Upload Certificate
+                    </button>
+                    <p id="bonafide-upload-status" class="upload-status"></p>
+                </div>
+            </div>
+
+            <!-- Payment Status Compact Bar -->
+            <div class="payment-status-bar" style="margin-top: 24px;">
+                <span class="payment-status-label">✅ Registration Status</span>
+                <div style="display:flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <span class="badge badge-success" style="font-size:0.95rem; padding: 6px 18px;">Payment
+                        Confirmed</span>
+                    <span id="reg-id-display" style="font-weight:600; color: var(--primary); font-size:0.95rem;"></span>
+                </div>
+            </div>
+
+
+            <!-- Your Files Section -->
+            <div class="dashboard-card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <h3>📂 Your Uploaded Files</h3>
+                    <p>Manage your documents and presentations</p>
+                </div>
+
+                <div id="file-list" class="file-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>No files uploaded yet</p>
+                        <p class="text-muted">Upload your first document above</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conference Information -->
+            <div class="dashboard-grid" style="margin-top: 30px;">
+                <!-- <div class="info-card">
+                    <div class="info-card-icon">📅</div>
+                    <h4>Scientific Program</h4>
+                    <p>View the complete conference schedule and sessions</p>
+                    <a href="index.html#program" class="btn btn-gold">View Program</a>
+                </div> -->
+
+                <!-- <div class="info-card">
+                    <div class="info-card-icon">👥</div>
+                    <h4>Speaker Panel</h4>
+                    <p>Meet our distinguished international faculty</p>
+                    <a href="index.html#speakers" class="btn btn-gold">View Speakers</a>
+                </div> -->
+
+                <div class="info-card">
+                    <div class="info-card-icon">🏨</div>
+                    <h4>Venue Details</h4>
+                    <p>Information about Westin Kolkata</p>
+                    <a href="venue.html" class="btn btn-gold">View Venue</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Camera Modal -->
+    <div id="camera-modal" class="modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
+        <div
+            style="background: white; padding: 20px; border-radius: 12px; text-align: center; max-width: 90%; width: 400px;">
+            <h3 style="margin-top: 0; color: var(--primary);">Take a Selfie</h3>
+            <div
+                style="position: relative; width: 100%; aspect-ratio: 4/3; background: #000; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                <video id="camera-stream" autoplay playsinline
+                    style="width: 100%; height: 100%; object-fit: cover;"></video>
+                <img id="camera-preview" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+                <canvas id="camera-canvas" style="display: none;"></canvas>
+            </div>
+
+            <div id="camera-controls">
+                <button class="btn btn-gold w-100" onclick="captureSelfie()">📸 Capture Photo</button>
+                <button class="btn btn-outline w-100" onclick="closeCameraModal()"
+                    style="margin-top: 10px;">Cancel</button>
+            </div>
+
+            <div id="preview-controls" style="display: none;">
+                <button class="btn btn-primary w-100" onclick="uploadSelfie()">✅ Confirm & Upload</button>
+                <button class="btn btn-outline w-100" onclick="retakeSelfie()" style="margin-top: 10px;">🔄
+                    Retake</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" style="display: none;">
+        <div class="loader-spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRegId = localStorage.getItem('userRegId');
+            const userPhone = localStorage.getItem('userPhone');
+            const userName = localStorage.getItem('userName');
+
+            if (!isLoggedIn || !userRegId) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('user-name').innerText = userName || userRegId;
+            document.getElementById('user-email').innerText = userPhone;
+
+            const regIdDisplay = document.getElementById('reg-id-display');
+            if (regIdDisplay) regIdDisplay.innerText = 'Reg ID: ' + userRegId;
+
+            loadUserFiles(userRegId);
+        }
+
+        // Helper to split stored newline/comma separated URLs
+        function splitUrls(val) {
+            if (!val) return [];
+            return val.toString().split(/[\n,]+/).map(u => u.trim()).filter(Boolean);
+        }
+
+        // Fetch and display already uploaded files from DB/Google Sheets
+        function loadUserFiles(regId) {
+            const categories = [
+                { type: 'abstract', key: 'abstractUrl', label: 'Abstract' },
+                { type: 'poster', key: 'posterUrl', label: 'Presentation' },
+                { type: 'photo', key: 'photoUrl', label: 'Photo' },
+                { type: 'bonafide', key: 'bonafideUrl', label: 'Bonafide Cert' }
+            ];
+
+            // 1. Immediately show cached files from localStorage if present
+            categories.forEach(item => {
+                const urls = splitUrls(localStorage.getItem(item.key));
+                urls.forEach((url, idx) => {
+                    const displayName = urls.length > 1 ? `${regId}_${item.label}_${idx + 1}` : `${regId}_${item.label}`;
+                    renderUploadedFile(item.type, url, displayName);
+                });
+            });
+
+            // 2. Fetch live data from backend
+            fetch(`${SCRIPT_URL}?action=getFiles&regId=${encodeURIComponent(regId)}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success && res.data) {
+                        const data = res.data;
+                        const fileList = document.getElementById('file-list');
+                        // Remove existing file items to reload fresh from sheet
+                        const existingCards = fileList.querySelectorAll('.user-file-item');
+                        existingCards.forEach(c => c.remove());
+
+                        categories.forEach(item => {
+                            const raw = data[item.key] || '';
+                            localStorage.setItem(item.key, raw);
+                            const urls = splitUrls(raw);
+                            urls.forEach((url, idx) => {
+                                const displayName = urls.length > 1 ? `${regId}_${item.label}_${idx + 1}` : `${regId}_${item.label}`;
+                                renderUploadedFile(item.type, url, displayName);
+                            });
+
+                            // Update upload section status
+                            const statusMap = {
+                                abstract: 'abstract-upload-status',
+                                poster: 'paper-upload-status',
+                                photo: 'photo-upload-status',
+                                bonafide: 'bonafide-upload-status'
+                            };
+                            const statusEl = document.getElementById(statusMap[item.type]);
+                            if (statusEl) {
+                                if (urls.length > 0) {
+                                    statusEl.innerHTML = `<span style="color:#166534">✅ ${urls.length} file(s) on record — <a href="${urls[urls.length - 1]}" target="_blank">View latest</a></span>`;
+                                } else {
+                                    statusEl.innerHTML = '';
+                                }
+                            }
+                        });
+
+                        // If no files found, show empty state
+                        const anyFiles = fileList.querySelectorAll('.user-file-item');
+                        const emptyState = fileList.querySelector('.empty-state');
+                        if (emptyState) {
+                            emptyState.style.display = anyFiles.length > 0 ? 'none' : 'block';
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching user files:', err);
+                });
+        }
+
+        function renderUploadedFile(uploadType, url, defaultFileName, fileSize) {
+            if (!url) return;
+            const fileList = document.getElementById('file-list');
+            const emptyState = fileList.querySelector('.empty-state');
+            if (emptyState) emptyState.style.display = 'none';
+
+            // Avoid duplicate card for identical URL
+            if (fileList.querySelector(`[data-file-url="${url}"]`)) {
+                return;
+            }
+
+            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
+            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
+
+            let sizeText = 'Uploaded';
+            if (fileSize) {
+                sizeText = (fileSize / (1024 * 1024)).toFixed(2) + ' MB';
+            }
+
+            const cardId = 'file-card-' + Math.random().toString(36).substring(2, 10);
+            const item = document.createElement('div');
+            item.className = 'user-file-item';
+            item.id = cardId;
+            item.dataset.fileUrl = url;
+            item.dataset.uploadType = uploadType;
+            item.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid var(--cool-grey);border-radius:8px;margin-bottom:10px;background:#fff;gap:12px;flex-wrap:wrap;transition:all 0.2s ease;';
+            item.innerHTML = `
+                <div style="display:flex;align-items:center;gap:12px;min-width:200px;flex:1;">
+                    <div style="font-size:24px;">${icons[uploadType] || '📄'}</div>
+                    <div style="word-break:break-word;">
+                        <h4 style="margin:0;color:var(--primary);font-size:0.95rem;">${defaultFileName || labels[uploadType] || uploadType}</h4>
+                        <p style="margin:4px 0 0;font-size:0.8rem;color:var(--text-grey);">${labels[uploadType] || uploadType} · ${sizeText}</p>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <a href="${url}" target="_blank" rel="noopener noreferrer" class="badge badge-success" style="text-decoration:none;padding:7px 14px;display:inline-flex;align-items:center;gap:5px;font-size:0.85rem;">
+                        👁️ View in Drive
+                    </a>
+                    <button type="button" class="btn-delete-file" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.85rem;display:inline-flex;align-items:center;gap:4px;transition:all 0.2s;" onmouseover="this.style.background='#fecaca'" onmouseout="this.style.background='#fee2e2'">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+
+            // Attach delete click handler
+            const deleteBtn = item.querySelector('.btn-delete-file');
+            deleteBtn.addEventListener('click', function () {
+                deleteUploadedFile(url, uploadType, cardId);
+            });
+
+            fileList.appendChild(item);
+        }
+
+        // Delete uploaded file from Drive and Google Sheet
+        function deleteUploadedFile(fileUrl, uploadType, cardId) {
+            const regId = localStorage.getItem('userRegId');
+            if (!regId) {
+                alert('Session expired. Please log in again.');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete this file?\nIt will be permanently removed from your registration and Google Drive.')) {
+                return;
+            }
+
+            const card = document.getElementById(cardId) || document.querySelector(`[data-file-url="${fileUrl}"]`);
+            const deleteBtn = card ? card.querySelector('.btn-delete-file') : null;
+            if (deleteBtn) {
+                deleteBtn.disabled = true;
+                deleteBtn.innerHTML = '⏳ Deleting...';
+            }
+
+            const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
+            if (loaderText) loaderText.textContent = 'Deleting file from Drive & Sheet...';
+            loader.style.display = 'flex';
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'delete_file',
+                    regId: regId,
+                    fileUrl: fileUrl,
+                    uploadType: uploadType
+                })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+
+                    if (data.success) {
+                        // Remove file card from UI
+                        if (card) card.remove();
+
+                        // Update localStorage for this type
+                        const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+                        const storageKey = keyMap[uploadType];
+                        if (storageKey) {
+                            const currentUrls = splitUrls(localStorage.getItem(storageKey));
+                            const updatedUrls = currentUrls.filter(u => u !== fileUrl);
+                            localStorage.setItem(storageKey, updatedUrls.join('\n'));
+                        }
+
+                        // Check if file list is now empty
+                        const fileList = document.getElementById('file-list');
+                        const remainingCards = fileList.querySelectorAll('.user-file-item');
+                        if (remainingCards.length === 0) {
+                            const emptyState = fileList.querySelector('.empty-state');
+                            if (emptyState) emptyState.style.display = 'block';
+                        }
+
+                        // Update category status label
+                        const remainingForType = fileList.querySelectorAll(`.user-file-item[data-upload-type="${uploadType}"]`);
+                        const statusMap = {
+                            abstract: 'abstract-upload-status',
+                            poster: 'paper-upload-status',
+                            photo: 'photo-upload-status',
+                            bonafide: 'bonafide-upload-status'
+                        };
+                        const statusEl = document.getElementById(statusMap[uploadType]);
+                        if (statusEl) {
+                            if (remainingForType.length === 0) {
+                                statusEl.innerHTML = '';
+                            } else {
+                                statusEl.innerHTML = `<span style="color:#166534">✅ ${remainingForType.length} file(s) on record</span>`;
+                            }
+                        }
+
+                        alert('File deleted successfully.');
+                    } else {
+                        alert('Could not delete file: ' + (data.message || 'Please try again.'));
+                        if (deleteBtn) {
+                            deleteBtn.disabled = false;
+                            deleteBtn.innerHTML = '🗑️ Delete';
+                        }
+                    }
+                })
+                .catch(err => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+                    console.error('Delete error:', err);
+                    alert('An error occurred while deleting the file.');
+                    if (deleteBtn) {
+                        deleteBtn.disabled = false;
+                        deleteBtn.innerHTML = '🗑️ Delete';
+                    }
+                });
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+            initUploadAreas();
+        });
+
+        // Wire up all upload areas for click + drag-drop
+        function initUploadAreas() {
+            const areas = [
+                { areaId: 'abstract-upload-area', inputId: 'abstract-file-upload', statusId: 'abstract-upload-status' },
+                { areaId: 'paper-upload-area', inputId: 'paper-file-upload', statusId: 'paper-upload-status' },
+                { areaId: 'photo-upload-area', inputId: 'photo-file-upload', statusId: 'photo-upload-status' },
+                { areaId: 'bonafide-upload-area', inputId: 'bonafide-file-upload', statusId: 'bonafide-upload-status' },
+            ];
+
+            areas.forEach(({ areaId, inputId, statusId }) => {
+                const area = document.getElementById(areaId);
+                const input = document.getElementById(inputId);
+                if (!area || !input) return;
+
+                area.addEventListener('click', () => input.click());
+
+                area.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = 'var(--apollo-blue)';
+                });
+                area.addEventListener('dragleave', () => {
+                    area.style.borderColor = 'var(--cool-grey)';
+                });
+                area.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    area.style.borderColor = 'var(--cool-grey)';
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        const label = files.length === 1 ? files[0].name : `${files.length} files selected`;
+                        document.getElementById(statusId).innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${label}</span>`;
+                    }
+                });
+
+                input.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        const label = this.files.length === 1 ? this.files[0].name : `${this.files.length} files selected`;
+                        document.getElementById(statusId).innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${label}</span>`;
+                    }
+                });
+            });
+
+            // Photo selfie input also updates status
+            const selfieInput = document.getElementById('selfie-file-upload');
+            if (selfieInput) {
+                selfieInput.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        document.getElementById('photo-upload-status').innerHTML =
+                            `<span style="color:var(--apollo-blue)">✓ ${this.files[0].name} selected</span>`;
+                    }
+                });
+            }
+        }
+
+        // Trigger a specific file input (used for Browse Photo button)
+        function triggerInput(inputId, uploadType) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            input.dataset.uploadType = uploadType;
+            input.onchange = function () {
+                if (this.files.length > 0) {
+                    const files = Array.from(this.files);
+                    const label = files.length === 1 ? files[0].name : `${files.length} files`;
+                    document.getElementById('photo-upload-status').innerHTML =
+                        `<span style="color:var(--apollo-blue)">✓ ${label} selected — Uploading...</span>`;
+                    uploadFilesArray(files, uploadType, 'photo-upload-status', () => {
+                        input.value = '';
+                    });
+                }
+            };
+            input.click();
+        }
+
+        // Main upload function – called from buttons
+        function uploadFile(uploadType, inputId) {
+            const fileInput = document.getElementById(inputId);
+            const files = fileInput && fileInput.files ? Array.from(fileInput.files) : [];
+
+            if (files.length === 0) {
+                alert('Please select at least one file first.');
+                return;
+            }
+
+            const statusId = inputId.replace('file-upload', 'upload-status')
+                .replace('abstract-', 'abstract-')
+                .replace('paper-', 'paper-')
+                .replace('bonafide-', 'bonafide-');
+
+            uploadFilesArray(files, uploadType, statusId, () => {
+                fileInput.value = '';
+            });
+        }
+
+        // Read file as base64 helper
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const base64Data = e.target.result.split(',')[1];
+                    resolve(base64Data);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Upload multiple files sequentially to prevent timeout or concurrency issues
+        async function uploadFilesArray(files, uploadType, statusId, onComplete) {
+            const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
+            loader.style.display = 'flex';
+
+            const statusEl = document.getElementById(statusId);
+            const regId = localStorage.getItem('userRegId');
+            let successCount = 0;
+            let failureCount = 0;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (loaderText) {
+                    loaderText.textContent = `Uploading ${i + 1} of ${files.length} (${file.name})...`;
+                }
+                if (statusEl) {
+                    statusEl.innerHTML = `<span style="color:var(--apollo-blue)">⏳ Uploading ${i + 1} of ${files.length}: ${file.name}...</span>`;
+                }
+
+                try {
+                    const base64Data = await readFileAsBase64(file);
+                    const payload = {
+                        action: 'upload',
+                        filename: file.name,
+                        mimeType: file.type || 'application/octet-stream',
+                        base64Data: base64Data,
+                        regId: regId,
+                        uploadType: uploadType
+                    };
+
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+
+                    if (data.success && data.url) {
+                        successCount++;
+                        addToFileList(file, uploadType, data.url, data.filename || file.name);
+                    } else {
+                        failureCount++;
+                        console.error('File upload rejected:', file.name, data.message);
+                    }
+                } catch (err) {
+                    failureCount++;
+                    console.error('File upload network/processing error:', file.name, err);
+                }
+            }
+
+            loader.style.display = 'none';
+            if (loaderText) loaderText.textContent = 'Processing...';
+
+            if (statusEl) {
+                if (successCount > 0 && failureCount === 0) {
+                    statusEl.innerHTML = `<span style="color:#166534">✅ ${successCount} file${successCount > 1 ? 's' : ''} uploaded successfully</span>`;
+                } else if (successCount > 0 && failureCount > 0) {
+                    statusEl.innerHTML = `<span style="color:#b45309">⚠️ ${successCount} uploaded, ${failureCount} failed</span>`;
+                } else {
+                    statusEl.innerHTML = `<span style="color:#b91c1c">❌ Upload failed. Please try again.</span>`;
+                    alert('Upload failed. Please check file format and try again.');
+                }
+            }
+
+            if (typeof onComplete === 'function') onComplete();
+        }
+
+        function addToFileList(file, uploadType, url, customName) {
+            const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+            const storageKey = keyMap[uploadType];
+            if (storageKey && url) {
+                const current = splitUrls(localStorage.getItem(storageKey));
+                if (!current.includes(url)) {
+                    current.push(url);
+                    localStorage.setItem(storageKey, current.join('\n'));
+                }
+            }
+
+            const fileName = customName || (file ? file.name : null);
+            const fileSize = file ? file.size : null;
+            renderUploadedFile(uploadType, url, fileName, fileSize);
+        }
+
+        // --- Camera Modal Logic ---
+        let stream = null;
+        let capturedDataUrl = null;
+
+        function openCameraModal() {
+            const modal = document.getElementById('camera-modal');
+            const video = document.getElementById('camera-stream');
+
+            modal.style.display = 'flex';
+            document.getElementById('camera-controls').style.display = 'block';
+            document.getElementById('preview-controls').style.display = 'none';
+            document.getElementById('camera-preview').style.display = 'none';
+            video.style.display = 'block';
+            capturedDataUrl = null;
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+                .then(function (s) {
+                    stream = s;
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function (err) {
+                    console.error("Camera error: ", err);
+                    alert("Could not access camera. Please ensure permissions are granted.");
+                    closeCameraModal();
+                });
+        }
+
+        function closeCameraModal() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            document.getElementById('camera-modal').style.display = 'none';
+        }
+
+        function captureSelfie() {
+            const video = document.getElementById('camera-stream');
+            const canvas = document.getElementById('camera-canvas');
+            const preview = document.getElementById('camera-preview');
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            capturedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            preview.src = capturedDataUrl;
+
+            video.style.display = 'none';
+            preview.style.display = 'block';
+            document.getElementById('camera-controls').style.display = 'none';
+            document.getElementById('preview-controls').style.display = 'block';
+        }
+
+        function retakeSelfie() {
+            document.getElementById('camera-preview').style.display = 'none';
+            document.getElementById('camera-stream').style.display = 'block';
+            document.getElementById('camera-controls').style.display = 'block';
+            document.getElementById('preview-controls').style.display = 'none';
+            capturedDataUrl = null;
+        }
+
+        function uploadSelfie() {
+            if (!capturedDataUrl) return;
+
+            closeCameraModal();
+
+            const loader = document.getElementById('loader');
+            const loaderText = loader.querySelector('p');
+            if (loaderText) loaderText.textContent = 'Uploading selfie...';
+            loader.style.display = 'flex';
+
+            const base64Data = capturedDataUrl.split(',')[1];
+            const timestamp = new Date().getTime();
+            const regId = localStorage.getItem('userRegId');
+            const fileName = 'Selfie_' + regId + '_' + timestamp + '.jpg';
+
+            const payload = {
+                action: 'upload',
+                filename: fileName,
+                mimeType: 'image/jpeg',
+                base64Data: base64Data,
+                regId: regId,
+                uploadType: 'photo'
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+                .then(r => r.json())
+                .then(data => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+                    if (data.success) {
+                        document.getElementById('photo-upload-status').innerHTML = `<span style="color:#166534">✅ Selfie uploaded — <a href="${data.url}" target="_blank">View file</a></span>`;
+                        addToFileList({ name: fileName, size: null }, 'photo', data.url, data.filename || fileName);
+                    } else {
+                        alert('Upload failed: ' + data.message);
+                    }
+                })
+                .catch(err => {
+                    loader.style.display = 'none';
+                    if (loaderText) loaderText.textContent = 'Processing...';
+                    alert('An error occurred during upload.');
+                    console.error(err);
+                });
+        }
+    </script>
+</body>
+
+</html>

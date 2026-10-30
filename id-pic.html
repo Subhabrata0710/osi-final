@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload ID Picture | OSICON Kolkata 2026</title>
+    <meta name="description" content="Upload your ID photograph or selfie for OSICON Kolkata 2026 delegate badge.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .id-upload-wrapper {
+            padding: 130px 15px 70px;
+            min-height: 85vh;
+            background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .id-upload-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 24, 68, 0.08);
+            border: 1px solid #e2e8f0;
+            max-width: 620px;
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .id-upload-header {
+            background: linear-gradient(135deg, #001844 0%, #003399 100%);
+            color: #ffffff;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .id-upload-header h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .id-upload-header p {
+            color: #d4af37;
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .id-upload-body {
+            padding: 30px 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        .form-control-custom:focus {
+            outline: none;
+            border-color: #003399;
+            box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .id-upload-body {
+                padding: 24px 18px;
+            }
+        }
+
+        .photo-picker-box {
+            border: 2px dashed #94a3b8;
+            border-radius: 12px;
+            padding: 24px 16px;
+            text-align: center;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .photo-picker-box:hover {
+            border-color: #003399;
+            background: #f1f5f9;
+        }
+
+        .photo-preview-container {
+            width: 160px;
+            height: 190px;
+            margin: 0 auto 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #e2e8f0;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffffff;
+            position: relative;
+        }
+
+        .photo-preview-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .upload-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .btn-action-primary {
+            background: #001844;
+            color: #ffffff;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-action-primary:hover {
+            background: #003399;
+            box-shadow: 0 4px 12px rgba(0, 24, 68, 0.2);
+        }
+
+        .btn-action-gold {
+            background: #d4af37;
+            color: #001844;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-action-gold:hover {
+            background: #c29d2b;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-submit-main {
+            background: linear-gradient(135deg, #001844 0%, #003399 100%);
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(0, 24, 68, 0.2);
+        }
+
+        .btn-submit-main:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 24, 68, 0.3);
+        }
+
+        .btn-submit-main:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .status-box {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .status-box.success {
+            display: block;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .status-box.error {
+            display: block;
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Camera Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .modal-content-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .camera-viewport {
+            width: 100%;
+            aspect-ratio: 3/4;
+            max-height: 360px;
+            background: #000000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            margin: 16px 0;
+        }
+
+        .camera-viewport video,
+        .camera-viewport img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .helper-text {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header / Nav -->
+    <div id="marquee-placeholder"></div>
+    <div id="nav-placeholder"></div>
+
+    <main class="id-upload-wrapper">
+        <div class="id-upload-card">
+            <div class="id-upload-header">
+                <h2>Delegate ID Photograph</h2>
+                <p>Upload or Capture Photo for Conference Delegate ID</p>
+            </div>
+
+            <div class="id-upload-body">
+                <form id="id-pic-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="delegate-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="delegate-name" class="form-control-custom"
+                            placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="delegate-email">Email ID <span class="required">*</span></label>
+                        <input type="email" id="delegate-email" class="form-control-custom"
+                            placeholder="name@example.com" required>
+                        <div class="helper-text">Confirmation email will be delivered to this address.</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="delegate-reg-id">Registration ID <span
+                                    style="font-weight: normal; color: #64748b;">(Optional)</span></label>
+                            <input type="text" id="delegate-reg-id" class="form-control-custom"
+                                placeholder="e.g. OSI-1024">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delegate-phone">Phone Number <span
+                                    style="font-weight: normal; color: #64748b;">(Optional)</span></label>
+                            <input type="tel" id="delegate-phone" class="form-control-custom"
+                                placeholder="10-digit mobile number">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Your Photograph / Selfie <span class="required">*</span></label>
+
+                        <div class="photo-preview-container" id="preview-container">
+                            <img id="image-preview" alt="ID Photo Preview" src="">
+                        </div>
+
+                        <div class="photo-picker-box" id="drop-zone"
+                            onclick="document.getElementById('file-input').click()">
+                            <p style="margin: 0; font-weight: 600; color: #1e293b;" id="drop-text">Click to choose image
+                                or drag &amp; drop</p>
+                            <p class="helper-text" style="margin-bottom: 0;">Supports JPG, PNG or WEBP (Max 5MB)</p>
+                        </div>
+
+                        <!-- Hidden File Inputs -->
+                        <input type="file" id="file-input" accept="image/*" style="display: none;"
+                            onchange="handleFileChosen(event)">
+                        <!-- Mobile direct camera input -->
+                        <input type="file" id="mobile-selfie-input" accept="image/*" capture="user"
+                            style="display: none;" onchange="handleFileChosen(event)">
+
+                        <div class="upload-actions-grid">
+                            <button type="button" class="btn-action-primary"
+                                onclick="document.getElementById('file-input').click()">
+                                Browse File
+                            </button>
+                            <button type="button" class="btn-action-gold" onclick="openSelfieCamera()">
+                                Take Selfie
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn-submit-main">
+                        Submit ID Photograph
+                    </button>
+                </form>
+
+                <div id="status-message" class="status-box"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Camera Modal (for live webcam capture) -->
+    <div id="camera-modal" class="modal-overlay">
+        <div class="modal-content-card">
+            <h3 style="margin: 0; color: #001844; font-size: 1.4rem;">Take a Selfie</h3>
+            <p class="helper-text" style="margin-top: 4px;">Look straight at the camera with clear lighting</p>
+
+            <div class="camera-viewport">
+                <video id="camera-video" autoplay playsinline></video>
+                <img id="modal-preview-img" style="display: none;" alt="Selfie preview">
+                <canvas id="camera-canvas" style="display: none;"></canvas>
+            </div>
+
+            <div id="camera-btn-group">
+                <button type="button" class="btn-action-gold" style="width: 100%; margin-bottom: 10px;"
+                    onclick="snapPhoto()">
+                    Capture Photo
+                </button>
+                <button type="button" class="btn-action-primary" style="width: 100%; background: #64748b;"
+                    onclick="closeSelfieCamera()">
+                    Cancel
+                </button>
+            </div>
+
+            <div id="preview-btn-group" style="display: none;">
+                <button type="button" class="btn-action-primary" style="width: 100%; margin-bottom: 10px;"
+                    onclick="confirmCapturedPhoto()">
+                    Use This Photo
+                </button>
+                <button type="button" class="btn-action-gold" style="width: 100%; background: #e2e8f0; color: #1e293b;"
+                    onclick="retakePhoto()">
+                    Retake
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+
+        let selectedBase64 = null;
+        let selectedMimeType = 'image/jpeg';
+        let selectedFileName = '';
+        let mediaStream = null;
+        let capturedDataUrl = null;
+
+        // Auto-fill from localStorage if user is already logged in on dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedName = localStorage.getItem('userName');
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedPhone = localStorage.getItem('userPhone');
+            const storedRegId = localStorage.getItem('userRegId');
+
+            if (storedName) document.getElementById('delegate-name').value = storedName;
+            if (storedEmail) document.getElementById('delegate-email').value = storedEmail;
+            if (storedPhone) document.getElementById('delegate-phone').value = storedPhone;
+            if (storedRegId) document.getElementById('delegate-reg-id').value = storedRegId;
+        });
+
+        // File selection handler
+        function handleFileChosen(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showStatus('Please select a valid image file (JPG, PNG, or WEBP).', 'error');
+                return;
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                showStatus('File size must be less than 5MB.', 'error');
+                return;
+            }
+
+            selectedFileName = file.name;
+            selectedMimeType = file.type || 'image/jpeg';
+
+            const reader = new FileReader();
+            reader.onload = function (evt) {
+                const dataUrl = evt.target.result;
+                selectedBase64 = dataUrl.split(',')[1];
+                displayPreview(dataUrl, file.name);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayPreview(dataUrl, name) {
+            const previewContainer = document.getElementById('preview-container');
+            const imagePreview = document.getElementById('image-preview');
+            const dropText = document.getElementById('drop-text');
+
+            imagePreview.src = dataUrl;
+            previewContainer.style.display = 'block';
+            dropText.textContent = name ? `Selected: ${name}` : 'Photo selected';
+            hideStatus();
+        }
+
+        // Live Camera Handlers
+        function isMobileDevice() {
+            return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        }
+
+        function openSelfieCamera() {
+            // On mobile devices, triggering native selfie camera input gives better performance
+            if (isMobileDevice() && !navigator.mediaDevices?.getUserMedia) {
+                document.getElementById('mobile-selfie-input').click();
+                return;
+            }
+
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                document.getElementById('mobile-selfie-input').click();
+                return;
+            }
+
+            const modal = document.getElementById('camera-modal');
+            const video = document.getElementById('camera-video');
+            const previewImg = document.getElementById('modal-preview-img');
+            const cameraBtns = document.getElementById('camera-btn-group');
+            const previewBtns = document.getElementById('preview-btn-group');
+
+            video.style.display = 'block';
+            previewImg.style.display = 'none';
+            cameraBtns.style.display = 'block';
+            previewBtns.style.display = 'none';
+            modal.style.display = 'flex';
+
+            navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'user', width: { ideal: 720 }, height: { ideal: 960 } },
+                audio: false
+            })
+                .then(stream => {
+                    mediaStream = stream;
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(err => {
+                    console.warn('Webcam access error:', err);
+                    closeSelfieCamera();
+                    // Fallback to mobile camera file input
+                    document.getElementById('mobile-selfie-input').click();
+                });
+        }
+
+        function snapPhoto() {
+            const video = document.getElementById('camera-video');
+            const canvas = document.getElementById('camera-canvas');
+            const previewImg = document.getElementById('modal-preview-img');
+
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            capturedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            previewImg.src = capturedDataUrl;
+
+            video.style.display = 'none';
+            previewImg.style.display = 'block';
+            document.getElementById('camera-btn-group').style.display = 'none';
+            document.getElementById('preview-btn-group').style.display = 'block';
+        }
+
+        function retakePhoto() {
+            document.getElementById('camera-video').style.display = 'block';
+            document.getElementById('modal-preview-img').style.display = 'none';
+            document.getElementById('camera-btn-group').style.display = 'block';
+            document.getElementById('preview-btn-group').style.display = 'none';
+            capturedDataUrl = null;
+        }
+
+        function confirmCapturedPhoto() {
+            if (!capturedDataUrl) return;
+
+            selectedBase64 = capturedDataUrl.split(',')[1];
+            selectedMimeType = 'image/jpeg';
+            selectedFileName = 'Selfie_' + Date.now() + '.jpg';
+
+            displayPreview(capturedDataUrl, 'Camera Selfie');
+            closeSelfieCamera();
+        }
+
+        function closeSelfieCamera() {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            document.getElementById('camera-modal').style.display = 'none';
+            capturedDataUrl = null;
+        }
+
+        // Drag and drop support
+        const dropZone = document.getElementById('drop-zone');
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#001844';
+                dropZone.style.background = '#e2e8f0';
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#94a3b8';
+                dropZone.style.background = '#f8fafc';
+            });
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files && files.length > 0) {
+                handleFileChosen({ target: { files: files } });
+            }
+        });
+
+        // Form Submit Handler
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('delegate-name').value.trim();
+            const email = document.getElementById('delegate-email').value.trim();
+            const regId = document.getElementById('delegate-reg-id').value.trim();
+            const phone = document.getElementById('delegate-phone').value.trim();
+
+            if (!name || !email) {
+                showStatus('Please provide both Name and Email ID.', 'error');
+                return;
+            }
+
+            if (!selectedBase64) {
+                showStatus('Please upload an image or take a selfie.', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Uploading ID Photograph...';
+            showStatus('Uploading your photograph and saving records...', 'success');
+
+            const payload = {
+                action: 'id_pic',
+                name: name,
+                email: email,
+                regId: regId,
+                phone: phone,
+                filename: selectedFileName || ('IDPic_' + (regId || 'User') + '_' + Date.now() + '.jpg'),
+                mimeType: selectedMimeType,
+                base64Data: selectedBase64
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showStatus('ID photograph successfully uploaded! A confirmation email has been sent to ' + email + '.', 'success');
+                    submitBtn.textContent = 'Uploaded Successfully';
+
+                    // Save locally for user convenience
+                    localStorage.setItem('userName', name);
+                    localStorage.setItem('userEmail', email);
+                    if (regId) localStorage.setItem('userRegId', regId);
+                    if (phone) localStorage.setItem('userPhone', phone);
+                    if (result.fileUrl) localStorage.setItem('photoUrl', result.fileUrl);
+
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Upload Another Photo';
+                    }, 3000);
+                } else {
+                    showStatus(result.message || 'Failed to upload photo. Please try again.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit ID Photograph';
+                }
+            } catch (err) {
+                console.error('Upload Error:', err);
+                showStatus('An error occurred during upload. Please check your network connection and try again.', 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit ID Photograph';
+            }
+        }
+
+        function showStatus(text, type) {
+            const statusBox = document.getElementById('status-message');
+            statusBox.className = 'status-box ' + type;
+            statusBox.textContent = text;
+        }
+
+        function hideStatus() {
+            const statusBox = document.getElementById('status-message');
+            statusBox.className = 'status-box';
+            statusBox.textContent = '';
+        }
+    </script>
+</body>
+
+</html>
