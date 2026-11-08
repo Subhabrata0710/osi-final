@@ -479,36 +479,42 @@
 
                     <label class="category-card">
                         <input type="checkbox" id="workshop-robert" class="workshop-checkbox"
-                            value="Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]" data-price="5000">
-                        <span class="cat-label">Workshop: T SCAN BASED OCCLUSION [Dr. Robert Kerstein]</span>
+                            value="Masterclass: T-scan based Occlusion [Dr Robert Kerstein]" data-original-price="5000"
+                            data-price="5000">
+                        <span class="cat-label">Masterclass: T-scan based Occlusion [Dr Robert Kerstein]</span>
                         <span class="cat-price">₹5,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-sudeep" class="workshop-checkbox"
-                            value="Workshop: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN INSIDE THE SOFTWARE [MR. SUDEEP PAUL]"
-                            data-price="3000">
-                        <span class="cat-label">Masterclass: FROM SCANS TO STRATEGY: ARCHITECTING A GUIDED IMPLANT PLAN
-                            INSIDE THE
-                            SOFTWARE [MR. SUDEEP PAUL]</span>
+                            value="Masterclass: From Scans to Strategy: Architecting A Guided Implant Plan Inside the Software [Dr Sudeep Paul]"
+                            data-original-price="3000" data-price="3000">
+                        <span class="cat-label">Masterclass: From Scans to Strategy: Architecting A Guided Implant Plan
+                            Inside the Software [Dr Sudeep Paul]</span>
                         <span class="cat-price">₹3,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-zyrax-lecture" class="workshop-checkbox"
-                            value="Workshop: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN & TEAM]"
-                            data-price="2000">
-                        <span class="cat-label">Lecture: ZyRAX Protocol:
-                            Next-Gen Zygomatic Solution
-                            for Severe Maxillary Atrophy [DR. GUNASEELAN RAJAN
-                            & TEAM]</span>
+                            value="Masterclass: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe Maxillary Atrophy [Dr Gunaseelan Rajan, Dr Gaurav Khemaria]"
+                            data-original-price="2000" data-price="2000">
+                        <span class="cat-label">Masterclass: ZyRAX Protocol: Next-Gen Zygomatic Solution for Severe
+                            Maxillary Atrophy [Dr Gunaseelan Rajan, Dr Gaurav Khemaria]</span>
                         <span class="cat-price">₹2,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-prabh" class="workshop-checkbox"
-                            value="Workshop: Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal Lecture]"
-                            data-price="3000">
-                        <span class="cat-label">Managing Emergence Profile in Immediate Implant Cases [Parbh Grewal
-                            Lecture]</span>
+                            value="Masterclass: Managing Emergence Profile in Immediate Implant Cases [Dr Prabh Grewal]"
+                            data-original-price="3000" data-price="3000">
+                        <span class="cat-label">Masterclass: Managing Emergence Profile in Immediate Implant Cases [Dr
+                            Prabh Grewal]</span>
                         <span class="cat-price">₹3,000</span>
+                    </label>
+                    <label class="category-card">
+                        <input type="checkbox" id="workshop-dhruv" class="workshop-checkbox"
+                            value="Masterclass: Beyond Osseointergration: Occlusion and Implant Complications [Dr Dhruv Arora]"
+                            data-original-price="0" data-price="0">
+                        <span class="cat-label">Masterclass: Beyond Osseointergration: Occlusion and Implant
+                            Complications [Dr Dhruv Arora]</span>
+                        <span class="cat-price">FREE (₹0)</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-bhandari-lecture" class="workshop-checkbox"
@@ -910,6 +916,54 @@
             })
             .catch(err => console.error('Error fetching capacity', err));
 
+        // ---- Promo Logic: Flat INR 500 for all workshops for today, tomorrow, and day after tomorrow ----
+        function isWorkshopPromoActive() {
+            // Local date check: active on Nov 8, Nov 9, and Nov 10, 2026 (or relative today, tomorrow, day after tomorrow)
+            const now = new Date();
+            // Start of today: 2026-11-08 00:00:00
+            const promoStart = new Date(2026, 10, 8, 0, 0, 0); // Month is 0-indexed (10 = November)
+            // End of day after tomorrow: 2026-11-10 23:59:59.999
+            const promoEnd = new Date(2026, 10, 10, 23, 59, 59, 999);
+            return now >= promoStart && now <= promoEnd;
+        }
+
+        function applyWorkshopPromotionalPrices() {
+            const promoActive = isWorkshopPromoActive();
+            const workshopCheckboxes = document.querySelectorAll('.workshop-checkbox');
+
+            workshopCheckboxes.forEach(cb => {
+                // Ensure original price is stored
+                if (!cb.dataset.originalPrice) {
+                    cb.dataset.originalPrice = cb.getAttribute('data-price') || '0';
+                }
+                const originalPrice = parseInt(cb.dataset.originalPrice);
+
+                let currentPrice = originalPrice;
+                // If promo is active, all workshops become flat INR 500
+                if (promoActive) {
+                    currentPrice = 500;
+                }
+
+                cb.setAttribute('data-price', currentPrice);
+
+                // Update the visible price label next to the checkbox
+                const card = cb.closest('.category-card');
+                if (card) {
+                    const priceSpan = card.querySelector('.cat-price');
+                    if (priceSpan) {
+                        if (promoActive) {
+                            priceSpan.innerHTML = `<span style="text-decoration: line-through; opacity: 0.6; font-size: 0.85em; margin-right: 4px;">₹${new Intl.NumberFormat('en-IN').format(originalPrice)}</span> ₹500 <span style="background: #e11d48; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: 700;">Limited Offer</span>`;
+                        } else {
+                            priceSpan.innerText = originalPrice === 0 ? 'FREE (₹0)' : '₹' + new Intl.NumberFormat('en-IN').format(originalPrice);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Apply immediately upon script load
+        applyWorkshopPromotionalPrices();
+
         // ---- Special coupon: flat Rs 11,000 = Registration + any ONE lecture ----
         const LECTURE_COUPON = 'LECTURE11K0';
         const LECTURE_COUPON_PRICE = 11000;
@@ -1018,6 +1072,7 @@
             const workshopRobert = document.getElementById('workshop-robert');
             const workshopSudeep = document.getElementById('workshop-sudeep');
             const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
+            const workshopDhruv = document.getElementById('workshop-dhruv');
             if (workshopOsseo && workshopOsseo.checked) {
                 amount += parseInt(workshopOsseo.getAttribute('data-price'));
             }
@@ -1056,6 +1111,9 @@
             }
             if (workshopSudeep && workshopSudeep.checked) {
                 amount += parseInt(workshopSudeep.getAttribute('data-price'));
+            }
+            if (workshopDhruv && workshopDhruv.checked) {
+                amount += parseInt(workshopDhruv.getAttribute('data-price'));
             }
             if (workshopBhandariLecture && workshopBhandariLecture.checked) {
                 amount += parseInt(workshopBhandariLecture.getAttribute('data-price'));
@@ -1280,6 +1338,7 @@
             const workshopRobert = document.getElementById('workshop-robert');
             const workshopSudeep = document.getElementById('workshop-sudeep');
             const workshopZyraxLecture = document.getElementById('workshop-zyrax-lecture');
+            const workshopDhruv = document.getElementById('workshop-dhruv');
 
             if (workshopOsseo && workshopOsseo.checked) {
                 amountInInr += parseInt(workshopOsseo.getAttribute('data-price'));
@@ -1340,6 +1399,10 @@
             if (workshopZyraxLecture && workshopZyraxLecture.checked) {
                 amountInInr += parseInt(workshopZyraxLecture.getAttribute('data-price'));
                 categoryLabel += " + " + workshopZyraxLecture.value;
+            }
+            if (workshopDhruv && workshopDhruv.checked) {
+                amountInInr += parseInt(workshopDhruv.getAttribute('data-price'));
+                categoryLabel += " + " + workshopDhruv.value;
             }
 
 
