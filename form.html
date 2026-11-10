@@ -930,28 +930,29 @@
         function applyWorkshopPromotionalPrices() {
             const promoActive = isWorkshopPromoActive();
             const workshopCheckboxes = document.querySelectorAll('.workshop-checkbox');
-
             workshopCheckboxes.forEach(cb => {
-                // Ensure original price is stored
+        // Ensure original price is stored
                 if (!cb.dataset.originalPrice) {
                     cb.dataset.originalPrice = cb.getAttribute('data-price') || '0';
                 }
                 const originalPrice = parseInt(cb.dataset.originalPrice);
 
+        // Promo applies only to masterclasses that have a price (free ones stay free)
+                const isMasterclass = (cb.value || '').startsWith('Masterclass:');
+                const promoApplies = promoActive && isMasterclass && originalPrice > 0;
+                
                 let currentPrice = originalPrice;
-                // If promo is active, all workshops become flat INR 500
-                if (promoActive) {
+                if (promoApplies) {
                     currentPrice = 500;
                 }
-
                 cb.setAttribute('data-price', currentPrice);
 
-                // Update the visible price label next to the checkbox
+        // Update the visible price label next to the checkbox
                 const card = cb.closest('.category-card');
                 if (card) {
                     const priceSpan = card.querySelector('.cat-price');
                     if (priceSpan) {
-                        if (promoActive) {
+                        if (promoApplies) {
                             priceSpan.innerHTML = `<span style="text-decoration: line-through; opacity: 0.6; font-size: 0.85em; margin-right: 4px;">₹${new Intl.NumberFormat('en-IN').format(originalPrice)}</span> ₹500 <span style="background: #e11d48; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: 700;">Limited Offer</span>`;
                         } else {
                             priceSpan.innerText = originalPrice === 0 ? 'FREE (₹0)' : '₹' + new Intl.NumberFormat('en-IN').format(originalPrice);
