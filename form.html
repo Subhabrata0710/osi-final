@@ -923,7 +923,7 @@
             // Start of today: 2026-11-08 00:00:00
             const promoStart = new Date(2026, 10, 8, 0, 0, 0); // Month is 0-indexed (10 = November)
             // End of day after tomorrow: 2026-11-10 23:59:59.999
-            const promoEnd = new Date(2026, 10, 10, 23, 59, 59, 999);
+            const promoEnd = new Date(2026, 10, 9, 23, 59, 59, 999);
             return now >= promoStart && now <= promoEnd;
         }
 
