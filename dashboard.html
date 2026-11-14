@@ -159,6 +159,66 @@
                 </div>
             </div>
 
+            <!-- Third Row: PG Case Report / PG Research / Delegate Paper -->
+            <div class="dashboard-grid" style="margin-top: 24px;">
+                <!-- PG Paper - Case Report Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📝 PG Paper - Case Report</h3>
+                        <p>Submit your PG case report (PDF only)</p>
+                    </div>
+                    <div class="upload-area" id="pgcase-upload-area">
+                        <div class="upload-icon">📝</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="pgcase-file-upload" class="file-input" accept=".pdf" multiple>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('pgcase', 'pgcase-file-upload')"
+                        data-testid="upload-pgcase-btn">
+                        Upload Case Report
+                    </button>
+                    <p id="pgcase-upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- PG Paper - Research Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🔬 PG Paper - Research</h3>
+                        <p>Submit your PG research paper (PDF only)</p>
+                    </div>
+                    <div class="upload-area" id="pgresearch-upload-area">
+                        <div class="upload-icon">🔬</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="pgresearch-file-upload" class="file-input" accept=".pdf" multiple>
+                    </div>
+                    <button class="btn btn-gold w-100" onclick="uploadFile('pgresearch', 'pgresearch-file-upload')"
+                        data-testid="upload-pgresearch-btn">
+                        Upload Research Paper
+                    </button>
+                    <p id="pgresearch-upload-status" class="upload-status"></p>
+                </div>
+
+                <!-- Delegate Paper Upload -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📑 Delegate Paper</h3>
+                        <p>Submit your delegate paper (PDF only)</p>
+                    </div>
+                    <div class="upload-area" id="delegatepaper-upload-area">
+                        <div class="upload-icon">📑</div>
+                        <p><strong>Click to select</strong> or drag and drop</p>
+                        <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
+                        <input type="file" id="delegatepaper-file-upload" class="file-input" accept=".pdf" multiple>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="uploadFile('delegatepaper', 'delegatepaper-file-upload')"
+                        data-testid="upload-delegatepaper-btn">
+                        Upload Delegate Paper
+                    </button>
+                    <p id="delegatepaper-upload-status" class="upload-status"></p>
+                </div>
+            </div>
+
             <!-- Payment Status Compact Bar -->
             <div class="payment-status-bar" style="margin-top: 24px;">
                 <span class="payment-status-label">✅ Registration Status</span>
@@ -286,7 +346,10 @@
                 { type: 'abstract', key: 'abstractUrl', label: 'Abstract' },
                 { type: 'poster', key: 'posterUrl', label: 'Presentation' },
                 { type: 'photo', key: 'photoUrl', label: 'Photo' },
-                { type: 'bonafide', key: 'bonafideUrl', label: 'Bonafide Cert' }
+                { type: 'bonafide', key: 'bonafideUrl', label: 'Bonafide Cert' },
+                { type: 'pgcase', key: 'pgCaseUrl', label: 'PG Case Report' },
+                { type: 'pgresearch', key: 'pgResearchUrl', label: 'PG Research Paper' },
+                { type: 'delegatepaper', key: 'delegatePaperUrl', label: 'Delegate Paper' }
             ];
 
             // 1. Immediately show cached files from localStorage if present
@@ -323,7 +386,10 @@
                                 abstract: 'abstract-upload-status',
                                 poster: 'paper-upload-status',
                                 photo: 'photo-upload-status',
-                                bonafide: 'bonafide-upload-status'
+                                bonafide: 'bonafide-upload-status',
+                                pgcase: 'pgcase-upload-status',
+                                pgresearch: 'pgresearch-upload-status',
+                                delegatepaper: 'delegatepaper-upload-status'
                             };
                             const statusEl = document.getElementById(statusMap[item.type]);
                             if (statusEl) {
@@ -359,8 +425,8 @@
                 return;
             }
 
-            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜' };
-            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert' };
+            const icons = { abstract: '📄', poster: '📊', photo: '🖼️', bonafide: '📜', pgcase: '📝', pgresearch: '🔬', delegatepaper: '📑' };
+            const labels = { abstract: 'Abstract', poster: 'Presentation', photo: 'Photo', bonafide: 'Bonafide Cert', pgcase: 'PG Case Report', pgresearch: 'PG Research Paper', delegatepaper: 'Delegate Paper' };
 
             let sizeText = 'Uploaded';
             if (fileSize) {
@@ -444,7 +510,7 @@
                         if (card) card.remove();
 
                         // Update localStorage for this type
-                        const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+                        const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl', pgcase: 'pgCaseUrl', pgresearch: 'pgResearchUrl', delegatepaper: 'delegatePaperUrl' };
                         const storageKey = keyMap[uploadType];
                         if (storageKey) {
                             const currentUrls = splitUrls(localStorage.getItem(storageKey));
@@ -466,7 +532,10 @@
                             abstract: 'abstract-upload-status',
                             poster: 'paper-upload-status',
                             photo: 'photo-upload-status',
-                            bonafide: 'bonafide-upload-status'
+                            bonafide: 'bonafide-upload-status',
+                                pgcase: 'pgcase-upload-status',
+                                pgresearch: 'pgresearch-upload-status',
+                                delegatepaper: 'delegatepaper-upload-status'
                         };
                         const statusEl = document.getElementById(statusMap[uploadType]);
                         if (statusEl) {
@@ -510,6 +579,9 @@
                 { areaId: 'paper-upload-area', inputId: 'paper-file-upload', statusId: 'paper-upload-status' },
                 { areaId: 'photo-upload-area', inputId: 'photo-file-upload', statusId: 'photo-upload-status' },
                 { areaId: 'bonafide-upload-area', inputId: 'bonafide-file-upload', statusId: 'bonafide-upload-status' },
+                { areaId: 'pgcase-upload-area', inputId: 'pgcase-file-upload', statusId: 'pgcase-upload-status' },
+                { areaId: 'pgresearch-upload-area', inputId: 'pgresearch-file-upload', statusId: 'pgresearch-upload-status' },
+                { areaId: 'delegatepaper-upload-area', inputId: 'delegatepaper-file-upload', statusId: 'delegatepaper-upload-status' },
             ];
 
             areas.forEach(({ areaId, inputId, statusId }) => {
@@ -679,7 +751,7 @@
         }
 
         function addToFileList(file, uploadType, url, customName) {
-            const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl' };
+            const keyMap = { abstract: 'abstractUrl', poster: 'posterUrl', photo: 'photoUrl', bonafide: 'bonafideUrl', pgcase: 'pgCaseUrl', pgresearch: 'pgResearchUrl', delegatepaper: 'delegatePaperUrl' };
             const storageKey = keyMap[uploadType];
             if (storageKey && url) {
                 const current = splitUrls(localStorage.getItem(storageKey));

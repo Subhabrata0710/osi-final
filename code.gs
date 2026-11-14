@@ -88,7 +88,8 @@ function handleFileUpload(data) {
     // Save to Google Drive if UPLOAD_FOLDER_ID is configured
     if (UPLOAD_FOLDER_ID && UPLOAD_FOLDER_ID.trim().length > 0) {
       var parentFolder = DriveApp.getFolderById(UPLOAD_FOLDER_ID);
-      var uploadFolderName = data.uploadType === 'poster' ? 'Poster_Uploads' : (data.uploadType === 'photo' ? 'Photo_Uploads' : (data.uploadType === 'bonafide' ? 'Bonafide_Uploads' : 'Abstract_Uploads'));
+      var folderNames = { poster: 'Poster_Uploads', photo: 'Photo_Uploads', bonafide: 'Bonafide_Uploads', pgcase: 'PG_Case_Report_Uploads', pgresearch: 'PG_Research_Uploads', delegatepaper: 'Delegate_Paper_Uploads' };
+      var uploadFolderName = folderNames[data.uploadType] || 'Abstract_Uploads';
       var uploadFolders = parentFolder.getFoldersByName(uploadFolderName);
       var uploadFolder = uploadFolders.hasNext() ? uploadFolders.next() : parentFolder.createFolder(uploadFolderName);
       
@@ -116,6 +117,9 @@ function handleFileUpload(data) {
             if (data.uploadType === 'poster') colIndex = 19;     // Column S (19)
             else if (data.uploadType === 'photo') colIndex = 20; // Column T (20)
             else if (data.uploadType === 'bonafide') colIndex = 21; // Column U (21)
+            else if (data.uploadType === 'pgcase') colIndex = 22;      // Column V (22)
+            else if (data.uploadType === 'pgresearch') colIndex = 23;  // Column W (23)
+            else if (data.uploadType === 'delegatepaper') colIndex = 24; // Column X (24)
 
             var existingVal = (allData[i][colIndex - 1] || '').toString().trim();
             var newVal = '';
@@ -169,7 +173,10 @@ function logUploadToSheet(uploadType, info) {
       abstract: 'Abstracts_Log',
       poster:   'Papers_Log',
       photo:    'Photos_Log',
-      bonafide: 'Bonafide_Log'
+      bonafide: 'Bonafide_Log',
+      pgcase:       'PG_Case_Report_Log',
+      pgresearch:   'PG_Research_Log',
+      delegatepaper:'Delegate_Paper_Log'
     };
     var sheetName = sheetNames[uploadType] || (uploadType + '_Log');
 
@@ -249,13 +256,19 @@ function sendUploadConfirmationEmail(uploadType, info) {
       abstract: 'Abstract',
       poster:   'Paper / Presentation',
       photo:    'Photo / Selfie',
-      bonafide: 'Bonafide Certificate'
+      bonafide: 'Bonafide Certificate',
+      pgcase:       'PG Paper - Case Report',
+      pgresearch:   'PG Paper - Research',
+      delegatepaper:'Delegate Paper'
     };
     var typeEmoji = {
       abstract: '📄',
       poster:   '📊',
       photo:    '🖼️',
-      bonafide: '📜'
+      bonafide: '📜',
+      pgcase:       '📝',
+      pgresearch:   '🔬',
+      delegatepaper:'📑'
     };
     var typeLabel = typeLabels[uploadType] || uploadType;
     var emoji     = typeEmoji[uploadType] || '📁';
@@ -667,6 +680,9 @@ function handleFileDelete(data) {
         else if (uploadType === 'poster') colIndices = [19];
         else if (uploadType === 'photo') colIndices = [20];
         else if (uploadType === 'bonafide') colIndices = [21];
+        else if (uploadType === 'pgcase') colIndices = [22];
+        else if (uploadType === 'pgresearch') colIndices = [23];
+        else if (uploadType === 'delegatepaper') colIndices = [24];
 
         colIndices.forEach(function(col) {
           var val = (allData[i][col - 1] || '').toString().trim();
@@ -790,7 +806,10 @@ function handleLoginLookup(params) {
           abstractUrl: row[17] || '',
           posterUrl: row[18] || '',
           photoUrl: row[19] || '',
-          bonafideUrl: row[20] || ''
+          bonafideUrl: row[20] || '',
+          pgCaseUrl: row[21] || '',
+          pgResearchUrl: row[22] || '',
+          delegatePaperUrl: row[23] || ''
         }
       });
     }
@@ -828,7 +847,10 @@ function handleGetUserFiles(params) {
           abstractUrl: row[17] || '',
           posterUrl: row[18] || '',
           photoUrl: row[19] || '',
-          bonafideUrl: row[20] || ''
+          bonafideUrl: row[20] || '',
+          pgCaseUrl: row[21] || '',
+          pgResearchUrl: row[22] || '',
+          delegatePaperUrl: row[23] || ''
         }
       });
     }
