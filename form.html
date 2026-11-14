@@ -459,30 +459,30 @@
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-lecture-komal" class="workshop-checkbox"
-                            value="Workshop: Dr Komal Mazumdar precon workshop Lecture" data-price="2000">
-                        <span class="cat-label">Dr Komal Mazumdar precon workshop Lecture</span>
+                            value="Workshop: Dr Komal Majumdar precon workshop Lecture" data-price="2000">
+                        <span class="cat-label">Dr Komal Majumdar precon workshop Lecture</span>
                         <span class="cat-price">₹2,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-hands-on-komal" class="workshop-checkbox"
-                            value="Workshop: Dr Komal Mazumdar precon workshop lecture with hands on" data-price="5000">
-                        <span class="cat-label">Dr Komal Mazumdar precon workshop lecture with hands on</span>
+                            value="Workshop: Dr Komal Majumdar precon workshop lecture with hands on" data-price="5000">
+                        <span class="cat-label">Dr Komal Majumdar precon workshop lecture with hands on</span>
                         <span class="cat-price">₹5,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-udatta" class="workshop-checkbox"
-                            value="Workshop: Udatta's Tips & Tricks in Implants-Part I: Anterior Single Tooth, 3i Tapered & Narrow Ridge Cases with Vertical Defects [DR. UDATTA KHER]"
+                            value="Workshop: TeethXpress – Full arch immediate load workflows for digital age [Dr Udatta Kher]"
                             data-price="3000">
-                        <span class="cat-label">Dr. Udatta Kher's precon workshop lecture with hands on</span>
+                        <span class="cat-label">TeethXpress – Full arch immediate load workflows for digital age [Dr Udatta Kher]</span>
                         <span class="cat-price">₹3,000</span>
                     </label>
 
                     <label class="category-card">
                         <input type="checkbox" id="workshop-robert" class="workshop-checkbox"
-                            value="Masterclass: T-scan based Occlusion [Dr Robert Kerstein]" data-original-price="5000"
-                            data-price="5000">
+                            value="Masterclass: T-scan based Occlusion [Dr Robert Kerstein]" data-original-price="3000"
+                            data-price="3000">
                         <span class="cat-label">Masterclass: T-scan based Occlusion [Dr Robert Kerstein]</span>
-                        <span class="cat-price">₹5,000</span>
+                        <span class="cat-price">₹3,000</span>
                     </label>
                     <label class="category-card">
                         <input type="checkbox" id="workshop-sudeep" class="workshop-checkbox"
@@ -885,7 +885,7 @@
                             lectureKomalInput.parentElement.style.opacity = '0.5';
                             lectureKomalInput.parentElement.style.pointerEvents = 'none';
                             const label = lectureKomalInput.nextElementSibling;
-                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop Lecture (SOLD OUT)';
+                            if (label) label.innerText = 'Dr Komal Majumdar precon workshop Lecture (SOLD OUT)';
                         }
                     }
                     if (data.countHandsOnKomal >= 30) {
@@ -895,7 +895,7 @@
                             handsOnKomalInput.parentElement.style.opacity = '0.5';
                             handsOnKomalInput.parentElement.style.pointerEvents = 'none';
                             const label = handsOnKomalInput.nextElementSibling;
-                            if (label) label.innerText = 'Dr Komal Mazumdar precon workshop lecture with hands on (SOLD OUT)';
+                            if (label) label.innerText = 'Dr Komal Majumdar precon workshop lecture with hands on (SOLD OUT)';
                         }
                     }
                     if (data.countUdatta >= 3000) {
@@ -1083,7 +1083,7 @@
                 hint.style.color = '#818cf8';
                 hint.innerText = getIncludedLecture()
                     ? '✓ Coupon applied: ₹11,000 includes Registration + your selected lecture.'
-                    : 'Coupon applied: ₹11,000 = Registration + any ONE lecture. Please tick one lecture below (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).';
+                    : 'Coupon applied: ₹11,000 = Registration + any ONE lecture. Please tick one lecture below (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Majumdar).';
             } else {
                 hint.style.display = 'none';
             }
@@ -1353,7 +1353,7 @@
             if (voucherCode === LECTURE_COUPON) {
                 amountInInr = LECTURE_COUPON_PRICE;
                 if (!getIncludedLecture()) {
-                    alert("With this coupon, please select any ONE lecture (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Mazumdar).");
+                    alert("With this coupon, please select any ONE lecture (Dr. Frank Schwarz / Dr. Henry Diederich / Dr. Komal Majumdar).");
                     return;
                 }
             }
