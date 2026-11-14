@@ -211,7 +211,8 @@
                         <p class="text-muted">PDF only · Max 10MB (Multiple allowed)</p>
                         <input type="file" id="delegatepaper-file-upload" class="file-input" accept=".pdf" multiple>
                     </div>
-                    <button class="btn btn-primary w-100" onclick="uploadFile('delegatepaper', 'delegatepaper-file-upload')"
+                    <button class="btn btn-primary w-100"
+                        onclick="uploadFile('delegatepaper', 'delegatepaper-file-upload')"
                         data-testid="upload-delegatepaper-btn">
                         Upload Delegate Paper
                     </button>
@@ -311,7 +312,7 @@
 
     <script src="script.js"></script>
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyP4yOSHgmw76KpXgm2yXSTWlsCXu5VKzVoiM9wtN7A4UACqLJK1hNVDacTUi3WcfnQ/exec';
 
         // Check if user is logged in
         function checkAuth() {
@@ -533,9 +534,9 @@
                             poster: 'paper-upload-status',
                             photo: 'photo-upload-status',
                             bonafide: 'bonafide-upload-status',
-                                pgcase: 'pgcase-upload-status',
-                                pgresearch: 'pgresearch-upload-status',
-                                delegatepaper: 'delegatepaper-upload-status'
+                            pgcase: 'pgcase-upload-status',
+                            pgresearch: 'pgresearch-upload-status',
+                            delegatepaper: 'delegatepaper-upload-status'
                         };
                         const statusEl = document.getElementById(statusMap[uploadType]);
                         if (statusEl) {

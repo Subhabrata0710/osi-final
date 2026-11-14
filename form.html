@@ -775,7 +775,7 @@
         updateDynamicPricing();
 
         // Replace with your actual Deployed Web App URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzO6_L7Ul8bZzHqVOGgRhHPMi3DgWiWRfelkEr_9RFzzKUsFECC5pqjXRlibaQd-0o0/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyP4yOSHgmw76KpXgm2yXSTWlsCXu5VKzVoiM9wtN7A4UACqLJK1hNVDacTUi3WcfnQ/exec';
 
         // Check Osseodensification and New Workshops Capacity
         fetch(`${GOOGLE_SCRIPT_URL}?action=getCapacity`)
@@ -931,23 +931,23 @@
             const promoActive = isWorkshopPromoActive();
             const workshopCheckboxes = document.querySelectorAll('.workshop-checkbox');
             workshopCheckboxes.forEach(cb => {
-        // Ensure original price is stored
+                // Ensure original price is stored
                 if (!cb.dataset.originalPrice) {
                     cb.dataset.originalPrice = cb.getAttribute('data-price') || '0';
                 }
                 const originalPrice = parseInt(cb.dataset.originalPrice);
 
-        // Promo applies only to masterclasses that have a price (free ones stay free)
+                // Promo applies only to masterclasses that have a price (free ones stay free)
                 const isMasterclass = (cb.value || '').startsWith('Masterclass:');
                 const promoApplies = promoActive && isMasterclass && originalPrice > 0;
-                
+
                 let currentPrice = originalPrice;
                 if (promoApplies) {
                     currentPrice = 500;
                 }
                 cb.setAttribute('data-price', currentPrice);
 
-        // Update the visible price label next to the checkbox
+                // Update the visible price label next to the checkbox
                 const card = cb.closest('.category-card');
                 if (card) {
                     const priceSpan = card.querySelector('.cat-price');
