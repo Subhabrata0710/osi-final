@@ -72,16 +72,15 @@
 
             <!-- Main Dashboard Grid -->
             <div class="dashboard-grid">
-                <!-- Paper Upload (category dropdown) -->
+                <!-- Abstract Upload (with sub-categories) -->
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <h3>📄 Paper Upload</h3>
-                        <p>Choose a category, then upload your paper (PDF or PPT)</p>
+                        <h3>📄 Abstract Upload</h3>
+                        <p>Choose a sub-category, then upload your abstract (PDF or PPT)</p>
                     </div>
                     <label for="abstract-category" class="text-muted" style="display:block; margin-bottom:6px;">Category</label>
                     <select id="abstract-category" data-testid="abstract-category"
                         style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px;">
-                        <option value="abstract">Abstract</option>
                         <option value="pgcase">PG Paper - Case Report</option>
                         <option value="pgresearch">PG Paper - Research</option>
                         <option value="delegatepaper">Delegate Paper</option>
@@ -95,7 +94,7 @@
                     <button class="btn btn-primary w-100"
                         onclick="uploadFile(document.getElementById('abstract-category').value, 'abstract-file-upload')"
                         data-testid="upload-abstract-btn">
-                        Upload Paper
+                        Upload Abstract
                     </button>
                     <p id="abstract-upload-status" class="upload-status"></p>
                 </div>
