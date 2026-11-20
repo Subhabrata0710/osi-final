@@ -1062,6 +1062,19 @@
             if (!hint) return;
             const selectedRadio = document.querySelector('input[name="cat"]:checked');
 
+            const flatCode = document.getElementById('voucherCode') ? document.getElementById('voucherCode').value.trim().toUpperCase() : '';
+            if (flatCode === 'OSIKDU5000') {
+                hint.style.display = 'block';
+                if (selectedRadio) {
+                    hint.style.color = '#16a34a';
+                    hint.innerText = '✓ Coupon OSIKDU5000 applied: flat ₹5,000 off your total!';
+                } else {
+                    hint.style.color = '#818cf8';
+                    hint.innerText = 'Coupon OSIKDU5000 is valid: select a registration category to apply ₹5,000 off.';
+                }
+                return;
+            }
+
             if (isDeloCoupon()) {
                 hint.style.display = 'block';
                 if (isDeloEligibleCategory(selectedRadio)) {
@@ -1192,6 +1205,9 @@
             const todayStr = new Date().toLocaleDateString('en-CA');
             if (voucherCodeVal === 'DIS1000n' && todayStr === '2026-08-24') {
                 amount = Math.max(0, amount - 1000);
+            }
+            if (voucherCodeVal === 'OSIKDU5000' && selectedRadio) {
+                amount = Math.max(0, amount - 5000);
             }
 
             const accDatesDiv = document.getElementById('accommodation-dates');
