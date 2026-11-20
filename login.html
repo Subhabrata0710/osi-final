@@ -38,13 +38,18 @@
             <div class="login-card">
                 <h3 class="text-center mb-4">Welcome back</h3>
 
+                <div class="alert-closed" role="alert"
+                    style="background:#fef2f2; color:#991b1b; border:1px solid #fecaca; border-radius:8px; padding:12px 14px; margin-bottom:16px; text-align:center; font-weight:600;">
+                    Abstract submissions are closed.
+                </div>
+
                 <input id="login-reg-id" type="text" class="form-control" placeholder="Registration ID (e.g. OSI-1234)"
-                    data-testid="login-reg-id">
+                    data-testid="login-reg-id" disabled>
 
                 <input id="login-phone" type="tel" class="form-control" placeholder="Registered Phone Number"
-                    data-testid="login-phone">
+                    data-testid="login-phone" disabled>
 
-                <button class="btn btn-primary w-100" onclick="loginUser()" data-testid="login-btn">
+                <button class="btn btn-primary w-100" onclick="loginUser()" data-testid="login-btn" disabled>
                     Login
                 </button><br>
 
@@ -80,6 +85,10 @@
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyP4yOSHgmw76KpXgm2yXSTWlsCXu5VKzVoiM9wtN7A4UACqLJK1hNVDacTUi3WcfnQ/exec';
 
         function loginUser() {
+            if (document.getElementById('login-reg-id').disabled) {
+                alert('Abstract submissions are closed.');
+                return;
+            }
             const regId = document.getElementById('login-reg-id').value.trim();
             const phone = document.getElementById('login-phone').value.trim();
 
