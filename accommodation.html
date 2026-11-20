@@ -182,7 +182,8 @@
                     </div>
                     <div class="input-group">
                         <label>Check-in Date *</label>
-                        <input id="accCheckIn" type="date" />
+                        <input id="accCheckIn" type="date" min="2026-11-27" max="2026-11-28" />
+                        <small style="display:block; margin-top:6px; color:#64748b;">Check-in is available on 27 and 28 November 2026 only. All other dates are full.</small>
                     </div>
                     <div class="input-group">
                         <label>Check-out Date *</label>
@@ -224,6 +225,8 @@
             const accCheckOutInput = document.getElementById("accCheckOut");
             const guestNameSummary = document.getElementById("guest-name-summary");
             const payNowBtn = document.getElementById("pay-now");
+
+            const ALLOWED_CHECKIN_DATES = ["2026-11-27", "2026-11-28"];
 
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP4yOSHgmw76KpXgm2yXSTWlsCXu5VKzVoiM9wtN7A4UACqLJK1hNVDacTUi3WcfnQ/exec";
 
@@ -288,7 +291,13 @@
 
             // --- 4️⃣ Guest Name Dynamic Update ---
             accNameInput.addEventListener("input", updateSummary);
-            accCheckInInput.addEventListener("change", updateSummary);
+            accCheckInInput.addEventListener("change", () => {
+                if (accCheckInInput.value && !ALLOWED_CHECKIN_DATES.includes(accCheckInInput.value)) {
+                    alert("Check-in is full on this date. Please choose 27 or 28 November 2026.");
+                    accCheckInInput.value = "";
+                }
+                updateSummary();
+            });
             accCheckOutInput.addEventListener("change", updateSummary);
 
             // --- 5️⃣ Room Selection Logic ---
@@ -352,6 +361,11 @@
                 const osiReg = accOsiRegInput.value.trim();
                 const checkIn = accCheckInInput.value;
                 const checkOut = accCheckOutInput.value;
+
+                if (checkIn && !ALLOWED_CHECKIN_DATES.includes(checkIn)) {
+                    alert("Check-in is full on this date. Please choose 27 or 28 November 2026.");
+                    return;
+                }
 
                 if (!name || !phone || !osiReg || !checkIn || !checkOut) {
                     alert("Please fill in all required fields (Name, Phone, OSI Reg Number, Check-in, Check-out).");
