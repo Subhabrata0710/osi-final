@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endgame 💸</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #1e1b4b, #7c3aed, #db2777, #f59e0b);
+    background-size: 400% 400%;
+    animation: bgShift 8s ease infinite;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-x: hidden;
+    text-align: center;
+  }
+  @keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .money-rain span {
+    position: fixed;
+    top: -10%;
+    font-size: 28px;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes fall {
+    to { transform: translateY(120vh) rotate(360deg); }
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 24px;
+    padding: 32px 28px;
+    max-width: 640px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  }
+
+  .meme-face {
+    font-size: 96px;
+    display: inline-block;
+    animation: wobble 1.6s ease-in-out infinite;
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50% { transform: rotate(8deg) scale(1.1); }
+  }
+
+  h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    margin: 12px 0 8px;
+    text-shadow: 3px 3px 0 #000;
+  }
+  .headline {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 700;
+    margin: 16px 0;
+    color: #fde68a;
+  }
+  .highlight {
+    display: inline-block;
+    background: #facc15;
+    color: #111;
+    padding: 2px 12px;
+    border-radius: 10px;
+    transform: rotate(-2deg);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: rotate(-2deg) scale(1); }
+    50% { transform: rotate(2deg) scale(1.08); }
+  }
+
+  .deadline {
+    font-size: 22px;
+    margin: 18px 0;
+    animation: blink 1s steps(2, start) infinite;
+  }
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+
+  .bar-wrap {
+    margin: 22px auto 8px;
+    width: 100%;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 2px solid #fff;
+  }
+  .bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #22c55e, #facc15, #ef4444);
+    animation: fill 3s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  @keyframes fill {
+    to { width: 90%; }
+  }
+  .bar-label { font-weight: 700; font-size: 16px; }
+
+  .dancer {
+    display: inline-block;
+    font-size: 64px;
+    margin-top: 18px;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+  }
+  @keyframes bounce {
+    to { transform: translateY(-18px) rotate(10deg); }
+  }
+
+  .tagline {
+    margin-top: 22px;
+    font-size: 16px;
+    opacity: 0.9;
+    font-style: italic;
+  }
+  .shake {
+    display: inline-block;
+    animation: shake 0.5s infinite;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="money-rain" aria-hidden="true">
+  <span style="left:5%;  animation-duration: 6s;  animation-delay: 0s;">💸</span>
+  <span style="left:15%; animation-duration: 8s;  animation-delay: 1s;">💰</span>
+  <span style="left:25%; animation-duration: 5s;  animation-delay: 2s;">🤑</span>
+  <span style="left:40%; animation-duration: 7s;  animation-delay: 0.5s;">💵</span>
+  <span style="left:55%; animation-duration: 9s;  animation-delay: 3s;">💸</span>
+  <span style="left:68%; animation-duration: 6s;  animation-delay: 1.5s;">💰</span>
+  <span style="left:80%; animation-duration: 7.5s;animation-delay: 2.5s;">🤑</span>
+  <span style="left:92%; animation-duration: 5.5s;animation-delay: 4s;">💵</span>
+</div>
+
+<div class="card">
+  <div class="meme-face">😱</div>
+
+  <h1>ENDGAME ALERT!</h1>
+
+  <p class="headline">
+    <span class="shake">Clear the</span>
+    <span class="highlight">90% payment</span>
+    to the event management company
+  </p>
+
+  <p class="deadline">⏰ Before <strong>25th November</strong> ⏰</p>
+
+  <div class="bar-wrap" aria-label="Payment progress: 90 percent">
+    <div class="bar"></div>
+  </div>
+  <p class="bar-label">90% to clear. Let's go! 🏃‍♂️💨</p>
+
+  <div class="dancer">🕺💃</div>
+
+  <p class="tagline">
+    "Pay now or the event management company will come find you. 👀"
+  </p>
+</div>
+
+</body>
+</html>
